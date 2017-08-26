@@ -13,21 +13,21 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "numbernode.h"
+#ifndef ADDVARNODE_H
+#define ADDVARNODE_H
 
-NumberNode::NumberNode(std::shared_ptr<Token> token, std::string value) : Node(token)
-{
-    this->value = VariableTypeFactory::newVariable(TypeDetector::getType(value));
-    this->value->setValue(value);
-    Debug::print("NumberNode");
-}
+#include "nodes/node.h"
 
-std::shared_ptr<Variable> NumberNode::execute(std::shared_ptr<Scope> scope)
+class AddVarNode : public Node
 {
-    Debug::print("NumberNode");
-    if (scope->getReturnValue() != nullptr)
-    {
-        return scope->getReturnValue();
-    }
-    return value;
-}
+private:
+    std::string name;
+    std::shared_ptr<Node> value;
+    std::shared_ptr<Node> next;
+    std::shared_ptr<Scope> scope;
+public:
+    AddVarNode(std::shared_ptr<Token> token, std::string name, std::shared_ptr<Node> value, std::shared_ptr<Node> next);
+    std::shared_ptr<Variable> execute(std::shared_ptr<Scope> scope);
+};
+
+#endif // ADDVARNODE_H
