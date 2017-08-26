@@ -13,19 +13,20 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "setvarnode.h"
+#include "addvarnode.h"
 
-SetVarNode::SetVarNode(std::shared_ptr<Token> token, std::string name, std::shared_ptr<Node> value, std::shared_ptr<Node> next) : Node(token)
+AddVarNode::AddVarNode(std::shared_ptr<Token> token, std::string name, std::shared_ptr<Node> value, std::shared_ptr<Node> next)
+    : Node(token)
 {
     this->name = name;
     this->value = value;
     this->next = next;
-    Debug::print("SetVarNode");
+    Debug::print("AddVarNode");
 }
 
-std::shared_ptr<Variable> SetVarNode::execute(std::shared_ptr<Scope> scope)
+std::shared_ptr<Variable> AddVarNode::execute(std::shared_ptr<Scope> scope)
 {
-    Debug::print("SetVarNode");
+    Debug::print("AddVarNode");
     if (scope->getReturnValue() != nullptr)
     {
         return scope->getReturnValue();
@@ -46,7 +47,7 @@ std::shared_ptr<Variable> SetVarNode::execute(std::shared_ptr<Scope> scope)
 
         if (var != nullptr)
         {
-            if (!scope->getVariables()->setVariable(name, var))
+            if (!scope->getVariables()->addVariable(name, var))
             {
                 Errors::add(std::make_shared<Error>(RUNTIME_ERROR, "Variable not declared", token));
             }
