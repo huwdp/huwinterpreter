@@ -13,21 +13,22 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "array.h"
+#ifndef NAMEABLEOBJECT_H
+#define NAMEABLEOBJECT_H
+
+#include <string>
 
 namespace HuwInterpreter {
-    namespace Functions {
-        Array::Array(std::shared_ptr<Passable> passable)
-            : Function(passable)
-        {
-            setName("array");
-        }
-
-        std::shared_ptr<Variable> Array::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Scope> globalScope,
-                                      std::shared_ptr<Scope> scope,
-                                      std::vector<std::shared_ptr<Nodes::Node>> arguments)
-        {
-            return std::make_shared<HashTableVariable>(passable);
-        }
-    }
+    class NameableObject
+    {
+    protected:
+        std::string name;
+    public:
+        NameableObject();
+        NameableObject(std::string name);
+        std::string getName();
+        void setName(std::string name);
+    };
 }
+
+#endif // NAMEABLEOBJECT_H
