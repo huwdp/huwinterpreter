@@ -44,6 +44,16 @@ namespace  HuwInterpreter {
         parser->execute();
     }
 
+    void Interpreter::benchmark(std::vector<std::shared_ptr<Token>> tokens)
+    {
+        auto start = std::chrono::high_resolution_clock::now();
+        std::unique_ptr<Parser> parser(new Parser(tokens, nodeFactory));
+        parser->execute();
+        auto end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> diff = end-start;
+        std::cout << "Benchmark result: " << diff.count() << " seconds." << std::endl;
+    }
+
     std::string Interpreter::toString(std::vector<std::shared_ptr<Token>> tokens)
     {
         std::unique_ptr<Parser> parser(new Parser(tokens, nodeFactory));

@@ -4,7 +4,7 @@ CONFIG -= app_bundle
 
 TEMPLATE = app
 
-CONFIG += c++11
+CONFIG += c++14
 CONFIG += -j6
 
 
@@ -18,8 +18,8 @@ QMAKE_CXXFLAGS += -Wformat=2
 
 QMAKE_CXXFLAGS_RELEASE += -fno-rtti
 QMAKE_CXXFLAGS_RELEASE += -fmerge-all-constants
-QMAKE_CXXFLAGS_RELEASE += -O2
--QMAKE_CXXFLAGS_RELEASE += march=athlon64
+QMAKE_CXXFLAGS_RELEASE += -O3
+-QMAKE_CXXFLAGS_RELEASE += march=native
 -QMAKE_CXXFLAGS_RELEASE += -pipe
 
 QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-parameter

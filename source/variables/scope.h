@@ -33,11 +33,11 @@ namespace HuwInterpreter {
             std::shared_ptr<Variable> returnValue;
             std::shared_ptr<VariableManager> variableManager;
         public:
-            Scope(std::shared_ptr<Passable> passable);
             Scope(std::shared_ptr<VariableManager> variableManager);
-            Scope(std::string functionName, std::shared_ptr<Passable> passable);
             Scope(std::string functionName, std::shared_ptr<VariableManager> variableManager);
-            std::shared_ptr<VariableManager> getVariableManager();
+            std::shared_ptr<VariableManager> const& getVariableManager();
+            Scope(std::shared_ptr<Passable> passable, bool addDefaults);
+            Scope(std::string functionName, std::shared_ptr<Passable> passable, bool addDefaults);
             void setVariableManager(std::shared_ptr<VariableManager> variableManager);
             std::shared_ptr<Variable> getReturnValue();
             void setReturnValue(std::shared_ptr<Variable> value);

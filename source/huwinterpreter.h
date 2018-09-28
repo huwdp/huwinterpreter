@@ -19,6 +19,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <chrono>
 #include "parser/parser.h"
 #include "tokens/token.h"
 #include "tokens/scanner.h"
@@ -48,6 +49,7 @@ namespace  HuwInterpreter {
         Interpreter();
         void executeFile(std::string fileLocation);
         void execute(std::vector<std::shared_ptr<Token>> tokens);
+        void benchmark(std::vector<std::shared_ptr<Token>> tokens);
         std::string toString(std::vector<std::shared_ptr<Token>> tokens);
         std::vector<std::shared_ptr<Token>> parseFile(std::string fileLocation);
         std::vector<std::shared_ptr<Token> > parseText(std::string text);
