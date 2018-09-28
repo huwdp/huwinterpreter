@@ -1203,7 +1203,7 @@ namespace HuwInterpreter {
 
     bool Parser::execute()
     {
-        std::shared_ptr<Variables::Scope> globalScope = std::make_shared<Variables::Scope>("Global scope", passable);
+        std::shared_ptr<Variables::Scope> globalScope = std::make_shared<Variables::Scope>("Global scope", passable, true);
         if (!tokens.empty() && compilation)
         {
             std::shared_ptr<Nodes::Node> done = parse();

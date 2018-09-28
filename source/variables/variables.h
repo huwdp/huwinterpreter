@@ -35,7 +35,7 @@ namespace HuwInterpreter {
             std::unordered_map<std::string, std::shared_ptr<Variable>> variables;
         public:
             std::shared_ptr<Variable> nullVariable;
-            VariableManager(std::shared_ptr<Passable> passable, bool isEmpty);
+            VariableManager(std::shared_ptr<Passable> passable, bool addDefaults);
             ~VariableManager();
             void addDefaultVariables(bool isEmpty);
             std::shared_ptr<Variable> get(std::string name);

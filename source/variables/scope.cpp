@@ -17,22 +17,11 @@
 
 namespace HuwInterpreter {
     namespace Variables {
-        Scope::Scope(std::shared_ptr<Passable> passable)
-        {
-            this->functionName = functionName;
-            variableManager = std::move(std::make_shared<VariableManager>(passable, false));
-        }
 
         Scope::Scope(std::shared_ptr<VariableManager> variableManager)
         {
             this->functionName = functionName;
             variableManager = std::move(variableManager);
-        }
-
-        Scope::Scope(std::string functionName, std::shared_ptr<Passable> passable)
-        {
-            this->functionName = functionName;
-            variableManager = std::move(std::make_shared<VariableManager>(passable, false));
         }
 
         Scope::Scope(std::string functionName, std::shared_ptr<VariableManager> variableManager)
@@ -41,7 +30,18 @@ namespace HuwInterpreter {
             variableManager = std::move(variableManager);
         }
 
-        std::shared_ptr<VariableManager> Scope::getVariableManager()
+        Scope::Scope(std::shared_ptr<Passable> passable, bool addDefaults)
+        {
+            variableManager = std::make_shared<VariableManager>(passable, addDefaults);
+        }
+
+        Scope::Scope(std::string functionName, std::shared_ptr<Passable> passable, bool addDefaults)
+        {
+            this->functionName = functionName;
+            variableManager = std::make_shared<VariableManager>(passable, addDefaults);
+        }
+
+        std::shared_ptr<VariableManager> const& Scope::getVariableManager()
         {
             return variableManager;
         }
