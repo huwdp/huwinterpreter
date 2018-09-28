@@ -52,6 +52,18 @@ int main(int argc, char* argv[])
     }
     std::string argument = argv[1];
 
+    // Optional arguments
+    bool benchmark = false;
+
+    for (int i = 0; i < argc; i++)
+    {
+        std::string arg= argv[i];
+        if (arg == "-b")
+        {
+            benchmark = true;
+        }
+    }
+
     if (argument == "-h")
     {
         printHelp(argc, argv);
@@ -63,7 +75,6 @@ int main(int argc, char* argv[])
         std::getline (std::cin,text);
         while (text != "exit")
         {
-            //interpreter->runText(text);
             interpreter->execute(interpreter->parseText(text));
             std::cout << ">>>";
             std::getline (std::cin,text);
@@ -75,6 +86,11 @@ int main(int argc, char* argv[])
     }
     else
     {
+        if (benchmark)
+        {
+            interpreter->benchmark(interpreter->parseFile(argv[1]));
+            std::exit(0);
+        }
         interpreter->executeFile(argument);
     }
     std::exit(0);
