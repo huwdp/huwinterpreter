@@ -33,14 +33,16 @@ namespace HuwInterpreter {
                                                       std::shared_ptr<Scope> scope,
                                                       std::vector<std::shared_ptr<Nodes::Node>> arguments)
         {
-            // New scope
-            std::shared_ptr<Scope> newScope = std::make_shared<Scope>(name, passable);
+
 
             if (this->arguments.size() != arguments.size())
             {
                 passable->getErrorManager()->add(passable->getErrorFactory()->unmatchedSpecifiedNumberOfArguments(token, name));
                 return nullVariable;
             }
+
+            // New scope
+            std::shared_ptr<Scope> newScope = std::make_shared<Scope>(name, passable, false);
 
             std::vector<std::shared_ptr<Nodes::Node>>::iterator variableIt = arguments.begin();
             for (std::vector<std::string>::iterator argumentIt = this->arguments.begin(); argumentIt != this->arguments.end(); ++argumentIt)

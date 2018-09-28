@@ -17,10 +17,10 @@
 
 namespace HuwInterpreter {
     namespace Variables {
-        VariableManager::VariableManager(std::shared_ptr<Passable> passable, bool isEmpty)
+        VariableManager::VariableManager(std::shared_ptr<Passable> passable, bool addDefaults)
         {
             this->passable = passable;
-            addDefaultVariables(isEmpty);
+            addDefaultVariables(addDefaults);
         }
 
         VariableManager::~VariableManager()
@@ -28,9 +28,9 @@ namespace HuwInterpreter {
             variables.clear();
         }
 
-        void VariableManager::addDefaultVariables(bool isEmpty)
+        void VariableManager::addDefaultVariables(bool addDefaults)
         {
-            if (!isEmpty)
+            if (addDefaults)
             {
                 addVariable(std::move(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "PI", 3.14159265358979))));
                 addVariable(std::move(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "e", 2.718281828459045))));
