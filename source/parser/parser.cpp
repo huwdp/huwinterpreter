@@ -17,8 +17,10 @@
 
 namespace HuwInterpreter {
     Parser::Parser(std::vector<std::shared_ptr<Tokens::Token>> tokens,
-                   std::shared_ptr<NodeFactory> nodeFactory)
+                   std::shared_ptr<NodeFactory> nodeFactory,
+                   bool includeSemicolons)
     {
+        this->includeSemicolons = includeSemicolons;
         this->nodeFactory = nodeFactory;
         this->passable = std::make_shared<Passable>();
         this->compilation = true;
@@ -164,6 +166,15 @@ namespace HuwInterpreter {
         passable->getErrorManager()->add(passable->getErrorFactory()->syntaxError(currentToken, errorMsg));
     }
 
+    std::shared_ptr<Nodes::Node> Parser::createSemicolonNode(std::shared_ptr<Passable> passable, std::shared_ptr<Nodes::Node> node)
+    {
+        if (includeSemicolons)
+        {
+            return nodeFactory->CreateSemicolonNode(passable, node);
+        }
+        return node;
+    }
+
     std::shared_ptr<Nodes::Node> Parser::parseSquareBrackets(std::shared_ptr<Nodes::Node> node)
     {
         if (!tokens.empty() && compilation && currentToken->getType() == LEFTSQUAREBRACKET)
@@ -203,7 +214,7 @@ namespace HuwInterpreter {
                                 node,
                                 indexes,
                                 value);
-                    return nodeFactory->CreateSemicolonNode(passable, setIndexNode);
+                    return createSemicolonNode(passable, setIndexNode);
                 }
 
                 for (std::vector<std::shared_ptr<Nodes::Node>>::iterator it = indexes.begin(); it != indexes.end(); ++it)
@@ -646,28 +657,28 @@ namespace HuwInterpreter {
             acceptIndentation();
             if (accept(Types::INCREMENT))
             {
-                std::shared_ptr<Nodes::Node> node = nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateIncrementNode(passable, currentToken, nodeFactory->CreateGetVarNode(passable, currentToken, word)));
+                std::shared_ptr<Nodes::Node> node = createSemicolonNode(passable, nodeFactory->CreateIncrementNode(passable, currentToken, nodeFactory->CreateGetVarNode(passable, currentToken, word)));
                 if (!expectSemicolon())
                 {
                     return nullNode;
                 }
-                return nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateRunNode(passable, currentToken, (node), parseBlock()));
+                return createSemicolonNode(passable, nodeFactory->CreateRunNode(passable, currentToken, (node), parseBlock()));
             }
             if (accept(Types::DECREMENT))
             {
-                std::shared_ptr<Nodes::Node> node = nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateDecrementNode(passable, currentToken, nodeFactory->CreateGetVarNode(passable, currentToken, word)));
+                std::shared_ptr<Nodes::Node> node = createSemicolonNode(passable, nodeFactory->CreateDecrementNode(passable, currentToken, nodeFactory->CreateGetVarNode(passable, currentToken, word)));
                 if (!expectSemicolon())
                 {
                     return nullNode;
                 }
-                return nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateRunNode(passable, currentToken, node, parseBlock()));
+                return createSemicolonNode(passable, nodeFactory->CreateRunNode(passable, currentToken, node, parseBlock()));
             }
             acceptIndentation();
             if (accept(Types::SEMICOLON))
             {
                 acceptIndentation();
                 acceptSemicolon();
-                return nodeFactory->CreateRunNode(passable, currentToken, nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateSetVarNode(passable, currentToken, word, nullptr)), parseBlock());
+                return nodeFactory->CreateRunNode(passable, currentToken, createSemicolonNode(passable, nodeFactory->CreateSetVarNode(passable, currentToken, word, nullptr)), parseBlock());
             }
 
 
@@ -708,31 +719,31 @@ namespace HuwInterpreter {
 
             if (tokenType == Types::EQUALS)
             {
-                return nodeFactory->CreateRunNode(passable, currentToken, nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateSetVarNode(passable, currentToken, word, expressionNode)), blockNode);
+                return nodeFactory->CreateRunNode(passable, currentToken, createSemicolonNode(passable, nodeFactory->CreateSetVarNode(passable, currentToken, word, expressionNode)), blockNode);
             }
             else if (tokenType == Types::ADDITIONEQUAL)
             {
                 std::shared_ptr<Nodes::Node> getNode = nodeFactory->CreateGetVarNode(passable, currentToken, word);
                 std::shared_ptr<Nodes::Node> addNode = nodeFactory->CreateAddNode(passable, currentToken, getNode, expressionNode);
-                return nodeFactory->CreateRunNode(passable, currentToken, nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateSetVarNode(passable, currentToken, word, addNode)), blockNode);
+                return nodeFactory->CreateRunNode(passable, currentToken, createSemicolonNode(passable, nodeFactory->CreateSetVarNode(passable, currentToken, word, addNode)), blockNode);
             }
             else if (tokenType == Types::SUBTRACTIONEQUAL)
             {
                 std::shared_ptr<Nodes::Node> getNode = nodeFactory->CreateGetVarNode(passable, currentToken, word);
                 std::shared_ptr<Nodes::Node> subNode = nodeFactory->CreateSubNode(passable, currentToken, getNode, expressionNode);
-                return nodeFactory->CreateRunNode(passable, currentToken, nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateSetVarNode(passable, currentToken, word, subNode)), blockNode);
+                return nodeFactory->CreateRunNode(passable, currentToken, createSemicolonNode(passable, nodeFactory->CreateSetVarNode(passable, currentToken, word, subNode)), blockNode);
             }
             else if (tokenType == Types::MULTIPLICATIONEQUAL)
             {
                 std::shared_ptr<Nodes::Node> getNode = nodeFactory->CreateGetVarNode(passable, currentToken, word);
                 std::shared_ptr<Nodes::Node> mulNode = nodeFactory->CreateMulNode(passable, currentToken, getNode, expressionNode);
-                return nodeFactory->CreateRunNode(passable, currentToken, nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateSetVarNode(passable, currentToken, word, mulNode)), blockNode);
+                return nodeFactory->CreateRunNode(passable, currentToken, createSemicolonNode(passable, nodeFactory->CreateSetVarNode(passable, currentToken, word, mulNode)), blockNode);
             }
             else if (tokenType == Types::DIVISIONEQUAL)
             {
                 std::shared_ptr<Nodes::Node> getNode = nodeFactory->CreateGetVarNode(passable, currentToken, word);
                 std::shared_ptr<Nodes::Node> divNode = nodeFactory->CreateDivNode(passable, currentToken, getNode, expressionNode);
-                return nodeFactory->CreateRunNode(passable, currentToken, nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateSetVarNode(passable, currentToken, word, divNode)), blockNode);
+                return nodeFactory->CreateRunNode(passable, currentToken, createSemicolonNode(passable, nodeFactory->CreateSetVarNode(passable, currentToken, word, divNode)), blockNode);
             }
         }
         return nullNode;
@@ -762,7 +773,7 @@ namespace HuwInterpreter {
                 {
                     acceptIndentation();
                     acceptSemicolon();
-                    return nodeFactory->CreateRunNode(passable, currentToken, nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateAddVarNode(passable, currentToken, word, nullptr)), parseBlock());
+                    return nodeFactory->CreateRunNode(passable, currentToken, createSemicolonNode(passable, nodeFactory->CreateAddVarNode(passable, currentToken, word, nullptr)), parseBlock());
                 }
                 if (tokenType != Types::EQUALS &&
                         tokenType != Types::ADDITIONEQUAL &&
@@ -792,31 +803,31 @@ namespace HuwInterpreter {
 
                 if (tokenType == Types::EQUALS)
                 {
-                    return nodeFactory->CreateRunNode(passable, currentToken, nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateAddVarNode(passable, currentToken, word, expressionNode)), blockNode);
+                    return nodeFactory->CreateRunNode(passable, currentToken, createSemicolonNode(passable, nodeFactory->CreateAddVarNode(passable, currentToken, word, expressionNode)), blockNode);
                 }
                 else if (tokenType ==  Types::ADDITIONEQUAL)
                 {
                     std::shared_ptr<Nodes::Node> getNode = nodeFactory->CreateGetVarNode(passable, currentToken, word);
                     std::shared_ptr<Nodes::Node> addNode = nodeFactory->CreateAddNode(passable, currentToken, getNode, expressionNode);
-                    return nodeFactory->CreateRunNode(passable, currentToken, nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateAddVarNode(passable, currentToken, word, addNode)), blockNode);
+                    return nodeFactory->CreateRunNode(passable, currentToken, createSemicolonNode(passable, nodeFactory->CreateAddVarNode(passable, currentToken, word, addNode)), blockNode);
                 }
                 else if (tokenType ==  Types::SUBTRACTIONEQUAL)
                 {
                     std::shared_ptr<Nodes::Node> getNode = nodeFactory->CreateGetVarNode(passable, currentToken, word);
                     std::shared_ptr<Nodes::Node> subNode = nodeFactory->CreateSubNode(passable, currentToken, getNode, expressionNode);
-                    return nodeFactory->CreateRunNode(passable, currentToken, nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateAddVarNode(passable, currentToken, word, subNode)), blockNode);
+                    return nodeFactory->CreateRunNode(passable, currentToken, createSemicolonNode(passable, nodeFactory->CreateAddVarNode(passable, currentToken, word, subNode)), blockNode);
                 }
                 else if (tokenType ==  Types::MULTIPLICATIONEQUAL)
                 {
                     std::shared_ptr<Nodes::Node> getNode = nodeFactory->CreateGetVarNode(passable, currentToken, word);
                     std::shared_ptr<Nodes::Node> mulNode = nodeFactory->CreateMulNode(passable, currentToken, getNode, expressionNode);
-                    return nodeFactory->CreateRunNode(passable, currentToken, nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateAddVarNode(passable, currentToken, word, mulNode)), blockNode);
+                    return nodeFactory->CreateRunNode(passable, currentToken, createSemicolonNode(passable, nodeFactory->CreateAddVarNode(passable, currentToken, word, mulNode)), blockNode);
                 }
                 else if (tokenType ==  Types::DIVISIONEQUAL)
                 {
                     std::shared_ptr<Nodes::Node> getNode = nodeFactory->CreateGetVarNode(passable, currentToken, word);
                     std::shared_ptr<Nodes::Node> divNode = nodeFactory->CreateDivNode(passable, currentToken, getNode, expressionNode);
-                    return nodeFactory->CreateRunNode(passable, currentToken, nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateAddVarNode(passable, currentToken, word, divNode)), blockNode);
+                    return nodeFactory->CreateRunNode(passable, currentToken, createSemicolonNode(passable, nodeFactory->CreateAddVarNode(passable, currentToken, word, divNode)), blockNode);
                 }
             }
             return nullNode;
@@ -842,7 +853,7 @@ namespace HuwInterpreter {
                 {
                     acceptIndentation();
                     acceptSemicolon();
-                    return nodeFactory->CreateRunNode(passable, currentToken, nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateAddVarNode(passable, currentToken, word, nullptr)), parseBlock());
+                    return nodeFactory->CreateRunNode(passable, currentToken, createSemicolonNode(passable, nodeFactory->CreateAddVarNode(passable, currentToken, word, nullptr)), parseBlock());
                 }
                 if (tokenType != Types::EQUALS &&
                         tokenType != Types::ADDITIONEQUAL &&
@@ -872,31 +883,31 @@ namespace HuwInterpreter {
 
                 if (tokenType == Types::EQUALS)
                 {
-                    return nodeFactory->CreateRunNode(passable, currentToken, nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateAddConstNode(passable, currentToken, word, expressionNode)), blockNode);
+                    return nodeFactory->CreateRunNode(passable, currentToken, createSemicolonNode(passable, nodeFactory->CreateAddConstNode(passable, currentToken, word, expressionNode)), blockNode);
                 }
                 else if (tokenType ==  Types::ADDITIONEQUAL)
                 {
                     std::shared_ptr<Nodes::Node> getNode = nodeFactory->CreateGetVarNode(passable, currentToken, word);
                     std::shared_ptr<Nodes::Node> addNode = nodeFactory->CreateAddNode(passable, currentToken, getNode, expressionNode);
-                    return nodeFactory->CreateRunNode(passable, currentToken, nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateAddConstNode(passable, currentToken, word, addNode)), blockNode);
+                    return nodeFactory->CreateRunNode(passable, currentToken, createSemicolonNode(passable, nodeFactory->CreateAddConstNode(passable, currentToken, word, addNode)), blockNode);
                 }
                 else if (tokenType ==  Types::SUBTRACTIONEQUAL)
                 {
                     std::shared_ptr<Nodes::Node> getNode = nodeFactory->CreateGetVarNode(passable, currentToken, word);
                     std::shared_ptr<Nodes::Node> subNode = nodeFactory->CreateSubNode(passable, currentToken, getNode, expressionNode);
-                    return nodeFactory->CreateRunNode(passable, currentToken, nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateAddConstNode(passable, currentToken, word, subNode)), blockNode);
+                    return nodeFactory->CreateRunNode(passable, currentToken, createSemicolonNode(passable, nodeFactory->CreateAddConstNode(passable, currentToken, word, subNode)), blockNode);
                 }
                 else if (tokenType ==  Types::MULTIPLICATIONEQUAL)
                 {
                     std::shared_ptr<Nodes::Node> getNode = nodeFactory->CreateGetVarNode(passable, currentToken, word);
                     std::shared_ptr<Nodes::Node> mulNode = nodeFactory->CreateMulNode(passable, currentToken, getNode, expressionNode);
-                    return nodeFactory->CreateRunNode(passable, currentToken, nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateAddConstNode(passable, currentToken, word, mulNode)), blockNode);
+                    return nodeFactory->CreateRunNode(passable, currentToken, createSemicolonNode(passable, nodeFactory->CreateAddConstNode(passable, currentToken, word, mulNode)), blockNode);
                 }
                 else if (tokenType ==  Types::DIVISIONEQUAL)
                 {
                     std::shared_ptr<Nodes::Node> getNode = nodeFactory->CreateGetVarNode(passable, currentToken, word);
                     std::shared_ptr<Nodes::Node> divNode = nodeFactory->CreateDivNode(passable, currentToken, getNode, expressionNode);
-                    return nodeFactory->CreateRunNode(passable, currentToken, nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateAddConstNode(passable, currentToken, word, divNode)), blockNode);
+                    return nodeFactory->CreateRunNode(passable, currentToken, createSemicolonNode(passable, nodeFactory->CreateAddConstNode(passable, currentToken, word, divNode)), blockNode);
                 }
             }
             return nullNode;
@@ -1006,7 +1017,7 @@ namespace HuwInterpreter {
                     return nullNode;
                 }
                 std::shared_ptr<Nodes::Node> blockNode = parseBlock();
-                std::shared_ptr<Nodes::Node> functions = nodeFactory->CreateSemicolonNode(passable, nodeFactory->CreateGetFuncNode(passable, currentToken, word, this->functions, arguments));
+                std::shared_ptr<Nodes::Node> functions = createSemicolonNode(passable, nodeFactory->CreateGetFuncNode(passable, currentToken, word, this->functions, arguments));
                 return nodeFactory->CreateRunNode(passable, currentToken, (functions), blockNode);
             }
         }
@@ -1093,7 +1104,7 @@ namespace HuwInterpreter {
 
                 return nodeFactory->CreateRunNode(passable,
                                                   currentToken,
-                                                  nodeFactory->CreateSemicolonNode(passable, returnNode),
+                                                  createSemicolonNode(passable, returnNode),
                                                   blockNode
                                                   );
             }

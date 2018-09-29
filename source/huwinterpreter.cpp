@@ -40,14 +40,14 @@ namespace  HuwInterpreter {
 
     void Interpreter::execute(std::vector<std::shared_ptr<Token>> tokens)
     {
-        std::unique_ptr<Parser> parser(new Parser(tokens, nodeFactory));
+        std::unique_ptr<Parser> parser(new Parser(tokens, nodeFactory, false));
         parser->execute();
     }
 
     void Interpreter::benchmark(std::vector<std::shared_ptr<Token>> tokens)
     {
         auto start = std::chrono::high_resolution_clock::now();
-        std::unique_ptr<Parser> parser(new Parser(tokens, nodeFactory));
+        std::unique_ptr<Parser> parser(new Parser(tokens, nodeFactory, false));
         parser->execute();
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> diff = end-start;
@@ -56,7 +56,7 @@ namespace  HuwInterpreter {
 
     std::string Interpreter::toString(std::vector<std::shared_ptr<Token>> tokens)
     {
-        std::unique_ptr<Parser> parser(new Parser(tokens, nodeFactory));
+        std::unique_ptr<Parser> parser(new Parser(tokens, nodeFactory, true));
         return parser->toString();
     }
 
