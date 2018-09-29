@@ -96,6 +96,7 @@ namespace HuwInterpreter {
         std::shared_ptr<Nodes::Node> nullNode;
         std::shared_ptr<NodeFactory> codeFactory;
         std::shared_ptr<Passable> passable;
+        bool includeSemicolons = false;
 
         void setCompilation(bool compilation);
         void nextToken();
@@ -112,6 +113,7 @@ namespace HuwInterpreter {
         std::string syntaxError();
         bool expectSemicolon();
         void errorMessage(std::string errorMsg, std::shared_ptr<Tokens::Token> currentToken);
+        std::shared_ptr<Nodes::Node> createSemicolonNode(std::shared_ptr<Passable> passable, std::shared_ptr<Nodes::Node> node);
         std::shared_ptr<Nodes::Node> parseSquareBrackets(std::shared_ptr<Nodes::Node> node);
         std::shared_ptr<Nodes::Node> parseValue();
         std::shared_ptr<Nodes::Node> parseFactor();
@@ -137,7 +139,8 @@ namespace HuwInterpreter {
         std::shared_ptr<Nodes::Node> parseBlock();
     public:
         Parser(std::vector<std::shared_ptr<Tokens::Token>> tokens,
-               std::shared_ptr<NodeFactory> nodeFactory);
+               std::shared_ptr<NodeFactory> nodeFactory,
+               bool includeSemicolons);
         bool getCompilation();
         std::shared_ptr<Nodes::Node> parse();
         std::string toString();
