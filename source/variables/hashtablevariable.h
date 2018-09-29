@@ -31,7 +31,9 @@ namespace HuwInterpreter {
             std::unordered_map<std::string, std::shared_ptr<Variable>> map;
         public:
             HashTableVariable(std::shared_ptr<Passable> passable);
+            HashTableVariable(std::shared_ptr<Passable> passable, std::string name);
             HashTableVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token);
+            HashTableVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name);
             void setValue(double value);
             void setValue(std::string value);
             void setValue(long long value);
