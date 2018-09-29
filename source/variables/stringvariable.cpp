@@ -24,28 +24,28 @@ namespace HuwInterpreter {
         }
 
         StringVariable::StringVariable(std::shared_ptr<Passable> passable, std::string value)
-            : Variable(passable, "")
+            : Variable(passable)
         {
             this->value = value;
             variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
         }
 
         StringVariable::StringVariable(std::shared_ptr<Passable> passable, char value)
-            : Variable(passable, "")
+            : Variable(passable)
         {
             this->value = std::to_string(value);
             variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
         }
 
         StringVariable::StringVariable(std::shared_ptr<Passable> passable, std::string name, std::string value)
-            : Variable(passable, name)
+            : Variable(passable, std::move(name))
         {
             this->value = value;
             variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
         }
 
         StringVariable::StringVariable(std::shared_ptr<Passable> passable, std::string name, char value)
-            : Variable(passable, name)
+            : Variable(passable, std::move(name))
         {
             this->value = std::to_string(value);
             variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);

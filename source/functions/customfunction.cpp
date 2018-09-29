@@ -78,10 +78,10 @@ namespace HuwInterpreter {
                     passable->getStackTraceManager()->pop();
                 }
                 // Remove arguments given from scope
-                for (std::vector<std::string>::iterator it1 = this->arguments.begin(); it1 != this->arguments.end(); ++it1)
+                /*for (std::vector<std::string>::iterator it1 = this->arguments.begin(); it1 != this->arguments.end(); ++it1)
                 {
                     newScope->getVariableManager()->removeVariable((*it1));
-                }
+                }*/
                 return output;
             }
             return nullVariable;
