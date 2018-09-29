@@ -24,13 +24,13 @@ namespace HuwInterpreter {
         }
 
         DoubleVariable::DoubleVariable(std::shared_ptr<Passable> passable, double value)
-            : Variable(passable, "")
+            : Variable(passable)
         {
             this->value = value;
         }
 
         DoubleVariable::DoubleVariable(std::shared_ptr<Passable> passable, std::string name, double value)
-            : Variable(passable, name)
+            : Variable(passable, std::move(name))
         {
             this->value = value;
         }
@@ -42,7 +42,7 @@ namespace HuwInterpreter {
         }
 
         DoubleVariable::DoubleVariable(std::shared_ptr<Passable> passable, double value, std::shared_ptr<Tokens::Token> token)
-            : Variable(passable, "", token)
+            : Variable(passable, token)
         {
             this->value = value;
         }

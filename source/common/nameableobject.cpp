@@ -16,7 +16,7 @@
 #include "nameableobject.h"
 
 namespace HuwInterpreter {
-    NameableObject::NameableObject() : name("")
+    NameableObject::NameableObject()
     {}
 
     NameableObject::NameableObject(std::string name) : name(name)

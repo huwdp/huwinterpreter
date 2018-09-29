@@ -86,7 +86,7 @@ namespace HuwInterpreter {
 
                     if (variable == nullptr)
                     {
-                        std::shared_ptr<Variable> newHashTable = std::make_shared<Variables::HashTableVariable>(passable);
+                        std::shared_ptr<Variable> newHashTable = std::make_shared<Variables::HashTableVariable>(passable, var->getName());
                         var->set(index->toString(), std::move(newHashTable), token);
                     }
 
