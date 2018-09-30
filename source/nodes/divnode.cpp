@@ -56,7 +56,7 @@ namespace HuwInterpreter {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
                     return nullVariable;
                 }
-                return l->div(r, token);
+                return std::move(l->div(r, token));
             }
             ErrorReporting::Debug::print("Could not div.");
             return nullVariable;

@@ -56,7 +56,7 @@ namespace HuwInterpreter {
                     }
                     else
                     {
-                        newScope->getVariableManager()->addVariable((*argumentIt), argument->copy(token));
+                        newScope->getVariableManager()->addVariable((*argumentIt), std::move(argument->copy(token)));
                     }
                 }
                 ++variableIt;

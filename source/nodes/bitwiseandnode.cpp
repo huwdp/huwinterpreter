@@ -55,7 +55,7 @@ namespace HuwInterpreter {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
                     return nullVariable;
                 }
-                return l->bitwiseAnd(r, token);
+                return std::move(l->bitwiseAnd(r, token));
             }
             ErrorReporting::Debug::print("Could not bitwiseAnd");
             return nullVariable;
