@@ -343,7 +343,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variable> DoubleVariable::bitwiseComplement(std::shared_ptr<Tokens::Token> token)
         {
-            return std::make_shared<DoubleVariable>(passable, ~toInt());
+            return std::move(std::make_shared<DoubleVariable>(passable, ~toInt()));
         }
 
         std::shared_ptr<Variable> DoubleVariable::leftShift(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -352,7 +352,7 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::make_shared<DoubleVariable>(passable, toInt() << variable->toInt());
+            return std::move(std::make_shared<DoubleVariable>(passable, toInt() << variable->toInt()));
         }
 
         std::shared_ptr<Variable> DoubleVariable::rightShift(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -361,7 +361,7 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::make_shared<DoubleVariable>(passable, toInt() >> variable->toInt());
+            return std::move(std::make_shared<DoubleVariable>(passable, toInt() >> variable->toInt()));
         }
     }
 }

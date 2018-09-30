@@ -45,7 +45,7 @@ namespace HuwInterpreter {
                 std::shared_ptr<Variables::Variable> var = node->execute(globalScope, scope);
                 if (var != nullptr)
                 {
-                    return var->bitwiseComplement(token);
+                    return std::move(var->bitwiseComplement(token));
                 }
                 passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
             }
