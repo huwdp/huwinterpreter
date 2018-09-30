@@ -265,7 +265,7 @@ namespace HuwInterpreter {
             {
                 temp->setValue(double(0));
             }
-            return temp;
+            return std::move(temp);
         }
 
         std::shared_ptr<Variable> StringVariable::ifOver(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -290,7 +290,7 @@ namespace HuwInterpreter {
             {
                 temp->setValue(double(0));
             }
-            return temp;
+            return std::move(temp);
         }
 
         std::shared_ptr<Variable> StringVariable::ifOverOrEqual(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -315,7 +315,7 @@ namespace HuwInterpreter {
             {
                 temp->setValue(double(0));
             }
-            return temp;
+            return std::move(temp);
         }
 
         std::shared_ptr<Variable> StringVariable::ifEqual(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -340,7 +340,7 @@ namespace HuwInterpreter {
             {
                 temp->setValue(double(0));
             }
-            return temp;
+            return std::move(temp);
         }
 
         std::shared_ptr<Variable> StringVariable::ifNotEqual(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -365,7 +365,7 @@ namespace HuwInterpreter {
             {
                 temp->setValue(double(0));
             }
-            return temp;
+            return std::move(temp);
         }
 
         std::shared_ptr<Variable> StringVariable::addEqual(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -376,7 +376,7 @@ namespace HuwInterpreter {
             }
             std::string value = this->value;
             value.append(variable->toString());
-            return std::make_shared<StringVariable>(passable, value);
+            return std::move(std::make_shared<StringVariable>(passable, value));
         }
 
         std::shared_ptr<Variable> StringVariable::subEqual(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -417,9 +417,9 @@ namespace HuwInterpreter {
             }
             if (value.compare(variable->toString()) == 0)
             {
-                return std::make_shared<DoubleVariable>(passable, true);
+                return std::move(std::make_shared<DoubleVariable>(passable, true));
             }
-            return std::make_shared<DoubleVariable>(passable, false);
+            return std::move(std::make_shared<DoubleVariable>(passable, false));
         }
 
         std::shared_ptr<Variable> StringVariable::increment(std::shared_ptr<Tokens::Token> token)
@@ -436,7 +436,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variable> StringVariable::count(std::shared_ptr<Tokens::Token> token)
         {
-            return std::make_shared<DoubleVariable>(passable, (long long)value.size());
+            return std::move(std::make_shared<DoubleVariable>(passable, (long long)value.size()));
         }
 
         void StringVariable::set(std::string index, std::shared_ptr<Variable> value, std::shared_ptr<Tokens::Token> token)
@@ -473,7 +473,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variable> StringVariable::copy(std::shared_ptr<Tokens::Token> token)
         {
-            return std::make_shared<StringVariable>(passable, value);
+            return std::move(std::make_shared<StringVariable>(passable, value));
         }
 
         std::shared_ptr<Variable> StringVariable::bitwiseAnd(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)

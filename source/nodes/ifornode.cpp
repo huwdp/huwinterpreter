@@ -63,9 +63,9 @@ namespace HuwInterpreter {
                 }
                 if (r->toBool() || l->toBool())
                 {
-                    return std::make_shared<Variables::DoubleVariable>(passable, true);
+                    return std::move(std::make_shared<Variables::DoubleVariable>(passable, true));
                 }
-                return std::make_shared<Variables::DoubleVariable>(passable, false);
+                return std::move(std::make_shared<Variables::DoubleVariable>(passable, false));
             }
             ErrorReporting::Debug::print("Could not or.");
             return nullVariable;

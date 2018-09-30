@@ -49,7 +49,7 @@ namespace HuwInterpreter {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
                     return nullVariable;
                 }
-                return n->decrement(token);
+                return std::move(n->decrement(token));
             }
             ErrorReporting::Debug::print("Could not increment.");
             return nullVariable;

@@ -57,8 +57,7 @@ namespace HuwInterpreter {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
                     return nullVariable;
                 }
-                std::shared_ptr<Variables::Variable> v = l->ifEqual(r, token);
-                return v;
+                return std::move(l->ifEqual(r, token));
             }
             ErrorReporting::Debug::print("Could not compare.");
             return nullVariable;

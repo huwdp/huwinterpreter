@@ -59,8 +59,7 @@ namespace HuwInterpreter {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
                     return nullVariable;
                 }
-                std::shared_ptr<Variables::Variable> v = l->mul(r, token);
-                return v;
+                return std::move(l->mul(r, token));
             }
             ErrorReporting::Debug::print("Could not mul.");
             return nullVariable;
