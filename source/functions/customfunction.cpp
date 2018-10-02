@@ -42,7 +42,7 @@ namespace HuwInterpreter {
             }
 
             // New scope
-            std::shared_ptr<Scope> newScope = std::make_shared<Scope>(name, passable, false);
+            std::shared_ptr<Scope> newScope = std::make_unique<Scope>(name, passable, false);
 
             std::vector<std::shared_ptr<Nodes::Node>>::iterator variableIt = arguments.begin();
             for (std::vector<std::string>::iterator argumentIt = this->arguments.begin(); argumentIt != this->arguments.end(); ++argumentIt)
@@ -56,7 +56,7 @@ namespace HuwInterpreter {
                     }
                     else
                     {
-                        newScope->getVariableManager()->addVariable((*argumentIt), std::move(argument->copy(token)));
+                        newScope->getVariableManager()->addVariable((*argumentIt), std::move(argument->clone(token)));
                     }
                 }
                 ++variableIt;
