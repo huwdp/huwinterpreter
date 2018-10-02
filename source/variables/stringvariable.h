@@ -35,14 +35,12 @@ namespace HuwInterpreter {
             StringVariable(std::shared_ptr<Passable> passable, char value);
             StringVariable(std::shared_ptr<Passable> passable, std::string name, std::string value);
             StringVariable(std::shared_ptr<Passable> passable, std::string name, char value);
-
             StringVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token);
             StringVariable(std::shared_ptr<Passable> passable, std::string value, std::shared_ptr<Tokens::Token> token);
             StringVariable(std::shared_ptr<Passable> passable, char value, std::shared_ptr<Tokens::Token> token);
             StringVariable(std::shared_ptr<Passable> passable, std::string name, std::string value, std::shared_ptr<Tokens::Token> token);
             StringVariable(std::shared_ptr<Passable> passable, std::string name, char value, std::shared_ptr<Tokens::Token> token);
-
-
+            std::shared_ptr<Variable> getInternalValue();
             void setValue(double value);
             void setValue(std::string value);
             void setValue(long long value);
