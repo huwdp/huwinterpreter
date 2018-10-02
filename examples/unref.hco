@@ -1,0 +1,5 @@
+let text = ref("Hello World!");
+let text2 = unref(text);
+text2 = "Hello Galaxy!";
+print(text2);
+print(text);

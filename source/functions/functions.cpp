@@ -105,6 +105,7 @@ namespace HuwInterpreter {
             functions["regexMatch"] = std::move(std::make_shared<RegexMatch>(passable));
 
             functions["ref"] = std::move(std::make_shared<RefFunction>(passable));
+            functions["unref"] = std::move(std::make_shared<UnrefFunction>(passable));
 
             functions["clock"] = std::move(std::make_shared<ClockFunction>(passable));
             functions["timeFormat"] = std::move(std::make_shared<TimeFormatFunction>(passable));
