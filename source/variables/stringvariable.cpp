@@ -51,9 +51,6 @@ namespace HuwInterpreter {
             variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
         }
 
-
-
-
         StringVariable::StringVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token)
             : Variable(passable)
         {
@@ -88,8 +85,10 @@ namespace HuwInterpreter {
             variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
         }
 
-
-
+        std::shared_ptr<Variable> StringVariable::getInternalValue()
+        {
+            return std::move(std::make_shared<StringVariable>(passable, value));
+        }
 
         void StringVariable::setValue(double value)
         {
@@ -473,7 +472,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variable> StringVariable::clone(std::shared_ptr<Tokens::Token> token)
         {
-            return std::move(std::make_shared<StringVariable>(passable, value));
+            return std::move(this->getInternalValue());
         }
 
         std::shared_ptr<Variable> StringVariable::bitwiseAnd(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)

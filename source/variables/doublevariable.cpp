@@ -53,6 +53,11 @@ namespace HuwInterpreter {
             this->value = value;
         }
 
+        std::shared_ptr<Variable> DoubleVariable::getInternalValue()
+        {
+            return std::move(std::make_shared<DoubleVariable>(passable, value));
+        }
+
         void DoubleVariable::setValue(double value)
         {
             this->value = value;
@@ -308,7 +313,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variable> DoubleVariable::clone(std::shared_ptr<Tokens::Token> token)
         {
-            return std::move(std::make_shared<DoubleVariable>(passable, value));
+            return std::move(this->getInternalValue());
         }
 
         std::shared_ptr<Variable> DoubleVariable::bitwiseAnd(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
