@@ -96,7 +96,7 @@ namespace HuwInterpreter {
         std::shared_ptr<Nodes::Node> nullNode;
         std::shared_ptr<NodeFactory> codeFactory;
         std::shared_ptr<Passable> passable;
-        bool includeSemicolons = false;
+        bool textMode = false;
 
         void setCompilation(bool compilation);
         void nextToken();
