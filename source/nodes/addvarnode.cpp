@@ -46,7 +46,7 @@ namespace HuwInterpreter {
                 std::shared_ptr<Variables::Variable> v = value->execute(globalScope, scope);
                 if (v != nullptr)
                 {
-                    scope->getVariableManager()->setVariable(name, v->copy(token));
+                    scope->getVariableManager()->setVariable(name, v->clone(token));
                 }
                 else
                 {

@@ -36,7 +36,7 @@ namespace HuwInterpreter {
                     return std::make_shared<RefVariable>(passable, node->execute(globalScope, scope));
                 }
                 passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, this->getName()));
-		return nullVariable;
+                return nullVariable;
             }
             passable->getErrorManager()->add(passable->getErrorFactory()->requiresArguments(token, name, "", 1));
             return nullVariable;

@@ -471,7 +471,7 @@ namespace HuwInterpreter {
             passable->getErrorManager()->add(passable->getErrorFactory()->cannotCallFunction(token, name, getType(), "unset", "String is not an array"));
         }
 
-        std::shared_ptr<Variable> StringVariable::copy(std::shared_ptr<Tokens::Token> token)
+        std::shared_ptr<Variable> StringVariable::clone(std::shared_ptr<Tokens::Token> token)
         {
             return std::move(std::make_shared<StringVariable>(passable, value));
         }

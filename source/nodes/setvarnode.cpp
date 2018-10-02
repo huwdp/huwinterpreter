@@ -57,7 +57,7 @@ namespace HuwInterpreter {
 
                 if (v != nullptr)
                 {
-                    globalScope->getVariableManager()->setVariable(name, v->copy(token));
+                    globalScope->getVariableManager()->setVariable(name, v->clone(token));
                 }
                 else
                 {
@@ -78,11 +78,11 @@ namespace HuwInterpreter {
                 {
                     if (var->isRef())
                     {
-                        var->setValue(v->copy(token));
+                        var->setValue(v->clone(token));
                     }
                     else
                     {
-                        scope->getVariableManager()->setVariable(name, v->copy(token));
+                        scope->getVariableManager()->setVariable(name, v->clone(token));
                     }
                 }
                 else
