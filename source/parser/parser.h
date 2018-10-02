@@ -114,6 +114,7 @@ namespace HuwInterpreter {
         bool expectSemicolon();
         void errorMessage(std::string errorMsg, std::shared_ptr<Tokens::Token> currentToken);
         std::shared_ptr<Nodes::Node> createSemicolonNode(std::shared_ptr<Passable> passable, std::shared_ptr<Nodes::Node> node);
+        std::shared_ptr<Nodes::Node> createBracketNode(std::shared_ptr<Passable> passable, std::shared_ptr<Nodes::Node> node);
         std::shared_ptr<Nodes::Node> parseSquareBrackets(std::shared_ptr<Nodes::Node> node);
         std::shared_ptr<Nodes::Node> parseValue();
         std::shared_ptr<Nodes::Node> parseFactor();
@@ -140,7 +141,7 @@ namespace HuwInterpreter {
     public:
         Parser(std::vector<std::shared_ptr<Tokens::Token>> tokens,
                std::shared_ptr<NodeFactory> nodeFactory,
-               bool includeSemicolons);
+               bool textMode);
         bool getCompilation();
         std::shared_ptr<Nodes::Node> parse();
         std::string toString();

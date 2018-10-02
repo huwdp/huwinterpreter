@@ -18,9 +18,9 @@
 namespace HuwInterpreter {
     Parser::Parser(std::vector<std::shared_ptr<Tokens::Token>> tokens,
                    std::shared_ptr<NodeFactory> nodeFactory,
-                   bool includeSemicolons)
+                   bool textMode)
     {
-        this->includeSemicolons = includeSemicolons;
+        this->textMode = textMode;
         this->nodeFactory = nodeFactory;
         this->passable = std::make_shared<Passable>();
         this->compilation = true;
@@ -168,9 +168,18 @@ namespace HuwInterpreter {
 
     std::shared_ptr<Nodes::Node> Parser::createSemicolonNode(std::shared_ptr<Passable> passable, std::shared_ptr<Nodes::Node> node)
     {
-        if (includeSemicolons)
+        if (textMode)
         {
             return nodeFactory->CreateSemicolonNode(passable, node);
+        }
+        return node;
+    }
+
+    std::shared_ptr<Nodes::Node> Parser::createBracketNode(std::shared_ptr<Passable> passable, std::shared_ptr<Nodes::Node> node)
+    {
+        if (textMode)
+        {
+            return nodeFactory->CreateBracketNode(passable, currentToken, node);
         }
         return node;
     }
@@ -313,7 +322,7 @@ namespace HuwInterpreter {
                 {
                     return nullNode;
                 }
-                return nodeFactory->CreateBracketNode(passable, currentToken, value);
+                return createBracketNode(passable, value);
             }
             else if (currentToken->getType() == Types::ADDITION)
             {
