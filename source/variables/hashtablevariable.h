@@ -34,6 +34,7 @@ namespace HuwInterpreter {
             HashTableVariable(std::shared_ptr<Passable> passable, std::string name);
             HashTableVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token);
             HashTableVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name);
+            std::shared_ptr<Variable> getInternalValue();
             void setValue(double value);
             void setValue(std::string value);
             void setValue(long long value);

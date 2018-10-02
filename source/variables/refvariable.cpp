@@ -26,7 +26,12 @@ namespace HuwInterpreter {
         RefVariable::RefVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
             : Variable(passable, variable->getName(), token)
         {
-            this->variable = std::move(variable);
+            this->variable = variable;
+        }
+
+        std::shared_ptr<Variable> RefVariable::getInternalValue()
+        {
+            return variable;
         }
 
         void RefVariable::setValue(double value)
@@ -42,6 +47,12 @@ namespace HuwInterpreter {
         void RefVariable::setValue(long long value)
         {
             variable->setValue(value);
+        }
+
+
+        void RefVariable::setValue(std::shared_ptr<Variable> variable)
+        {
+            this->variable = variable;
         }
 
         long long RefVariable::toInt()
@@ -87,11 +98,6 @@ namespace HuwInterpreter {
         bool RefVariable::isRef()
         {
             return true;
-        }
-
-        void RefVariable::setValue(std::shared_ptr<Variable> variable)
-        {
-            this->variable = variable;
         }
 
         std::shared_ptr<Variable> RefVariable::pow(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
