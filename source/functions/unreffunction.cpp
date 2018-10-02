@@ -35,7 +35,7 @@ namespace HuwInterpreter {
                     std::shared_ptr<Variables::Variable> var = node->execute(globalScope, scope);
                     if (var->isRef())
                     {
-                        return var->getInternalValue();
+                        return var->getValue();
                     }
                     return var;
                 }

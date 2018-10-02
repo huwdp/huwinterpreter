@@ -29,7 +29,7 @@ namespace HuwInterpreter {
             this->variable = variable;
         }
 
-        std::shared_ptr<Variable> RefVariable::getInternalValue()
+        std::shared_ptr<Variable> RefVariable::getValue()
         {
             return variable;
         }
