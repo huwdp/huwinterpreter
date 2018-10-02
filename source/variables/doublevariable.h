@@ -40,7 +40,7 @@ namespace HuwInterpreter {
             DoubleVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token);
             DoubleVariable(std::shared_ptr<Passable> passable, double value, std::shared_ptr<Tokens::Token> token);
             DoubleVariable(std::shared_ptr<Passable> passable, std::string name, double value, std::shared_ptr<Tokens::Token> token);
-            std::shared_ptr<Variable> getInternalValue();
+            std::shared_ptr<Variable> getValue();
             void setValue(double value);
             void setValue(std::string value);
             void setValue(long long value);
@@ -50,7 +50,7 @@ namespace HuwInterpreter {
             std::string toString();
             bool toBool();
             Types::VarType getType();
-            double getValue();
+            double getDoubleValue();
             bool isNumber();
             bool isConst();
             bool isArray();

@@ -41,7 +41,7 @@ namespace HuwInterpreter {
 
         }
 
-        std::shared_ptr<Variable> HashTableVariable::getInternalValue()
+        std::shared_ptr<Variable> HashTableVariable::getValue()
         {
             std::shared_ptr<HashTableVariable> map = std::make_shared<HashTableVariable>(passable);
             for (std::unordered_map<std::string, std::shared_ptr<Variable>>::iterator it = this->map.begin(); it != this->map.end(); ++it)
@@ -104,7 +104,7 @@ namespace HuwInterpreter {
             return Types::ARRAY;
         }
 
-        double HashTableVariable::getValue()
+        double HashTableVariable::getDoubleValue()
         {
             return 0.0;
         }
@@ -298,7 +298,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variable> HashTableVariable::clone(std::shared_ptr<Tokens::Token> token)
         {
-            return std::move(this->getInternalValue());
+            return std::move(this->getValue());
         }
 
         std::shared_ptr<Variable> HashTableVariable::bitwiseAnd(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)

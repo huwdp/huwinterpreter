@@ -29,9 +29,9 @@ namespace HuwInterpreter {
             this->variable = std::move(variable);
         }
 
-        std::shared_ptr<Variable> ConstantVariable::getInternalValue()
+        std::shared_ptr<Variable> ConstantVariable::getValue()
         {
-            return std::move(variable->getInternalValue());
+            return std::move(variable->getValue());
         }
 
         void ConstantVariable::setValue(double value)
