@@ -52,7 +52,7 @@ namespace HuwInterpreter {
                 std::shared_ptr<Variables::Variable> value = next->execute(globalScope, scope);
                 if (value != nullptr)
                 {
-                    return value->copy(token);
+                    return value->clone(token);
                 }
                 passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
             }

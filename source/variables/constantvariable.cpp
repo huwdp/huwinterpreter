@@ -278,13 +278,13 @@ namespace HuwInterpreter {
             return this->variable->unset(index, token);
         }
 
-        std::shared_ptr<Variable> ConstantVariable::copy(std::shared_ptr<Tokens::Token> token)
+        std::shared_ptr<Variable> ConstantVariable::clone(std::shared_ptr<Tokens::Token> token)
         {
             if (variable != nullptr)
             {
                 return nullVariable;
             }
-            return variable->copy(token);
+            return variable->clone(token);
         }
 
         std::shared_ptr<Variable> ConstantVariable::bitwiseAnd(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)

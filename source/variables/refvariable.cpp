@@ -241,7 +241,7 @@ namespace HuwInterpreter {
             this->variable->unset(index, token);
         }
 
-        std::shared_ptr<Variable> RefVariable::copy(std::shared_ptr<Tokens::Token> token)
+        std::shared_ptr<Variable> RefVariable::clone(std::shared_ptr<Tokens::Token> token)
         {
             return std::move(std::make_shared<RefVariable>(passable, variable));
         }

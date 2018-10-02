@@ -74,7 +74,7 @@ namespace HuwInterpreter {
             virtual std::shared_ptr<Variable> get(std::string index, std::shared_ptr<Tokens::Token> token) = 0;
             virtual void set(std::string index, std::shared_ptr<Variable> value, std::shared_ptr<Tokens::Token> token) = 0;
             virtual void unset(std::string index, std::shared_ptr<Tokens::Token> token) = 0;
-            virtual std::shared_ptr<Variable> copy(std::shared_ptr<Tokens::Token> token) = 0;
+            virtual std::shared_ptr<Variable> clone(std::shared_ptr<Tokens::Token> token) = 0;
             virtual std::shared_ptr<Variable> bitwiseAnd(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token) = 0;
             virtual std::shared_ptr<Variable> bitwiseOr(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token) = 0;
             virtual std::shared_ptr<Variable> bitwiseXOR(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token) = 0;
