@@ -109,6 +109,7 @@
 #include"regexmatch.h"
 
 #include "reffunction.h"
+#include "unreffunction.h"
 
 #include "clockfunction.h"
 #include "timeformatfunction.h"
