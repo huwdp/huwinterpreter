@@ -142,9 +142,6 @@ namespace HuwInterpreter {
             std::shared_ptr<Functions::Function> e = get(name);
             if (e == nullptr)
             {
-                //std::shared_ptr<Functions::Function> newFunction = std::make_shared<Function>();
-                //newFunction->setName(name);
-
                 std::shared_ptr<EmptyFunction> empty = std::make_shared<EmptyFunction>(passable);
                 functions[name] = empty;
                 return true;

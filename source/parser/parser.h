@@ -97,7 +97,6 @@ namespace HuwInterpreter {
         std::shared_ptr<NodeFactory> codeFactory;
         std::shared_ptr<Passable> passable;
         bool textMode = false;
-
         void setCompilation(bool compilation);
         void nextToken();
         void prevToken();
@@ -143,8 +142,12 @@ namespace HuwInterpreter {
                std::shared_ptr<NodeFactory> nodeFactory,
                bool textMode);
         bool getCompilation();
+        std::shared_ptr<Passable> getPassable();
+        void setPassable(std::shared_ptr<Passable> passable);
         std::shared_ptr<Nodes::Node> parse();
         std::string toString();
+        std::shared_ptr<ErrorManager> getErrorManager();
+        std::shared_ptr<StackTraceManager> getStackTrace();
         bool execute();
     };
 }
