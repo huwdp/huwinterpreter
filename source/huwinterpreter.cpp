@@ -40,23 +40,45 @@ namespace  HuwInterpreter {
 
     void Interpreter::execute(std::vector<std::shared_ptr<Token>> tokens)
     {
-        std::unique_ptr<Parser> parser(new Parser(tokens, nodeFactory, false));
+        std::unique_ptr<Parser> parser = std::make_unique<Parser>(tokens, nodeFactory, false);
         parser->execute();
+        printErrors(parser->getPassable());
+        printStackTrace(parser->getPassable());
     }
 
     void Interpreter::benchmark(std::vector<std::shared_ptr<Token>> tokens)
     {
         auto start = std::chrono::high_resolution_clock::now();
-        std::unique_ptr<Parser> parser(new Parser(tokens, nodeFactory, false));
+        std::unique_ptr<Parser> parser = std::make_unique<Parser>(tokens, nodeFactory, false);
         parser->execute();
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> diff = end-start;
-        std::cout << "Benchmark result: " << diff.count() << " seconds." << std::endl;
+        printErrors(parser->getPassable());
+        printStackTrace(parser->getPassable());
+        std::cout << "Benchmrk result: " << diff.count() << " seconds." << std::endl;
+    }
+
+    void Interpreter::printErrors(std::shared_ptr<Passable> passable)
+    {
+        std::vector<std::shared_ptr<Error>> errors = passable->getErrorManager()->get();
+        for (std::vector<std::shared_ptr<Error>>::iterator it = errors.begin(); it != errors.end(); ++it)
+        {
+            std::cout << (*it)->getMessage() << std::endl;
+        }
+    }
+
+    void Interpreter::printStackTrace(std::shared_ptr<Passable> passable)
+    {
+        std::deque<std::shared_ptr<StackTrace>> stackTrace = passable->getStackTraceManager()->get();
+        for (std::deque<std::shared_ptr<StackTrace>>::iterator it = stackTrace.begin(); it != stackTrace.end(); ++it)
+        {
+            std::cout << (*it)->toString() << std::endl;
+        }
     }
 
     std::string Interpreter::toString(std::vector<std::shared_ptr<Token>> tokens)
     {
-        std::unique_ptr<Parser> parser(new Parser(tokens, nodeFactory, true));
+        std::unique_ptr<Parser> parser = std::make_unique<Parser>(tokens, nodeFactory, true);
         return parser->toString();
     }
 
