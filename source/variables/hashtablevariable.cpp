@@ -53,17 +53,17 @@ namespace HuwInterpreter {
 
         void HashTableVariable::setValue(double value)
         {
-
+            // Todo
         }
 
         void HashTableVariable::setValue(std::string value)
         {
-
+            // Todo
         }
 
         void HashTableVariable::setValue(long long value)
         {
-
+            // Todo
         }
 
         void HashTableVariable::setValue(std::shared_ptr<Variable> variable)

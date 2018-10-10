@@ -45,6 +45,16 @@ namespace HuwInterpreter {
         this->compilation = compilation;
     }
 
+    std::shared_ptr<Passable> Parser::getPassable()
+    {
+        return this->passable;
+    }
+
+    void Parser::setPassable(std::shared_ptr<Passable> passable)
+    {
+        this->passable = passable;
+    }
+
     void Parser::acceptIndentation()
     {
         while ((this->currentToken->getContent() == " " || this->currentToken->getContent() == "\t") && !tokens.empty())
@@ -116,7 +126,7 @@ namespace HuwInterpreter {
             return true;
         }
         compilation = false;
-        syntaxError(currentToken->getContent());
+        errorMessage(syntaxError(currentToken->getContent()), currentToken);
         return false;
     }
 
@@ -127,7 +137,7 @@ namespace HuwInterpreter {
             return true;
         }
         compilation = false;
-        syntaxError(currentToken->getContent());
+        errorMessage(syntaxError(currentToken->getContent()), currentToken);
         return false;
     }
 
@@ -137,7 +147,6 @@ namespace HuwInterpreter {
         errorMsg.append("Parse error: syntax error, unexpected \"")
                 .append(content)
                 .append("\"");
-        errorMessage(errorMsg, currentToken);
         return errorMsg;
     }
 
@@ -146,7 +155,6 @@ namespace HuwInterpreter {
         std::string errorMsg;
         errorMsg.append("Parse error: syntax error, unexpected \"")
                 .append("\"");
-        errorMessage(errorMsg, currentToken);
         return errorMsg;
     }
 
@@ -154,7 +162,7 @@ namespace HuwInterpreter {
     {
         if (!expect(Types::SEMICOLON))
         {
-          return false;
+            return false;
         }
         acceptIndentation();
         acceptSemicolon();
@@ -1233,19 +1241,6 @@ namespace HuwInterpreter {
                 if (output != nullptr)
                 {
                     std::cout << output->toString() << std::endl;
-                }
-                if (passable->getErrorManager()->count() > 0)
-                {
-                    std::vector<std::shared_ptr<Error>> errors = passable->getErrorManager()->get();
-                    std::deque<std::shared_ptr<StackTrace>> stackTraces = passable->getStackTraceManager()->get();
-                    for (std::vector<std::shared_ptr<Error>>::iterator it = errors.begin(); it != errors.end(); ++it)
-                    {
-                        std::cout << (*it)->getMessage() << std::endl;
-                    }
-                    for (std::deque<std::shared_ptr<StackTrace>>::iterator it = stackTraces.begin(); it != stackTraces.end(); ++it)
-                    {
-                        std::cout << (*it)->toString() << std::endl;
-                    }
                 }
                 return true;
             }

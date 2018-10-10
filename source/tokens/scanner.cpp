@@ -147,7 +147,6 @@ namespace HuwInterpreter {
 
                     if (fileReader->getCurrent() == nullptr)
                     {
-                        lineInfo = std::make_shared<LineInfo>("", fileReader->getCurrent()->getLineNumber(),0);
                         break;
                     }
 
