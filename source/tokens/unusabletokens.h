@@ -22,6 +22,7 @@
 #include <sstream>
 #include <algorithm>
 #include <memory>
+#include <vector>
 
 namespace HuwInterpreter {
     namespace Tokens {

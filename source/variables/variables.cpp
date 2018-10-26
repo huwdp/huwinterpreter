@@ -112,6 +112,19 @@ namespace HuwInterpreter {
             return false;
         }
 
+        void VariableManager::fastAddVariable(std::shared_ptr<Variable> variable)
+        {
+            if (variable != nullptr)
+            {
+                variables[variable->getName()] = std::move(variable);
+            }
+        }
+
+        void VariableManager::fastAddVariable(std::string name, std::shared_ptr<Variable> variable)
+        {
+            variables[name] = std::move(variable);
+        }
+
         bool VariableManager::removeVariable(std::shared_ptr<Variable> variable)
         {
             if (variable != nullptr)

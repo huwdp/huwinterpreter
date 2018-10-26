@@ -44,67 +44,75 @@ namespace HuwInterpreter {
             std::shared_ptr<Variables::Variable> v = value->execute(globalScope, scope);
 
             std::shared_ptr<Variables::Variable> globalVar = globalScope->getVariableManager()->get(name);
-            std::shared_ptr<Variables::Variable> localVar = globalScope->getVariableManager()->get(name);
 
-            if (globalScope->getVariableManager()->exists(name))
+            if (globalVar != nullptr)
             {
-
-                if (globalVar != nullptr && globalVar->isConst())
+                if (globalVar->isConst())
                 {
                     passable->getErrorManager()->add(passable->getErrorFactory()->cannotChangeConstant(token, name));
                     return nullVariable;
                 }
-
                 if (v != nullptr)
                 {
+                    if (globalVar->isRef())
+                    {
+                        globalVar->setValue(v->clone(token));
+                        return nullVariable;
+                    }
+                    else if (globalVar->getType() == v->getType() && v->getType() == DOUBLE)
+                    {
+                        globalVar->setValue(v->toDouble());
+                        return nullVariable;
+                    }
                     globalScope->getVariableManager()->setVariable(name, v->clone(token));
+                    return nullVariable;
                 }
-                else
-                {
-                    globalScope->getVariableManager()->setVariable(name, nullVariable);
-                }
+                globalScope->getVariableManager()->setVariable(name, nullVariable);
+                return nullVariable;
             }
-            else if (scope->getVariableManager()->exists(name))
+
+            std::shared_ptr<Variables::Variable> localVar = scope->getVariableManager()->get(name);
+
+            if (localVar != nullptr)
             {
-                if (localVar != nullptr && localVar->isConst())
+                if (localVar->isConst())
                 {
                     passable->getErrorManager()->add(passable->getErrorFactory()->cannotChangeConstant(token, name));
                     return nullVariable;
                 }
 
-                std::shared_ptr<Variable> var = scope->getVariableManager()->get(name);
-
                 if (v != nullptr)
                 {
-                    if (var->isRef())
+                    if (localVar->isRef())
                     {
-                        var->setValue(v->clone(token));
+                        localVar->setValue(v->clone(token));
+                        return nullVariable;
                     }
-                    else
+                    else if (localVar->getType() == v->getType() && v->getType() == DOUBLE)
                     {
-                        scope->getVariableManager()->setVariable(name, v->clone(token));
+                        localVar->setValue(v->toDouble());
+                        return nullVariable;
                     }
+                    scope->getVariableManager()->setVariable(name, v->clone(token));
+                    return nullVariable;
                 }
-                else
-                {
-                    scope->getVariableManager()->setVariable(name, nullVariable);
-                }
+                scope->getVariableManager()->setVariable(name, nullVariable);
+                return nullVariable;
+            }
+
+            /*if (globalVar != nullptr && globalVar->isConst())
+            {
+                passable->getErrorManager()->add(passable->getErrorFactory()->cannotChangeConstant(token, name));
+            }
+            else if (localVar != nullptr && localVar->isConst())
+            {
+                passable->getErrorManager()->add(passable->getErrorFactory()->cannotChangeConstant(token, name));
             }
             else
             {
-                if (globalVar != nullptr && globalVar->isConst())
-                {
-                    passable->getErrorManager()->add(passable->getErrorFactory()->cannotChangeConstant(token, name));
-                }
-                else if (localVar != nullptr && localVar->isConst())
-                {
-                    passable->getErrorManager()->add(passable->getErrorFactory()->cannotChangeConstant(token, name));
-                }
-                else
-                {
-                    passable->getErrorManager()->add(passable->getErrorFactory()->variableDeclared(token, name));
-                }
-            }
+                passable->getErrorManager()->add(passable->getErrorFactory()->variableDeclared(token, name));
+            }*/
+
             return nullVariable;
         }
 

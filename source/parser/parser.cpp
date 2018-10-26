@@ -1181,7 +1181,7 @@ namespace HuwInterpreter {
                 {
                     functions->removeFunction(word);
                     customFunctions->removeFunction(word);
-                    return false;
+                    return nullNode;
                 }
                 acceptIndentation();
 
@@ -1192,7 +1192,7 @@ namespace HuwInterpreter {
                 {
                     functions->removeFunction(word);
                     customFunctions->removeFunction(word);
-                    return false;
+                    return nullNode;
                 }
                 std::shared_ptr<Functions::Function> newFunction = std::make_shared<Functions::CustomFunction>(passable, currentToken, word, arguments, blockNode);
                 functions->setFunction(word, newFunction);

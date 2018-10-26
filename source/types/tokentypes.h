@@ -69,7 +69,6 @@ namespace HuwInterpreter {
             DOUBLE,
             STRING,
             ARRAY,
-            NUMBERA,
             NONE
         };
     }
