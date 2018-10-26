@@ -44,6 +44,8 @@ namespace HuwInterpreter {
             std::shared_ptr<Variable> exists(std::string name);
             bool addVariable(std::shared_ptr<Variable> variable);
             bool addVariable(std::string name, std::shared_ptr<Variable> variable);
+            void fastAddVariable(std::shared_ptr<Variable> variable);
+            void fastAddVariable(std::string name, std::shared_ptr<Variable> variable);
             bool removeVariable(std::shared_ptr<Variable> variable);
             bool removeVariable(std::string name);
             void setParent(std::shared_ptr<VariableManager> parent);
