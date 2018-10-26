@@ -52,11 +52,11 @@ namespace HuwInterpreter {
                 {
                     if (argument->isRef())
                     {
-                        newScope->getVariableManager()->addVariable((*argumentIt), argument);
+                        newScope->getVariableManager()->fastAddVariable((*argumentIt), argument);
                     }
                     else
                     {
-                        newScope->getVariableManager()->addVariable((*argumentIt), std::move(argument->clone(token)));
+                        newScope->getVariableManager()->fastAddVariable((*argumentIt), std::move(argument->clone(token)));
                     }
                 }
                 ++variableIt;
@@ -71,18 +71,13 @@ namespace HuwInterpreter {
 
                 passable->getStackTraceManager()->push(std::make_shared<ErrorReporting::StackTrace>(scope->getFunctionName(), token->getLineInfo()));
                 block->execute(globalScope, newScope);
-                std::shared_ptr<Variable> output = newScope->getReturnValue();
 
                 if (passable->getErrorManager()->count() == 0)
                 {
                     passable->getStackTraceManager()->pop();
                 }
-                // Remove arguments given from scope
-                /*for (std::vector<std::string>::iterator it1 = this->arguments.begin(); it1 != this->arguments.end(); ++it1)
-                {
-                    newScope->getVariableManager()->removeVariable((*it1));
-                }*/
-                return output;
+
+                return newScope->getReturnValue();
             }
             return nullVariable;
         }

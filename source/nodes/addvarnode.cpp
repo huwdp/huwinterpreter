@@ -20,7 +20,7 @@ namespace HuwInterpreter {
         AddVarNode::AddVarNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name, std::shared_ptr<Nodes::Node> value)
             : Node("AddVarNode", passable, token)
         {
-	    ErrorReporting::Debug::print("AddVarNode");
+            ErrorReporting::Debug::print("AddVarNode");
             this->name = name;
             this->value = value;
         }
@@ -41,48 +41,43 @@ namespace HuwInterpreter {
             {
                 return scope->getReturnValue();
             }
-            if (scope->getVariableManager()->exists(name))
+            std::shared_ptr<Variables::Variable> v = value->execute(globalScope, scope);
+            if (passable->getErrorManager()->count() > 0)
             {
-                std::shared_ptr<Variables::Variable> v = value->execute(globalScope, scope);
+                return nullVariable;
+            }
+            if (scope->getReturnValue() != nullptr)
+            {
+                return scope->getReturnValue();
+            }
+
+            std::shared_ptr<Variables::Variable> variable = scope->getVariableManager()->get(name);
+
+            if (variable != nullptr)
+            {
                 if (v != nullptr)
                 {
                     scope->getVariableManager()->setVariable(name, v->clone(token));
-                }
-                else
-                {
-                    scope->getVariableManager()->setVariable(name, nullVariable);
-                }
-            }
-            else
-            {
-                std::shared_ptr<Variables::Variable> var;
-                var = value->execute(globalScope, scope);
-                if (passable->getErrorManager()->count() > 0)
-                {
                     return nullVariable;
                 }
-                if (scope->getReturnValue() != nullptr)
-                {
-                    return scope->getReturnValue();
-                }
-
-                if (var != nullptr)
-                {
-                    if (globalScope->getVariableManager()->exists(name))
-                    {
-                        passable->getErrorManager()->add(passable->getErrorFactory()->variableDeclared(token, name));
-                        return nullVariable;
-                    }
-                    else if (!scope->getVariableManager()->addVariable(name, var))
-                    {
-                        passable->getErrorManager()->add(passable->getErrorFactory()->variableNotDeclared(token, name));
-                    }
-                }
-                else
-                {
-                    passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
-                }
+                scope->getVariableManager()->setVariable(name, nullVariable);
+                return nullVariable;
             }
+
+            if (v != nullptr)
+            {
+                if (globalScope->getVariableManager()->exists(name))
+                {
+                    passable->getErrorManager()->add(passable->getErrorFactory()->variableDeclared(token, name));
+                    return nullVariable;
+                }
+                else if (!scope->getVariableManager()->addVariable(name, v))
+                {
+                    passable->getErrorManager()->add(passable->getErrorFactory()->variableNotDeclared(token, name));
+                }
+                return nullVariable;
+            }
+            passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
             return nullVariable;
         }
 
