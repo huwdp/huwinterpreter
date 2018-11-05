@@ -43,7 +43,7 @@ namespace  HuwInterpreter {
         std::unique_ptr<Parser> parser = std::make_unique<Parser>(tokens, nodeFactory, false);
         parser->execute();
         printErrors(parser->getPassable());
-        printStackTrace(parser->getPassable());
+        printStackTrace(parser->getPassable()->getStackTraceManager());
     }
 
     void Interpreter::benchmark(std::vector<std::shared_ptr<Token>> tokens)
@@ -54,7 +54,7 @@ namespace  HuwInterpreter {
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> diff = end-start;
         printErrors(parser->getPassable());
-        printStackTrace(parser->getPassable());
+        printStackTrace(parser->getPassable()->getStackTraceManager());
         std::cout << "Benchmrk result: " << diff.count() << " seconds." << std::endl;
     }
 
@@ -67,12 +67,22 @@ namespace  HuwInterpreter {
         }
     }
 
-    void Interpreter::printStackTrace(std::shared_ptr<Passable> passable)
+    void Interpreter::printStackTrace(std::shared_ptr<StackTraceManager> stackTraceManager)
     {
-        std::deque<std::shared_ptr<StackTrace>> stackTrace = passable->getStackTraceManager()->get();
-        for (std::deque<std::shared_ptr<StackTrace>>::iterator it = stackTrace.begin(); it != stackTrace.end(); ++it)
+        // Stack is actually in reverse due to an optimisation.
+        // Functions are only added onto the the stack if they error.
+        // Reverse stack here
+        std::stack<std::shared_ptr<StackTrace>> stack;
+        while (!stackTraceManager->isEmpty())
         {
-            std::cout << (*it)->toString() << std::endl;
+            stack.push(stackTraceManager->top());
+            stackTraceManager->pop();
+        }
+        // Print stack
+        while (!stack.empty())
+        {
+            std::cout << stack.top()->toString() << std::endl;
+            stack.pop();
         }
     }
 

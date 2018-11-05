@@ -62,19 +62,25 @@ namespace HuwInterpreter {
                 ++variableIt;
             }
 
+            if (passable->getErrorManager()->count() > 0)
+            {
+                passable->getStackTraceManager()->push(std::make_shared<ErrorReporting::StackTrace>(scope->getFunctionName(), token->getLineInfo()));
+                return nullVariable;
+            }
+
             if (block != nullptr)
             {
                 if (passable->getErrorManager()->count() > 0)
                 {
+                    passable->getStackTraceManager()->push(std::make_shared<ErrorReporting::StackTrace>(scope->getFunctionName(), token->getLineInfo()));
                     return nullVariable;
                 }
 
-                passable->getStackTraceManager()->push(std::make_shared<ErrorReporting::StackTrace>(scope->getFunctionName(), token->getLineInfo()));
                 block->execute(globalScope, newScope);
 
-                if (passable->getErrorManager()->count() == 0)
+                if (passable->getErrorManager()->count() > 0)
                 {
-                    passable->getStackTraceManager()->pop();
+                    passable->getStackTraceManager()->push(std::make_shared<ErrorReporting::StackTrace>(scope->getFunctionName(), token->getLineInfo()));
                 }
 
                 return newScope->getReturnValue();

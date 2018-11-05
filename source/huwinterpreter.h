@@ -52,7 +52,7 @@ namespace  HuwInterpreter {
         void benchmark(std::vector<std::shared_ptr<Token>> tokens);
         std::string toString(std::vector<std::shared_ptr<Token>> tokens);
         void printErrors(std::shared_ptr<Passable> passable);
-        void printStackTrace(std::shared_ptr<Passable> passable);
+        void printStackTrace(std::shared_ptr<StackTraceManager> stackTraceManager);
         std::vector<std::shared_ptr<Token>> parseFile(std::string fileLocation);
         std::vector<std::shared_ptr<Token> > parseText(std::string text);
     };
