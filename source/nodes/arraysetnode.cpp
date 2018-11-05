@@ -40,12 +40,14 @@ namespace HuwInterpreter {
             ErrorReporting::Debug::print(getName());
             if (array == nullptr)
             {
+                // TODO
                 //passable->getErrorManager()->add(passable->getErrorFactory()->variableNotDeclared(token, ""));
                 return nullVariable;
             }
 
             std::shared_ptr<Variable> var = array->execute(globalScope, scope);
 
+            // TODO
             /*if (var != nullptr)
             {
                 //passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, array->getName()));
@@ -54,12 +56,14 @@ namespace HuwInterpreter {
 
             if (!var->isArray())
             {
+                // TODO
                 //passable->getErrorManager()->add(passable->getErrorFactory()->isNotAnArray(token, var->getName()));
                 return nullVariable;
             }
 
             if (indexes.size() == 0)
             {
+                // TODO
                 //passable->getErrorManager()->add(passable->getErrorFactory()->requiresAtLeastXArguments(token, var->getName(), 1));
                 return nullVariable;
             }
@@ -79,6 +83,7 @@ namespace HuwInterpreter {
 
                     if (index == nullptr)
                     {
+                        // TODO
                         // Report here error here. Index cannot be null
                         return nullVariable;
                     }
@@ -99,6 +104,7 @@ namespace HuwInterpreter {
 
             if ((*indexIt) == nullptr)
             {
+                // TODO
                 //passable->getErrorManager()->add(passable->getErrorFactory()->invalidArgument(token, RUNTIME_ERROR, array->getName()));
                 return nullVariable;
             }
