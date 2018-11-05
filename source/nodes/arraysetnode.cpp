@@ -24,7 +24,7 @@ namespace HuwInterpreter {
                                    std::shared_ptr<Node> value)
             : Node("ArraySetNode", passable, token)
         {
-            ErrorReporting::Debug::print("ArraySetNode");
+            ErrorReporting::Debug::print(getName());
             this->array = array;
             this->indexes = indexes;
             this->value = value;
@@ -37,6 +37,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variables::Variable> ArraySetNode::execute(std::shared_ptr<Variables::Scope> globalScope, std::shared_ptr<Variables::Scope> scope)
         {
+            ErrorReporting::Debug::print(getName());
             if (array == nullptr)
             {
                 //passable->getErrorManager()->add(passable->getErrorFactory()->variableNotDeclared(token, ""));

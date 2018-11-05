@@ -20,7 +20,7 @@ namespace HuwInterpreter {
         IfOverOrEqualNode::IfOverOrEqualNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> left, std::shared_ptr<Nodes::Node> right)
             : Node("IfOverOrEqualNode", passable, token)
         {
-            ErrorReporting::Debug::print("IfOverOrEqual");
+            ErrorReporting::Debug::print(getName());
             this->left = left;
             this->right = right;
         }
@@ -32,7 +32,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variables::Variable> IfOverOrEqualNode::execute(std::shared_ptr<Variables::Scope> globalScope, std::shared_ptr<Variables::Scope> scope)
         {
-            ErrorReporting::Debug::print("OverOrEqual");
+            ErrorReporting::Debug::print(getName());
             if (passable->getErrorManager()->count() > 0)
             {
                 return nullVariable;

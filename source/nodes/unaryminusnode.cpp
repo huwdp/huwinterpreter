@@ -20,6 +20,7 @@ namespace HuwInterpreter {
         UnaryMinusNode::UnaryMinusNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> node)
             : Node("UnaryMinusNode", passable, token)
         {
+            ErrorReporting::Debug::print(getName());
             this->node = node;
         }
 
@@ -30,7 +31,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variables::Variable> UnaryMinusNode::execute(std::shared_ptr<Variables::Scope> globalScope, std::shared_ptr<Variables::Scope> scope)
         {
-            ErrorReporting::Debug::print("UnaryMinusNode");
+            ErrorReporting::Debug::print(getName());
             if (passable->getErrorManager()->count() > 0)
             {
                 return nullVariable;

@@ -20,7 +20,7 @@ namespace HuwInterpreter {
         TextNode::TextNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::string value)
             : Node("TextNode", passable, token)
         {
-            ErrorReporting::Debug::print("TextNode");
+            ErrorReporting::Debug::print(getName());
             this->variableTypeFactory = std::make_shared<Variables::VariableTypeFactory>(passable);
             this->value = variableTypeFactory->newVariable(Helpers::TypeDetector::getType(value));
             this->value->setValue(value);
@@ -33,7 +33,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variables::Variable> TextNode::execute(std::shared_ptr<Variables::Scope> globalScope, std::shared_ptr<Variables::Scope> scope)
         {
-            ErrorReporting::Debug::print("TextNode");
+            ErrorReporting::Debug::print(getName());
             if (passable->getErrorManager()->count() > 0)
             {
                 return nullVariable;
