@@ -53,22 +53,25 @@ namespace HuwInterpreter {
 
         void HashTableVariable::setValue(double value)
         {
-            // Todo
+            passable->getErrorManager()->add(passable->getErrorFactory()->couldNotConvert(token, name, "setValue", Types::VarType::ARRAY, ""));
         }
 
         void HashTableVariable::setValue(std::string value)
         {
-            // Todo
+            passable->getErrorManager()->add(passable->getErrorFactory()->couldNotConvert(token, name, "setValue", Types::VarType::ARRAY, ""));
         }
 
         void HashTableVariable::setValue(long long value)
         {
-            // Todo
+            passable->getErrorManager()->add(passable->getErrorFactory()->couldNotConvert(token, name, "setValue", Types::VarType::ARRAY, ""));
         }
 
         void HashTableVariable::setValue(std::shared_ptr<Variable> variable)
         {
-            return;
+            if (variable != nullptr && variable->isArray())
+            {
+                passable->getErrorManager()->add(passable->getErrorFactory()->couldNotConvert(token, name, "setValue", Types::VarType::ARRAY, ""));
+            }
         }
 
         double HashTableVariable::toDouble()
@@ -233,25 +236,25 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variable> HashTableVariable::addEqual(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
         {
-            // Todo
+            passable->getErrorManager()->add(passable->getErrorFactory()->cannotCallFunction(token, name, getType(), "addEqual", ""));
             return nullVariable;
         }
 
         std::shared_ptr<Variable> HashTableVariable::subEqual(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
         {
-            passable->getErrorManager()->add(passable->getErrorFactory()->cannotCallFunction(token, name, getType(), "subequal", ""));
+            passable->getErrorManager()->add(passable->getErrorFactory()->cannotCallFunction(token, name, getType(), "subEqual", ""));
             return nullVariable;
         }
 
         std::shared_ptr<Variable> HashTableVariable::mulEqual(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
         {
-            passable->getErrorManager()->add(passable->getErrorFactory()->cannotCallFunction(token, name, getType(), "mulequal", ""));
+            passable->getErrorManager()->add(passable->getErrorFactory()->cannotCallFunction(token, name, getType(), "mulEqual", ""));
             return nullVariable;
         }
 
         std::shared_ptr<Variable> HashTableVariable::divEqual(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
         {
-            passable->getErrorManager()->add(passable->getErrorFactory()->cannotCallFunction(token, name, getType(), "divequal", ""));
+            passable->getErrorManager()->add(passable->getErrorFactory()->cannotCallFunction(token, name, getType(), "divEqual", ""));
             return nullVariable;
         }
 

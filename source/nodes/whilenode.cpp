@@ -66,7 +66,7 @@ namespace HuwInterpreter {
                     c = condition->execute(globalScope, scope);
                     if (c == nullptr)
                     {
-                        // Most likely an error here so return null
+                        passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
                         return nullVariable;
                     }
                     loop = c->toBool();
