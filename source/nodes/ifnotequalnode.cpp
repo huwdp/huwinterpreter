@@ -20,7 +20,7 @@ namespace HuwInterpreter {
         IfNotEqualNode::IfNotEqualNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> left, std::shared_ptr<Nodes::Node> right)
             : Node("IfNotEqualNode", passable, token)
         {
-            ErrorReporting::Debug::print("IfNotEqualNode");
+            ErrorReporting::Debug::print(getName());
             this->left = left;
             this->right = right;
         }
@@ -32,7 +32,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variables::Variable> IfNotEqualNode::execute(std::shared_ptr<Variables::Scope> globalScope, std::shared_ptr<Variables::Scope> scope)
         {
-            ErrorReporting::Debug::print("NotEqualNode");
+            ErrorReporting::Debug::print(getName());
             if (passable->getErrorManager()->count() > 0)
             {
                 return nullVariable;

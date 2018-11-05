@@ -20,10 +20,9 @@ namespace HuwInterpreter {
         DivNode::DivNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> left, std::shared_ptr<Nodes::Node> right)
             : Node("DivNode", passable, token)
         {
-            ErrorReporting::Debug::print("DivNode");
+            ErrorReporting::Debug::print(getName());
             this->left = left;
             this->right = right;
-            ErrorReporting::Debug::print("Div");
         }
 
         NodeType DivNode::getType()
@@ -33,7 +32,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variables::Variable> DivNode::execute(std::shared_ptr<Variables::Scope> globalScope, std::shared_ptr<Variables::Scope> scope)
         {
-            ErrorReporting::Debug::print("Div");
+            ErrorReporting::Debug::print(getName());
             if (passable->getErrorManager()->count() > 0)
             {
                 return nullVariable;
