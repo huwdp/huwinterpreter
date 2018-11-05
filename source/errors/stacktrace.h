@@ -18,6 +18,7 @@
 
 #include <string>
 #include <memory>
+#include <stack>
 #include "../tokens/lineinfo.h"
 
 namespace HuwInterpreter
