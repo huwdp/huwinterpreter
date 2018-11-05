@@ -20,12 +20,11 @@ namespace HuwInterpreter {
         EqualNode::EqualNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> left, std::shared_ptr<Nodes::Node> right, std::shared_ptr<Nodes::Node> next, std::shared_ptr<Variables::Scope> scope)
             : Node("EqualNode", passable, token)
         {
-            ErrorReporting::Debug::print("EqualNode");
+            ErrorReporting::Debug::print(getName());
             this->left = left;
             this->right = right;
             this->next = next;
             this->scope = scope;
-            ErrorReporting::Debug::print("Equals");
         }
 
         NodeType EqualNode::getType()
@@ -35,7 +34,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variables::Variable> EqualNode::execute(std::shared_ptr<Variables::Scope> globalScope, std::shared_ptr<Variables::Scope> scope)
         {
-            ErrorReporting::Debug::print("Equals");
+            ErrorReporting::Debug::print(getName());
             if (passable->getErrorManager()->count() > 0)
             {
                 return nullVariable;

@@ -20,7 +20,7 @@ namespace HuwInterpreter {
         SetVarNode::SetVarNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name, std::shared_ptr<Nodes::Node> value)
             : Node("SetVarNode", passable, token)
         {
-            ErrorReporting::Debug::print("SetVarNode");
+            ErrorReporting::Debug::print(getName());
             this->name = name;
             this->value = value;
         }
@@ -32,7 +32,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variables::Variable> SetVarNode::execute(std::shared_ptr<Variables::Scope> globalScope, std::shared_ptr<Variables::Scope> scope)
         {
-            ErrorReporting::Debug::print("SetVarNode");
+            ErrorReporting::Debug::print(getName());
             if (passable->getErrorManager()->count() > 0)
             {
                 return nullVariable;
