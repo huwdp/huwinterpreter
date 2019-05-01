@@ -23,7 +23,7 @@ namespace HuwInterpreter {
                          std::shared_ptr<Nodes::Node> right)
             : Node("MulNode", passable, token)
         {
-            ErrorReporting::Debug::print("MulNode");
+            ErrorReporting::Debug::print(getName());
             this->left = left;
             this->right = right;
         }
@@ -35,7 +35,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variables::Variable> MulNode::execute(std::shared_ptr<Variables::Scope> globalScope, std::shared_ptr<Variables::Scope> scope)
         {
-            ErrorReporting::Debug::print("MulNode");
+            ErrorReporting::Debug::print(getName());
             if (passable->getErrorManager()->count() > 0)
             {
                 return nullVariable;

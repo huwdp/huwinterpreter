@@ -20,11 +20,10 @@ namespace HuwInterpreter {
         GetFuncNode::GetFuncNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name, std::shared_ptr<Functions::FunctionManager> functionManager, std::vector<std::shared_ptr<Nodes::Node>> arguments)
             : Node("GetFuncNode", passable, token)
         {
-            ErrorReporting::Debug::print("GetFuncNode");
+            ErrorReporting::Debug::print(getName());
             this->name = name;
             this->functionManager = functionManager;
             this->arguments = arguments;
-            ErrorReporting::Debug::print("GetFuncNode");
         }
 
         NodeType GetFuncNode::getType()
@@ -34,7 +33,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variables::Variable> GetFuncNode::execute(std::shared_ptr<Variables::Scope> globalScope, std::shared_ptr<Variables::Scope> scope)
         {
-            ErrorReporting::Debug::print("GetFuncNode");
+            ErrorReporting::Debug::print(getName());
             if (passable->getErrorManager()->count() > 0)
             {
                 return nullVariable;

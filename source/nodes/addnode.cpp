@@ -20,9 +20,9 @@ namespace HuwInterpreter {
         AddNode::AddNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> left, std::shared_ptr<Nodes::Node> right)
             : Node("AddNode", passable, token)
         {
+            ErrorReporting::Debug::print(getName());
             this->left = left;
             this->right = right;
-            ErrorReporting::Debug::print("AddNode");
         }
 
         NodeType AddNode::getType()
@@ -32,7 +32,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variables::Variable> AddNode::execute(std::shared_ptr<Variables::Scope> globalScope, std::shared_ptr<Variables::Scope> scope)
         {
-            ErrorReporting::Debug::print("Add");
+            ErrorReporting::Debug::print(getName());
             if (passable->getErrorManager()->count() > 0)
             {
                 return nullVariable;

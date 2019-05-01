@@ -20,9 +20,8 @@ namespace HuwInterpreter {
         BracketNode::BracketNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> node)
             : Node("BracketNode", passable, token)
         {
-            ErrorReporting::Debug::print("BracketNode");
+            ErrorReporting::Debug::print(getName());
             this->node = node;
-            ErrorReporting::Debug::print("Bracket");
         }
 
         NodeType BracketNode::getType()
@@ -32,7 +31,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variables::Variable> BracketNode::execute(std::shared_ptr<Variables::Scope> globalScope, std::shared_ptr<Variables::Scope> scope)
         {
-            ErrorReporting::Debug::print("Bracket");
+            ErrorReporting::Debug::print(getName());
             if (passable->getErrorManager()->count() > 0)
             {
                 return nullVariable;

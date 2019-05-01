@@ -20,7 +20,7 @@ namespace HuwInterpreter {
         ArrayGetNode::ArrayGetNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> left, std::shared_ptr<Nodes::Node> right)
             : Node("ArrayGetNode", passable, token)
         {
-            ErrorReporting::Debug::print("ArrayGetNode");
+            ErrorReporting::Debug::print(getName());
             this->left = left;
             this->right = right;
         }
@@ -32,6 +32,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variables::Variable> ArrayGetNode::execute(std::shared_ptr<Variables::Scope> globalScope, std::shared_ptr<Variables::Scope> scope)
         {
+            ErrorReporting::Debug::print(getName());
             if (left == nullptr)
             {
                 passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
