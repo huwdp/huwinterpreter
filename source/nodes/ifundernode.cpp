@@ -20,7 +20,7 @@ namespace HuwInterpreter {
         IfUnderNode::IfUnderNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> left, std::shared_ptr<Nodes::Node> right)
             : Node("IfUnderNode", passable, token)
         {
-            ErrorReporting::Debug::print("IfUnderNode");
+            ErrorReporting::Debug::print(getName());
             this->left = left;
             this->right = right;
         }
@@ -32,7 +32,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variables::Variable> IfUnderNode::execute(std::shared_ptr<Variables::Scope> globalScope, std::shared_ptr<Variables::Scope> scope)
         {
-            ErrorReporting::Debug::print("UnderNode");
+            ErrorReporting::Debug::print(getName());
             if (passable->getErrorManager()->count() > 0)
             {
                 return nullVariable;
