@@ -20,10 +20,10 @@ namespace HuwInterpreter {
         WhileNode::WhileNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> condition, std::shared_ptr<Nodes::Node> body, std::shared_ptr<Nodes::Node> next)
             : Node("WhileNode", passable, token)
         {
+            ErrorReporting::Debug::print(getName());
             this->condition = condition;
             this->body = body;
             this->next = next;
-            ErrorReporting::Debug::print("WhileNode");
         }
 
         NodeType WhileNode::getType()
@@ -33,7 +33,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variables::Variable> WhileNode::execute(std::shared_ptr<Variables::Scope> globalScope, std::shared_ptr<Variables::Scope> scope)
         {
-            ErrorReporting::Debug::print("WhileNode");
+            ErrorReporting::Debug::print(getName());
             if (passable->getErrorManager()->count() > 0)
             {
                 return nullVariable;
@@ -66,7 +66,7 @@ namespace HuwInterpreter {
                     c = condition->execute(globalScope, scope);
                     if (c == nullptr)
                     {
-                        // Most likely an error here so return null
+                        passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
                         return nullVariable;
                     }
                     loop = c->toBool();
