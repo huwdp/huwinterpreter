@@ -1,41 +1,41 @@
 # Type functions
 
-#IsInt
+## IsInt
 isInt(value)
 IsInt function returns true if argument value is a type of integer, the function returns false otherwise.
 
-#IsString
+## IsString
 isString(value)
 IsString function returns true if argument value is type of string, the function returns false otherwise.
 
-#IsDouble
+## IsDouble
 isDouble(value)
 IsDouble function returns true if argument value is type of double, the function returns false otherwise.
 
-#IsNumber
+## IsNumber
 isNumber(value)
 IsNumber returns true if argument value is type of double or integer, the function returns false otherwise.
 
-#IsArray
+## IsArray
 isArray(value)
 IsArray function returns true if argument value is type of an array, the function returns false otherwise.
 
-#IsIntType
+## IsIntType
 isInt(value)
 IsInt function returns true if argument is a type of integer, the function returns false otherwise.
 
-#IsStringType
+## IsStringType
 isString(value)
 IsString function returns true if argument is type of string, the function returns false otherwise.
 
-#IsDoubleType
+## IsDoubleType
 isDouble(value)
 IsDouble function returns true if argument is type of double, the function returns false otherwise.
 
-#IsNumberType
+## IsNumberType
 isNumber(value)
 IsNumber returns true if argument is type of double or integer, the function returns false otherwise.
 
-#IsArrayType
+## IsArrayType
 isArray(value)
 IsArray function returns true if argument is type of an array, the function returns false otherwise.
