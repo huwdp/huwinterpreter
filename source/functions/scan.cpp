@@ -41,7 +41,9 @@ namespace HuwInterpreter {
                             return nullVariable;
                         }
                         std::string input;
-                        std::cin >> input;
+
+
+                        std::getline(std::cin, input);
                         var->setValue(input);
                     }
                     else
