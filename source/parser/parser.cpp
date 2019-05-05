@@ -57,7 +57,11 @@ namespace HuwInterpreter {
 
     void Parser::acceptIndentation()
     {
-        while ((this->currentToken->getContent() == " " || this->currentToken->getContent() == "\t") && !tokens.empty())
+        if (tokens.empty() && !compilation && !isEnd())
+        {
+            return;
+        }
+        while (!tokens.empty() && (this->currentToken->getContent() == " " || this->currentToken->getContent() == "\t"))
         {
             nextToken();
         }
@@ -65,6 +69,10 @@ namespace HuwInterpreter {
 
     void Parser::acceptSemicolon()
     {
+        if (tokens.empty() && !compilation && !isEnd())
+        {
+            return;
+        }
         if (this->currentToken->getContent() == ";" && !tokens.empty())
         {
             nextToken();
@@ -87,6 +95,15 @@ namespace HuwInterpreter {
             --it;
             currentToken = (*it);
         }
+    }
+
+    bool Parser::isEnd()
+    {
+        if (it == tokens.end())
+        {
+            return true;
+        }
+        return false;
     }
 
     std::shared_ptr<Tokens::Token> Parser::peakToken()
@@ -194,7 +211,7 @@ namespace HuwInterpreter {
 
     std::shared_ptr<Nodes::Node> Parser::parseSquareBrackets(std::shared_ptr<Nodes::Node> node)
     {
-        if (!tokens.empty() && compilation && currentToken->getType() == LEFTSQUAREBRACKET)
+        if (!tokens.empty() && compilation && !isEnd() && currentToken->getType() == LEFTSQUAREBRACKET)
         {
             std::vector<std::shared_ptr<Nodes::Node>> indexes;
 
@@ -249,7 +266,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseValue()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd())
         {
             if (Helpers::TypeDetector::isNumeric(currentToken->getContent()))
             {
@@ -319,7 +336,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseFactor()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd())
         {
             std::shared_ptr<Nodes::Node> value;
             if (currentToken->getType() == Types::LEFTPARENTHESIS)
@@ -360,7 +377,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseTerm()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd())
         {
             std::shared_ptr<Nodes::Node> node = parseFactor();
             acceptIndentation();
@@ -393,7 +410,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseExpression()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd())
         {
             std::shared_ptr<Nodes::Node> node = parseTerm();
             acceptIndentation();
@@ -421,7 +438,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseBitwiseLeftRight()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd())
         {
             std::shared_ptr<Nodes::Node> node = parseExpression();
             acceptIndentation();
@@ -449,7 +466,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseEqualAndEqualNot()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd())
         {
             std::shared_ptr<Nodes::Node> node = parseBitwiseLeftRight();
             if (node != nullptr)
@@ -482,7 +499,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseLessThanAndLessThanOrEqual()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd())
         {
             std::shared_ptr<Nodes::Node> node = parseEqualAndEqualNot();
             if (node != nullptr)
@@ -515,7 +532,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseGreaterThanAndGreaterThanOrEqual()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd())
         {
             std::shared_ptr<Nodes::Node> node = parseLessThanAndLessThanOrEqual();
             if (node != nullptr)
@@ -548,7 +565,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseBitwiseAnd()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd() && !isEnd())
         {
             std::shared_ptr<Nodes::Node> node = parseGreaterThanAndGreaterThanOrEqual();
             Types::TokenType type = currentToken->getType();
@@ -568,7 +585,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseBitwiseXOr()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd())
         {
             std::shared_ptr<Nodes::Node> node = parseBitwiseAnd();
             Types::TokenType type = currentToken->getType();
@@ -588,7 +605,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseBitwiseOr()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd())
         {
             std::shared_ptr<Nodes::Node> node = parseBitwiseXOr();
             Types::TokenType type = currentToken->getType();
@@ -608,7 +625,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseAnd()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd())
         {
             std::shared_ptr<Nodes::Node> node = parseBitwiseOr();
             Types::TokenType type = currentToken->getType();
@@ -628,7 +645,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseOr()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd())
         {
             std::shared_ptr<Nodes::Node> node = parseAnd();
             Types::TokenType type = currentToken->getType();
@@ -996,7 +1013,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseFunction()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd())
         {
             if (Helpers::TypeDetector::isWord(this->currentToken->getContent()) && peakToken() != nullptr && peakToken()->getType() == Types::LEFTPARENTHESIS)
             {
@@ -1044,7 +1061,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseStatement()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd())
         {
             acceptIndentation();
             if (accept("if"))
@@ -1106,7 +1123,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseBlock()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd())
         {
             if (accept("return"))
             {
@@ -1206,7 +1223,7 @@ namespace HuwInterpreter {
 
     std::shared_ptr<Nodes::Node> Parser::parse()
     {
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd())
         {
             nextToken();
             return parseBlock();
@@ -1217,7 +1234,7 @@ namespace HuwInterpreter {
     std::string Parser::toString()
     {
         std::string output;
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd())
         {
             std::shared_ptr<Nodes::Node> node = parse();
             output.append(customFunctions->toString());
@@ -1232,7 +1249,7 @@ namespace HuwInterpreter {
     bool Parser::execute()
     {
         std::shared_ptr<Variables::Scope> globalScope = std::make_unique<Variables::Scope>("Global scope", passable, true);
-        if (!tokens.empty() && compilation)
+        if (!tokens.empty() && compilation && !isEnd())
         {
             std::shared_ptr<Nodes::Node> done = parse();
             if (done != nullptr && compilation)
