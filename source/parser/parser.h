@@ -100,6 +100,7 @@ namespace HuwInterpreter {
         void setCompilation(bool compilation);
         void nextToken();
         void prevToken();
+        bool isEnd();
         std::shared_ptr<Tokens::Token> peakToken();
         void error(const std::string msg);
         void acceptIndentation();
