@@ -74,10 +74,6 @@ namespace HuwInterpreter {
                 {}
                 else if (tokens->compare(fileReader->getCurrent()->getContent(), Types::TABINDENTATION))
                 {}
-                else if (fileReader->getCurrent()->getContent() == ' ' || fileReader->getCurrent()->getContent() == '\t')
-                {
-                    // Do nothing here as recording indentation is kinda pointless.
-                }
                 else if (Helpers::TypeDetector::isNumeric(fileReader->getCurrent()->getContent()))
                 {
                     temp.push_back(fileReader->getCurrent()->getContent());
@@ -100,7 +96,8 @@ namespace HuwInterpreter {
                     else if (tokens->compare(fileReader->getCurrent()->getContent(), Types::QUOTE))
                     {
                         fileReader->next();
-                        while (!tokens->compare(fileReader->getCurrent()->getContent(), Types::QUOTE) && !fileReader->isEnd())
+
+                        while (!fileReader->isEnd() && !tokens->compare(fileReader->getCurrent()->getContent(), Types::QUOTE))
                         {
                             if (fileReader->isEnd())
                             {
@@ -135,6 +132,7 @@ namespace HuwInterpreter {
                                 fileReader->next();
                             }
                         }
+
                         items.push_back(std::move(std::make_shared<Token>(temp, Types::TEXT, lineInfo)));
                         temp = "";
 
