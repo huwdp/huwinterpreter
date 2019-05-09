@@ -1,5 +1,15 @@
+
+
 # HuwInterpreter
-HuwInterpreter is a hand written interpreter designed to parse and execute HuwCode script.
+> HuwInterpreter is a hand written interpreter designed to parse and execute HuwCode script.
+
+HuwInterpreter is an interpreter built in C++ for a custom language I developed named HuwCode. HuwCode was named by two people I know of, I did not name the scripting language myself. The project was built out of self-interest and understanding on how interpreters work and written.
+
+The language supports 68 built in functions, custom user defined functions, scopes (each function has a scope), variables with types of doubles (number), strings (text) and hash tables. Hash tables allow any of types of variables making itself an associated array.
+
+User documentation can be found in the documentation folder [here](https://github.com/huwdp/huwinterpreter-mirror/tree/master/documentation).
+
+![](https://huwdp.co.uk/sites/default/files/inline-images/huwinterpreter-in-action_0.png)
 ## Code Example
 ```
 function fac(n)
@@ -17,10 +27,42 @@ function factailrec(acc, n)
 }
 print(fac(14));
 ```
-More examples can be found within the examples folder.
-
-## Documentation
-Documentation can be found within the documentation folder.
-
-## License
-GNU GENERAL PUBLIC LICENSE Version 3 (GPL 3).
+## Installation
+### Linux:
+##### Optional
+```
+cd huw-interpreter
+qmake
+```
+#### To build system
+```
+cd huwinterpreter-mirror/build-HuwInterpreter-Desktop-Release/
+make
+./install.sh
+```
+_[install.sh]() puts huwinterpreter binary in /usr/sbin/huw directory._
+## Usage example
+```
+1. Usage: [filename] to run file.
+2. Usage: -t [text] to run text.
+3. Usage: --hc for HuwCode formatter
+4. Usage: -h for help.
+```
+_For more examples and usage, please refer to the user documentation [here](https://github.com/huwdp/huwinterpreter-mirror/tree/master/documentation)._
+## Requirements:
+- GCC 6+
+- Make
+### Optional
+- Qt Creator
+- qmake
+## Development setup
+System is built under Qt Creator but can be compiled by just using make. Open HuwInterpreter.pro using Qt Creator and configure your own build settings via Qt Creator's GUI.
+## Meta
+Huw Pritchard – [@huwdp](https://twitter.com/huwdp) – [huwdp.co.uk](https://huwdp.co.uk)
+GNU GENERAL PUBLIC LICENSE Version 3 (GPL 3).. See [license.txt](https://github.com/huwdp/huwinterpreter-mirror/blob/master/license.txt) for more information.
+## Contributing
+1. Fork it [here](https://github.com/huwdp/huwinterpreter-mirror/fork)
+2. Create your branch (`git checkout -b xxx`)
+3. Commit your changes (`git commit -am 'Comment'`)
+4. Push branch (`git push origin xxx`)
+5. Create a new pull request
