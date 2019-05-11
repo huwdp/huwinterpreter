@@ -1,5 +1,6 @@
 
 
+
 # HuwInterpreter
 > HuwInterpreter is a hand written interpreter designed to parse and execute HuwCode script.
 
@@ -34,6 +35,45 @@ print(fac(14));
 cd huw-interpreter
 qmake
 ```
+
+
+#### Building
+```
+sudo apt-get install git g++ qt5-qmake make
+git clone https://github.com/huwdp/huwinterpreter-mirror.git
+cd huwinterpreter-mirror/build-HuwInterpreter-Desktop-Release/
+make
+./install.sh
+```
+
+#### Build App-Image
+```
+sudo apt-get install wget
+cd huwinterpreter-mirror/deploy-appimage/
+wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
+chmod a-x linuxdeployqt-continuous-x86_64.AppImage
+chmod 777 linuxdeployqt-continuous-x86_64.AppImage
+./build-app-image.sh
+```
+
+#### Problems
+#### Ubuntu 16.04 cannot find qmake
+
+##### Find qmake location
+```
+sudo mkdir /usr/lib/qt5/bin
+```
+##### Create folders
+````
+sudo mkdir /usr/lib/qt5/
+sudo mkdir /usr/lib/qt5/bin
+````
+##### Copy qmake or create sym-link
+```
+sudo cp /usr/bin/qmake /usr/lib/qt5/bin/qmake
+```
+You may need to replace qmake location
+
 #### To build system
 ```
 cd huwinterpreter-mirror/build-HuwInterpreter-Desktop-Release/
@@ -49,10 +89,8 @@ _[install.sh]() puts huwinterpreter binary in /usr/sbin/huw directory._
 4. Usage: -h for help.
 ```
 _For more examples and usage, please refer to the user documentation [here](https://github.com/huwdp/huwinterpreter-mirror/tree/master/documentation)._
-## Requirements:
-- GCC 6+
-- Make
-### Optional
+
+### Optional Software
 - Qt Creator
 - qmake
 ## Development setup
