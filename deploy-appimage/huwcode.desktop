@@ -4,5 +4,5 @@ Name=HuwCode
 Comment=HuwCode interpreter
 Exec=huwcode
 Icon=huwcode
-Categories=Utility
-Terminal=true;
+Terminal=true
+Categories=Utility;
