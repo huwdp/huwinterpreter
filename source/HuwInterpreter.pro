@@ -1,6 +1,7 @@
 TARGET = HuwInterpreter
 CONFIG += console
 CONFIG -= app_bundle
+CONFIG -= qt
 
 TEMPLATE = app
 
@@ -19,7 +20,6 @@ QMAKE_CXXFLAGS += -Wformat=2
 QMAKE_CXXFLAGS_RELEASE += -fno-rtti
 QMAKE_CXXFLAGS_RELEASE += -fmerge-all-constants
 QMAKE_CXXFLAGS_RELEASE += -O3
--QMAKE_CXXFLAGS_RELEASE += march=native
 -QMAKE_CXXFLAGS_RELEASE += -pipe
 
 QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-parameter
