@@ -61,7 +61,7 @@ chmod 777 linuxdeployqt-continuous-x86_64.AppImage
 
 ##### Find qmake location
 ```
-sudo mkdir /usr/lib/qt5/bin
+which qmake
 ```
 ##### Create folders
 ````
@@ -80,7 +80,7 @@ cd huwinterpreter-mirror/build-HuwInterpreter-Desktop-Release/
 make
 ./install.sh
 ```
-_[install.sh]() puts huwinterpreter binary in /usr/sbin/huw directory._
+_[install.sh]() puts huwinterpreter binary in /usr/sbin/ directory._
 ## Usage example
 ```
 1. Usage: [filename] to run file.
