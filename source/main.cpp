@@ -31,14 +31,14 @@ void printHelp(int argc, char* argv[])
         std::cerr << "1. Usage: " << argv[0] << " [filename] to run file." << std::endl;
         std::cerr << "2. Usage: " << argv[0] << " -t [text] to run text." << std::endl;
         std::cerr << "3. Usage: " << argv[0] << " --hc [filename] for HuwCode formatter" << std::endl;
-        std::cerr << "4. Usage: " << argv[0] << " -h for help." << std::endl;
+        std::cerr << "4. Usage: " << argv[0] << " -h or --help for help." << std::endl;
     }
     else
     {
         std::cerr << "1. Usage: [filename] to run file." << std::endl;
         std::cerr << "2. Usage: -t [text] to run text." << std::endl;
         std::cerr << "3. Usage: --hc for HuwCode formatter" << std::endl;
-        std::cerr << "4. Usage: -h for help." << std::endl;
+        std::cerr << "4. Usage: -h or --help for help." << std::endl;
     }
 }
 
