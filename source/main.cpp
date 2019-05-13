@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
         }
     }
 
-    if (argument == "-h")
+    if (argument == "-h" || argument == "--help")
     {
         printHelp(argc, argv);
     }
