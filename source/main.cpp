@@ -26,7 +26,7 @@
 
 void printHelp(int argc, char* argv[])
 {
-    if (argc > 1)
+    if (argc > 0)
     {
         std::cerr << "1. Usage: " << argv[0] << " [filename] to run file." << std::endl;
         std::cerr << "2. Usage: " << argv[0] << " -t [text] to run text." << std::endl;
