@@ -61,7 +61,9 @@ namespace HuwInterpreter {
         {
             return;
         }
-        while (!tokens.empty() && (this->currentToken->getContent() == " " || this->currentToken->getContent() == "\t"))
+        while (!tokens.empty() && (
+            (currentToken->getType() == INDENTATION &&
+                   (this->currentToken->getContent() == "\t" && this->currentToken->getContent() == " "))))
         {
             nextToken();
         }
