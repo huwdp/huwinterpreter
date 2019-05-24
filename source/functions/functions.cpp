@@ -59,7 +59,8 @@ namespace HuwInterpreter {
             functions["pow"] = std::move(std::make_shared<Pow>(passable));
             functions["min"] = std::move(std::make_shared<Min>(passable));
             functions["max"] = std::move(std::make_shared<Max>(passable));
-
+            functions["floor"] = std::move(std::make_shared<Floor>(passable));
+            functions["log"] = std::move(std::make_shared<Log>(passable));
 
             functions["inStr"] = std::move(std::make_shared<InStr>(passable));
             functions["inStrRev"] = std::move(std::make_shared<InStrRev>(passable));
@@ -83,7 +84,6 @@ namespace HuwInterpreter {
             functions["str"] = std::move(std::make_shared<Str>(passable));
 
             functions["array"] = std::move(std::make_shared<Array>(passable));
-            functions["arrayUnset"] = std::move(std::make_shared<ArrayUnset>(passable));
 
             functions["count"] = std::move(std::make_shared<Count>(passable));
 
@@ -97,8 +97,9 @@ namespace HuwInterpreter {
             functions["isDouble"] = std::move(std::make_shared<IsDouble>(passable));
             functions["isNumber"] = std::move(std::make_shared<IsNumber>(passable));
 
-            functions["toInt"] = std::move(std::make_shared<ToInt>(passable));
+            functions["toInt"] = std::move(std::make_shared<ToNumber>(passable));
             functions["toDouble"] = std::move(std::make_shared<ToDouble>(passable));
+            functions["toString"] = std::move(std::make_shared<ToString>(passable));
 
             functions["regexSearch"] = std::move(std::make_shared<RegexSearch>(passable));
             functions["regexReplace"] = std::move(std::make_shared<RegexReplace>(passable));

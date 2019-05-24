@@ -170,8 +170,7 @@ namespace HuwInterpreter {
     std::string Parser::syntaxError()
     {
         std::string errorMsg;
-        errorMsg.append("Parse error: syntax error, unexpected \"")
-                .append("\"");
+        errorMsg.append("Parse error: syntax error, unexpected");
         return errorMsg;
     }
 
@@ -681,7 +680,7 @@ namespace HuwInterpreter {
             std::string word = currentToken->getContent();
             if (!Helpers::TypeDetector::isWord(word))
             {
-                errorMessage(syntaxError(), currentToken);
+                errorMessage(syntaxError(word), currentToken);
                 compilation = false;
                 return nullNode;
             }
@@ -795,7 +794,7 @@ namespace HuwInterpreter {
                 std::string word = currentToken->getContent();
                 if (!Helpers::TypeDetector::isWord(word))
                 {
-                    errorMessage(syntaxError(), currentToken);
+                    errorMessage(syntaxError(word), currentToken);
                     compilation = false;
                     return nullNode;
                 }
@@ -875,7 +874,7 @@ namespace HuwInterpreter {
                 std::string word = currentToken->getContent();
                 if (!Helpers::TypeDetector::isWord(word))
                 {
-                    errorMessage(syntaxError(), currentToken);
+                    errorMessage(syntaxError(word), currentToken);
                     compilation = false;
                     return nullNode;
                 }
@@ -1155,7 +1154,7 @@ namespace HuwInterpreter {
                 nextToken();
                 if (!Helpers::TypeDetector::isWord(word) || functions->exists(word))
                 {
-                    errorMessage(syntaxError(), currentToken);
+                    errorMessage(syntaxError(word), currentToken);
                     compilation = false;
                     return nullNode;
                 }
