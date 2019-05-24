@@ -70,6 +70,10 @@ namespace HuwInterpreter {
                         temp = "";
                     }
                 }
+                else if (fileReader->getCurrent()->getContent() == ' ' || fileReader->getCurrent()->getContent() == '\t')
+                {
+                    // Do nothing here as recording indentation is kinda pointless.
+                }
                 else if (tokens->compare(fileReader->getCurrent()->getContent(), Types::INDENTATION))
                 {}
                 else if (tokens->compare(fileReader->getCurrent()->getContent(), Types::TABINDENTATION))
@@ -159,11 +163,6 @@ namespace HuwInterpreter {
                     else if (tokens->compare(fileReader->getCurrent()->getContent(), Types::SEMICOLON))
                     {
                         AddToken(Types::SEMICOLON, lineInfo);
-                    }
-
-                    else if (fileReader->getCurrent()->getContent() == ' ' || fileReader->getCurrent()->getContent() == '\t')
-                    {
-                        // Do nothing here as recording indentation is kinda pointless.
                     }
                     else if (tokens->compare(fileReader->getCurrent()->getContent(), Types::MULTIPLICATION))
                     {

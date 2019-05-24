@@ -1,20 +1,30 @@
-# Array funcitons
+# Array functions
 
 ## Array
 array()
-Array funciton returns an array. Array funciton requires 0 arguments.
+Array function returns an array. Array function requires 0 arguments.
 
 Associative Array is an abstact collection of key, value pairs. The internal implementation of the array within HuwCode is implemented with std::unordered_map.
 
 ## Get value in an array
 An element can be access by the key in an array by using square brackets. E.g. array["element1"];.
+```
+let list = array();
+list["item1"] = "Item 1";
+print(list["item1"]);
+```
 
 ## Set value in an array
 An element can be set in an array by the key by using square brackets. E.g. array["element1"] = "Hello World!";
+```
+let list = array();
+list["item1"] = "Item 1";
+print(list);
+```
 
 ## ArrayUnset
 arrayUnset(array, key)
-ArrayUnset funciton removes the value in the associative array by the key.
+ArrayUnset function removes the value in the associative array by the key.
 
 ## Example
 ```

@@ -14,3 +14,4 @@ print(rTrim("Hello World!   "));
 print(left("Hello World!",5));
 print(mid("Hello World!",2,5));
 print(right("Hello World!",4));
+print(toString("1"));
