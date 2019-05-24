@@ -101,8 +101,9 @@
 #include "isdouble.h"
 #include "isnumber.h"
 
-#include "toint.h"
+#include "tonumber.h"
 #include "todouble.h"
+#include "tostring.h"
 
 #include "regexsearch.h"
 #include "regexreplace.h"

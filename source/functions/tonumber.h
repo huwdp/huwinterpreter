@@ -20,10 +20,10 @@
 
 namespace HuwInterpreter {
     namespace Functions {
-        class ToInt : public Function
+        class ToNumber : public Function
         {
         public:
-            ToInt(std::shared_ptr<Passable> passable);
+            ToNumber(std::shared_ptr<Passable> passable);
             std::shared_ptr<Variable> execute(std::shared_ptr<Tokens::Token> token,
                                           std::shared_ptr<Scope> globalScope,
                                           std::shared_ptr<Scope> scope,

@@ -13,17 +13,17 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "toint.h"
+#include "tonumber.h"
 
 namespace HuwInterpreter {
     namespace Functions {
-        ToInt::ToInt(std::shared_ptr<Passable> passable)
+        ToNumber::ToNumber(std::shared_ptr<Passable> passable)
             : Function(passable)
         {
             setName("toInt");
         }
 
-        std::shared_ptr<Variable> ToInt::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Scope> globalScope,
+        std::shared_ptr<Variable> ToNumber::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Scope> globalScope,
                                                   std::shared_ptr<Scope> scope,
                                                   std::vector<std::shared_ptr<Nodes::Node>> arguments)
         {

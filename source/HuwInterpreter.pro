@@ -56,7 +56,6 @@ SOURCES += \
     functions/isint.cpp \
     functions/isdouble.cpp \
     functions/todouble.cpp \
-    functions/toint.cpp \
     functions/abs.cpp \
     functions/acos.cpp \
     functions/asc.cpp \
@@ -175,7 +174,8 @@ SOURCES += \
     functions/clockfunction.cpp \
     functions/dirfunction.cpp \
     functions/timeformatfunction.cpp \
-    functions/unreffunction.cpp
+    functions/unreffunction.cpp \
+    functions/tonumber.cpp
 
 
 
@@ -306,7 +306,6 @@ HEADERS += \
     functions/strreverse.h \
     functions/tan.h \
     functions/todouble.h \
-    functions/toint.h \
     functions/tolower.h \
     functions/tostring.h \
     functions/toupper.h \
@@ -378,7 +377,8 @@ HEADERS += \
     functions/clockfunction.h \
     functions/dirfunction.h \
     functions/timeformatfunction.h \
-    functions/unreffunction.h
+    functions/unreffunction.h \
+    functions/tonumber.h
 
 
 

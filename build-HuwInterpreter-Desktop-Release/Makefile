@@ -81,7 +81,6 @@ SOURCES       = ../source/errors/debug.cpp \
 		../source/functions/isint.cpp \
 		../source/functions/isdouble.cpp \
 		../source/functions/todouble.cpp \
-		../source/functions/toint.cpp \
 		../source/functions/abs.cpp \
 		../source/functions/acos.cpp \
 		../source/functions/asc.cpp \
@@ -200,7 +199,8 @@ SOURCES       = ../source/errors/debug.cpp \
 		../source/functions/clockfunction.cpp \
 		../source/functions/dirfunction.cpp \
 		../source/functions/timeformatfunction.cpp \
-		../source/functions/unreffunction.cpp 
+		../source/functions/unreffunction.cpp \
+		../source/functions/tonumber.cpp 
 OBJECTS       = debug.o \
 		error.o \
 		errors.o \
@@ -232,7 +232,6 @@ OBJECTS       = debug.o \
 		isint.o \
 		isdouble.o \
 		todouble.o \
-		toint.o \
 		abs.o \
 		acos.o \
 		asc.o \
@@ -351,7 +350,8 @@ OBJECTS       = debug.o \
 		clockfunction.o \
 		dirfunction.o \
 		timeformatfunction.o \
-		unreffunction.o
+		unreffunction.o \
+		tonumber.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -547,7 +547,6 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		functions/strreverse.h \
 		functions/tan.h \
 		functions/todouble.h \
-		functions/toint.h \
 		functions/tolower.h \
 		functions/tostring.h \
 		functions/toupper.h \
@@ -619,7 +618,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		functions/clockfunction.h \
 		functions/dirfunction.h \
 		functions/timeformatfunction.h \
-		functions/unreffunction.h ../source/errors/debug.cpp \
+		functions/unreffunction.h \
+		functions/tonumber.h ../source/errors/debug.cpp \
 		../source/errors/error.cpp \
 		../source/errors/errors.cpp \
 		../source/errors/errortypestringfactory.cpp \
@@ -650,7 +650,6 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../source/functions/isint.cpp \
 		../source/functions/isdouble.cpp \
 		../source/functions/todouble.cpp \
-		../source/functions/toint.cpp \
 		../source/functions/abs.cpp \
 		../source/functions/acos.cpp \
 		../source/functions/asc.cpp \
@@ -769,7 +768,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		../source/functions/clockfunction.cpp \
 		../source/functions/dirfunction.cpp \
 		../source/functions/timeformatfunction.cpp \
-		../source/functions/unreffunction.cpp
+		../source/functions/unreffunction.cpp \
+		../source/functions/tonumber.cpp
 QMAKE_TARGET  = HuwInterpreter
 DESTDIR       = 
 TARGET        = HuwInterpreter
@@ -1229,8 +1229,9 @@ huwinterpreter.o: ../source/huwinterpreter.cpp ../source/huwinterpreter.h \
 		../source/functions/isint.h \
 		../source/functions/isdouble.h \
 		../source/functions/isnumber.h \
-		../source/functions/toint.h \
+		../source/functions/tonumber.h \
 		../source/functions/todouble.h \
+		../source/functions/tostring.h \
 		../source/functions/regexsearch.h \
 		../source/functions/regexreplace.h \
 		../source/functions/regexmatch.h \
@@ -1740,35 +1741,6 @@ todouble.o: ../source/functions/todouble.cpp ../source/functions/todouble.h \
 		../source/variables/scope.h \
 		../source/io/fileline.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o todouble.o ../source/functions/todouble.cpp
-
-toint.o: ../source/functions/toint.cpp ../source/functions/toint.h \
-		../source/functions/function.h \
-		../source/variables/variable.h \
-		../source/types/typedetector.h \
-		../source/types/tokentypes.h \
-		../source/errors/debug.h \
-		../source/errors/errors.h \
-		../source/errors/error.h \
-		../source/tokens/token.h \
-		../source/tokens/lineinfo.h \
-		../source/errors/errortypes.h \
-		../source/errors/errortypestringfactory.h \
-		../source/common/passable.h \
-		../source/errors/errorfactory.h \
-		../source/variables/variablestringfactory.h \
-		../source/errors/stacktracemanager.h \
-		../source/errors/stacktrace.h \
-		../source/common/nameableobject.h \
-		../source/nodes/node.h \
-		../source/variables/variables.h \
-		../source/variables/stringvariable.h \
-		../source/variables/variabletypefactory.h \
-		../source/variables/doublevariable.h \
-		../source/variables/precision.h \
-		../source/variables/constantvariable.h \
-		../source/variables/scope.h \
-		../source/io/fileline.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o toint.o ../source/functions/toint.cpp
 
 abs.o: ../source/functions/abs.cpp ../source/functions/abs.h \
 		../source/functions/function.h \
@@ -2299,8 +2271,9 @@ functions.o: ../source/functions/functions.cpp ../source/functions/functions.h \
 		../source/functions/isint.h \
 		../source/functions/isdouble.h \
 		../source/functions/isnumber.h \
-		../source/functions/toint.h \
+		../source/functions/tonumber.h \
 		../source/functions/todouble.h \
+		../source/functions/tostring.h \
 		../source/functions/regexsearch.h \
 		../source/functions/regexreplace.h \
 		../source/functions/regexmatch.h \
@@ -3473,8 +3446,9 @@ parser.o: ../source/parser/parser.cpp ../source/parser/parser.h \
 		../source/functions/isint.h \
 		../source/functions/isdouble.h \
 		../source/functions/isnumber.h \
-		../source/functions/toint.h \
+		../source/functions/tonumber.h \
 		../source/functions/todouble.h \
+		../source/functions/tostring.h \
 		../source/functions/regexsearch.h \
 		../source/functions/regexreplace.h \
 		../source/functions/regexmatch.h \
@@ -3658,8 +3632,9 @@ main.o: ../source/main.cpp ../source/parser/parser.h \
 		../source/functions/isint.h \
 		../source/functions/isdouble.h \
 		../source/functions/isnumber.h \
-		../source/functions/toint.h \
+		../source/functions/tonumber.h \
 		../source/functions/todouble.h \
+		../source/functions/tostring.h \
 		../source/functions/regexsearch.h \
 		../source/functions/regexreplace.h \
 		../source/functions/regexmatch.h \
@@ -3928,8 +3903,9 @@ getfuncnode.o: ../source/nodes/getfuncnode.cpp ../source/nodes/getfuncnode.h \
 		../source/functions/isint.h \
 		../source/functions/isdouble.h \
 		../source/functions/isnumber.h \
-		../source/functions/toint.h \
+		../source/functions/tonumber.h \
 		../source/functions/todouble.h \
+		../source/functions/tostring.h \
 		../source/functions/regexsearch.h \
 		../source/functions/regexreplace.h \
 		../source/functions/regexmatch.h \
@@ -4245,8 +4221,9 @@ huwcodenodefactory.o: ../source/nodes/huwcodenodefactory.cpp ../source/nodes/huw
 		../source/functions/isint.h \
 		../source/functions/isdouble.h \
 		../source/functions/isnumber.h \
-		../source/functions/toint.h \
+		../source/functions/tonumber.h \
 		../source/functions/todouble.h \
+		../source/functions/tostring.h \
 		../source/functions/regexsearch.h \
 		../source/functions/regexreplace.h \
 		../source/functions/regexmatch.h \
@@ -4907,8 +4884,9 @@ nodefactoryfactory.o: ../source/nodes/nodefactoryfactory.cpp ../source/nodes/nod
 		../source/functions/isint.h \
 		../source/functions/isdouble.h \
 		../source/functions/isnumber.h \
-		../source/functions/toint.h \
+		../source/functions/tonumber.h \
 		../source/functions/todouble.h \
+		../source/functions/tostring.h \
 		../source/functions/regexsearch.h \
 		../source/functions/regexreplace.h \
 		../source/functions/regexmatch.h \
@@ -5493,6 +5471,35 @@ unreffunction.o: ../source/functions/unreffunction.cpp ../source/functions/unref
 		../source/variables/scope.h \
 		../source/io/fileline.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o unreffunction.o ../source/functions/unreffunction.cpp
+
+tonumber.o: ../source/functions/tonumber.cpp ../source/functions/tonumber.h \
+		../source/functions/function.h \
+		../source/variables/variable.h \
+		../source/types/typedetector.h \
+		../source/types/tokentypes.h \
+		../source/errors/debug.h \
+		../source/errors/errors.h \
+		../source/errors/error.h \
+		../source/tokens/token.h \
+		../source/tokens/lineinfo.h \
+		../source/errors/errortypes.h \
+		../source/errors/errortypestringfactory.h \
+		../source/common/passable.h \
+		../source/errors/errorfactory.h \
+		../source/variables/variablestringfactory.h \
+		../source/errors/stacktracemanager.h \
+		../source/errors/stacktrace.h \
+		../source/common/nameableobject.h \
+		../source/nodes/node.h \
+		../source/variables/variables.h \
+		../source/variables/stringvariable.h \
+		../source/variables/variabletypefactory.h \
+		../source/variables/doublevariable.h \
+		../source/variables/precision.h \
+		../source/variables/constantvariable.h \
+		../source/variables/scope.h \
+		../source/io/fileline.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tonumber.o ../source/functions/tonumber.cpp
 
 ####### Install
 
