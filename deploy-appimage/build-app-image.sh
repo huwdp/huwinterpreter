@@ -1,4 +1,5 @@
 #!/bin/bash
+rm *HuwCode*.AppImage
 make -C ../build-HuwInterpreter-Desktop-Release/
 cp ../build-HuwInterpreter-Desktop-Release/HuwInterpreter huwcode/bin/huwcode
 export VERSION=$(date '+%Y%m%d')
