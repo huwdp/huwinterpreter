@@ -6,7 +6,7 @@
 
 HuwInterpreter is an interpreter built in C++ for a custom language I developed named HuwCode. HuwCode was named by two people I know of, I did not name the scripting language myself. The project was built out of self-interest and understanding on how interpreters work and written.
 
-The language supports 68 built in functions, custom user defined functions, scopes (each function has a scope), variables with types of doubles (number), strings (text) and hash tables. Hash tables allow any of types of variables making itself an associated array.
+The language supports 70 built in functions, custom user defined functions, scopes (each function has a scope), variables with types of doubles (number), strings (text) and hash tables. Hash tables allow any of types of variables making itself an associated array.
 
 User documentation can be found in the documentation folder [here](https://github.com/huwdp/huwinterpreter-mirror/tree/master/documentation).
 
