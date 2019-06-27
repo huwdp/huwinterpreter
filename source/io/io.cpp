@@ -22,15 +22,11 @@ namespace HuwInterpreter {
             std::string output;
             std::string line;
             std::ifstream stream(file);
-
-            if (stream.is_open())
-            {
-                while (std::getline(stream,line))
-                {
-                    output.append(line);
-                }
-                stream.close();
-            }
+            std::ifstream inFile;
+            inFile.open(file);
+            std::stringstream stringStream;
+            stringStream << inFile.rdbuf();
+            output = stringStream.str();
             return output;
         }
 
