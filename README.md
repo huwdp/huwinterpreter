@@ -1,6 +1,3 @@
-
-
-
 # HuwInterpreter
 > HuwInterpreter is a hand written interpreter designed to parse and execute HuwCode script.
 
@@ -29,21 +26,20 @@ function factailrec(acc, n)
 print(fac(14));
 ```
 ## Installation
-### Linux:
-##### Optional
-```
-cd huw-interpreter
-qmake
-```
-
 
 #### Building
 ```
 sudo apt-get install git g++ qt5-qmake make
 git clone https://github.com/huwdp/huwinterpreter-mirror.git
-cd huwinterpreter-mirror/build-HuwInterpreter-Desktop-Release/
+cd huw-interpreter/source
+qmake CONFIG+=release HuwInterpreter.pro
 make
-./install.sh
+```
+
+#### Install
+Copy binary into sbin folder.
+```
+sudo cp ./HuwInterpreter /usr/sbin/huw
 ```
 
 #### Build App-Image
@@ -64,23 +60,16 @@ chmod 777 linuxdeployqt-continuous-x86_64.AppImage
 which qmake
 ```
 ##### Create folders
-````
+```
 sudo mkdir /usr/lib/qt5/
 sudo mkdir /usr/lib/qt5/bin
-````
+```
 ##### Copy qmake or create sym-link
 ```
 sudo cp /usr/bin/qmake /usr/lib/qt5/bin/qmake
 ```
 You may need to replace qmake location
 
-#### To build system
-```
-cd huwinterpreter-mirror/build-HuwInterpreter-Desktop-Release/
-make
-./install.sh
-```
-_[install.sh]() puts huwinterpreter binary in /usr/sbin/ directory._
 ## Usage example
 ```
 1. Usage: [filename] to run file.
