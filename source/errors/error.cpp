@@ -52,7 +52,7 @@ namespace HuwInterpreter {
             }
         }
 
-        Error::Error(ErrorTypes errorType, std::string error, std::shared_ptr<Token> token, std::__cxx11::string internalFile, int internalLine)
+        Error::Error(ErrorTypes errorType, std::string error, std::shared_ptr<Token> token, std::string internalFile, int internalLine)
         {
             this->errorType = errorType;
             this->error = error;
