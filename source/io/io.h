@@ -19,6 +19,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 namespace HuwInterpreter {
     namespace IO {
