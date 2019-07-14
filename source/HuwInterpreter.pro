@@ -7,6 +7,7 @@ TEMPLATE = app
 
 CONFIG += c++14
 CONFIG += -j6
+LIBS += -lcurl
 
 
 QMAKE_CXXFLAGS += -Wall
@@ -29,6 +30,11 @@ SOURCES += \
     errors/error.cpp \
     errors/errors.cpp \
     errors/errortypestringfactory.cpp \
+    functions/httpdeletefunction.cpp \
+    functions/httpgetfunction.cpp \
+    functions/httpheadfunction.cpp \
+    functions/httppostfunction.cpp \
+    functions/httpputfunction.cpp \
     io/fileline.cpp \
     io/io.cpp \
     types/typedetector.cpp \
@@ -187,6 +193,11 @@ HEADERS += \
     errors/errortypes.h \
     errors/errortypestringfactory.h \
     errors/ierrors.h \
+    functions/httpdeletefunction.h \
+    functions/httpgetfunction.h \
+    functions/httpheadfunction.h \
+    functions/httppostfunction.h \
+    functions/httpputfunction.h \
     io/fileline.h \
     io/io.h \
     nodes/addnode.h \

@@ -35,9 +35,10 @@ namespace HuwInterpreter {
         class Function : public NameableObject
         {
         protected:
-            std::shared_ptr<Variable> nullVariable;
+
             std::shared_ptr<Passable> passable;
         public:
+            std::shared_ptr<Variable> nullVariable;
             Function(std::shared_ptr<Passable> passable);
 
             virtual std::shared_ptr<Variable> execute(std::shared_ptr<Tokens::Token> token,
@@ -47,6 +48,12 @@ namespace HuwInterpreter {
             virtual std::string toString(std::vector<std::shared_ptr<Nodes::Node>> arguments);
         };
     }
+}
+
+static size_t writeFunction(void *ptr, size_t size, size_t nmemb, std::string* data)
+{
+    data->append((char*) ptr, size * nmemb);
+    return size * nmemb;
 }
 
 #endif // FUNCTION_H
