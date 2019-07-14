@@ -174,5 +174,14 @@ namespace HuwInterpreter {
             }
             return std::make_shared<Error>(RUNTIME_ERROR, "Variable " + name + "is not an array", token);
         }
+
+        std::shared_ptr<Error> ErrorFactory::argumentMustBeNumberType(std::shared_ptr<Token> token, std::string variableName)
+        {
+            if (variableName.empty())
+            {
+                return std::make_shared<Error>(RUNTIME_ERROR, "Argument must be number type", token);
+            }
+            return std::make_shared<Error>(RUNTIME_ERROR, "Argument " + variableName + "must be number type", token);
+        }
     }
 }
