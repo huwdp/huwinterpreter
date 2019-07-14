@@ -118,6 +118,7 @@ namespace HuwInterpreter {
             functions["httpHead"] = std::move(std::make_shared<HttpHeadFunction>(passable));
 
             functions["functionCount"] = std::move(std::make_shared<FunctionCountFunction>(passable));
+            functions["sleep"] = std::move(std::make_shared<SleepFunction>(passable));
         }
 
         std::shared_ptr<Functions::Function> FunctionManager::get(std::string name)

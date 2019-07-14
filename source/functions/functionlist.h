@@ -123,5 +123,7 @@
 
 #include "functioncount.h"
 
+#include "sleepfunction.h"
+
 #endif  //FUNCTIONLIST_H
 
