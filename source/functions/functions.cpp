@@ -110,6 +110,12 @@ namespace HuwInterpreter {
 
             functions["clock"] = std::move(std::make_shared<ClockFunction>(passable));
             functions["timeFormat"] = std::move(std::make_shared<TimeFormatFunction>(passable));
+
+            functions["httpGet"] = std::move(std::make_shared<HttpGetFunction>(passable));
+            functions["httpPost"] = std::move(std::make_shared<HttpPostFunction>(passable));
+            functions["httpPut"] = std::move(std::make_shared<HttpPutFunction>(passable));
+            functions["httpDelete"] = std::move(std::make_shared<HttpDeleteFunction>(passable));
+            functions["httpHead"] = std::move(std::make_shared<HttpHeadFunction>(passable));
         }
 
         std::shared_ptr<Functions::Function> FunctionManager::get(std::string name)
