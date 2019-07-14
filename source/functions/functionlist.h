@@ -121,5 +121,7 @@
 #include "httpdeletefunction.h"
 #include "httpheadfunction.h"
 
+#include "functioncount.h"
+
 #endif  //FUNCTIONLIST_H
 
