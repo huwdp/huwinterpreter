@@ -36,6 +36,7 @@ SOURCES += \
     functions/httpheadfunction.cpp \
     functions/httppostfunction.cpp \
     functions/httpputfunction.cpp \
+    functions/sleepfunction.cpp \
     io/fileline.cpp \
     io/io.cpp \
     types/typedetector.cpp \
@@ -200,6 +201,7 @@ HEADERS += \
     functions/httpheadfunction.h \
     functions/httppostfunction.h \
     functions/httpputfunction.h \
+    functions/sleepfunction.h \
     io/fileline.h \
     io/io.h \
     nodes/addnode.h \
