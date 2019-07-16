@@ -47,6 +47,7 @@ namespace HuwInterpreter {
             void setValue(std::shared_ptr<Variable> variable);
             double toDouble();
             std::string toString();
+            std::string toJSON();
             bool toBool();
             long long toInt();
             Types::VarType getType();

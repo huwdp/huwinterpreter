@@ -35,6 +35,7 @@ namespace  HuwInterpreter {
             static bool isNumeric(char value);
             static bool isWord(std::string value);
             static bool isWord(char value);
+            static bool isChar(std::string value);
             static VarType getType(std::string value);
             static VarType getToken(std::string value);
             static bool compare(std::string value1, TokenType value2);

@@ -81,6 +81,11 @@ namespace HuwInterpreter {
             return variable->toString();
         }
 
+        std::string ConstantVariable::toJSON()
+        {
+            return variable->toJSON();
+        }
+
         bool ConstantVariable::toBool()
         {
             return variable->toBool();
