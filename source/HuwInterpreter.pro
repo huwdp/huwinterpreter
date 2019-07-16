@@ -36,6 +36,7 @@ SOURCES += \
     functions/httpheadfunction.cpp \
     functions/httppostfunction.cpp \
     functions/httpputfunction.cpp \
+    functions/jsonencodefunction.cpp \
     functions/sleepfunction.cpp \
     io/fileline.cpp \
     io/io.cpp \
@@ -201,6 +202,7 @@ HEADERS += \
     functions/httpheadfunction.h \
     functions/httppostfunction.h \
     functions/httpputfunction.h \
+    functions/jsonencodefunction.h \
     functions/sleepfunction.h \
     io/fileline.h \
     io/io.h \

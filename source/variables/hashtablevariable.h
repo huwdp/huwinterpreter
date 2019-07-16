@@ -19,6 +19,7 @@
 #include <iostream>
 #include <memory>
 #include <unordered_map>
+#include <algorithm>
 
 #include "variable.h"
 #include "doublevariable.h"
@@ -42,6 +43,7 @@ namespace HuwInterpreter {
             double toDouble();
             long long toInt();
             std::string toString();
+            std::string toJSON();
             bool toBool();
             Types::VarType getType();
             double getDoubleValue();

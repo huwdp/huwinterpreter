@@ -69,7 +69,8 @@ namespace HuwInterpreter {
             DOUBLE,
             STRING,
             ARRAY,
-            NONE
+            NONE,
+            JSON
         };
     }
 }
