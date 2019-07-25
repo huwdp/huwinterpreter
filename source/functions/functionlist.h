@@ -126,6 +126,7 @@
 #include "sleepfunction.h"
 
 #include "jsonencodefunction.h"
+#include "jsondecodefunction.h"
 
 #endif  //FUNCTIONLIST_H
 
