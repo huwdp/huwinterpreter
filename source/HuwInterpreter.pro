@@ -30,12 +30,14 @@ SOURCES += \
     errors/error.cpp \
     errors/errors.cpp \
     errors/errortypestringfactory.cpp \
+    format/jsondecode.cpp \
     functions/functioncount.cpp \
     functions/httpdeletefunction.cpp \
     functions/httpgetfunction.cpp \
     functions/httpheadfunction.cpp \
     functions/httppostfunction.cpp \
     functions/httpputfunction.cpp \
+    functions/jsondecodefunction.cpp \
     functions/jsonencodefunction.cpp \
     functions/sleepfunction.cpp \
     io/fileline.cpp \
@@ -196,12 +198,14 @@ HEADERS += \
     errors/errortypes.h \
     errors/errortypestringfactory.h \
     errors/ierrors.h \
+    format/jsondecode.h \
     functions/functioncount.h \
     functions/httpdeletefunction.h \
     functions/httpgetfunction.h \
     functions/httpheadfunction.h \
     functions/httppostfunction.h \
     functions/httpputfunction.h \
+    functions/jsondecodefunction.h \
     functions/jsonencodefunction.h \
     functions/sleepfunction.h \
     io/fileline.h \

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.9.1, 2019-07-16T20:46:34. -->
+<!-- Written by QtCreator 4.9.1, 2019-07-25T21:29:39. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -306,7 +306,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">HuwInterpreter</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">HuwInterpreter2</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/huw/repofix/huwinterpreter-mirror/source/HuwInterpreter.pro</value>
-    <value type="QString" key="RunConfiguration.Arguments">../json.hco</value>
+    <value type="QString" key="RunConfiguration.Arguments">../json2.hco</value>
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
