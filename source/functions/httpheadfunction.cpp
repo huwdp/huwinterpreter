@@ -60,7 +60,6 @@ namespace HuwInterpreter {
                 CURL *curl = curl_easy_init();
                 if (curl)
                 {
-                    curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "HEAD");
                     curl_easy_setopt(curl, CURLOPT_URL, uri->toString().c_str());
                     curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1);
                     curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 10);
@@ -72,11 +71,7 @@ namespace HuwInterpreter {
                     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_string);
                     curl_easy_setopt(curl, CURLOPT_HEADERDATA, &header_string);
 
-
-
-                    curl_easy_setopt(curl, CURLOPT_PUT, 1L);
-
-
+                    curl_easy_setopt(curl, CURLOPT_NOBODY, 1L);
 
                     if (postArguments != nullptr)
                     {
