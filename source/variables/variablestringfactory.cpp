@@ -37,6 +37,9 @@ namespace HuwInterpreter {
             case Types::NONE:
                 result = "none";
                 break;
+            case Types::JSON:
+                result = "json";
+                break;
             default:
                 result = "";
                 break;
