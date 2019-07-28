@@ -30,7 +30,6 @@ SOURCES += \
     errors/error.cpp \
     errors/errors.cpp \
     errors/errortypestringfactory.cpp \
-    format/jsondecode.cpp \
     functions/functioncount.cpp \
     functions/httpdeletefunction.cpp \
     functions/httpgetfunction.cpp \
@@ -198,7 +197,6 @@ HEADERS += \
     errors/errortypes.h \
     errors/errortypestringfactory.h \
     errors/ierrors.h \
-    format/jsondecode.h \
     functions/functioncount.h \
     functions/httpdeletefunction.h \
     functions/httpgetfunction.h \
