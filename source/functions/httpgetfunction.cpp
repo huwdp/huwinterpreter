@@ -59,7 +59,6 @@ namespace HuwInterpreter {
                 CURL *curl = curl_easy_init();
                 if (curl)
                 {
-                    //curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "GET");
                     curl_easy_setopt(curl, CURLOPT_URL, uri->toString().c_str());
                     curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1);
                     curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 10);

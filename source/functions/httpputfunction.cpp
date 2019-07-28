@@ -72,12 +72,6 @@ namespace HuwInterpreter {
                     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_string);
                     curl_easy_setopt(curl, CURLOPT_HEADERDATA, &header_string);
 
-
-
-                    curl_easy_setopt(curl, CURLOPT_PUT, 1L);
-
-
-
                     if (postArguments != nullptr)
                     {
                         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, postArguments->toString().c_str());
