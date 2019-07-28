@@ -127,6 +127,11 @@ namespace HuwInterpreter {
             return value;
         }
 
+        std::string StringVariable::toJSON()
+        {
+            return "\"" + toString() + "\"";
+        }
+
         long long StringVariable::toInt()
         {
             int value = 0.0;

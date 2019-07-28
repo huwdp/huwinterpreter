@@ -70,6 +70,11 @@ namespace HuwInterpreter {
             return variable->toString();
         }
 
+        std::string RefVariable::toJSON()
+        {
+            return variable->toJSON();
+        }
+
         bool RefVariable::toBool()
         {
             return variable->toBool();
