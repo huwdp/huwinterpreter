@@ -120,6 +120,15 @@ namespace  HuwInterpreter {
             return false;
         }
 
+        bool TypeDetector::isChar(std::string value)
+        {
+            if (value.size() == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
         VarType TypeDetector::getType(std::string value)
         {
             if (isWord(value))
