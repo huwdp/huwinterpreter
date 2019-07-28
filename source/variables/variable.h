@@ -51,6 +51,7 @@ namespace HuwInterpreter {
             virtual double toDouble() = 0;
             virtual long long toInt() = 0;
             virtual std::string toString() = 0;
+            virtual std::string toJSON() = 0;
             virtual bool toBool() = 0;
             virtual Types::VarType getType() = 0;
             virtual bool isNumber() = 0;
