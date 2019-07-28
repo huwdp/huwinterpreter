@@ -119,6 +119,9 @@ namespace HuwInterpreter {
 
             functions["functionCount"] = std::move(std::make_shared<FunctionCountFunction>(passable));
             functions["sleep"] = std::move(std::make_shared<SleepFunction>(passable));
+
+            functions["jsonEncode"] = std::move(std::make_shared<JSONEncodeFunction>(passable));
+            functions["jsonDecode"] = std::move(std::make_shared<JSONDecodeFunction>(passable));
         }
 
         std::shared_ptr<Functions::Function> FunctionManager::get(std::string name)
