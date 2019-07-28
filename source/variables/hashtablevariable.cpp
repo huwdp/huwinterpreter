@@ -17,6 +17,9 @@
 
 namespace HuwInterpreter {
     namespace Variables {
+
+
+
         HashTableVariable::HashTableVariable(std::shared_ptr<Passable> passable)
             : Variable(passable)
         {
@@ -92,6 +95,65 @@ namespace HuwInterpreter {
             for (std::unordered_map<std::string, std::shared_ptr<Variable>>::iterator it = map.begin(); it != map.end(); ++it)
             {
                 output.append("\tKey: \"" + (*it).first + "\", Value: \"" + (*it).second->toString()+"\"\n");
+            }
+            output.append("]");
+            return output;
+        }
+
+        std::string HashTableVariable::toJSON()
+        {
+            std::string output;
+            std::unordered_map<std::string, std::shared_ptr<Variable>>::iterator it = map.begin();
+
+            bool isHashTable = false;
+            if (it == map.end())
+            {
+                isHashTable = true;
+            }
+
+            // Below could be optimised
+            for (; it != map.end(); it++)
+            {
+                if (!Helpers::TypeDetector::isNumeric((*it).first))
+                {
+                    isHashTable = true;
+                }
+            }
+
+            it = map.begin();
+            if (isHashTable)
+            {
+                output.append("{");
+                while (it != map.end())
+                {
+                    output.append("\"" + (*it).first + "\":" + (*it).second->toJSON());
+                    it++;
+                    if (it != map.end())
+                    {
+                        output.append(",") ;
+                    }
+                }
+                output.append("}");
+                return output;
+            }
+
+            // Below could be optimised also
+            std::vector<std::tuple<std::string, std::shared_ptr<Variable>>> list;
+            for (std::unordered_map<std::string, std::shared_ptr<Variable>>::iterator it = map.begin(); it != map.end() ; ++it)
+            {
+                list.push_back(std::make_tuple((*it).first, (*it).second));
+            }
+            std::sort(list.begin(), list.end()); //Sort string, first tuple value
+            std::vector<std::tuple<std::string, std::shared_ptr<Variable>>>::iterator it2 = list.begin();
+            output.append("[");
+            while (it2 != list.end())
+            {
+                output.append(std::get<1>((*it2))->toJSON());
+                it2++;
+                if (it2 != list.end())
+                {
+                    output.append(",") ;
+                }
             }
             output.append("]");
             return output;

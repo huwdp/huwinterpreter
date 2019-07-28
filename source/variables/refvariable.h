@@ -37,6 +37,7 @@ namespace HuwInterpreter {
             double toDouble();
             long long toInt();
             std::string toString();
+            std::string toJSON();
             bool toBool();
             Types::VarType getType();
             double getDoubleValue();

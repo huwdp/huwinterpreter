@@ -123,6 +123,11 @@ namespace HuwInterpreter {
             return output;
         }
 
+        std::string DoubleVariable::toJSON()
+        {
+            return toString();
+        }
+
         bool DoubleVariable::toBool()
         {
             if (value != double(0))
