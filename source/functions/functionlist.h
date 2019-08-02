@@ -121,8 +121,6 @@
 #include "httpdeletefunction.h"
 #include "httpheadfunction.h"
 
-#include "functioncount.h"
-
 #include "sleepfunction.h"
 
 #include "jsonencodefunction.h"
