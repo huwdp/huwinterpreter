@@ -28,7 +28,7 @@ namespace HuwInterpreter {
                     lineNumber++;
                 }
                 std::shared_ptr<IO::FileLine> fileLine(std::make_shared<IO::FileLine>((*it), lineNumber));
-                lines.push_back(std::move(fileLine));
+                lines.emplace_back(std::move(fileLine));
             }
 
             if (lines.size() > 0)

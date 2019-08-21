@@ -220,7 +220,7 @@ namespace HuwInterpreter {
             while (accept(Types::LEFTSQUAREBRACKET))
             {
                 acceptIndentation();
-                indexes.push_back(std::move(parseBoolean()));
+                indexes.emplace_back(std::move(parseBoolean()));
                 acceptIndentation();
 
                 if (!expect(RIGHTSQUAREBRACKET))
@@ -294,7 +294,7 @@ namespace HuwInterpreter {
                         do
                         {
                             acceptIndentation();
-                            arguments.push_back(parseBoolean());
+                            arguments.emplace_back(parseBoolean());
                         }
                         while (accept(Types::COMMA) && !accept(Types::RIGHTPARENTHESIS) && !tokens.empty());
                     }
@@ -1038,7 +1038,7 @@ namespace HuwInterpreter {
                     do
                     {
                         acceptIndentation();
-                        arguments.push_back(parseBoolean());
+                        arguments.emplace_back(parseBoolean());
                         acceptIndentation();
                     }
                     while (accept(Types::COMMA) && !accept(Types::RIGHTPARENTHESIS) && !tokens.empty());
@@ -1179,7 +1179,7 @@ namespace HuwInterpreter {
                     do
                     {
                         acceptIndentation();
-                        arguments.push_back(currentToken->getContent());
+                        arguments.emplace_back(currentToken->getContent());
                         nextToken();
                     }
                     while (accept(Types::COMMA) && !accept(Types::RIGHTPARENTHESIS) && !tokens.empty());

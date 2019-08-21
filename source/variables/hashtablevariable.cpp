@@ -141,7 +141,7 @@ namespace HuwInterpreter {
             std::vector<std::tuple<std::string, std::shared_ptr<Variable>>> list;
             for (std::unordered_map<std::string, std::shared_ptr<Variable>>::iterator it = map.begin(); it != map.end() ; ++it)
             {
-                list.push_back(std::make_tuple((*it).first, (*it).second));
+                list.emplace_back(std::make_tuple((*it).first, (*it).second));
             }
             std::sort(list.begin(), list.end()); //Sort string, first tuple value
             std::vector<std::tuple<std::string, std::shared_ptr<Variable>>>::iterator it2 = list.begin();
