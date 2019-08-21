@@ -24,12 +24,12 @@ namespace HuwInterpreter {
 
         void ErrorManager::add(std::string message)
         {
-            errorList.push_back(std::make_shared<Error>(ERROR, message));
+            errorList.emplace_back(std::make_shared<Error>(ERROR, message));
         }
 
         void ErrorManager::add(std::shared_ptr<Error> error)
         {
-            errorList.push_back(error);
+            errorList.emplace_back(error);
         }
 
         void ErrorManager::removeAll()
