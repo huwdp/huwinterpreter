@@ -126,6 +126,6 @@
 #include "jsonencodefunction.h"
 #include "jsondecodefunction.h"
 
-#include "sort.h
+#include "sort.h"
 #endif  //FUNCTIONLIST_H
 

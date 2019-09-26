@@ -117,7 +117,6 @@ namespace HuwInterpreter {
             functions["httpDelete"] = std::move(std::make_shared<HttpDeleteFunction>(passable));
             functions["httpHead"] = std::move(std::make_shared<HttpHeadFunction>(passable));
 
-            functions["functionCount"] = std::move(std::make_shared<FunctionCountFunction>(passable));
             functions["sleep"] = std::move(std::make_shared<SleepFunction>(passable));
 
             functions["jsonEncode"] = std::move(std::make_shared<JSONEncodeFunction>(passable));
