@@ -26,45 +26,45 @@ namespace HuwInterpreter {
         void UnusableTokens::init()
         {
             items.clear();
-            items.push_back(Types::RIGHTPARENTHESIS);
-            items.push_back(Types::LEFTPARENTHESIS);
-            items.push_back(Types::MULTIPLICATION);
-            items.push_back(Types::DIVISION);
-            items.push_back(Types::SUBTRACTION);
-            items.push_back(Types::MOD);
-            items.push_back(Types::EQUALS);
-            items.push_back(Types::IFEQUALS);
-            items.push_back(Types::IFNOTEQUALS);
-            items.push_back(Types::IFLESSTHAN);
-            items.push_back(Types::IFLESSTHANOREQUAL);
-            items.push_back(Types::IFGREATER);
-            items.push_back(Types::IFGREATERTHANOREQUAL);
-            items.push_back(Types::LEFTBRACKET);
-            items.push_back(Types::RIGHTBRACKET);
-            items.push_back(Types::SEMICOLON);
-            items.push_back(Types::COMMA);
-            items.push_back(Types::QUOTE);
-            items.push_back(Types::NOT);
-            items.push_back(Types::LEFTPARENTHESIS);
-            items.push_back(Types::MULTIPLICATION);
-            items.push_back(Types::DIVISION);
-            items.push_back(Types::ADDITION);
-            items.push_back(Types::AND);
-            items.push_back(Types::OR);
-            items.push_back(Types::BITWISEAND);
-            items.push_back(Types::BITWISEOR);
-            items.push_back(Types::BITWISEXOR);
-            items.push_back(Types::DOT);
-            items.push_back(Types::MULTIPLICATIONEQUAL);
-            items.push_back(Types::DIVISIONEQUAL);
-            items.push_back(Types::ADDITIONEQUAL);
-            items.push_back(Types::SUBTRACTIONEQUAL);
-            items.push_back(Types::INCREMENT);
-            items.push_back(Types::DECREMENT);
-            items.push_back(Types::BITWISECOMPLEMENT);
-            items.push_back(Types::LEFTSHIFT);
-            items.push_back(Types::LEFTSQUAREBRACKET);
-            items.push_back(Types::RIGHTSQUAREBRACKET);
+            items.emplace_back(Types::RIGHTPARENTHESIS);
+            items.emplace_back(Types::LEFTPARENTHESIS);
+            items.emplace_back(Types::MULTIPLICATION);
+            items.emplace_back(Types::DIVISION);
+            items.emplace_back(Types::SUBTRACTION);
+            items.emplace_back(Types::MOD);
+            items.emplace_back(Types::EQUALS);
+            items.emplace_back(Types::IFEQUALS);
+            items.emplace_back(Types::IFNOTEQUALS);
+            items.emplace_back(Types::IFLESSTHAN);
+            items.emplace_back(Types::IFLESSTHANOREQUAL);
+            items.emplace_back(Types::IFGREATER);
+            items.emplace_back(Types::IFGREATERTHANOREQUAL);
+            items.emplace_back(Types::LEFTBRACKET);
+            items.emplace_back(Types::RIGHTBRACKET);
+            items.emplace_back(Types::SEMICOLON);
+            items.emplace_back(Types::COMMA);
+            items.emplace_back(Types::QUOTE);
+            items.emplace_back(Types::NOT);
+            items.emplace_back(Types::LEFTPARENTHESIS);
+            items.emplace_back(Types::MULTIPLICATION);
+            items.emplace_back(Types::DIVISION);
+            items.emplace_back(Types::ADDITION);
+            items.emplace_back(Types::AND);
+            items.emplace_back(Types::OR);
+            items.emplace_back(Types::BITWISEAND);
+            items.emplace_back(Types::BITWISEOR);
+            items.emplace_back(Types::BITWISEXOR);
+            items.emplace_back(Types::DOT);
+            items.emplace_back(Types::MULTIPLICATIONEQUAL);
+            items.emplace_back(Types::DIVISIONEQUAL);
+            items.emplace_back(Types::ADDITIONEQUAL);
+            items.emplace_back(Types::SUBTRACTIONEQUAL);
+            items.emplace_back(Types::INCREMENT);
+            items.emplace_back(Types::DECREMENT);
+            items.emplace_back(Types::BITWISECOMPLEMENT);
+            items.emplace_back(Types::LEFTSHIFT);
+            items.emplace_back(Types::LEFTSQUAREBRACKET);
+            items.emplace_back(Types::RIGHTSQUAREBRACKET);
         }
 
         bool UnusableTokens::tokenExists(Types::TokenType tokenType)
@@ -97,7 +97,7 @@ namespace HuwInterpreter {
         {
             if (!exists(tokenType))
             {
-                items.push_back(tokenType);
+                items.emplace_back(tokenType);
             }
         }
     }

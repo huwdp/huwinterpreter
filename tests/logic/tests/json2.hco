@@ -1,0 +1,4 @@
+print(jsonDecode("[1]"));
+print(jsonDecode("{}"));
+print(jsonDecode("[1,2,3,4,5]"));
+print(jsonDecode("{ \"key1\" : { \"key2\": \"value\"}"));

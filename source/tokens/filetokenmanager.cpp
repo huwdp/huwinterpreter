@@ -30,7 +30,7 @@ namespace HuwInterpreter {
                     for (std::string::iterator it = line.begin(); it != line.end(); ++it)
                     {
                         std::shared_ptr<IO::FileLine> fileLine = std::make_shared<IO::FileLine>((*it), lineNumber);
-                        lines.push_back(std::move(fileLine));
+                        lines.emplace_back(std::move(fileLine));
                     }
                 }
 
