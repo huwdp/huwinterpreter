@@ -75,6 +75,9 @@ namespace HuwInterpreter {
             std::shared_ptr<Variable> bitwiseComplement(std::shared_ptr<Tokens::Token> token);
             std::shared_ptr<Variable> leftShift(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token);
             std::shared_ptr<Variable> rightShift(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token);
+            std::shared_ptr<Variable> sort();
+            
+            
         };
     }
 }

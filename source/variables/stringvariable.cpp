@@ -515,5 +515,11 @@ namespace HuwInterpreter {
             passable->getErrorManager()->add(passable->getErrorFactory()->cannotCallFunction(token, name, getType(), "rightShift", "Cannot leftShift string type"));
             return nullVariable;
         }
+
+        std::shared_ptr<Variable> StringVariable::sort()
+        {
+            passable->getErrorManager()->add(passable->getErrorFactory()->isNotAnArray(token, name));
+            return nullVariable;
+        }
     }
 }
