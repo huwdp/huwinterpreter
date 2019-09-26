@@ -373,5 +373,11 @@ namespace HuwInterpreter {
             }
             return std::move(std::make_shared<DoubleVariable>(passable, toInt() >> variable->toInt()));
         }
+
+        std::shared_ptr<Variable> DoubleVariable::sort()
+        {
+            passable->getErrorManager()->add(passable->getErrorFactory()->isNotAnArray(token, name));
+            return nullVariable;
+        }
     }
 }

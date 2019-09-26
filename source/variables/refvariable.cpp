@@ -298,5 +298,10 @@ namespace HuwInterpreter {
             }
             return std::move(this->variable->rightShift(variable, token));
         }
+
+        std::shared_ptr<Variable> RefVariable::sort()
+        {
+            return this->variable->sort();
+        }
     }
 }

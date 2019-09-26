@@ -39,6 +39,7 @@ SOURCES += \
     functions/jsondecodefunction.cpp \
     functions/jsonencodefunction.cpp \
     functions/sleepfunction.cpp \
+    functions/sort.cpp \
     io/fileline.cpp \
     io/io.cpp \
     types/typedetector.cpp \
@@ -197,6 +198,7 @@ HEADERS += \
     errors/errortypes.h \
     errors/errortypestringfactory.h \
     errors/ierrors.h \
+    functions/asort.h \
     functions/functioncount.h \
     functions/httpdeletefunction.h \
     functions/httpgetfunction.h \
@@ -206,6 +208,7 @@ HEADERS += \
     functions/jsondecodefunction.h \
     functions/jsonencodefunction.h \
     functions/sleepfunction.h \
+    functions/sort.h \
     io/fileline.h \
     io/io.h \
     nodes/addnode.h \

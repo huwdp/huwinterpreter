@@ -122,6 +122,8 @@ namespace HuwInterpreter {
 
             functions["jsonEncode"] = std::move(std::make_shared<JSONEncodeFunction>(passable));
             functions["jsonDecode"] = std::move(std::make_shared<JSONDecodeFunction>(passable));
+
+            functions["sort"] = std::move(std::make_shared<Sort>(passable));
         }
 
         std::shared_ptr<Functions::Function> FunctionManager::get(std::string name)

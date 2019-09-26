@@ -350,5 +350,14 @@ namespace HuwInterpreter {
             }
             return this->variable->rightShift(variable, token);
         }
+
+        std::shared_ptr<Variable> ConstantVariable::sort()
+        {
+            if (variable == nullptr)
+            {
+                return nullVariable;
+            }
+            return variable->sort();
+        }
     }
 }
