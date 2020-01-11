@@ -29,7 +29,7 @@ print(fac(14));
 
 #### Building
 ```
-sudo apt-get install git g++ qt5-qmake make
+sudo apt-get install git g++ qt5-qmake make libcurl4-openssl-dev curl
 git clone https://github.com/huwdp/huwinterpreter-mirror.git
 cd huw-interpreter/source
 qmake CONFIG+=release HuwInterpreter.pro
