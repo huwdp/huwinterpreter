@@ -1,3 +1,4 @@
+
 # HuwInterpreter
 > HuwInterpreter is a hand written interpreter designed to parse and execute HuwCode script.
 
@@ -25,11 +26,17 @@ function factailrec(acc, n)
 }
 print(fac(14));
 ```
+
+## Dependencies
+
+ - libcurl4-openssl-dev 
+ - libcurl4
+
 ## Installation
 
 #### Building
 ```
-sudo apt-get install git g++ qt5-qmake make
+sudo apt-get install git g++ qt5-qmake make libcurl4-openssl-dev curl
 git clone https://github.com/huwdp/huwinterpreter-mirror.git
 cd huw-interpreter/source
 qmake CONFIG+=release HuwInterpreter.pro
