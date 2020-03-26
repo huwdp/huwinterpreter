@@ -28,7 +28,7 @@ namespace HuwInterpreter {
             output.append(name).append("(");
             for (std::vector<std::shared_ptr<Nodes::Node>>::iterator it = arguments.begin(); it != arguments.end(); ++it)
             {
-                if ((*it) = nullptr)
+                if ((*it) == nullptr)
                 {
                     output.append((*it)->toString());
                     ++it;
