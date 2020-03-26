@@ -1,0 +1,13 @@
+function fill(value, n)
+{
+  let output = "";
+  let i = 0;
+  while (i < n)
+  {
+      output += value;
+      i = i + 1;
+  }
+  return output;
+}
+
+print(fill("=",10)); /* Expected: ========== */

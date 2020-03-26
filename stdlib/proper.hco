@@ -1,0 +1,20 @@
+function proper(value)
+{
+    if (!isStringType(value))
+    {
+        return value;
+    }
+    let i = 1;
+    let size = count(value);
+    let output = "";
+    output += toUpper(value[0]);
+    while (i < size)
+    {
+        output += value[i];
+        i++;
+    }
+    return output;
+}
+
+print(proper("hello")); /* Expected Hello */
+print(proper("l")); /* Expected L */

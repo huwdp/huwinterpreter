@@ -1,0 +1,15 @@
+function last(value)
+{
+    let size = count(value);
+    if (size > 0)
+    {
+        return value[size-1];
+    }
+    return "";
+}
+
+print(last("hello")); /* Expected o */
+let items = array();
+items[0] = "First item";
+items[1] = "Second item";
+print(last(items)); /* Expected Second item */
