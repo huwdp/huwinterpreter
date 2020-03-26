@@ -13,17 +13,17 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "unusabletokens.h"
+#include "unusabletokenlist.h"
 
 namespace HuwInterpreter {
     namespace Tokens {
-        UnusableTokens::UnusableTokens()
+        UnusableTokenList::UnusableTokenList()
         {
             init();
-            tokens = std::make_shared<Tokens>();
+            tokenManager = std::make_shared<TokenList>();
         }
 
-        void UnusableTokens::init()
+        void UnusableTokenList::init()
         {
             items.clear();
             items.emplace_back(Types::RIGHTPARENTHESIS);
@@ -67,7 +67,7 @@ namespace HuwInterpreter {
             items.emplace_back(Types::RIGHTSQUAREBRACKET);
         }
 
-        bool UnusableTokens::tokenExists(Types::TokenType tokenType)
+        bool UnusableTokenList::tokenExists(Types::TokenType tokenType)
         {
             for (std::vector<Types::TokenType>::iterator it = items.begin(); it != items.end(); ++it)
             {
@@ -79,12 +79,12 @@ namespace HuwInterpreter {
             return false;
         }
 
-        bool UnusableTokens::exists(std::string value)
+        bool UnusableTokenList::exists(std::string value)
         {
-            return tokenExists(tokens->get(value));
+            return tokenExists(tokenManager->get(value));
         }
 
-        bool UnusableTokens::exists(char value)
+        bool UnusableTokenList::exists(char value)
         {
             std::stringstream ss;
             std::string temp;
@@ -93,7 +93,7 @@ namespace HuwInterpreter {
             return exists(temp);
         }
 
-        void UnusableTokens::add(Types::TokenType tokenType)
+        void UnusableTokenList::add(Types::TokenType tokenType)
         {
             if (!exists(tokenType))
             {

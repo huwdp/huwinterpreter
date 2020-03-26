@@ -21,17 +21,15 @@
 #include "function.h"
 #include "functionlist.h"
 
-#include "print.h"
-
 namespace HuwInterpreter {
     namespace Functions {
         class FunctionManager
         {
         private:
-            std::shared_ptr<Passable> passable;
+            std::shared_ptr<HuwInterpreter::Passable> passable;
             std::unordered_map<std::string, std::shared_ptr<Functions::Function>> functions;
         public:
-            FunctionManager(std::shared_ptr<Passable> passable);
+            FunctionManager(std::shared_ptr<HuwInterpreter::Passable> passable);
             void init();
             std::shared_ptr<Functions::Function> get(std::string name);
             std::shared_ptr<Functions::Function> set(std::string name, std::string value);

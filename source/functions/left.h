@@ -23,10 +23,10 @@ namespace HuwInterpreter {
         class Left : public Function
         {
         public:
-            Left(std::shared_ptr<Passable> passable);
+            Left(std::shared_ptr<HuwInterpreter::Passable> passable);
             std::shared_ptr<Variable> execute(std::shared_ptr<Tokens::Token> token,
-                                          std::shared_ptr<Scope> globalScope,
-                                          std::shared_ptr<Scope> scope,
+                                          std::shared_ptr<Variables::Scope> globalScope,
+                                          std::shared_ptr<Variables::Scope> scope,
                                           std::vector<std::shared_ptr<Nodes::Node>> arguments);
         };
     }

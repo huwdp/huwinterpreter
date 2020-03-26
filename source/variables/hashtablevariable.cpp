@@ -20,25 +20,25 @@ namespace HuwInterpreter {
 
 
 
-        HashTableVariable::HashTableVariable(std::shared_ptr<Passable> passable)
+        HashTableVariable::HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable)
             : Variable(passable)
         {
 
         }
 
-        HashTableVariable::HashTableVariable(std::shared_ptr<Passable> passable, std::string name)
+        HashTableVariable::HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name)
             : Variable(passable, std::move(name))
         {
 
         }
 
-        HashTableVariable::HashTableVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token)
+        HashTableVariable::HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token)
             : Variable(passable, token)
         {
 
         }
 
-        HashTableVariable::HashTableVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name)
+        HashTableVariable::HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name)
             : Variable(passable, std::move(name), token)
         {
 

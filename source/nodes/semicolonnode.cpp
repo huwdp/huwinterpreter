@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Nodes {
-        SemicolonNode::SemicolonNode(std::shared_ptr<Passable> passable, std::shared_ptr<Nodes::Node> node)
+        SemicolonNode::SemicolonNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Nodes::Node> node)
             : Node("SemicolonNode", passable, nullptr)
         {
             ErrorReporting::Debug::print(getName());

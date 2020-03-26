@@ -31,10 +31,10 @@ namespace HuwInterpreter {
         private:
             std::map<std::string, std::shared_ptr<Variable>> map;
         public:
-            HashTableVariable(std::shared_ptr<Passable> passable);
-            HashTableVariable(std::shared_ptr<Passable> passable, std::string name);
-            HashTableVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token);
-            HashTableVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name);
+            HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable);
+            HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name);
+            HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token);
+            HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name);
             std::shared_ptr<Variable> getValue();
             void setValue(double value);
             void setValue(std::string value);

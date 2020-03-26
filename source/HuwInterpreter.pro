@@ -9,14 +9,17 @@ CONFIG += c++14
 CONFIG += -j6
 LIBS += -lcurl
 
+CONFIG += warn_off
 
-QMAKE_CXXFLAGS += -Wall
-QMAKE_CXXFLAGS += -Wextra
+#QMAKE_CXXFLAGS += -Wall
+#QMAKE_CXXFLAGS += -Wextra
 
-QMAKE_CXXFLAGS += -Wlogical-op
-QMAKE_CXXFLAGS += -Wuseless-cast
-QMAKE_CXXFLAGS += -Wdouble-promotion
-QMAKE_CXXFLAGS += -Wformat=2
+#QMAKE_CXXFLAGS += -Wlogical-op
+#QMAKE_CXXFLAGS += -Wuseless-cast
+#QMAKE_CXXFLAGS += -Wdouble-promotion
+#QMAKE_CXXFLAGS += -Wformat=2
+#QMAKE_CXXFLAGS += -Wunused-function
+#QMAKE_CXXFLAGS += -Wunused-variable
 
 QMAKE_CXXFLAGS_RELEASE += -fno-rtti
 QMAKE_CXXFLAGS_RELEASE += -fmerge-all-constants
@@ -24,6 +27,8 @@ QMAKE_CXXFLAGS_RELEASE += -O2
 -QMAKE_CXXFLAGS_RELEASE += -pipe
 
 QMAKE_CXXFLAGS_WARN_ON += -Wno-unused-parameter
+QMAKE_CXXFLAGS_WARN_OFF += -Wunused-function
+QMAKE_CXXFLAGS_WARN_OFF += -Wunused-variable
 
 SOURCES += \
     errors/debug.cpp \
@@ -37,10 +42,14 @@ SOURCES += \
     functions/httpputfunction.cpp \
     functions/jsondecodefunction.cpp \
     functions/jsonencodefunction.cpp \
+    functions/lround.cpp \
     functions/sleepfunction.cpp \
     functions/sort.cpp \
     io/fileline.cpp \
     io/io.cpp \
+    nodes/importnode.cpp \
+    tokens/tokenlist.cpp \
+    tokens/unusabletokenlist.cpp \
     types/typedetector.cpp \
     variables/precision.cpp \
     variables/scope.cpp \
@@ -57,7 +66,6 @@ SOURCES += \
     functions/arrayunset.cpp \
     functions/count.cpp \
     variables/constantvariable.cpp \
-    tokens/unusabletokens.cpp \
     functions/isarraytype.cpp \
     functions/isdoubletype.cpp \
     functions/isnumbertype.cpp \
@@ -124,7 +132,6 @@ SOURCES += \
     tokens/scanner.cpp \
     tokens/texttokenmanager.cpp \
     tokens/token.cpp \
-    tokens/tokens.cpp \
     main.cpp \
     nodes/addconstnode.cpp \
     nodes/addnode.cpp \
@@ -205,6 +212,7 @@ HEADERS += \
     functions/httpputfunction.h \
     functions/jsondecodefunction.h \
     functions/jsonencodefunction.h \
+    functions/lround.h \
     functions/sleepfunction.h \
     functions/sort.h \
     io/fileline.h \
@@ -224,6 +232,7 @@ HEADERS += \
     nodes/ifoverorequalnode.h \
     nodes/ifundernode.h \
     nodes/ifunderorequalnode.h \
+    nodes/importnode.h \
     nodes/modnode.h \
     nodes/mulnode.h \
     nodes/node.h \
@@ -239,7 +248,9 @@ HEADERS += \
     tokens/scanner.h \
     tokens/texttokenmanager.h \
     tokens/token.h \
+    tokens/tokenlist.h \
     tokens/tokenmanager.h \
+    tokens/unusabletokenlist.h \
     types/isnumeric.h \
     types/tokentypes.h \
     types/typedetector.h \
@@ -258,10 +269,8 @@ HEADERS += \
     functions/array.h \
     variables/constantvariable.h \
     tokens/tokenmanager.h \
-    tokens/unusabletokens.h \
     nodes/unaryminusnode.h \
     nodes/unarynotnode.h \
-    tokens/tokens.h \
     nodes/bitwiseandnode.h \
     nodes/bitwiseornode.h \
     functions/isdoubletype.h \

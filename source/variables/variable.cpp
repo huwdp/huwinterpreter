@@ -17,24 +17,24 @@
 
 namespace HuwInterpreter {
     namespace Variables {
-        Variable::Variable(std::shared_ptr<Passable> passable)
+        Variable::Variable(std::shared_ptr<HuwInterpreter::Passable> passable)
         {
             this->passable = passable;
         }
 
-        Variable::Variable(std::shared_ptr<Passable> passable, std::string name)
+        Variable::Variable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name)
             : NameableObject(std::move(name))
         {
             this->passable = passable;
         }
 
-        Variable::Variable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token)
+        Variable::Variable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token)
         {
             this->passable = passable;
             this->token = token;
         }
 
-        Variable::Variable(std::shared_ptr<Passable> passable, std::string name, std::shared_ptr<Tokens::Token> token)
+        Variable::Variable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name, std::shared_ptr<Tokens::Token> token)
             : NameableObject(std::move(name))
         {
             this->passable = passable;

@@ -34,12 +34,12 @@ namespace HuwInterpreter {
             const int numberPrecision = 15;
             double value;
         public:
-            DoubleVariable(std::shared_ptr<Passable> passable);
-            DoubleVariable(std::shared_ptr<Passable> passable, double value);
-            DoubleVariable(std::shared_ptr<Passable> passable, std::string name, double value);
-            DoubleVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token);
-            DoubleVariable(std::shared_ptr<Passable> passable, double value, std::shared_ptr<Tokens::Token> token);
-            DoubleVariable(std::shared_ptr<Passable> passable, std::string name, double value, std::shared_ptr<Tokens::Token> token);
+            DoubleVariable(std::shared_ptr<HuwInterpreter::Passable> passable);
+            DoubleVariable(std::shared_ptr<HuwInterpreter::Passable> passable, double value);
+            DoubleVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name, double value);
+            DoubleVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token);
+            DoubleVariable(std::shared_ptr<HuwInterpreter::Passable> passable, double value, std::shared_ptr<Tokens::Token> token);
+            DoubleVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name, double value, std::shared_ptr<Tokens::Token> token);
             std::shared_ptr<Variable> getValue();
             void setValue(double value);
             void setValue(std::string value);

@@ -20,14 +20,13 @@ namespace HuwInterpreter {
 
         Scope::Scope(std::shared_ptr<VariableManager> variableManager)
         {
-            this->functionName = functionName;
-            variableManager = std::move(variableManager);
+            this->variableManager = std::move(variableManager);
         }
 
         Scope::Scope(std::string functionName, std::shared_ptr<VariableManager> variableManager)
         {
             this->functionName = functionName;
-            variableManager = std::move(variableManager);
+            this->variableManager = std::move(variableManager);
         }
 
         Scope::Scope(std::shared_ptr<Passable> passable, bool addDefaults)
@@ -70,5 +69,113 @@ namespace HuwInterpreter {
         {
             this->functionName = functionName;
         }
+
+
+        /*std::shared_ptr<Functions::Function> Scope::get(std::string name)
+        {
+            std::unordered_map<std::string,std::shared_ptr<Functions::Function>>::const_iterator got = functions.find(name);
+            if (got == functions.end())
+            {
+                std::shared_ptr<Functions::Function> nullFunction;
+                return nullFunction;
+            }
+            else
+            {
+                return (got->second);
+            }
+        }
+
+        bool Scope::addFunction(std::shared_ptr<Functions::Function> function)
+        {
+            std::shared_ptr<Functions::Function> e = get(function->getName());
+            if (e == nullptr)
+            {
+                std::string name = function->getName();
+                functions[name] = function;
+                return true;
+            }
+            return false;
+        }
+
+        bool Scope::addFunction(std::string name)
+        {
+            std::shared_ptr<Functions::Function> e = get(name);
+            if (e == nullptr)
+            {
+                std::shared_ptr<EmptyFunction> empty = std::make_shared<EmptyFunction>(passable);
+                functions[name] = empty;
+                return true;
+            }
+            return false;
+        }
+
+        bool Scope::addFunction(std::string name, std::shared_ptr<Functions::Function> function)
+        {
+            std::shared_ptr<Functions::Function> e = get(function->getName());
+            if (e == nullptr)
+            {
+                function->setName(name);
+                functions[name] = function;
+                return true;
+            }
+            return false;
+        }
+
+        bool Scope::setFunction(std::string name, std::shared_ptr<Functions::Function> function)
+        {
+            std::shared_ptr<Functions::Function> e = get(function->getName());
+            if (e != nullptr)
+            {
+                function->setName(name);
+                functions[name] = function;
+                return true;
+            }
+            return false;
+        }
+
+        bool Scope::functionExists(std::string name)
+        {
+            std::unordered_map<std::string,std::shared_ptr<Functions::Function>>::const_iterator got = functions.find(name);
+            if (got == functions.end())
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        bool FunctionManager::functionExists(std::shared_ptr<Functions::Function> function)
+        {
+            std::shared_ptr<Functions::Function> e = get(function->getName());
+            if (e != nullptr)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        bool Scope::removeFunction(std::shared_ptr<Functions::Function> function)
+        {
+            std::shared_ptr<Functions::Function> e = get(function->getName());
+            if (e != nullptr)
+            {
+                this->functions.erase(function->getName());
+                return true;
+            }
+            return false;
+        }
+
+        bool Scope::removeFunction(std::string name)
+        {
+            std::shared_ptr<Functions::Function> e = get(name);
+            if (e != nullptr)
+            {
+                this->functions.erase(name);
+                return true;
+            }
+            return false;
+        }*/
     }
 }

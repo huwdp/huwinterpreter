@@ -17,13 +17,13 @@
 
 namespace HuwInterpreter {
     namespace Variables {
-        RefVariable::RefVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Variable> variable)
+        RefVariable::RefVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Variable> variable)
             : Variable(passable, variable->getName())
         {
             this->variable = std::move(variable);
         }
 
-        RefVariable::RefVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
+        RefVariable::RefVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
             : Variable(passable, variable->getName(), token)
         {
             this->variable = variable;

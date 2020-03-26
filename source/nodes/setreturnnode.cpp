@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Nodes {
-        SetReturnNode::SetReturnNode(std::shared_ptr<Passable> passable, std::shared_ptr<Nodes::Node> node)
+        SetReturnNode::SetReturnNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Nodes::Node> node)
             : Node("SetReturnNode", passable, nullptr)
         {
             ErrorReporting::Debug::print(getName());

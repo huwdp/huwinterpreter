@@ -17,14 +17,14 @@
 
 namespace HuwInterpreter {
     namespace Functions {
-        Mid::Mid(std::shared_ptr<Passable> passable)
+        Mid::Mid(std::shared_ptr<HuwInterpreter::Passable> passable)
             : Function(passable)
         {
             setName("mid");
         }
 
-        std::shared_ptr<Variable> Mid::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Scope> globalScope,
-                                           std::shared_ptr<Scope> scope,
+        std::shared_ptr<Variable> Mid::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Variables::Scope> globalScope,
+                                           std::shared_ptr<Variables::Scope> scope,
                                            std::vector<std::shared_ptr<Nodes::Node>> arguments)
         {
             if (arguments.size() == 3)

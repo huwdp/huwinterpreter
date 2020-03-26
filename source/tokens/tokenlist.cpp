@@ -13,16 +13,16 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "tokens.h"
+#include "tokenlist.h"
 
 namespace HuwInterpreter {
     namespace Tokens {
-        Tokens::Tokens()
+        TokenList::TokenList()
         {
             init();
         }
 
-        void Tokens::init()
+        void TokenList::init()
         {
             types.clear();
             types[Types::RIGHTPARENTHESIS] = ")";
@@ -64,12 +64,12 @@ namespace HuwInterpreter {
             types[Types::RIGHTSQUAREBRACKET] = "]";
         }
 
-        std::string Tokens::get(Types::TokenType value)
+        std::string TokenList::get(Types::TokenType value)
         {
             return types[value];
         }
 
-        Types::TokenType Tokens::get(std::string value)
+        Types::TokenType TokenList::get(std::string value)
         {
             for (std::unordered_map<ushort, std::string>::iterator it = types.begin(); it != types.end(); ++it)
             {
@@ -81,7 +81,7 @@ namespace HuwInterpreter {
             return Types::WORD;
         }
 
-        bool Tokens::compare(std::string value1, Types::TokenType value)
+        bool TokenList::compare(std::string value1, Types::TokenType value)
         {
             std::unordered_map<ushort, std::string>::const_iterator got = types.find(value);
             if (got != types.end())
@@ -94,7 +94,7 @@ namespace HuwInterpreter {
             return false;
         }
 
-        bool Tokens::compare(char value1, Types::TokenType value)
+        bool TokenList::compare(char value1, Types::TokenType value)
         {
             std::stringstream ss;
             std::string temp;
@@ -103,18 +103,18 @@ namespace HuwInterpreter {
             return compare(temp, value);
         }
 
-        bool Tokens::exists(Types::TokenType value)
+        bool TokenList::exists(Types::TokenType value)
         {
             return types.find(value) != types.end();
         }
 
-        bool Tokens::exists(std::string value)
+        bool TokenList::exists(std::string value)
         {
             return std::find_if(types.begin(), types.end(),
                 [value](const std::unordered_map<ushort, std::string>::value_type& item) { return item.second == value; }) != types.end();
         }
 
-        void Tokens::add(std::string text, Types::TokenType tokenType)
+        void TokenList::add(std::string text, Types::TokenType tokenType)
         {
             if (!exists(tokenType))
             {

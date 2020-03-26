@@ -17,14 +17,14 @@
 
 namespace HuwInterpreter {
     namespace Functions {
-        RegexReplace::RegexReplace(std::shared_ptr<Passable> passable)
+        RegexReplace::RegexReplace(std::shared_ptr<HuwInterpreter::Passable> passable)
             : Function(passable)
         {
             setName("regexReplace");
         }
 
-        std::shared_ptr<Variable> RegexReplace::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Scope> globalScope,
-                                      std::shared_ptr<Scope> scope,
+        std::shared_ptr<Variable> RegexReplace::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Variables::Scope> globalScope,
+                                      std::shared_ptr<Variables::Scope> scope,
                                       std::vector<std::shared_ptr<Nodes::Node>> arguments)
         {
             if (arguments.size() == 3)

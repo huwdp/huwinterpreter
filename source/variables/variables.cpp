@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Variables {
-        VariableManager::VariableManager(std::shared_ptr<Passable> passable, bool addDefaults)
+        VariableManager::VariableManager(std::shared_ptr<HuwInterpreter::Passable> passable, bool addDefaults)
         {
             this->passable = passable;
             addDefaultVariables(addDefaults);

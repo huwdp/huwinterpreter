@@ -27,8 +27,8 @@ namespace HuwInterpreter {
             bool isSet;
             std::shared_ptr<Variable> variable;
         public:
-            ConstantVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Variable> variable);
-            ConstantVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token);
+            ConstantVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Variable> variable);
+            ConstantVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token);
             std::shared_ptr<Variable> getValue();
             void setValue(double value);
             void setValue(std::string value);

@@ -17,37 +17,37 @@
 
 namespace HuwInterpreter {
     namespace Variables {
-        DoubleVariable::DoubleVariable(std::shared_ptr<Passable> passable)
+        DoubleVariable::DoubleVariable(std::shared_ptr<HuwInterpreter::Passable> passable)
             : Variable(passable)
         {
             this->value = 0;
         }
 
-        DoubleVariable::DoubleVariable(std::shared_ptr<Passable> passable, double value)
+        DoubleVariable::DoubleVariable(std::shared_ptr<HuwInterpreter::Passable> passable, double value)
             : Variable(passable)
         {
             this->value = value;
         }
 
-        DoubleVariable::DoubleVariable(std::shared_ptr<Passable> passable, std::string name, double value)
+        DoubleVariable::DoubleVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name, double value)
             : Variable(passable, std::move(name))
         {
             this->value = value;
         }
 
-        DoubleVariable::DoubleVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token)
+        DoubleVariable::DoubleVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token)
             : Variable(passable, token)
         {
             this->value = 0;
         }
 
-        DoubleVariable::DoubleVariable(std::shared_ptr<Passable> passable, double value, std::shared_ptr<Tokens::Token> token)
+        DoubleVariable::DoubleVariable(std::shared_ptr<HuwInterpreter::Passable> passable, double value, std::shared_ptr<Tokens::Token> token)
             : Variable(passable, token)
         {
             this->value = value;
         }
 
-        DoubleVariable::DoubleVariable(std::shared_ptr<Passable> passable, std::string name, double value, std::shared_ptr<Tokens::Token> token)
+        DoubleVariable::DoubleVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name, double value, std::shared_ptr<Tokens::Token> token)
             : Variable(passable, name, token)
         {
             this->value = value;

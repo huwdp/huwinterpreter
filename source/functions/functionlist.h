@@ -75,6 +75,7 @@
 #include "sin.h"
 #include "random.h"
 #include "round.h"
+#include "lround.h"
 #include "sqrt.h"
 #include "tan.h"
 #include "random.h"
@@ -127,5 +128,6 @@
 #include "jsondecodefunction.h"
 
 #include "sort.h"
+
 #endif  //FUNCTIONLIST_H
 

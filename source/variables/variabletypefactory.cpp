@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Variables {
-        VariableTypeFactory::VariableTypeFactory(std::shared_ptr<Passable> passable)
+        VariableTypeFactory::VariableTypeFactory(std::shared_ptr<HuwInterpreter::Passable> passable)
         {
             this->passable = passable;
         }

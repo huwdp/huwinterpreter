@@ -17,14 +17,14 @@
 
 namespace HuwInterpreter {
     namespace Functions {
-        Tan::Tan(std::shared_ptr<Passable> passable)
+        Tan::Tan(std::shared_ptr<HuwInterpreter::Passable> passable)
             : Function(passable)
         {
             setName("tan");
         }
 
-        std::shared_ptr<Variable> Tan::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Scope> globalScope,
-                                           std::shared_ptr<Scope> scope,
+        std::shared_ptr<Variable> Tan::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Variables::Scope> globalScope,
+                                           std::shared_ptr<Variables::Scope> scope,
                                            std::vector<std::shared_ptr<Nodes::Node>> arguments)
         {
             if (arguments.size() == 1)

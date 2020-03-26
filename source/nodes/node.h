@@ -74,7 +74,8 @@ namespace HuwInterpreter {
                        LEFTSHIFTNODETYPE,
                        RIGHTSHIFTNODETYPE,
                        ARRAYGETNODE,
-                       ARRAYSETNODE
+                       ARRAYSETNODE,
+                       IMPORTNODE
                       };
 
 
@@ -85,9 +86,9 @@ namespace HuwInterpreter {
             std::string internalName;
             std::shared_ptr<Variables::Variable> nullVariable;
             std::shared_ptr<Tokens::Token> token;
-            std::shared_ptr<Passable> passable;
+            std::shared_ptr<HuwInterpreter::Passable> passable;
         public:
-            Node(std::string internalName, std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token)
+            Node(std::string internalName, std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token)
                 : NameableObject(internalName)
             {
                 this->internalName = internalName;

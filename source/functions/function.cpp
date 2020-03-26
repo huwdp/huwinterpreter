@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Functions {
-        Function::Function(std::shared_ptr<Passable> passable) :
+        Function::Function(std::shared_ptr<HuwInterpreter::Passable> passable) :
             passable(passable)
         {
         }
