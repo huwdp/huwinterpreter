@@ -1,0 +1,6 @@
+print("Hello World!");
+function hello()
+{
+    return "Hello!";
+}
+print(number);
