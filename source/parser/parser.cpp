@@ -25,9 +25,9 @@ namespace HuwInterpreter {
         this->passable = std::make_shared<Passable>();
         this->compilation = true;
         this->tokens = tokens;
-        this->functions = std::move(std::make_shared<Functions::FunctionManager>(passable));
+        this->functions = std::make_shared<Functions::FunctionManager>(passable);
         functions->init();
-        customFunctions = std::move(std::make_shared<Functions::FunctionManager>(passable));
+        customFunctions = std::make_shared<Functions::FunctionManager>(passable);
         if (!tokens.empty())
         {
             it = this->tokens.begin();
@@ -47,7 +47,7 @@ namespace HuwInterpreter {
         this->tokens = tokens;
         this->functions = functionManager;
         functions->init();
-        customFunctions = std::move(std::make_shared<Functions::FunctionManager>(passable));
+        customFunctions = std::make_shared<Functions::FunctionManager>(passable);
         if (!tokens.empty())
         {
             it = this->tokens.begin();
@@ -245,7 +245,7 @@ namespace HuwInterpreter {
             while (accept(Types::LEFTSQUAREBRACKET))
             {
                 acceptIndentation();
-                indexes.emplace_back(std::move(parseBoolean()));
+                indexes.emplace_back(parseBoolean());
                 acceptIndentation();
 
                 if (!expect(RIGHTSQUAREBRACKET))

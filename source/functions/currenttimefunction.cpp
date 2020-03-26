@@ -48,12 +48,11 @@ namespace HuwInterpreter {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidArgument(token, RUNTIME_ERROR, node->getName()));
                     return nullVariable;
                 }
-                long int value = (long int)var->toInt();
+                long int value = static_cast<long int>(var->toInt());
                 time_t t = std::time(&value);
-                return std::make_shared<DoubleVariable>(passable, static_cast<double> (t));
+                return std::make_shared<DoubleVariable>(passable, static_cast<double>(t));
             }
-            time_t t = std::time(0);
-            return std::make_shared<DoubleVariable>(passable, static_cast<double> (t));
+            return std::make_shared<DoubleVariable>(passable, 0);
         }
     }
 }

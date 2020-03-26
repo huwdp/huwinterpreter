@@ -52,12 +52,7 @@ namespace HuwInterpreter {
             {
                 return var2;
             }
-            else
-            {
-                passable->getErrorManager()->add(passable->getErrorFactory()->variableNotDeclared(token, name));
-                return nullVariable;
-            }
-            ErrorReporting::Debug::print("Could not find variable.");
+            passable->getErrorManager()->add(passable->getErrorFactory()->variableNotDeclared(token, name));
             return nullVariable;
         }
 

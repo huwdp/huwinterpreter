@@ -97,22 +97,7 @@ namespace HuwInterpreter {
                     return nullVariable;
                 }
                 scope->getVariableManager()->setVariable(name, nullVariable);
-                return nullVariable;
             }
-
-            /*if (globalVar != nullptr && globalVar->isConst())
-            {
-                passable->getErrorManager()->add(passable->getErrorFactory()->cannotChangeConstant(token, name));
-            }
-            else if (localVar != nullptr && localVar->isConst())
-            {
-                passable->getErrorManager()->add(passable->getErrorFactory()->cannotChangeConstant(token, name));
-            }
-            else
-            {
-                passable->getErrorManager()->add(passable->getErrorFactory()->variableDeclared(token, name));
-            }*/
-
             return nullVariable;
         }
 

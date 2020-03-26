@@ -56,7 +56,7 @@ namespace HuwInterpreter {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
                     return nullVariable;
                 }
-                return std::move(l->ifUnder(r, token));
+                return l->ifUnder(r, token);
             }
             ErrorReporting::Debug::print("Could not compare.");
             return nullVariable;

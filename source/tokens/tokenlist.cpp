@@ -75,7 +75,7 @@ namespace HuwInterpreter {
             {
                 if (it->second == value)
                 {
-                    return (Types::TokenType)it->first;
+                    return static_cast<Types::TokenType>(it->first);
                 }
             }
             return Types::WORD;

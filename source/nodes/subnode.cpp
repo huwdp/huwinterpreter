@@ -55,7 +55,7 @@ namespace HuwInterpreter {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
                     return nullVariable;
                 }
-                return std::move(l->sub(r, token));
+                return l->sub(r, token);
             }
             ErrorReporting::Debug::print("Could not sub.");
             return nullVariable;

@@ -48,7 +48,7 @@ namespace HuwInterpreter {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
                     return nullVariable;
                 }
-                return std::move(n->increment(token));
+                return n->increment(token);
             }
             ErrorReporting::Debug::print("Could not increment.");
             return nullVariable;

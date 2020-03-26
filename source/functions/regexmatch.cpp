@@ -58,7 +58,7 @@ namespace HuwInterpreter {
                         result->set(std::to_string(i), std::make_shared<StringVariable>(passable, piece), token);
                     }
                 }
-                return result;
+                return std::move(result);
             }
             passable->getErrorManager()->add(passable->getErrorFactory()->requiresArguments(token, name, "", 2));
             return nullVariable;

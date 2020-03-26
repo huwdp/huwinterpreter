@@ -29,7 +29,7 @@ namespace HuwInterpreter {
         {
             if (arguments.size() == 0)
             {
-                time_t t = std::time(0);
+                time_t t = std::time(nullptr);
                 double now = static_cast<double> (t);
                 return std::make_shared<DoubleVariable>(passable, now);
             }

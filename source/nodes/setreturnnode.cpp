@@ -42,7 +42,6 @@ namespace HuwInterpreter {
             }
             scope->setReturnValue(node->execute(globalScope, scope));
             return scope->getReturnValue();
-            return nullVariable;
         }
 
         std::string SetReturnNode::toString()

@@ -35,16 +35,13 @@ namespace HuwInterpreter {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidArgument(token, RUNTIME_ERROR, name));
                     return nullVariable;
                 }
-
                 std::shared_ptr<Variable> var = node->execute(globalScope, scope);
                 if (var == nullptr)
                 {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidArgument(token, RUNTIME_ERROR, name));
                     return nullVariable;
                 }
-
                 std::string temp = var->toString();
-
                 std::string::iterator it = temp.begin();
                 while(it != temp.end())
                 {

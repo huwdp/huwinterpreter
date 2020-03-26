@@ -32,13 +32,13 @@ namespace HuwInterpreter {
         {
             if (addDefaults)
             {
-                addVariable(std::move(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "PI", 3.14159265358979))));
-                addVariable(std::move(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "e", 2.718281828459045))));
-                addVariable(std::move(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "γ", 0.577215664901532))));
-                addVariable(std::move(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "Φ", 1.618033988749894))));
-                addVariable(std::move(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "φ", 0.618033988749894))));
-                addVariable(std::move(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "δs", 2.41421356237309))));
-                addVariable(std::move(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "ρ", 1.324717957244746))));
+                addVariable(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "PI", 3.14159265358979)));
+                addVariable(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "e", 2.718281828459045)));
+                addVariable(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "γ", 0.577215664901532)));
+                addVariable(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "Φ", 1.618033988749894)));
+                addVariable(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "φ", 0.618033988749894)));
+                addVariable(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "δs", 2.41421356237309)));
+                addVariable(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "ρ", 1.324717957244746)));
             }
         }
 
@@ -51,7 +51,7 @@ namespace HuwInterpreter {
             }
             else
             {
-                return std::move(got->second);
+                return got->second;
             }
         }
 
@@ -90,7 +90,7 @@ namespace HuwInterpreter {
                 if (e == nullptr)
                 {
                     std::string name = variable->getName();
-                    variables[name] = std::move(variable);
+                    variables[name] = variable;
                     return true;
                 }
             }
@@ -105,7 +105,7 @@ namespace HuwInterpreter {
                 if (e == nullptr)
                 {
                     variable->setName(name);
-                    variables[name] = std::move(variable);
+                    variables[name] = variable;
                     return true;
                 }
             }
@@ -116,13 +116,13 @@ namespace HuwInterpreter {
         {
             if (variable != nullptr)
             {
-                variables[variable->getName()] = std::move(variable);
+                variables[variable->getName()] = variable;
             }
         }
 
         void VariableManager::fastAddVariable(std::string name, std::shared_ptr<Variable> variable)
         {
-            variables[name] = std::move(variable);
+            variables[name] = variable;
         }
 
         bool VariableManager::removeVariable(std::shared_ptr<Variable> variable)
@@ -157,7 +157,7 @@ namespace HuwInterpreter {
             {
                 return false;
             }
-            this->variables[name] = std::move(variable);
+            this->variables[name] = variable;
             return true;
         }
     }

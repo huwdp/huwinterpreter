@@ -41,12 +41,12 @@ namespace HuwInterpreter {
 
         void Scanner::AddToken(Types::TokenType tokenType, std::shared_ptr<LineInfo> lineInfo)
         {
-            items.emplace_back(std::move(std::make_shared<Token>(tokenManager->get(tokenType), tokenType, lineInfo)));
+            items.emplace_back(std::make_shared<Token>(tokenManager->get(tokenType), tokenType, lineInfo));
         }
 
         void Scanner::AddToken(std::string text, Types::TokenType tokenType, std::shared_ptr<LineInfo> lineInfo)
         {
-            items.emplace_back(std::move(std::make_shared<Token>(text , tokenType, lineInfo)));
+            items.emplace_back(std::make_shared<Token>(text , tokenType, lineInfo));
         }
 
         std::vector<std::shared_ptr<Token>> Scanner::tokenize(std::shared_ptr<TokenManager2> fileReader)
@@ -66,7 +66,7 @@ namespace HuwInterpreter {
                 {
                     if (!temp.empty())
                     {
-                        items.emplace_back(std::move(std::make_shared<Token>(temp, lineInfo)));
+                        items.emplace_back(std::make_shared<Token>(temp, lineInfo));
                         temp = "";
                     }
                 }
@@ -94,7 +94,7 @@ namespace HuwInterpreter {
                 {
                     if (!temp.empty())
                     {
-                        items.emplace_back(std::move(std::make_shared<Token>(temp, lineInfo)));
+                        items.emplace_back(std::make_shared<Token>(temp, lineInfo));
                         temp = "";
                     }
                     else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::QUOTE))
@@ -137,7 +137,7 @@ namespace HuwInterpreter {
                             }
                         }
 
-                        items.emplace_back(std::move(std::make_shared<Token>(temp, Types::TEXT, lineInfo)));
+                        items.emplace_back(std::make_shared<Token>(temp, Types::TEXT, lineInfo));
                         temp = "";
 
                         // Move to next it
@@ -346,7 +346,7 @@ namespace HuwInterpreter {
                         }
                         else
                         {
-                            items.emplace_back(std::move(std::make_shared<Token>("<", Types::IFLESSTHAN, lineInfo)));
+                            items.emplace_back(std::make_shared<Token>("<", Types::IFLESSTHAN, lineInfo));
                         }
                     }
                     else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::IFGREATER))

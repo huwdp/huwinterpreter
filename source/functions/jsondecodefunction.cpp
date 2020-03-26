@@ -77,7 +77,7 @@ namespace HuwInterpreter {
 
                 while (it != end && (*it) != '}' && (*it) != ']')
                 {
-                    array->add(std::move(getValue()), token);
+                    array->add(getValue(), token);
                     acceptIndentation();
 
                     if (accept(']'))

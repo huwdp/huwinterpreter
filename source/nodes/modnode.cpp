@@ -56,7 +56,7 @@ namespace HuwInterpreter {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
                     return nullVariable;
                 }
-                return std::move(l->mod(r, token));
+                return l->mod(r, token);
             }
             ErrorReporting::Debug::print("Could not mod.");
             return nullVariable;

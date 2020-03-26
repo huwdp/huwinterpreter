@@ -48,8 +48,8 @@ namespace HuwInterpreter {
                 std::string temp = var1->toString();
                 try
                 {
-                    int pos1 = std::round(var2->toDouble());
-                    int pos2 = std::round(var3->toDouble());
+                    int pos1 = static_cast<int>(std::round(var2->toDouble()));
+                    int pos2 = static_cast<int>(std::round(var3->toDouble()));
                     temp = temp.substr(pos1, pos2);
                 }
                 catch (const std::invalid_argument& ex)

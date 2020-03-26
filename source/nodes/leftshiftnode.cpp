@@ -55,7 +55,7 @@ namespace HuwInterpreter {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
                     return nullVariable;
                 }
-                return std::move(l->leftShift(r, token));
+                return l->leftShift(r, token);
             }
             ErrorReporting::Debug::print("Could not left shift");
             return nullVariable;

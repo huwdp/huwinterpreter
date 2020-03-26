@@ -44,7 +44,7 @@ namespace HuwInterpreter {
                 std::string output;
                 try
                 {
-                    int length = std::round(var->toDouble());
+                    long length = static_cast<long>(std::round(var->toDouble()));
                     for (int i = 0; i < length; ++i)
                     {
                         output.append(" ");
