@@ -1,0 +1,14 @@
+function first(value)
+{
+  if (count(value) > 0)
+  {
+      return value[0];
+  }
+  return "";
+}
+
+print(first("hello")); /* Expected h */
+let items = array();
+items[0] = "First item";
+items[1] = "Second item";
+print(first(items)); /* First item */

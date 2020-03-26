@@ -1,0 +1,11 @@
+function startsWith(source, text)
+{
+    if (left(source, count(text)) == text)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+print(startsWith("Hello World!", "Hello")); /* Expected true */
+print(startsWith("Lorem ipsum", "Hello")); /* Expected false */

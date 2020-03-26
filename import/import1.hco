@@ -1,0 +1,7 @@
+let number = 42;
+
+import("/home/huw/projects/huwinterpreter/import/helloworld.hco");
+
+print("Hello Galaxy!");
+
+print(hello());

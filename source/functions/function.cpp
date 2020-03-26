@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Functions {
-        Function::Function(std::shared_ptr<Passable> passable) :
+        Function::Function(std::shared_ptr<HuwInterpreter::Passable> passable) :
             passable(passable)
         {
         }
@@ -28,7 +28,7 @@ namespace HuwInterpreter {
             output.append(name).append("(");
             for (std::vector<std::shared_ptr<Nodes::Node>>::iterator it = arguments.begin(); it != arguments.end(); ++it)
             {
-                if ((*it) = nullptr)
+                if ((*it) == nullptr)
                 {
                     output.append((*it)->toString());
                     ++it;

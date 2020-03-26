@@ -27,14 +27,14 @@ namespace HuwInterpreter {
             std::shared_ptr<Nodes::Node> block;
             std::shared_ptr<Tokens::Token> token;
         public:
-            CustomFunction(std::shared_ptr<Passable> passable,
+            CustomFunction(std::shared_ptr<HuwInterpreter::Passable> passable,
                            std::shared_ptr<Tokens::Token> token,
                            std::string name,
                            std::vector<std::string> arguments,
                            std::shared_ptr<Nodes::Node> block);
             std::shared_ptr<Variable> execute(std::shared_ptr<Tokens::Token> token,
-                                          std::shared_ptr<Scope> globalScope,
-                                          std::shared_ptr<Scope> scope,
+                                          std::shared_ptr<Variables::Scope> globalScope,
+                                          std::shared_ptr<Variables::Scope> scope,
                                           std::vector<std::shared_ptr<Nodes::Node>> arguments);
             std::string toString(std::vector<std::shared_ptr<Nodes::Node>> arguments);
         };

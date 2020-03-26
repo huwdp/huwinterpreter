@@ -17,68 +17,68 @@
 
 namespace HuwInterpreter {
     namespace Variables {
-        StringVariable::StringVariable(std::shared_ptr<Passable> passable)
+        StringVariable::StringVariable(std::shared_ptr<HuwInterpreter::Passable> passable)
             : Variable(passable)
         {
             variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
         }
 
-        StringVariable::StringVariable(std::shared_ptr<Passable> passable, std::string value)
+        StringVariable::StringVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string value)
             : Variable(passable)
         {
             this->value = value;
             variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
         }
 
-        StringVariable::StringVariable(std::shared_ptr<Passable> passable, char value)
+        StringVariable::StringVariable(std::shared_ptr<HuwInterpreter::Passable> passable, char value)
             : Variable(passable)
         {
             this->value = std::to_string(value);
             variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
         }
 
-        StringVariable::StringVariable(std::shared_ptr<Passable> passable, std::string name, std::string value)
-            : Variable(passable, std::move(name))
-        {
-            this->value = value;
-            variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
-        }
-
-        StringVariable::StringVariable(std::shared_ptr<Passable> passable, std::string name, char value)
-            : Variable(passable, std::move(name))
-        {
-            this->value = std::to_string(value);
-            variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
-        }
-
-        StringVariable::StringVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token)
-            : Variable(passable)
-        {
-            variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
-        }
-
-        StringVariable::StringVariable(std::shared_ptr<Passable> passable, std::string value, std::shared_ptr<Tokens::Token> token)
-            : Variable(passable, "")
-        {
-            this->value = value;
-            variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
-        }
-
-        StringVariable::StringVariable(std::shared_ptr<Passable> passable, char value, std::shared_ptr<Tokens::Token> token)
-            : Variable(passable, "")
-        {
-            this->value = std::to_string(value);
-            variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
-        }
-
-        StringVariable::StringVariable(std::shared_ptr<Passable> passable, std::string name, std::string value, std::shared_ptr<Tokens::Token> token)
+        StringVariable::StringVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name, std::string value)
             : Variable(passable, name)
         {
             this->value = value;
             variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
         }
 
-        StringVariable::StringVariable(std::shared_ptr<Passable> passable, std::string name, char value, std::shared_ptr<Tokens::Token> token)
+        StringVariable::StringVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name, char value)
+            : Variable(passable, name)
+        {
+            this->value = std::to_string(value);
+            variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
+        }
+
+        StringVariable::StringVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token)
+            : Variable(passable)
+        {
+            variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
+        }
+
+        StringVariable::StringVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string value, std::shared_ptr<Tokens::Token> token)
+            : Variable(passable, "")
+        {
+            this->value = value;
+            variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
+        }
+
+        StringVariable::StringVariable(std::shared_ptr<HuwInterpreter::Passable> passable, char value, std::shared_ptr<Tokens::Token> token)
+            : Variable(passable, "")
+        {
+            this->value = std::to_string(value);
+            variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
+        }
+
+        StringVariable::StringVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name, std::string value, std::shared_ptr<Tokens::Token> token)
+            : Variable(passable, name)
+        {
+            this->value = value;
+            variableTypeFactory = std::make_shared<VariableTypeFactory>(passable);
+        }
+
+        StringVariable::StringVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name, char value, std::shared_ptr<Tokens::Token> token)
             : Variable(passable, name)
         {
             this->value = std::to_string(value);
@@ -87,7 +87,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variable> StringVariable::getValue()
         {
-            return std::move(std::make_shared<StringVariable>(passable, value));
+            return std::make_shared<StringVariable>(passable, value);
         }
 
         void StringVariable::setValue(double value)
@@ -244,7 +244,7 @@ namespace HuwInterpreter {
             {
                 temp->setValue(double(0));
             }
-            return temp;
+            return std::move(temp);
         }
 
         std::shared_ptr<Variable> StringVariable::ifUnderOrEqual(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -421,9 +421,9 @@ namespace HuwInterpreter {
             }
             if (value.compare(variable->toString()) == 0)
             {
-                return std::move(std::make_shared<DoubleVariable>(passable, true));
+                return std::make_shared<DoubleVariable>(passable, true);
             }
-            return std::move(std::make_shared<DoubleVariable>(passable, false));
+            return std::make_shared<DoubleVariable>(passable, false);
         }
 
         std::shared_ptr<Variable> StringVariable::increment(std::shared_ptr<Tokens::Token> token)
@@ -440,7 +440,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variable> StringVariable::count(std::shared_ptr<Tokens::Token> token)
         {
-            return std::move(std::make_shared<DoubleVariable>(passable, (long long)value.size()));
+            return std::make_shared<DoubleVariable>(passable, (long long)value.size());
         }
 
         void StringVariable::set(std::string index, std::shared_ptr<Variable> value, std::shared_ptr<Tokens::Token> token)
@@ -477,7 +477,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variable> StringVariable::clone(std::shared_ptr<Tokens::Token> token)
         {
-            return std::move(this->getValue());
+            return this->getValue();
         }
 
         std::shared_ptr<Variable> StringVariable::bitwiseAnd(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)

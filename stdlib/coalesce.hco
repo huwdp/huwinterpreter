@@ -1,0 +1,21 @@
+function coalesce(value, replacementValue)
+{
+  if (isArrayType(value) && count(value) == 0)
+  {
+    return replacementValue;
+  }
+  if (isStringType(value) && value == "")
+  {
+      return replacementValue;
+  }
+  return value;
+}
+
+print(coalesce("", "Replacement text"));     /* Expected "Replacement text" */
+print(coalesce("Text", "Replacement text")); /* Expected "Text" */
+let items = array();
+print(coalesce(items, "Replacement text"));  /* Expected "Replacement text" */
+items[0] = "Item 1";
+print(coalesce(items, "Replacement text"));  /* Expected "Text" */
+print(coalesce(0, "Replacement text"));      /* Expected "Text" */
+print(coalesce(1, "Replacement text"));      /* Expected "Text" */

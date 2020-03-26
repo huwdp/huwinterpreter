@@ -20,14 +20,13 @@ namespace HuwInterpreter {
 
         Scope::Scope(std::shared_ptr<VariableManager> variableManager)
         {
-            this->functionName = functionName;
-            variableManager = std::move(variableManager);
+            this->variableManager = std::move(variableManager);
         }
 
         Scope::Scope(std::string functionName, std::shared_ptr<VariableManager> variableManager)
         {
             this->functionName = functionName;
-            variableManager = std::move(variableManager);
+            this->variableManager = std::move(variableManager);
         }
 
         Scope::Scope(std::shared_ptr<Passable> passable, bool addDefaults)

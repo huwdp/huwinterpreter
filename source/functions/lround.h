@@ -13,33 +13,25 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef UNUSABLETOKENS_H
-#define UNUSABLETOKENS_H
+#ifndef LROUND_H
+#define LROUND_H
 
-#include "types/tokentypes.h"
-#include "tokens.h"
-#include <unordered_map>
-#include <sstream>
-#include <algorithm>
-#include <memory>
-#include <vector>
+#include "function.h"
 
 namespace HuwInterpreter {
-    namespace Tokens {
-        class UnusableTokens
+    namespace Functions {
+        class LRound : public Function
         {
-        private:
-            std::vector<Types::TokenType> items;
-            std::shared_ptr<Tokens> tokens;
         public:
-            UnusableTokens();
-            void init();
-            bool tokenExists(Types::TokenType tokenType);
-            bool exists(std::string value);
-            bool exists(char value);
-            void add(Types::TokenType tokenType);
+            LRound(std::shared_ptr<HuwInterpreter::Passable> passable);
+            std::shared_ptr<Variable> execute(std::shared_ptr<Tokens::Token> token,
+                                          std::shared_ptr<Variables::Scope> globalScope,
+                                          std::shared_ptr<Variables::Scope> scope,
+                                          std::vector<std::shared_ptr<Nodes::Node>> arguments);
         };
     }
 }
 
-#endif // UNUSABLETOKENS_H
+
+#endif // LROUND
+

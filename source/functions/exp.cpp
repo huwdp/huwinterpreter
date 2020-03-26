@@ -17,14 +17,14 @@
 
 namespace HuwInterpreter {
     namespace Functions {
-        Exp::Exp(std::shared_ptr<Passable> passable)
+        Exp::Exp(std::shared_ptr<HuwInterpreter::Passable> passable)
             : Function(passable)
         {
             setName("exp");
         }
 
-        std::shared_ptr<Variable> Exp::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Scope> globalScope,
-                                           std::shared_ptr<Scope> scope,
+        std::shared_ptr<Variable> Exp::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Variables::Scope> globalScope,
+                                           std::shared_ptr<Variables::Scope> scope,
                                            std::vector<std::shared_ptr<Nodes::Node>> arguments)
         {
             if (arguments.size() == 1)

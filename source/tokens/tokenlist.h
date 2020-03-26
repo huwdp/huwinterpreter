@@ -24,12 +24,12 @@
 
 namespace HuwInterpreter {
     namespace Tokens {
-        class Tokens
+        class TokenList
         {
         private:
             std::unordered_map<ushort, std::string> types;
         public:
-            Tokens();
+            TokenList();
             void init();
             std::string get(Types::TokenType value);
             Types::TokenType get(std::string value);

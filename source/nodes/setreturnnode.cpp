@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Nodes {
-        SetReturnNode::SetReturnNode(std::shared_ptr<Passable> passable, std::shared_ptr<Nodes::Node> node)
+        SetReturnNode::SetReturnNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Nodes::Node> node)
             : Node("SetReturnNode", passable, nullptr)
         {
             ErrorReporting::Debug::print(getName());
@@ -42,7 +42,6 @@ namespace HuwInterpreter {
             }
             scope->setReturnValue(node->execute(globalScope, scope));
             return scope->getReturnValue();
-            return nullVariable;
         }
 
         std::string SetReturnNode::toString()

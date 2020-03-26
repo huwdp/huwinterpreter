@@ -1,0 +1,21 @@
+function isBlank(value)
+{
+  if (isArrayType(value) && count(value) == 0)
+  {
+    return 1;
+  }
+  if (isStringType(value) && value == "")
+  {
+      return 1;
+  }
+  return 0;
+}
+
+print(isBlank(""));     /* Expected true */
+print(isBlank("Text")); /* Expected false */
+let items = array();
+print(isBlank(items));  /* Expected true */
+items[0] = "Item 1";
+print(isBlank(items));  /* Expected false */
+print(isBlank(0));      /* Expected false */
+print(isBlank(1));      /* Expected false */

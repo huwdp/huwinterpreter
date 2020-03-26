@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Nodes {
-        DecrementNode::DecrementNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> node)
+        DecrementNode::DecrementNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> node)
             : Node("DecrementNode", passable, token)
         {
             ErrorReporting::Debug::print(getName());
@@ -48,7 +48,7 @@ namespace HuwInterpreter {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
                     return nullVariable;
                 }
-                return std::move(n->decrement(token));
+                return n->decrement(token);
             }
             ErrorReporting::Debug::print("Could not increment.");
             return nullVariable;

@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Nodes {
-        IfAndNode::IfAndNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> left, std::shared_ptr<Nodes::Node> right)
+        IfAndNode::IfAndNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> left, std::shared_ptr<Nodes::Node> right)
             : Node("IfAndNode", passable, token)
         {
             ErrorReporting::Debug::print(getName());
@@ -51,7 +51,7 @@ namespace HuwInterpreter {
                 }
                 if (!l->toBool())
                 {
-                    return std::move(std::make_shared<Variables::DoubleVariable>(passable, false));
+                    return std::make_shared<Variables::DoubleVariable>(passable, false);
                 }
 
                 std::shared_ptr<Variables::Variable> r = right->execute(globalScope, scope);
@@ -63,9 +63,9 @@ namespace HuwInterpreter {
 
                 if (r->toBool() && l->toBool())
                 {
-                    return std::move(std::make_shared<Variables::DoubleVariable>(passable, true));
+                    return std::make_shared<Variables::DoubleVariable>(passable, true);
                 }
-                return std::move(std::make_shared<Variables::DoubleVariable>(passable, false));
+                return std::make_shared<Variables::DoubleVariable>(passable, false);
             }
             ErrorReporting::Debug::print("Could not and");
             return nullVariable;

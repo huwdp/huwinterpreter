@@ -17,14 +17,14 @@
 
 namespace HuwInterpreter {
     namespace Functions {
-        DirFunction::DirFunction(std::shared_ptr<Passable> passable)
+        DirFunction::DirFunction(std::shared_ptr<HuwInterpreter::Passable> passable)
             : Function(passable)
         {
             setName("dir");
         }
 
-        std::shared_ptr<Variable> DirFunction::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Scope> globalScope,
-                                                 std::shared_ptr<Scope> scope,
+        std::shared_ptr<Variable> DirFunction::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Variables::Scope> globalScope,
+                                                 std::shared_ptr<Variables::Scope> scope,
                                                  std::vector<std::shared_ptr<Nodes::Node>> arguments)
         {
             if (arguments.size() == 1)
@@ -42,12 +42,12 @@ namespace HuwInterpreter {
                     std::shared_ptr<HashTableVariable> output = std::make_shared<HashTableVariable>(passable);
                     DIR* dirp = opendir(var->toString().c_str());
                     struct dirent * dp;
-                    while ((dp = readdir(dirp)) != NULL)
+                    while ((dp = readdir(dirp)) != nullptr)
                     {
                        output->add(std::make_shared<StringVariable>(passable, dp->d_name), token);
                     }
                     closedir(dirp);
-                    return output;
+                    return std::move(output);
                 }
                 passable->getErrorManager()->add(passable->getErrorFactory()->invalidArgument(token, RUNTIME_ERROR, name));
                 return nullVariable;

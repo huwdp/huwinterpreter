@@ -17,14 +17,14 @@
 
 namespace HuwInterpreter {
     namespace Functions {
-        LTrim::LTrim(std::shared_ptr<Passable> passable)
+        LTrim::LTrim(std::shared_ptr<HuwInterpreter::Passable> passable)
             : Function(passable)
         {
             setName("lTrim");
         }
 
-        std::shared_ptr<Variable> LTrim::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Scope> globalScope,
-                                             std::shared_ptr<Scope> scope,
+        std::shared_ptr<Variable> LTrim::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Variables::Scope> globalScope,
+                                             std::shared_ptr<Variables::Scope> scope,
                                              std::vector<std::shared_ptr<Nodes::Node>> arguments)
         {
             if (arguments.size() == 1)
@@ -35,16 +35,13 @@ namespace HuwInterpreter {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidArgument(token, RUNTIME_ERROR, name));
                     return nullVariable;
                 }
-
                 std::shared_ptr<Variable> var = node->execute(globalScope, scope);
                 if (var == nullptr)
                 {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidArgument(token, RUNTIME_ERROR, name));
                     return nullVariable;
                 }
-
                 std::string temp = var->toString();
-
                 std::string::iterator it = temp.begin();
                 while(it != temp.end())
                 {

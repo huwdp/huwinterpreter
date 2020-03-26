@@ -29,7 +29,7 @@ namespace HuwInterpreter {
             std::shared_ptr<Nodes::Node> next;
             std::shared_ptr<Variables::Scope> scope;
         public:
-            EqualNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> left, std::shared_ptr<Nodes::Node> right, std::shared_ptr<Nodes::Node> next, std::shared_ptr<Variables::Scope> scope);
+            EqualNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> left, std::shared_ptr<Nodes::Node> right, std::shared_ptr<Nodes::Node> next, std::shared_ptr<Variables::Scope> scope);
             NodeType getType();
             std::shared_ptr<Variables::Variable> execute(std::shared_ptr<Variables::Scope> globalScope, std::shared_ptr<Variables::Scope> scope);
             std::string toString();

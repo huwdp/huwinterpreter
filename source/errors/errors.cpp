@@ -49,7 +49,7 @@ namespace HuwInterpreter {
 
         long long ErrorManager::count()
         {
-            return errorList.size();
+            return static_cast<long long>(errorList.size());
         }
     }
 }

@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Nodes {
-        BitwiseComplementNode::BitwiseComplementNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> node)
+        BitwiseComplementNode::BitwiseComplementNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> node)
             : Node("BitwiseComplementNode", passable, token)
         {
             ErrorReporting::Debug::print(getName());
@@ -45,7 +45,7 @@ namespace HuwInterpreter {
                 std::shared_ptr<Variables::Variable> var = node->execute(globalScope, scope);
                 if (var != nullptr)
                 {
-                    return std::move(var->bitwiseComplement(token));
+                    return var->bitwiseComplement(token);
                 }
                 passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
             }

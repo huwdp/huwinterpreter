@@ -30,7 +30,7 @@ namespace HuwInterpreter {
         protected:
             std::shared_ptr<Variables::Variable> value;
         public:
-            TextNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::string value);
+            TextNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token, std::string value);
             NodeType getType();
             std::shared_ptr<Variables::Variable> execute(std::shared_ptr<Variables::Scope> globalScope, std::shared_ptr<Variables::Scope> scope);
             std::string toString();

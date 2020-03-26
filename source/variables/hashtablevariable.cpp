@@ -20,25 +20,25 @@ namespace HuwInterpreter {
 
 
 
-        HashTableVariable::HashTableVariable(std::shared_ptr<Passable> passable)
+        HashTableVariable::HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable)
             : Variable(passable)
         {
 
         }
 
-        HashTableVariable::HashTableVariable(std::shared_ptr<Passable> passable, std::string name)
+        HashTableVariable::HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name)
             : Variable(passable, std::move(name))
         {
 
         }
 
-        HashTableVariable::HashTableVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token)
+        HashTableVariable::HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token)
             : Variable(passable, token)
         {
 
         }
 
-        HashTableVariable::HashTableVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name)
+        HashTableVariable::HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name)
             : Variable(passable, std::move(name), token)
         {
 
@@ -326,7 +326,7 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::move(std::make_shared<DoubleVariable>(passable, toString() == variable->toString()));
+            return std::make_shared<DoubleVariable>(passable, toString() == variable->toString());
         }
 
         std::shared_ptr<Variable> HashTableVariable::count(std::shared_ptr<Tokens::Token> token)
@@ -348,7 +348,7 @@ namespace HuwInterpreter {
 
         void HashTableVariable::set(std::string index, std::shared_ptr<Variable> value, std::shared_ptr<Tokens::Token> token)
         {
-            map[index] = std::move(value);
+            map[index] = value;
         }
 
         std::shared_ptr<Variable> HashTableVariable::get(std::string index, std::shared_ptr<Tokens::Token> token)
@@ -363,7 +363,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variable> HashTableVariable::clone(std::shared_ptr<Tokens::Token> token)
         {
-            return std::move(this->getValue());
+            return this->getValue();
         }
 
         std::shared_ptr<Variable> HashTableVariable::bitwiseAnd(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)

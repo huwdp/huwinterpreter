@@ -17,14 +17,14 @@
 
 namespace HuwInterpreter {
     namespace Functions {
-        FileExists::FileExists(std::shared_ptr<Passable> passable)
+        FileExists::FileExists(std::shared_ptr<HuwInterpreter::Passable> passable)
             : Function(passable)
         {
             setName("fileExists");
         }
 
-        std::shared_ptr<Variable> FileExists::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Scope> globalScope,
-                                                std::shared_ptr<Scope> scope,
+        std::shared_ptr<Variable> FileExists::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Variables::Scope> globalScope,
+                                                std::shared_ptr<Variables::Scope> scope,
                                                 std::vector<std::shared_ptr<Nodes::Node>> arguments)
         {
             std::shared_ptr<Variable> returnNode = std::make_shared<DoubleVariable>(passable, false);
