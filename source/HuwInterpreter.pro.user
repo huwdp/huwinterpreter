@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.10.1, 2020-03-25T22:07:49. -->
+<!-- Written by QtCreator 4.10.1, 2020-03-26T19:38:55. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -57,6 +57,14 @@
   <valuemap type="QVariantMap">
    <valuelist type="QVariantList" key="ClangCodeModel.CustomCommandLineKey"/>
    <value type="bool" key="ClangCodeModel.UseGlobalConfig">true</value>
+   <value type="bool" key="ClangTools.BuildBeforeAnalysis">true</value>
+   <value type="QString" key="ClangTools.DiagnosticConfig">Builtin.Questionable</value>
+   <valuelist type="QVariantList" key="ClangTools.SelectedDirs">
+    <value type="QString">/home/huw/projects/huwinterpreter/source/HuwInterpreter.pro</value>
+   </valuelist>
+   <valuelist type="QVariantList" key="ClangTools.SelectedFiles"/>
+   <valuelist type="QVariantList" key="ClangTools.SuppressedDiagnostics"/>
+   <value type="bool" key="ClangTools.UseGlobalSettings">true</value>
   </valuemap>
  </data>
  <data>
