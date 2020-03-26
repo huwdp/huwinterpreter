@@ -51,7 +51,7 @@ namespace HuwInterpreter {
                 std::size_t found = str.find(str2);
                 if (found != std::string::npos)
                 {
-                    return std::make_shared<DoubleVariable>(passable, (long long)found);
+                    return std::make_shared<DoubleVariable>(passable, static_cast<long long>(found));
                 }
                 return std::make_shared<DoubleVariable>(passable, -1.0);
             }
