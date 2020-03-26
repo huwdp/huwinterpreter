@@ -125,8 +125,6 @@ namespace Functions {
         functions["jsonDecode"] = std::move(std::make_shared<JSONDecodeFunction>(passable));
 
         functions["sort"] = std::move(std::make_shared<Sort>(passable));
-
-        //functions["import"] = std::move(std::make_shared<Import>(passable));
     }
 
     std::shared_ptr<Functions::Function> FunctionManager::get(std::string name)
