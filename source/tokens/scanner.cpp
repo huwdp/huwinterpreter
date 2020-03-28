@@ -49,7 +49,7 @@ namespace HuwInterpreter {
             items.emplace_back(std::make_shared<Token>(text , tokenType, lineInfo));
         }
 
-        std::vector<std::shared_ptr<Token>> Scanner::tokenize(std::shared_ptr<TokenManager2> fileReader)
+        std::vector<std::shared_ptr<Token>> Scanner::tokenize(std::shared_ptr<TokenManager> fileReader)
         {
             items.clear();
             std::string temp = "";

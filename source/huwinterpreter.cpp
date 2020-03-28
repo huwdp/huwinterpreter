@@ -110,7 +110,7 @@ namespace  HuwInterpreter {
 
     std::vector<std::shared_ptr<Token>> Interpreter::parseText(std::string text)
     {
-        std::shared_ptr<TokenManager2> textTokenManager = std::make_shared<TextTokenManager>(text);
+        std::shared_ptr<TokenManager> textTokenManager = std::make_shared<TextTokenManager>(text);
         return scanner->tokenize(textTokenManager);
     }
 }

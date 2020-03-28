@@ -48,7 +48,7 @@ namespace HuwInterpreter {
                           std::shared_ptr<LineInfo> lineInfo);
         public:
             Scanner();
-            std::vector<std::shared_ptr<Token>> tokenize(std::shared_ptr<TokenManager2> fileReader);
+            std::vector<std::shared_ptr<Token>> tokenize(std::shared_ptr<TokenManager> fileReader);
         };
     }
 }

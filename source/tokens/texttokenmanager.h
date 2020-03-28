@@ -20,7 +20,7 @@
 
 namespace HuwInterpreter {
     namespace Tokens {
-        class TextTokenManager : public TokenManager2
+        class TextTokenManager : public TokenManager
         {
         private:
             std::vector<std::shared_ptr<IO::FileLine>> lines;
