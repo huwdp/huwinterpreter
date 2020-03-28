@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Nodes {
-        TextNode::TextNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::string value)
+        TextNode::TextNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token, std::string value)
             : Node("TextNode", passable, token)
         {
             ErrorReporting::Debug::print(getName());

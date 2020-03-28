@@ -17,37 +17,37 @@
 
 namespace HuwInterpreter {
     namespace Variables {
-        DoubleVariable::DoubleVariable(std::shared_ptr<Passable> passable)
+        DoubleVariable::DoubleVariable(std::shared_ptr<HuwInterpreter::Passable> passable)
             : Variable(passable)
         {
             this->value = 0;
         }
 
-        DoubleVariable::DoubleVariable(std::shared_ptr<Passable> passable, double value)
+        DoubleVariable::DoubleVariable(std::shared_ptr<HuwInterpreter::Passable> passable, double value)
             : Variable(passable)
         {
             this->value = value;
         }
 
-        DoubleVariable::DoubleVariable(std::shared_ptr<Passable> passable, std::string name, double value)
+        DoubleVariable::DoubleVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name, double value)
             : Variable(passable, std::move(name))
         {
             this->value = value;
         }
 
-        DoubleVariable::DoubleVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token)
+        DoubleVariable::DoubleVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token)
             : Variable(passable, token)
         {
             this->value = 0;
         }
 
-        DoubleVariable::DoubleVariable(std::shared_ptr<Passable> passable, double value, std::shared_ptr<Tokens::Token> token)
+        DoubleVariable::DoubleVariable(std::shared_ptr<HuwInterpreter::Passable> passable, double value, std::shared_ptr<Tokens::Token> token)
             : Variable(passable, token)
         {
             this->value = value;
         }
 
-        DoubleVariable::DoubleVariable(std::shared_ptr<Passable> passable, std::string name, double value, std::shared_ptr<Tokens::Token> token)
+        DoubleVariable::DoubleVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name, double value, std::shared_ptr<Tokens::Token> token)
             : Variable(passable, name, token)
         {
             this->value = value;
@@ -55,7 +55,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variable> DoubleVariable::getValue()
         {
-            return std::move(std::make_shared<DoubleVariable>(passable, value));
+            return std::make_shared<DoubleVariable>(passable, value);
         }
 
         void DoubleVariable::setValue(double value)
@@ -174,7 +174,7 @@ namespace HuwInterpreter {
                 return nullVariable;
             }
             std::shared_ptr<Variable> temp(new DoubleVariable(passable, std::pow(this->toDouble(),variable->toDouble())));
-            return std::move(temp);
+            return temp;
         }
 
         std::shared_ptr<Variable> DoubleVariable::mul(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -183,7 +183,7 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::move(std::make_shared<DoubleVariable>(passable, this->toDouble() * variable->toDouble()));
+            return std::make_shared<DoubleVariable>(passable, this->toDouble() * variable->toDouble());
         }
 
         std::shared_ptr<Variable> DoubleVariable::div(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -192,7 +192,7 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::move(std::make_shared<DoubleVariable>(passable, this->toDouble() / variable->toDouble()));
+            return std::make_shared<DoubleVariable>(passable, this->toDouble() / variable->toDouble());
         }
 
         std::shared_ptr<Variable> DoubleVariable::mod(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -219,7 +219,7 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::move(std::make_shared<DoubleVariable>(passable, this->toDouble() - variable->toDouble()));
+            return std::make_shared<DoubleVariable>(passable, this->toDouble() - variable->toDouble());
         }
 
         std::shared_ptr<Variable> DoubleVariable::ifUnder(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -229,7 +229,7 @@ namespace HuwInterpreter {
                 passable->getErrorManager()->add(passable->getErrorFactory()->failedToCompare(token, "ifUnder", name, getType()));
                 return nullVariable;
             }
-            return std::move(std::make_shared<DoubleVariable>(passable, this->toDouble() < variable->toDouble()));
+            return std::make_shared<DoubleVariable>(passable, this->toDouble() < variable->toDouble());
         }
 
         std::shared_ptr<Variable> DoubleVariable::ifUnderOrEqual(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -239,7 +239,7 @@ namespace HuwInterpreter {
                 passable->getErrorManager()->add(passable->getErrorFactory()->failedToCompare(token, "ifUnderOrEqual", name, getType()));
                 return nullVariable;
             }
-            return std::move(std::make_shared<DoubleVariable>(passable, this->toDouble() <= variable->toDouble()));
+            return std::make_shared<DoubleVariable>(passable, this->toDouble() <= variable->toDouble());
         }
 
         std::shared_ptr<Variable> DoubleVariable::ifOver(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -249,7 +249,7 @@ namespace HuwInterpreter {
                 passable->getErrorManager()->add(passable->getErrorFactory()->failedToCompare(token, "ifOver", name, getType()));
                 return nullVariable;
             }
-            return std::move(std::make_shared<DoubleVariable>(passable, this->toDouble() > variable->toDouble()));
+            return std::make_shared<DoubleVariable>(passable, this->toDouble() > variable->toDouble());
         }
 
         std::shared_ptr<Variable> DoubleVariable::ifOverOrEqual(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -259,7 +259,7 @@ namespace HuwInterpreter {
                 passable->getErrorManager()->add(passable->getErrorFactory()->failedToCompare(token, "ifOverOrEqual", name, getType()));
                 return nullVariable;
             }
-            return std::move(std::make_shared<DoubleVariable>(passable, this->toDouble() >= variable->toDouble()));
+            return std::make_shared<DoubleVariable>(passable, this->toDouble() >= variable->toDouble());
         }
 
         std::shared_ptr<Variable> DoubleVariable::ifEqual(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -269,7 +269,7 @@ namespace HuwInterpreter {
                 passable->getErrorManager()->add(passable->getErrorFactory()->failedToCompare(token, "ifEqual", name, getType()));
                 return nullVariable;
             }
-            return std::move(std::make_shared<DoubleVariable>(passable, this->toDouble() == variable->toDouble()));
+            return std::make_shared<DoubleVariable>(passable, this->toDouble() == variable->toDouble());
         }
 
         std::shared_ptr<Variable> DoubleVariable::ifNotEqual(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -279,13 +279,13 @@ namespace HuwInterpreter {
                 passable->getErrorManager()->add(passable->getErrorFactory()->failedToCompare(token, "ifNotEqual", name, getType()));
                 return nullVariable;
             }
-            return std::move(std::make_shared<DoubleVariable>(passable, this->toDouble() != variable->toDouble()));
+            return std::make_shared<DoubleVariable>(passable, this->toDouble() != variable->toDouble());
         }
 
         std::shared_ptr<Variable> DoubleVariable::increment(std::shared_ptr<Tokens::Token> token)
         {
             this->value++;
-            return std::move(std::make_shared<DoubleVariable>(passable, this->toDouble()));
+            return std::make_shared<DoubleVariable>(passable, this->toDouble());
         }
 
         std::shared_ptr<Variable> DoubleVariable::count(std::shared_ptr<Tokens::Token> token)
@@ -297,7 +297,7 @@ namespace HuwInterpreter {
         std::shared_ptr<Variable> DoubleVariable::decrement(std::shared_ptr<Tokens::Token> token)
         {
             this->value--;
-            return std::move(std::make_shared<DoubleVariable>(passable, this->toDouble()));
+            return std::make_shared<DoubleVariable>(passable, this->toDouble());
         }
 
         void DoubleVariable::set(std::string index, std::shared_ptr<Variable> value, std::shared_ptr<Tokens::Token> token)
@@ -318,7 +318,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variable> DoubleVariable::clone(std::shared_ptr<Tokens::Token> token)
         {
-            return std::move(this->getValue());
+            return this->getValue();
         }
 
         std::shared_ptr<Variable> DoubleVariable::bitwiseAnd(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -328,7 +328,7 @@ namespace HuwInterpreter {
                 return nullVariable;
             }
             long long value = (long long)this->value & variable->toInt();
-            return std::move(std::make_shared<DoubleVariable>(passable, value));
+            return std::make_shared<DoubleVariable>(passable, value);
         }
 
         std::shared_ptr<Variable> DoubleVariable::bitwiseOr(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -338,7 +338,7 @@ namespace HuwInterpreter {
                 return nullVariable;
             }
             long long value = static_cast<long long>(this->value) | variable->toInt();
-            return std::move(std::make_shared<DoubleVariable>(passable, value));
+            return std::make_shared<DoubleVariable>(passable, value);
         }
 
         std::shared_ptr<Variable> DoubleVariable::bitwiseXOR(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -348,12 +348,12 @@ namespace HuwInterpreter {
                 return nullVariable;
             }
             long long value = static_cast<long long>(this->value) ^ variable->toInt();
-            return std::move(std::make_shared<DoubleVariable>(passable, value));
+            return std::make_shared<DoubleVariable>(passable, value);
         }
 
         std::shared_ptr<Variable> DoubleVariable::bitwiseComplement(std::shared_ptr<Tokens::Token> token)
         {
-            return std::move(std::make_shared<DoubleVariable>(passable, ~toInt()));
+            return std::make_shared<DoubleVariable>(passable, ~toInt());
         }
 
         std::shared_ptr<Variable> DoubleVariable::leftShift(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -362,7 +362,7 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::move(std::make_shared<DoubleVariable>(passable, toInt() << variable->toInt()));
+            return std::make_shared<DoubleVariable>(passable, toInt() << variable->toInt());
         }
 
         std::shared_ptr<Variable> DoubleVariable::rightShift(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -371,7 +371,13 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::move(std::make_shared<DoubleVariable>(passable, toInt() >> variable->toInt()));
+            return std::make_shared<DoubleVariable>(passable, toInt() >> variable->toInt());
+        }
+
+        std::shared_ptr<Variable> DoubleVariable::sort()
+        {
+            passable->getErrorManager()->add(passable->getErrorFactory()->isNotAnArray(token, name));
+            return nullVariable;
         }
     }
 }

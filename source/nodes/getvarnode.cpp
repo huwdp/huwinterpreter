@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Nodes {
-        GetVarNode::GetVarNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name)
+        GetVarNode::GetVarNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name)
             : Node("GetVarNode", passable, token)
         {
             ErrorReporting::Debug::print(getName());
@@ -52,12 +52,7 @@ namespace HuwInterpreter {
             {
                 return var2;
             }
-            else
-            {
-                passable->getErrorManager()->add(passable->getErrorFactory()->variableNotDeclared(token, name));
-                return nullVariable;
-            }
-            ErrorReporting::Debug::print("Could not find variable.");
+            passable->getErrorManager()->add(passable->getErrorFactory()->variableNotDeclared(token, name));
             return nullVariable;
         }
 

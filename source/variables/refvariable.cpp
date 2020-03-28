@@ -17,13 +17,13 @@
 
 namespace HuwInterpreter {
     namespace Variables {
-        RefVariable::RefVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Variable> variable)
+        RefVariable::RefVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Variable> variable)
             : Variable(passable, variable->getName())
         {
             this->variable = std::move(variable);
         }
 
-        RefVariable::RefVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
+        RefVariable::RefVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
             : Variable(passable, variable->getName(), token)
         {
             this->variable = variable;
@@ -111,7 +111,7 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::move(this->variable->pow(variable, token));
+            return this->variable->pow(variable, token);
         }
 
         std::shared_ptr<Variable> RefVariable::mul(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -120,7 +120,7 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::move(this->variable->mul(variable, token));
+            return this->variable->mul(variable, token);
         }
 
         std::shared_ptr<Variable> RefVariable::div(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -129,7 +129,7 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::move(this->variable->div(variable, token));
+            return this->variable->div(variable, token);
         }
 
         std::shared_ptr<Variable> RefVariable::mod(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -138,7 +138,7 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::move(this->variable->mod(variable, token));
+            return this->variable->mod(variable, token);
         }
 
         std::shared_ptr<Variable> RefVariable::add(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -147,7 +147,7 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::move(this->variable->add(variable, token));
+            return this->variable->add(variable, token);
         }
 
         std::shared_ptr<Variable> RefVariable::sub(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -156,7 +156,7 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::move(this->variable->sub(variable, token));
+            return this->variable->sub(variable, token);
         }
 
         std::shared_ptr<Variable> RefVariable::ifUnder(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -166,7 +166,7 @@ namespace HuwInterpreter {
                 passable->getErrorManager()->add(passable->getErrorFactory()->failedToCompare(token, "ifUnder", name, getType()));
                 return nullVariable;
             }
-            return std::move(this->variable->sub(variable, token));
+            return this->variable->sub(variable, token);
         }
 
         std::shared_ptr<Variable> RefVariable::ifUnderOrEqual(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -176,7 +176,7 @@ namespace HuwInterpreter {
                 passable->getErrorManager()->add(passable->getErrorFactory()->failedToCompare(token, "ifUnderOrEqual", name, getType()));
                 return nullVariable;
             }
-            return std::move(this->variable->ifUnderOrEqual(variable, token));
+            return this->variable->ifUnderOrEqual(variable, token);
         }
 
         std::shared_ptr<Variable> RefVariable::ifOver(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -186,7 +186,7 @@ namespace HuwInterpreter {
                 passable->getErrorManager()->add(passable->getErrorFactory()->failedToCompare(token, "ifOver", name, getType()));
                 return nullVariable;
             }
-            return std::move(this->variable->ifOver(variable, token));
+            return this->variable->ifOver(variable, token);
         }
 
         std::shared_ptr<Variable> RefVariable::ifOverOrEqual(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -196,7 +196,7 @@ namespace HuwInterpreter {
                 passable->getErrorManager()->add(passable->getErrorFactory()->failedToCompare(token, "ifOverOrEqual", name, getType()));
                 return nullVariable;
             }
-            return std::move(this->ifOverOrEqual(variable, token));
+            return this->ifOverOrEqual(variable, token);
         }
 
         std::shared_ptr<Variable> RefVariable::ifEqual(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -206,17 +206,17 @@ namespace HuwInterpreter {
                 passable->getErrorManager()->add(passable->getErrorFactory()->failedToCompare(token, "ifEqual", name, getType()));
                 return nullVariable;
             }
-            return std::move(this->variable->ifEqual(variable, token));
+            return this->variable->ifEqual(variable, token);
         }
 
         std::shared_ptr<Variable> RefVariable::ifNotEqual(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
         {
-            return std::move(this->variable->ifNotEqual(variable, token));
+            return this->variable->ifNotEqual(variable, token);
         }
 
         std::shared_ptr<Variable> RefVariable::increment(std::shared_ptr<Tokens::Token> token)
         {
-            return std::move(this->variable->increment(token));
+            return this->variable->increment(token);
         }
 
         std::shared_ptr<Variable> RefVariable::count(std::shared_ptr<Tokens::Token> token)
@@ -225,12 +225,12 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::move(this->variable->count(token));
+            return this->variable->count(token);
         }
 
         std::shared_ptr<Variable> RefVariable::decrement(std::shared_ptr<Tokens::Token> token)
         {
-            return std::move(this->variable->decrement(token));
+            return this->variable->decrement(token);
         }
 
         void RefVariable::set(std::string index, std::shared_ptr<Variable> value, std::shared_ptr<Tokens::Token> token)
@@ -244,7 +244,7 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::move(this->variable->get(value, token));
+            return this->variable->get(value, token);
         }
 
         void RefVariable::unset(std::string index, std::shared_ptr<Tokens::Token> token)
@@ -254,22 +254,22 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variable> RefVariable::clone(std::shared_ptr<Tokens::Token> token)
         {
-            return std::move(std::make_shared<RefVariable>(passable, variable));
+            return std::make_shared<RefVariable>(passable, variable);
         }
 
         std::shared_ptr<Variable> RefVariable::bitwiseAnd(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
         {
-            return std::move(this->variable->bitwiseAnd(variable, token));
+            return this->variable->bitwiseAnd(variable, token);
         }
 
         std::shared_ptr<Variable> RefVariable::bitwiseOr(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
         {
-            return std::move(this->variable->bitwiseOr(variable, token));
+            return this->variable->bitwiseOr(variable, token);
         }
 
         std::shared_ptr<Variable> RefVariable::bitwiseXOR(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
         {
-            return std::move(this->variable->bitwiseXOR(variable, token));
+            return this->variable->bitwiseXOR(variable, token);
         }
 
         std::shared_ptr<Variable> RefVariable::bitwiseComplement(std::shared_ptr<Tokens::Token> token)
@@ -278,7 +278,7 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::move(variable->bitwiseComplement(token));
+            return variable->bitwiseComplement(token);
         }
 
         std::shared_ptr<Variable> RefVariable::leftShift(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -287,7 +287,7 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::move(this->variable->leftShift(variable, token));
+            return this->variable->leftShift(variable, token);
         }
 
         std::shared_ptr<Variable> RefVariable::rightShift(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -296,7 +296,12 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::move(this->variable->rightShift(variable, token));
+            return this->variable->rightShift(variable, token);
+        }
+
+        std::shared_ptr<Variable> RefVariable::sort()
+        {
+            return this->variable->sort();
         }
     }
 }

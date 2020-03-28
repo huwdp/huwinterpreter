@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Functions {
-        CustomFunction::CustomFunction(std::shared_ptr<Passable> passable,
+        CustomFunction::CustomFunction(std::shared_ptr<HuwInterpreter::Passable> passable,
                                        std::shared_ptr<Tokens::Token> token,
                                        std::string name, std::vector<std::string> arguments,
                                        std::shared_ptr<Nodes::Node> block)
@@ -29,8 +29,8 @@ namespace HuwInterpreter {
             this->token = token;
         }
 
-        std::shared_ptr<Variable> CustomFunction::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Scope> globalScope,
-                                                      std::shared_ptr<Scope> scope,
+        std::shared_ptr<Variable> CustomFunction::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Variables::Scope> globalScope,
+                                                      std::shared_ptr<Variables::Scope> scope,
                                                       std::vector<std::shared_ptr<Nodes::Node>> arguments)
         {
 
@@ -42,7 +42,7 @@ namespace HuwInterpreter {
             }
 
             // New scope
-            std::shared_ptr<Scope> newScope = std::make_unique<Scope>(name, passable, false);
+            std::shared_ptr<Variables::Scope> newScope = std::make_unique<Scope>(name, passable, false);
 
             std::vector<std::shared_ptr<Nodes::Node>>::iterator variableIt = arguments.begin();
             for (std::vector<std::string>::iterator argumentIt = this->arguments.begin(); argumentIt != this->arguments.end(); ++argumentIt)
@@ -56,7 +56,7 @@ namespace HuwInterpreter {
                     }
                     else
                     {
-                        newScope->getVariableManager()->fastAddVariable((*argumentIt), std::move(argument->clone(token)));
+                        newScope->getVariableManager()->fastAddVariable((*argumentIt), argument->clone(token));
                     }
                 }
                 ++variableIt;

@@ -58,7 +58,7 @@ namespace  HuwInterpreter {
         std::cout << "Benchmrk result: " << diff.count() << " seconds." << std::endl;
     }
 
-    void Interpreter::printErrors(std::shared_ptr<Passable> passable)
+    void Interpreter::printErrors(std::shared_ptr<HuwInterpreter::Passable> passable)
     {
         std::vector<std::shared_ptr<Error>> errors = passable->getErrorManager()->get();
         for (std::vector<std::shared_ptr<Error>>::iterator it = errors.begin(); it != errors.end(); ++it)
@@ -110,7 +110,7 @@ namespace  HuwInterpreter {
 
     std::vector<std::shared_ptr<Token>> Interpreter::parseText(std::string text)
     {
-        std::shared_ptr<TokenManager> textTokenManager = std::make_shared<TextTokenManager>(text);
+        std::shared_ptr<TokenManager2> textTokenManager = std::make_shared<TextTokenManager>(text);
         return scanner->tokenize(textTokenManager);
     }
 }

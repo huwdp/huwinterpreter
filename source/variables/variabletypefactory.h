@@ -28,9 +28,9 @@ namespace HuwInterpreter {
         class VariableTypeFactory
         {
         private:
-            std::shared_ptr<Passable> passable;
+            std::shared_ptr<HuwInterpreter::Passable> passable;
         public:
-            VariableTypeFactory(std::shared_ptr<Passable> passable);
+            VariableTypeFactory(std::shared_ptr<HuwInterpreter::Passable> passable);
             std::shared_ptr<Variable> newVariable(Types::VarType  varType);
         };
     }

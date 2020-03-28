@@ -19,7 +19,7 @@
 #include <string>
 #include <vector>
 #include "tokens/token.h"
-#include "tokens/tokens.h"
+#include "tokens/tokenlist.h"
 #include <iostream>
 #include <sstream>
 #include <memory>
@@ -77,6 +77,7 @@
 #include "functions/customfunction.h"
 
 #include "nodes/arraygetnode.h"
+#include "nodes/importnode.h"
 
 namespace HuwInterpreter {
 
@@ -95,7 +96,7 @@ namespace HuwInterpreter {
         bool compilation;
         std::shared_ptr<Nodes::Node> nullNode;
         std::shared_ptr<NodeFactory> codeFactory;
-        std::shared_ptr<Passable> passable;
+        std::shared_ptr<HuwInterpreter::Passable> passable;
         bool textMode = false;
         void setCompilation(bool compilation);
         void nextToken();
@@ -109,12 +110,13 @@ namespace HuwInterpreter {
         bool accept(TokenType tokenType);
         bool expect(std::string s);
         bool expect(TokenType tokenType);
+        bool isEmpty();
         std::string syntaxError(std::string content);
         std::string syntaxError();
         bool expectSemicolon();
         void errorMessage(std::string errorMsg, std::shared_ptr<Tokens::Token> currentToken);
-        std::shared_ptr<Nodes::Node> createSemicolonNode(std::shared_ptr<Passable> passable, std::shared_ptr<Nodes::Node> node);
-        std::shared_ptr<Nodes::Node> createBracketNode(std::shared_ptr<Passable> passable, std::shared_ptr<Nodes::Node> node);
+        std::shared_ptr<Nodes::Node> createSemicolonNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Nodes::Node> node);
+        std::shared_ptr<Nodes::Node> createBracketNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Nodes::Node> node);
         std::shared_ptr<Nodes::Node> parseSquareBrackets(std::shared_ptr<Nodes::Node> node);
         std::shared_ptr<Nodes::Node> parseValue();
         std::shared_ptr<Nodes::Node> parseFactor();
@@ -142,14 +144,18 @@ namespace HuwInterpreter {
         Parser(std::vector<std::shared_ptr<Tokens::Token>> tokens,
                std::shared_ptr<NodeFactory> nodeFactory,
                bool textMode);
+        Parser(std::vector<std::shared_ptr<Tokens::Token>> tokens,
+               std::shared_ptr<NodeFactory> nodeFactory,
+               bool textMode, std::shared_ptr<Functions::FunctionManager> functionManager);
         bool getCompilation();
-        std::shared_ptr<Passable> getPassable();
-        void setPassable(std::shared_ptr<Passable> passable);
+        std::shared_ptr<HuwInterpreter::Passable> getPassable();
+        void setPassable(std::shared_ptr<HuwInterpreter::Passable> passable);
         std::shared_ptr<Nodes::Node> parse();
         std::string toString();
         std::shared_ptr<ErrorManager> getErrorManager();
         std::shared_ptr<StackTraceManager> getStackTrace();
         bool execute();
+        bool execute(std::shared_ptr<Variables::Scope> scope);
     };
 }
 

@@ -23,7 +23,7 @@ namespace HuwInterpreter {
         class Atan2 : public Function
         {
         public:
-            Atan2(std::shared_ptr<Passable> passable);
+            Atan2(std::shared_ptr<HuwInterpreter::Passable> passable);
             std::shared_ptr<Variables::Variable> execute(std::shared_ptr<Tokens::Token> token,
                                           std::shared_ptr<Variables::Scope> globalScope,
                                           std::shared_ptr<Variables::Scope> scope,

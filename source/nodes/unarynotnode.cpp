@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Nodes {
-        UnaryNotNode::UnaryNotNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> node)
+        UnaryNotNode::UnaryNotNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> node)
             : Node("UnaryNotNode", passable, token)
         {
             ErrorReporting::Debug::print(getName());
@@ -47,9 +47,9 @@ namespace HuwInterpreter {
                 {
                     if (var->toBool())
                     {
-                        return std::move(std::make_shared<Variables::DoubleVariable>(passable, 0.0));
+                        return std::make_shared<Variables::DoubleVariable>(passable, 0.0);
                     }
-                    return std::move(std::make_shared<Variables::DoubleVariable>(passable, 1.0));
+                    return std::make_shared<Variables::DoubleVariable>(passable, 1.0);
                 }
                 passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
             }

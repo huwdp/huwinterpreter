@@ -75,6 +75,7 @@
 #include "sin.h"
 #include "random.h"
 #include "round.h"
+#include "lround.h"
 #include "sqrt.h"
 #include "tan.h"
 #include "random.h"
@@ -121,12 +122,12 @@
 #include "httpdeletefunction.h"
 #include "httpheadfunction.h"
 
-#include "functioncount.h"
-
 #include "sleepfunction.h"
 
 #include "jsonencodefunction.h"
 #include "jsondecodefunction.h"
+
+#include "sort.h"
 
 #endif  //FUNCTIONLIST_H
 

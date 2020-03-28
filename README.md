@@ -1,3 +1,4 @@
+
 # HuwInterpreter
 > HuwInterpreter is a hand written interpreter designed to parse and execute HuwCode script.
 
@@ -25,6 +26,12 @@ function factailrec(acc, n)
 }
 print(fac(14));
 ```
+
+## Dependencies
+
+ - libcurl4-openssl-dev 
+ - libcurl4
+
 ## Installation
 
 #### Building

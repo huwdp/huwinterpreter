@@ -16,26 +16,34 @@
 #ifndef SCOPE_H
 #define SCOPE_H
 
-#include "nodes/node.h"
 #include "variables/variables.h"
-#include <memory>
+#include "common/nameableobject.h"
+#include "tokens/token.h"
+#include "nodes/node.h"
+#include "functions/function.h"
 
 namespace HuwInterpreter {
-    namespace Variables {
-        class Node;
-        class VariableManager;
-        class Variable;
 
+    namespace Nodes {
+        class Node;
+    }
+    namespace Variables {
+        class VariableManager;
+    }
+
+    namespace Variables {
         class Scope
         {
         private:
             std::string functionName;
-            std::shared_ptr<Variable> returnValue;
-            std::shared_ptr<VariableManager> variableManager;
+            std::shared_ptr<Variables::Variable> returnValue;
+            std::shared_ptr<Variables::VariableManager> variableManager;
+            std::shared_ptr<HuwInterpreter::Passable> passable;
+
         public:
-            Scope(std::shared_ptr<VariableManager> variableManager);
-            Scope(std::string functionName, std::shared_ptr<VariableManager> variableManager);
-            std::shared_ptr<VariableManager> const& getVariableManager();
+            Scope(std::shared_ptr<Variables::VariableManager> variableManager);
+            Scope(std::string functionName, std::shared_ptr<Variables::VariableManager> variableManager);
+            std::shared_ptr<Variables::VariableManager> const& getVariableManager();
             Scope(std::shared_ptr<Passable> passable, bool addDefaults);
             Scope(std::string functionName, std::shared_ptr<Passable> passable, bool addDefaults);
             void setVariableManager(std::shared_ptr<VariableManager> variableManager);

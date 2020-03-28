@@ -17,13 +17,13 @@
 
 namespace HuwInterpreter {
     namespace Variables {
-        ConstantVariable::ConstantVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Variable> variable)
+        ConstantVariable::ConstantVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Variable> variable)
             : Variable(passable, variable->getName())
         {
             this->variable = std::move(variable);
         }
 
-        ConstantVariable::ConstantVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
+        ConstantVariable::ConstantVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
             : Variable(passable, variable->getName(), token)
         {
             this->variable = std::move(variable);
@@ -349,6 +349,15 @@ namespace HuwInterpreter {
                 return nullVariable;
             }
             return this->variable->rightShift(variable, token);
+        }
+
+        std::shared_ptr<Variable> ConstantVariable::sort()
+        {
+            if (variable == nullptr)
+            {
+                return nullVariable;
+            }
+            return variable->sort();
         }
     }
 }

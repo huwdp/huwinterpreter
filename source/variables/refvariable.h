@@ -27,8 +27,8 @@ namespace HuwInterpreter {
             bool isSet;
             std::shared_ptr<Variable> variable;
         public:
-            RefVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Variable> variable);
-            RefVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token);
+            RefVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Variable> variable);
+            RefVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token);
             std::shared_ptr<Variable> getValue();
             void setValue(double value);
             void setValue(std::string value);
@@ -75,6 +75,9 @@ namespace HuwInterpreter {
             std::shared_ptr<Variable> bitwiseComplement(std::shared_ptr<Tokens::Token> token);
             std::shared_ptr<Variable> leftShift(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token);
             std::shared_ptr<Variable> rightShift(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token);
+            std::shared_ptr<Variable> sort();
+            
+            
         };
     }
 }

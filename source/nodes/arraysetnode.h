@@ -28,7 +28,7 @@ namespace HuwInterpreter {
             std::vector<std::shared_ptr<Nodes::Node>> indexes;
             std::shared_ptr<Nodes::Node> value;
         public:
-            ArraySetNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token,
+            ArraySetNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token,
                          std::shared_ptr<Nodes::Node> array,
                          std::vector<std::shared_ptr<Node> > indexes,
                          std::shared_ptr<Nodes::Node> value);

@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Nodes {
-        SetVarNode::SetVarNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name, std::shared_ptr<Nodes::Node> value)
+        SetVarNode::SetVarNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name, std::shared_ptr<Nodes::Node> value)
             : Node("SetVarNode", passable, token)
         {
             ErrorReporting::Debug::print(getName());
@@ -97,22 +97,7 @@ namespace HuwInterpreter {
                     return nullVariable;
                 }
                 scope->getVariableManager()->setVariable(name, nullVariable);
-                return nullVariable;
             }
-
-            /*if (globalVar != nullptr && globalVar->isConst())
-            {
-                passable->getErrorManager()->add(passable->getErrorFactory()->cannotChangeConstant(token, name));
-            }
-            else if (localVar != nullptr && localVar->isConst())
-            {
-                passable->getErrorManager()->add(passable->getErrorFactory()->cannotChangeConstant(token, name));
-            }
-            else
-            {
-                passable->getErrorManager()->add(passable->getErrorFactory()->variableDeclared(token, name));
-            }*/
-
             return nullVariable;
         }
 

@@ -24,11 +24,11 @@
 #include <memory>
 #include "errors/debug.h"
 #include "types/typedetector.h"
-#include "tokens.h"
+#include "tokenlist.h"
 #include "token.h"
 #include "tokenmanager.h"
-#include "unusabletokens.h"
-#include "tokens.h"
+#include "unusabletokenlist.h"
+#include "tokenlist.h"
 
 #include <set>
 
@@ -37,8 +37,8 @@ namespace HuwInterpreter {
         class Scanner
         {
         private:
-            std::shared_ptr<UnusableTokens> unusableTokens;
-            std::shared_ptr<Tokens> tokens;
+            std::shared_ptr<UnusableTokenList> unusableTokenManager;
+            std::shared_ptr<TokenList> tokenManager;
             std::vector<std::shared_ptr<Token>> items;
             bool isAllowedCharacter(char character);
             void AddToken(Types::TokenType tokenType,
@@ -48,7 +48,7 @@ namespace HuwInterpreter {
                           std::shared_ptr<LineInfo> lineInfo);
         public:
             Scanner();
-            std::vector<std::shared_ptr<Token>> tokenize(std::shared_ptr<TokenManager> fileReader);
+            std::vector<std::shared_ptr<Token>> tokenize(std::shared_ptr<TokenManager2> fileReader);
         };
     }
 }

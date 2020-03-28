@@ -37,12 +37,12 @@ namespace HuwInterpreter {
             std::string internalName;
             std::shared_ptr<Tokens::Token> token;
         public:
-            std::shared_ptr<Passable> passable;
+            std::shared_ptr<HuwInterpreter::Passable> passable;
             std::shared_ptr<Variable> nullVariable;
-            Variable(std::shared_ptr<Passable> passable);
-            Variable(std::shared_ptr<Passable> passable, std::string name);
-            Variable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token);
-            Variable(std::shared_ptr<Passable> passable, std::string name, std::shared_ptr<Tokens::Token> token);
+            Variable(std::shared_ptr<HuwInterpreter::Passable> passable);
+            Variable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name);
+            Variable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token);
+            Variable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name, std::shared_ptr<Tokens::Token> token);
             virtual std::shared_ptr<Variable> getValue() = 0;
             virtual void setValue(double value) = 0;
             virtual void setValue(std::string value) = 0;
@@ -83,6 +83,7 @@ namespace HuwInterpreter {
             virtual std::shared_ptr<Variable> bitwiseComplement(std::shared_ptr<Tokens::Token> token) = 0;
             virtual std::shared_ptr<Variable> leftShift(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token) = 0;
             virtual std::shared_ptr<Variable> rightShift(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token) = 0;
+            virtual std::shared_ptr<Variable> sort() = 0;
         };
     }
 }

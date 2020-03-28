@@ -18,7 +18,7 @@
 
 #include <iostream>
 #include <memory>
-#include <unordered_map>
+#include <map>
 #include <algorithm>
 
 #include "variable.h"
@@ -29,12 +29,12 @@ namespace HuwInterpreter {
         class HashTableVariable : public Variable
         {
         private:
-            std::unordered_map<std::string, std::shared_ptr<Variable>> map;
+            std::map<std::string, std::shared_ptr<Variable>> map;
         public:
-            HashTableVariable(std::shared_ptr<Passable> passable);
-            HashTableVariable(std::shared_ptr<Passable> passable, std::string name);
-            HashTableVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token);
-            HashTableVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name);
+            HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable);
+            HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name);
+            HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token);
+            HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name);
             std::shared_ptr<Variable> getValue();
             void setValue(double value);
             void setValue(std::string value);
@@ -81,6 +81,10 @@ namespace HuwInterpreter {
             std::shared_ptr<Variable> bitwiseComplement(std::shared_ptr<Tokens::Token> token);
             std::shared_ptr<Variable> leftShift(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token);
             std::shared_ptr<Variable> rightShift(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token);
+            std::vector<std::pair<std::string, std::shared_ptr<Variable>>> toVector();
+            std::shared_ptr<Variable> sort();
+            
+
         };
     }
 }

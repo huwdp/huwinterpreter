@@ -18,14 +18,14 @@
 
 namespace HuwInterpreter {
     namespace Functions {
-        HttpPutFunction::HttpPutFunction(std::shared_ptr<Passable> passable)
+        HttpPutFunction::HttpPutFunction(std::shared_ptr<HuwInterpreter::Passable> passable)
             : Function(passable)
         {
             setName("httpPut");
         }
 
-        std::shared_ptr<Variable> HttpPutFunction::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Scope> globalScope,
-                                             std::shared_ptr<Scope> scope,
+        std::shared_ptr<Variable> HttpPutFunction::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Variables::Scope> globalScope,
+                                             std::shared_ptr<Variables::Scope> scope,
                                              std::vector<std::shared_ptr<Nodes::Node>> arguments)
         {
             if (arguments.size() > 0 && arguments.size() <= 2)

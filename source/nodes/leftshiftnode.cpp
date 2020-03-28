@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Nodes {
-        LeftShiftNode::LeftShiftNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> left, std::shared_ptr<Nodes::Node> right)
+        LeftShiftNode::LeftShiftNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> left, std::shared_ptr<Nodes::Node> right)
             : Node("LeftShiftNode", passable, token)
         {
             ErrorReporting::Debug::print(getName());
@@ -55,7 +55,7 @@ namespace HuwInterpreter {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
                     return nullVariable;
                 }
-                return std::move(l->leftShift(r, token));
+                return l->leftShift(r, token);
             }
             ErrorReporting::Debug::print("Could not left shift");
             return nullVariable;

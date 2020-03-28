@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     Parser::Parser(std::vector<std::shared_ptr<Tokens::Token>> tokens,
-                   std::shared_ptr<NodeFactory> nodeFactory,
+                   std::shared_ptr<Nodes::NodeFactory> nodeFactory,
                    bool textMode)
     {
         this->textMode = textMode;
@@ -25,9 +25,29 @@ namespace HuwInterpreter {
         this->passable = std::make_shared<Passable>();
         this->compilation = true;
         this->tokens = tokens;
-        this->functions = std::move(std::make_shared<Functions::FunctionManager>(passable));
+        this->functions = std::make_shared<Functions::FunctionManager>(passable);
         functions->init();
-        customFunctions = std::move(std::make_shared<Functions::FunctionManager>(passable));
+        customFunctions = std::make_shared<Functions::FunctionManager>(passable);
+        if (!tokens.empty())
+        {
+            it = this->tokens.begin();
+            this->currentToken = (*it);
+        }
+    }
+
+    Parser::Parser(std::vector<std::shared_ptr<Tokens::Token>> tokens,
+                   std::shared_ptr<NodeFactory> nodeFactory,
+                   bool textMode,
+                   std::shared_ptr<Functions::FunctionManager> functionManager)
+    {
+        this->textMode = textMode;
+        this->nodeFactory = nodeFactory;
+        this->passable = std::make_shared<Passable>();
+        this->compilation = true;
+        this->tokens = tokens;
+        this->functions = functionManager;
+        functions->init();
+        customFunctions = std::make_shared<Functions::FunctionManager>(passable);
         if (!tokens.empty())
         {
             it = this->tokens.begin();
@@ -45,12 +65,12 @@ namespace HuwInterpreter {
         this->compilation = compilation;
     }
 
-    std::shared_ptr<Passable> Parser::getPassable()
+    std::shared_ptr<HuwInterpreter::Passable> Parser::getPassable()
     {
         return this->passable;
     }
 
-    void Parser::setPassable(std::shared_ptr<Passable> passable)
+    void Parser::setPassable(std::shared_ptr<HuwInterpreter::Passable> passable)
     {
         this->passable = passable;
     }
@@ -160,6 +180,11 @@ namespace HuwInterpreter {
         return false;
     }
 
+    bool Parser::isEmpty()
+    {
+        return tokens.empty() || !compilation || isEnd();
+    }
+
     std::string Parser::syntaxError(std::string content)
     {
         std::string errorMsg;
@@ -192,7 +217,7 @@ namespace HuwInterpreter {
         passable->getErrorManager()->add(passable->getErrorFactory()->syntaxError(currentToken, errorMsg));
     }
 
-    std::shared_ptr<Nodes::Node> Parser::createSemicolonNode(std::shared_ptr<Passable> passable, std::shared_ptr<Nodes::Node> node)
+    std::shared_ptr<Nodes::Node> Parser::createSemicolonNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Nodes::Node> node)
     {
         if (textMode)
         {
@@ -201,7 +226,7 @@ namespace HuwInterpreter {
         return node;
     }
 
-    std::shared_ptr<Nodes::Node> Parser::createBracketNode(std::shared_ptr<Passable> passable, std::shared_ptr<Nodes::Node> node)
+    std::shared_ptr<Nodes::Node> Parser::createBracketNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Nodes::Node> node)
     {
         if (textMode)
         {
@@ -212,7 +237,7 @@ namespace HuwInterpreter {
 
     std::shared_ptr<Nodes::Node> Parser::parseSquareBrackets(std::shared_ptr<Nodes::Node> node)
     {
-        if (!tokens.empty() && compilation && !isEnd() && currentToken->getType() == LEFTSQUAREBRACKET)
+        if (!isEmpty() && currentToken->getType() == LEFTSQUAREBRACKET)
         {
             std::vector<std::shared_ptr<Nodes::Node>> indexes;
 
@@ -220,7 +245,7 @@ namespace HuwInterpreter {
             while (accept(Types::LEFTSQUAREBRACKET))
             {
                 acceptIndentation();
-                indexes.push_back(std::move(parseBoolean()));
+                indexes.emplace_back(parseBoolean());
                 acceptIndentation();
 
                 if (!expect(RIGHTSQUAREBRACKET))
@@ -267,7 +292,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseValue()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation && !isEnd())
+        if (!isEmpty())
         {
             if (Helpers::TypeDetector::isNumeric(currentToken->getContent()))
             {
@@ -281,7 +306,7 @@ namespace HuwInterpreter {
                 std::string word = currentToken->getContent();
                 acceptIndentation();
                 std::shared_ptr<Tokens::Token> peak = peakToken();
-                if (peak != nullptr && peakToken()->getType() == Types::LEFTPARENTHESIS)
+                if (peak != nullptr && peak->getType() == Types::LEFTPARENTHESIS)
                 {
                     nextToken();
                     if (!expect(Types::LEFTPARENTHESIS))
@@ -294,7 +319,7 @@ namespace HuwInterpreter {
                         do
                         {
                             acceptIndentation();
-                            arguments.push_back(parseBoolean());
+                            arguments.emplace_back(parseBoolean());
                         }
                         while (accept(Types::COMMA) && !accept(Types::RIGHTPARENTHESIS) && !tokens.empty());
                     }
@@ -305,7 +330,13 @@ namespace HuwInterpreter {
                         return nullNode;
                     }
                     acceptIndentation();
+
+                    if (word == "import")
+                    {
+                        return parseSquareBrackets(std::make_shared<ImportNode>(passable, currentToken, word, this->functions, arguments));
+                    }
                     return parseSquareBrackets(nodeFactory->CreateGetFuncNode(passable, currentToken, word, functions, arguments));
+
                 }
                 else if (peak != nullptr && peakToken()->getType() == Types::LEFTSQUAREBRACKET)
                 {
@@ -337,7 +368,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseFactor()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation && !isEnd())
+        if (!isEmpty())
         {
             std::shared_ptr<Nodes::Node> value;
             if (currentToken->getType() == Types::LEFTPARENTHESIS)
@@ -378,7 +409,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseTerm()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation && !isEnd())
+        if (!isEmpty())
         {
             std::shared_ptr<Nodes::Node> node = parseFactor();
             acceptIndentation();
@@ -411,7 +442,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseExpression()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation && !isEnd())
+        if (!isEmpty())
         {
             std::shared_ptr<Nodes::Node> node = parseTerm();
             acceptIndentation();
@@ -439,7 +470,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseBitwiseLeftRight()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation && !isEnd())
+        if (!isEmpty())
         {
             std::shared_ptr<Nodes::Node> node = parseExpression();
             acceptIndentation();
@@ -467,7 +498,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseEqualAndEqualNot()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation && !isEnd())
+        if (!isEmpty())
         {
             std::shared_ptr<Nodes::Node> node = parseBitwiseLeftRight();
             if (node != nullptr)
@@ -500,7 +531,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseLessThanAndLessThanOrEqual()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation && !isEnd())
+        if (!isEmpty())
         {
             std::shared_ptr<Nodes::Node> node = parseEqualAndEqualNot();
             if (node != nullptr)
@@ -533,7 +564,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseGreaterThanAndGreaterThanOrEqual()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation && !isEnd())
+        if (!isEmpty())
         {
             std::shared_ptr<Nodes::Node> node = parseLessThanAndLessThanOrEqual();
             if (node != nullptr)
@@ -566,7 +597,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseBitwiseAnd()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation && !isEnd() && !isEnd())
+        if (!isEmpty() && !isEnd())
         {
             std::shared_ptr<Nodes::Node> node = parseGreaterThanAndGreaterThanOrEqual();
             Types::TokenType type = currentToken->getType();
@@ -586,7 +617,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseBitwiseXOr()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation && !isEnd())
+        if (!isEmpty())
         {
             std::shared_ptr<Nodes::Node> node = parseBitwiseAnd();
             Types::TokenType type = currentToken->getType();
@@ -606,7 +637,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseBitwiseOr()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation && !isEnd())
+        if (!isEmpty())
         {
             std::shared_ptr<Nodes::Node> node = parseBitwiseXOr();
             Types::TokenType type = currentToken->getType();
@@ -626,7 +657,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseAnd()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation && !isEnd())
+        if (!isEmpty())
         {
             std::shared_ptr<Nodes::Node> node = parseBitwiseOr();
             Types::TokenType type = currentToken->getType();
@@ -646,7 +677,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseOr()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation && !isEnd())
+        if (!isEmpty())
         {
             std::shared_ptr<Nodes::Node> node = parseAnd();
             Types::TokenType type = currentToken->getType();
@@ -1014,17 +1045,19 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseFunction()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation && !isEnd())
+        if (!isEmpty())
         {
             if (Helpers::TypeDetector::isWord(this->currentToken->getContent()) && peakToken() != nullptr && peakToken()->getType() == Types::LEFTPARENTHESIS)
             {
                 std::string word = this->currentToken->getContent();
-                if (functions->get(word) == nullptr)
+
+                /*if (functions->get(word) == nullptr && word != "import")
                 {
                     passable->getErrorManager()->add(passable->getErrorFactory()->functionNotDeclared(currentToken, word));
                     compilation = false;
                     return nullNode;
-                }
+                }*/
+
                 acceptIndentation();
                 nextToken();
                 acceptIndentation();
@@ -1038,7 +1071,7 @@ namespace HuwInterpreter {
                     do
                     {
                         acceptIndentation();
-                        arguments.push_back(parseBoolean());
+                        arguments.emplace_back(parseBoolean());
                         acceptIndentation();
                     }
                     while (accept(Types::COMMA) && !accept(Types::RIGHTPARENTHESIS) && !tokens.empty());
@@ -1052,8 +1085,17 @@ namespace HuwInterpreter {
                     return nullNode;
                 }
                 std::shared_ptr<Nodes::Node> blockNode = parseBlock();
-                std::shared_ptr<Nodes::Node> functions = createSemicolonNode(passable, nodeFactory->CreateGetFuncNode(passable, currentToken, word, this->functions, arguments));
-                return nodeFactory->CreateRunNode(passable, currentToken, (functions), blockNode);
+                std::shared_ptr<Nodes::Node> function;
+
+                if (word == "import")
+                {
+                    function = std::make_shared<ImportNode>(passable, currentToken, word, this->functions, arguments);
+                }
+                else
+                {
+                    function = createSemicolonNode(passable, nodeFactory->CreateGetFuncNode(passable, currentToken, word, this->functions, arguments));
+                }
+                return nodeFactory->CreateRunNode(passable, currentToken, (function), blockNode);
             }
         }
         return parseAssingment();
@@ -1062,7 +1104,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseStatement()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation && !isEnd())
+        if (!isEmpty())
         {
             acceptIndentation();
             if (accept("if"))
@@ -1124,7 +1166,7 @@ namespace HuwInterpreter {
     std::shared_ptr<Nodes::Node> Parser::parseBlock()
     {
         acceptIndentation();
-        if (!tokens.empty() && compilation && !isEnd())
+        if (!isEmpty())
         {
             if (accept("return"))
             {
@@ -1179,7 +1221,7 @@ namespace HuwInterpreter {
                     do
                     {
                         acceptIndentation();
-                        arguments.push_back(currentToken->getContent());
+                        arguments.emplace_back(currentToken->getContent());
                         nextToken();
                     }
                     while (accept(Types::COMMA) && !accept(Types::RIGHTPARENTHESIS) && !tokens.empty());
@@ -1224,7 +1266,7 @@ namespace HuwInterpreter {
 
     std::shared_ptr<Nodes::Node> Parser::parse()
     {
-        if (!tokens.empty() && compilation && !isEnd())
+        if (!isEmpty())
         {
             nextToken();
             return parseBlock();
@@ -1235,7 +1277,7 @@ namespace HuwInterpreter {
     std::string Parser::toString()
     {
         std::string output;
-        if (!tokens.empty() && compilation && !isEnd())
+        if (!isEmpty())
         {
             std::shared_ptr<Nodes::Node> node = parse();
             output.append(customFunctions->toString());
@@ -1249,13 +1291,18 @@ namespace HuwInterpreter {
 
     bool Parser::execute()
     {
-        std::shared_ptr<Variables::Scope> globalScope = std::make_unique<Variables::Scope>("Global scope", passable, true);
-        if (!tokens.empty() && compilation && !isEnd())
+        std::shared_ptr<Variables::Scope> scope = std::make_unique<Variables::Scope>("Global scope", passable, true);
+        return execute(scope);
+    }
+
+    bool Parser::execute(std::shared_ptr<Variables::Scope> scope)
+    {
+        if (!isEmpty())
         {
             std::shared_ptr<Nodes::Node> done = parse();
             if (done != nullptr && compilation)
             {
-                std::shared_ptr<Variables::Variable> output = done->execute(globalScope, globalScope);
+                std::shared_ptr<Variables::Variable> output = done->execute(scope, scope);
                 if (output != nullptr)
                 {
                     std::cout << output->toString() << std::endl;

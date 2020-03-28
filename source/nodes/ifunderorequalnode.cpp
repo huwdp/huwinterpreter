@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Nodes {
-        IfUnderOrEqualNode::IfUnderOrEqualNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> left, std::shared_ptr<Nodes::Node> right)
+        IfUnderOrEqualNode::IfUnderOrEqualNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> left, std::shared_ptr<Nodes::Node> right)
             : Node("IfUnderOrEqualNode", passable, token)
         {
             ErrorReporting::Debug::print(getName());
@@ -56,7 +56,7 @@ namespace HuwInterpreter {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
                     return nullVariable;
                 }
-                return std::move(l->ifUnderOrEqual(r, token));
+                return l->ifUnderOrEqual(r, token);
             }
             ErrorReporting::Debug::print("Could not compare.");
             return nullVariable;

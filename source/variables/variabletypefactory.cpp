@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Variables {
-        VariableTypeFactory::VariableTypeFactory(std::shared_ptr<Passable> passable)
+        VariableTypeFactory::VariableTypeFactory(std::shared_ptr<HuwInterpreter::Passable> passable)
         {
             this->passable = passable;
         }
@@ -27,15 +27,15 @@ namespace HuwInterpreter {
             std::shared_ptr<Variable> nullVariable;
             if (varType == Types::VarType::STRING)
             {
-                return std::move(std::make_shared<StringVariable>(passable));
+                return std::make_shared<StringVariable>(passable);
             }
             else if (varType == Types::VarType::INTEGER)
             {
-                return std::move(std::make_shared<DoubleVariable>(passable, (long long)0));
+                return std::make_shared<DoubleVariable>(passable, static_cast<long long>(0));
             }
             else if (varType == Types::VarType::DOUBLE)
             {
-                return std::move(std::make_shared<DoubleVariable>(passable, 0.0));
+                return std::make_shared<DoubleVariable>(passable, 0.0);
             }
             return nullVariable;
         }

@@ -17,14 +17,14 @@
 
 namespace HuwInterpreter {
     namespace Functions {
-        InStr::InStr(std::shared_ptr<Passable> passable)
+        InStr::InStr(std::shared_ptr<HuwInterpreter::Passable> passable)
             : Function(passable)
         {
             setName("inStr");
         }
 
-        std::shared_ptr<Variable> InStr::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Scope> globalScope,
-                                             std::shared_ptr<Scope> scope,
+        std::shared_ptr<Variable> InStr::execute(std::shared_ptr<Tokens::Token> token, std::shared_ptr<Variables::Scope> globalScope,
+                                             std::shared_ptr<Variables::Scope> scope,
                                              std::vector<std::shared_ptr<Nodes::Node>> arguments)
         {
             if (arguments.size() == 2)
@@ -51,7 +51,7 @@ namespace HuwInterpreter {
                 std::size_t found = str.find(str2);
                 if (found != std::string::npos)
                 {
-                    return std::make_shared<DoubleVariable>(passable, (long long)found);
+                    return std::make_shared<DoubleVariable>(passable, static_cast<long long>(found));
                 }
                 return std::make_shared<DoubleVariable>(passable, -1.0);
             }

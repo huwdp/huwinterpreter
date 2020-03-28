@@ -20,25 +20,25 @@ namespace HuwInterpreter {
 
 
 
-        HashTableVariable::HashTableVariable(std::shared_ptr<Passable> passable)
+        HashTableVariable::HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable)
             : Variable(passable)
         {
 
         }
 
-        HashTableVariable::HashTableVariable(std::shared_ptr<Passable> passable, std::string name)
+        HashTableVariable::HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::string name)
             : Variable(passable, std::move(name))
         {
 
         }
 
-        HashTableVariable::HashTableVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token)
+        HashTableVariable::HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token)
             : Variable(passable, token)
         {
 
         }
 
-        HashTableVariable::HashTableVariable(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name)
+        HashTableVariable::HashTableVariable(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token, std::string name)
             : Variable(passable, std::move(name), token)
         {
 
@@ -47,7 +47,7 @@ namespace HuwInterpreter {
         std::shared_ptr<Variable> HashTableVariable::getValue()
         {
             std::shared_ptr<HashTableVariable> map = std::make_shared<HashTableVariable>(passable);
-            for (std::unordered_map<std::string, std::shared_ptr<Variable>>::iterator it = this->map.begin(); it != this->map.end(); ++it)
+            for (std::map<std::string, std::shared_ptr<Variable>>::iterator it = this->map.begin(); it != this->map.end(); ++it)
             {
                 map->set((*it).first, (*it).second->clone(token), token);
             }
@@ -92,7 +92,7 @@ namespace HuwInterpreter {
         std::string HashTableVariable::toString()
         {
             std::string output = "[\n";
-            for (std::unordered_map<std::string, std::shared_ptr<Variable>>::iterator it = map.begin(); it != map.end(); ++it)
+            for (std::map<std::string, std::shared_ptr<Variable>>::iterator it = map.begin(); it != map.end(); ++it)
             {
                 output.append("\tKey: \"" + (*it).first + "\", Value: \"" + (*it).second->toString()+"\"\n");
             }
@@ -103,7 +103,7 @@ namespace HuwInterpreter {
         std::string HashTableVariable::toJSON()
         {
             std::string output;
-            std::unordered_map<std::string, std::shared_ptr<Variable>>::iterator it = map.begin();
+            std::map<std::string, std::shared_ptr<Variable>>::iterator it = map.begin();
 
             bool isHashTable = false;
             if (it == map.end())
@@ -139,7 +139,7 @@ namespace HuwInterpreter {
 
             // Below could be optimised also
             std::vector<std::tuple<std::string, std::shared_ptr<Variable>>> list;
-            for (std::unordered_map<std::string, std::shared_ptr<Variable>>::iterator it = map.begin(); it != map.end() ; ++it)
+            for (std::map<std::string, std::shared_ptr<Variable>>::iterator it = map.begin(); it != map.end() ; ++it)
             {
                 list.push_back(std::make_tuple((*it).first, (*it).second));
             }
@@ -326,7 +326,7 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            return std::move(std::make_shared<DoubleVariable>(passable, toString() == variable->toString()));
+            return std::make_shared<DoubleVariable>(passable, toString() == variable->toString());
         }
 
         std::shared_ptr<Variable> HashTableVariable::count(std::shared_ptr<Tokens::Token> token)
@@ -348,7 +348,7 @@ namespace HuwInterpreter {
 
         void HashTableVariable::set(std::string index, std::shared_ptr<Variable> value, std::shared_ptr<Tokens::Token> token)
         {
-            map[index] = std::move(value);
+            map[index] = value;
         }
 
         std::shared_ptr<Variable> HashTableVariable::get(std::string index, std::shared_ptr<Tokens::Token> token)
@@ -363,7 +363,7 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variable> HashTableVariable::clone(std::shared_ptr<Tokens::Token> token)
         {
-            return std::move(this->getValue());
+            return this->getValue();
         }
 
         std::shared_ptr<Variable> HashTableVariable::bitwiseAnd(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token)
@@ -400,6 +400,85 @@ namespace HuwInterpreter {
         {
             passable->getErrorManager()->add(passable->getErrorFactory()->cannotCallFunction(token, name, getType(), "rightShift", "Cannot rightShift array type"));
             return nullVariable;
+        }
+
+        bool compare(std::pair<std::string, std::shared_ptr<Variable>>& d1, std::pair<std::string, std::shared_ptr<Variable>>& d2)
+        {
+            if (d1.second == nullptr)
+            {
+                return false;
+            }
+            if (d2.second == nullptr)
+            {
+                return false;
+            }
+            std::shared_ptr<Variable> outcome = d1.second->ifUnder(d2.second, nullptr);
+            if (outcome == nullptr)
+            {
+                return false;
+            }
+            return outcome->toBool();
+        }
+
+        std::vector<std::pair<std::string, std::shared_ptr<Variable>>> HashTableVariable::toVector()
+        {
+            std::vector<std::pair<std::string, std::shared_ptr<Variable>>> list;
+
+
+            for (std::map<std::string, std::shared_ptr<Variable>>::iterator it = map.begin(); it != map.end(); ++it)
+            {
+                list.push_back((*it));
+            }
+            return list;
+        }
+
+        std::shared_ptr<Variable> HashTableVariable::sort()
+        {
+            std::vector<std::pair<std::string, std::shared_ptr<Variable>>> list = toVector();
+
+            // Assume keys are in correct order and do an insertion sort
+            for (std::vector<std::pair<std::string, std::shared_ptr<Variable>>>::iterator it = list.begin(); it != list.end()-1; ++it)
+            {
+                auto jt = it;
+                while (jt != list.begin())
+                {
+                    auto item1 = jt->second;
+                    ++jt;
+                    auto item2 = jt->second;
+                    jt--;
+                    auto result = item1->ifOver(item2,nullptr);
+                    if (result != nullptr && result->toBool())
+                    {
+                        jt->second = item2;
+                        jt++;
+                        jt->second = item1;
+                        jt--;
+                    }
+                    --jt;
+                }
+                if (jt == list.begin())
+                {
+                    auto item1 = jt->second;
+                    ++jt;
+                    auto item2 = jt->second;
+                    jt--;
+                    auto result = item1->ifOver(item2,nullptr);
+                    if (result != nullptr && result->toBool())
+                    {
+                        jt->second = item2;
+                        jt++;
+                        jt->second = item1;
+                        jt--;
+                    }
+                }
+            }
+
+            std::shared_ptr<Variable> newMap = std::make_shared<HashTableVariable>(passable);
+            for (std::vector<std::pair<std::string, std::shared_ptr<Variable>>>::iterator it = list.begin(); it != list.end(); ++it)
+            {
+                newMap->set(it->first, it->second, nullptr);
+            }
+            return newMap;
         }
     }
 }

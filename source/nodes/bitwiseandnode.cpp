@@ -17,7 +17,7 @@
 
 namespace HuwInterpreter {
     namespace Nodes {
-        BitwiseAndNode::BitwiseAndNode(std::shared_ptr<Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> left, std::shared_ptr<Nodes::Node> right)
+        BitwiseAndNode::BitwiseAndNode(std::shared_ptr<HuwInterpreter::Passable> passable, std::shared_ptr<Tokens::Token> token, std::shared_ptr<Nodes::Node> left, std::shared_ptr<Nodes::Node> right)
             : Node("BitwiseAndNode", passable, token)
         {
             ErrorReporting::Debug::print(getName());
@@ -55,7 +55,7 @@ namespace HuwInterpreter {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidExpression(RUNTIME_ERROR, token, internalName));
                     return nullVariable;
                 }
-                return std::move(l->bitwiseAnd(r, token));
+                return l->bitwiseAnd(r, token);
             }
             ErrorReporting::Debug::print("Could not bitwiseAnd");
             return nullVariable;
