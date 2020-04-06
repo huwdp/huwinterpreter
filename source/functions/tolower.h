@@ -25,6 +25,7 @@ namespace HuwInterpreter {
         {
         public:
             ToLower(std::shared_ptr<HuwInterpreter::Passable> passable);
+            virtual ~ToLower() {}
             std::shared_ptr<Variable> execute(std::shared_ptr<Tokens::Token> token,
                                           std::shared_ptr<Variables::Scope> globalScope,
                                           std::shared_ptr<Variables::Scope> scope,
