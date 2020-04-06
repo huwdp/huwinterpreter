@@ -33,6 +33,8 @@ namespace HuwInterpreter {
             void init();
             std::string get(Types::TokenType value);
             Types::TokenType get(std::string value);
+            bool fastCompare(std::string value, Types::TokenType token);
+            bool fastCompare(char value, Types::TokenType token);
             bool compare(std::string value1, Types::TokenType value);
             bool compare(char value1, Types::TokenType value);
             bool exists(Types::TokenType value);
