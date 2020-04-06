@@ -71,6 +71,8 @@ namespace HuwInterpreter {
 
         Types::TokenType TokenList::get(std::string value)
         {
+
+
             for (std::unordered_map<ushort, std::string>::iterator it = types.begin(); it != types.end(); ++it)
             {
                 if (it->second == value)
