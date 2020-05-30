@@ -13,6 +13,8 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifdef EMSCRIPTEN
+#else
 #ifndef HTTPDELETEFUNCTION_H
 #define HTTPDELETEFUNCTION_H
 
@@ -38,3 +40,4 @@ namespace HuwInterpreter {
 }
 
 #endif // HTTPDELETEFUNCTION_H
+#endif

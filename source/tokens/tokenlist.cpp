@@ -73,7 +73,7 @@ namespace HuwInterpreter {
         {
 
 
-            for (std::unordered_map<ushort, std::string>::iterator it = types.begin(); it != types.end(); ++it)
+            for (std::unordered_map<short, std::string>::iterator it = types.begin(); it != types.end(); ++it)
             {
                 if (it->second == value)
                 {
@@ -159,7 +159,7 @@ namespace HuwInterpreter {
 
         bool TokenList::compare(std::string value1, Types::TokenType value)
         {
-            std::unordered_map<ushort, std::string>::const_iterator got = types.find(value);
+            std::unordered_map<short, std::string>::const_iterator got = types.find(value);
             if (got != types.end())
             {
                 if (got->second == value1)
@@ -187,7 +187,7 @@ namespace HuwInterpreter {
         bool TokenList::exists(std::string value)
         {
             return std::find_if(types.begin(), types.end(),
-                [value](const std::unordered_map<ushort, std::string>::value_type& item) { return item.second == value; }) != types.end();
+                [value](const std::unordered_map<short, std::string>::value_type& item) { return item.second == value; }) != types.end();
         }
 
         void TokenList::add(std::string text, Types::TokenType tokenType)

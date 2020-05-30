@@ -96,11 +96,14 @@ namespace Functions {
         functions["unref"] = std::make_shared<UnrefFunction>(passable);
         functions["clock"] = std::make_shared<ClockFunction>(passable);
         functions["timeFormat"] = std::make_shared<TimeFormatFunction>(passable);
+#ifdef EMSCRIPTEN
+#else
         functions["httpGet"] = std::make_shared<HttpGetFunction>(passable);
         functions["httpPost"] = std::make_shared<HttpPostFunction>(passable);
         functions["httpPut"] = std::make_shared<HttpPutFunction>(passable);
         functions["httpDelete"] = std::make_shared<HttpDeleteFunction>(passable);
         functions["httpHead"] = std::make_shared<HttpHeadFunction>(passable);
+#endif
         functions["sleep"] = std::make_shared<SleepFunction>(passable);
         functions["jsonEncode"] = std::make_shared<JSONEncodeFunction>(passable);
         functions["jsonDecode"] = std::make_shared<JSONDecodeFunction>(passable);

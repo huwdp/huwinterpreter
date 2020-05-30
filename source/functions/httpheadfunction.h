@@ -13,7 +13,8 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
+#ifdef EMSCRIPTEN
+#else
 #ifndef HTTPHEADFUNCTION_H
 #define HTTPHEADFUNCTION_H
 
@@ -39,3 +40,4 @@ namespace HuwInterpreter {
 }
 
 #endif // HTTPHEADFUNCTION_H
+#endif

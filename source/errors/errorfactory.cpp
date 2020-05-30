@@ -45,7 +45,7 @@ namespace HuwInterpreter {
             return std::make_shared<Error>(FUNCTION_ERROR, "Out of range in '" + name + "'. " + other, token);
         }
 
-        std::shared_ptr<Error> ErrorFactory::requiresArguments(std::shared_ptr<Token> token, std::string name, std::string method, ulong arguments)
+        std::shared_ptr<Error> ErrorFactory::requiresArguments(std::shared_ptr<Token> token, std::string name, std::string method, long arguments)
         {
             return std::make_shared<Error>(FUNCTION_ERROR, "'" + name + "' function requires " + std::to_string(arguments) + " argument", token);
         }
@@ -55,7 +55,7 @@ namespace HuwInterpreter {
             return std::make_shared<Error>(FUNCTION_ERROR, varName + " variable is not an array" + " in '" + funcName + "'", token);
         }
 
-        std::shared_ptr<Error> ErrorFactory::requiresAtLeastXArguments(std::shared_ptr<Token> token, std::string name, ulong arguments)
+        std::shared_ptr<Error> ErrorFactory::requiresAtLeastXArguments(std::shared_ptr<Token> token, std::string name, long arguments)
         {
             return std::make_shared<Error>(FUNCTION_ERROR, "'" + name + "' function requires " + std::to_string(arguments) + " argument", token);
         }

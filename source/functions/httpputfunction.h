@@ -12,8 +12,8 @@
     You should have received a copy of the GNU General Public License
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-
+#ifdef EMSCRIPTEN
+#else
 #ifndef HTTPPUTFUNCTION_H
 #define HTTPPUTFUNCTION_H
 
@@ -39,3 +39,5 @@ namespace HuwInterpreter {
 }
 
 #endif // HTTPPUTFUNCTION_H
+
+#endif

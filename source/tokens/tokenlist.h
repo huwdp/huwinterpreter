@@ -27,7 +27,7 @@ namespace HuwInterpreter {
         class TokenList
         {
         private:
-            std::unordered_map<ushort, std::string> types;
+            std::unordered_map<short, std::string> types;
         public:
             TokenList();
             void init();
