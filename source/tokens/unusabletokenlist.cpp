@@ -67,6 +67,50 @@ namespace HuwInterpreter {
             items.emplace_back(Types::RIGHTSQUAREBRACKET);
         }
 
+        bool UnusableTokenList::fastTokenExists(Types::TokenType tokenType)
+        {
+            if (tokenType == Types::RIGHTPARENTHESIS) { return true; }
+            if (tokenType == Types::LEFTPARENTHESIS) { return true; }
+            if (tokenType == Types::MULTIPLICATION) { return true; }
+            if (tokenType == Types::DIVISION) { return true; }
+            if (tokenType == Types::SUBTRACTION) { return true; }
+            if (tokenType == Types::MOD) { return true; }
+            if (tokenType == Types::EQUALS) { return true; }
+            if (tokenType == Types::IFEQUALS) { return true; }
+            if (tokenType == Types::IFNOTEQUALS) { return true; }
+            if (tokenType == Types::IFLESSTHAN) { return true; }
+            if (tokenType == Types::IFLESSTHANOREQUAL) { return true; }
+            if (tokenType == Types::IFGREATER) { return true; }
+            if (tokenType == Types::IFGREATERTHANOREQUAL) { return true; }
+            if (tokenType == Types::LEFTBRACKET) { return true; }
+            if (tokenType == Types::RIGHTBRACKET) { return true; }
+            if (tokenType == Types::SEMICOLON) { return true; }
+            if (tokenType == Types::COMMA) { return true; }
+            if (tokenType == Types::QUOTE) { return true; }
+            if (tokenType == Types::NOT) { return true; }
+            if (tokenType == Types::LEFTPARENTHESIS) { return true; }
+            if (tokenType == Types::MULTIPLICATION) { return true; }
+            if (tokenType == Types::DIVISION) { return true; }
+            if (tokenType == Types::ADDITION) { return true; }
+            if (tokenType == Types::AND) { return true; }
+            if (tokenType == Types::OR) { return true; }
+            if (tokenType == Types::BITWISEAND) { return true; }
+            if (tokenType == Types::BITWISEOR) { return true; }
+            if (tokenType == Types::BITWISEXOR) { return true; }
+            if (tokenType == Types::DOT) { return true; }
+            if (tokenType == Types::MULTIPLICATIONEQUAL) { return true; }
+            if (tokenType == Types::DIVISIONEQUAL) { return true; }
+            if (tokenType == Types::ADDITIONEQUAL) { return true; }
+            if (tokenType == Types::SUBTRACTIONEQUAL) { return true; }
+            if (tokenType == Types::INCREMENT) { return true; }
+            if (tokenType == Types::DECREMENT) { return true; }
+            if (tokenType == Types::BITWISECOMPLEMENT) { return true; }
+            if (tokenType == Types::LEFTSHIFT) { return true; }
+            if (tokenType == Types::LEFTSQUAREBRACKET) { return true; }
+            if (tokenType == Types::RIGHTSQUAREBRACKET) { return true; }
+            return tokenExists(tokenType);
+        }
+
         bool UnusableTokenList::tokenExists(Types::TokenType tokenType)
         {
             for (std::vector<Types::TokenType>::iterator it = items.begin(); it != items.end(); ++it)
@@ -81,11 +125,74 @@ namespace HuwInterpreter {
 
         bool UnusableTokenList::exists(std::string value)
         {
+            // Optimisation so we skip hashtable lookup.
+            if (value == ")") { return true; }
+            if (value == "(") { return true; }
+            if (value == "*") { return true; }
+            if (value == "/") { return true; }
+            if (value == "-") { return true; }
+            if (value == "%") { return true; }
+            if (value == "=") { return true; }
+            if (value == "==") { return true; }
+            if (value == "!=") { return true; }
+            if (value == "<") { return true; }
+            if (value == "<=") { return true; }
+            if (value == ">") { return true; }
+            if (value == ">=") { return true; }
+            if (value == "{") { return true; }
+            if (value == "}") { return true; }
+            if (value == ";") { return true; }
+            if (value == ",") { return true; }
+            if (value == "\"") { return true; }
+            if (value == ".") { return true; }
+            if (value == "!") { return true; }
+            if (value == "+") { return true; }
+            if (value == "&") { return true; }
+            if (value == "|") { return true; }
+            if (value == "&&") { return true; }
+            if (value == "||") { return true; }
+            if (value == "*=") { return true; }
+            if (value == "/=") { return true; }
+            if (value == "+=") { return true; }
+            if (value == "-=") { return true; }
+            if (value == "++") { return true; }
+            if (value == "--") { return true; }
+            if (value == "\t") { return true; }
+            if (value == " ") { return true; }
+            if (value == "^") { return true; }
+            if (value == "~") { return true; }
+            if (value == "[") { return true; }
+            if (value == "]") { return true; }
             return tokenExists(tokenManager->get(value));
         }
 
         bool UnusableTokenList::exists(char value)
         {
+            // Optimisation so we skip hashtable lookup.
+            if (value == ')') { return true; }
+            if (value == '(') { return true; }
+            if (value == '*') { return true; }
+            if (value == '/') { return true; }
+            if (value == '-') { return true; }
+            if (value == '%') { return true; }
+            if (value == '=') { return true; }
+            if (value == '<') { return true; }
+            if (value == '>') { return true; }
+            if (value == '{') { return true; }
+            if (value == '}') { return true; }
+            if (value == ';') { return true; }
+            if (value == ',') { return true; }
+            if (value == '\'') { return true; }
+            if (value == '.') { return true; }
+            if (value == '!') { return true; }
+            if (value == '+') { return true; }
+            if (value == '&') { return true; }
+            if (value == '|') { return true; }
+            if (value == ' ') { return true; }
+            if (value == '^') { return true; }
+            if (value == '~') { return true; }
+            if (value == '[') { return true; }
+            if (value == ']') { return true; }
             std::stringstream ss;
             std::string temp;
             ss << value;

@@ -13,7 +13,8 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
+#ifdef EMSCRIPTEN
+#else
 #include "httppostfunction.h"
 
 namespace HuwInterpreter {
@@ -117,3 +118,4 @@ namespace HuwInterpreter {
         }
     }
 }
+#endif

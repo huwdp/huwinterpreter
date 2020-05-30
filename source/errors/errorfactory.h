@@ -34,9 +34,9 @@ namespace HuwInterpreter {
             std::shared_ptr<Error> invalidArgument(std::shared_ptr<Token> token, ErrorTypes errorTypes, std::string name, std::string other);
             std::shared_ptr<Error> invalidArgument(std::shared_ptr<Token> token, ErrorTypes errorTypes, std::string name);
             std::shared_ptr<Error> outOfRange(std::shared_ptr<Token> token, std::string name, std::string other);
-            std::shared_ptr<Error> requiresArguments(std::shared_ptr<Token> token, std::string name, std::string method, ulong arguments);
+            std::shared_ptr<Error> requiresArguments(std::shared_ptr<Token> token, std::string name, std::string method, long arguments);
             std::shared_ptr<Error> firstParameterIsNotTypeOfArray(std::shared_ptr<Token> token, std::string varName, std::string funcName);
-            std::shared_ptr<Error> requiresAtLeastXArguments(std::shared_ptr<Token> token, std::string name, ulong arguments);
+            std::shared_ptr<Error> requiresAtLeastXArguments(std::shared_ptr<Token> token, std::string name, long arguments);
             std::shared_ptr<Error> couldNotParseTime(std::shared_ptr<Token> token, std::string name);
             std::shared_ptr<Error> functionNotDeclared(std::shared_ptr<Token> token, std::string name);
             std::shared_ptr<Error> invalidExpression(ErrorTypes errorTypes, std::shared_ptr<Token> token, std::string name);

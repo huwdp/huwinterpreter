@@ -12,8 +12,8 @@
     You should have received a copy of the GNU General Public License
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-
+#ifdef EMSCRIPTEN
+#else
 #ifndef HTTPPUTFUNCTION_H
 #define HTTPPUTFUNCTION_H
 
@@ -29,6 +29,7 @@ namespace HuwInterpreter {
         {
         public:
             HttpPutFunction(std::shared_ptr<HuwInterpreter::Passable> passable);
+            virtual ~HttpPutFunction() {}
             std::shared_ptr<Variable> execute(std::shared_ptr<Tokens::Token> token,
                                           std::shared_ptr<Variables::Scope> globalScope,
                                           std::shared_ptr<Variables::Scope> scope,
@@ -38,3 +39,5 @@ namespace HuwInterpreter {
 }
 
 #endif // HTTPPUTFUNCTION_H
+
+#endif

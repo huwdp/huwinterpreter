@@ -35,6 +35,7 @@ namespace HuwInterpreter {
             UnusableTokenList();
             void init();
             bool tokenExists(Types::TokenType tokenType);
+            bool fastTokenExists(Types::TokenType tokenType);
             bool exists(std::string value);
             bool exists(char value);
             void add(Types::TokenType tokenType);

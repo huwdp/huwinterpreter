@@ -13,6 +13,8 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifdef EMSCRIPTEN
+#else
 #ifndef HTTPDELETEFUNCTION_H
 #define HTTPDELETEFUNCTION_H
 
@@ -28,6 +30,7 @@ namespace HuwInterpreter {
         {
         public:
             HttpDeleteFunction(std::shared_ptr<HuwInterpreter::Passable> passable);
+            virtual ~HttpDeleteFunction() {}
             std::shared_ptr<Variable> execute(std::shared_ptr<Tokens::Token> token,
                                           std::shared_ptr<Variables::Scope> globalScope,
                                           std::shared_ptr<Variables::Scope> scope,
@@ -37,3 +40,4 @@ namespace HuwInterpreter {
 }
 
 #endif // HTTPDELETEFUNCTION_H
+#endif

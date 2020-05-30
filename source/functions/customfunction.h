@@ -32,6 +32,7 @@ namespace HuwInterpreter {
                            std::string name,
                            std::vector<std::string> arguments,
                            std::shared_ptr<Nodes::Node> block);
+            virtual ~CustomFunction() {}
             std::shared_ptr<Variable> execute(std::shared_ptr<Tokens::Token> token,
                                           std::shared_ptr<Variables::Scope> globalScope,
                                           std::shared_ptr<Variables::Scope> scope,

@@ -27,12 +27,14 @@ namespace HuwInterpreter {
         class TokenList
         {
         private:
-            std::unordered_map<ushort, std::string> types;
+            std::unordered_map<short, std::string> types;
         public:
             TokenList();
             void init();
             std::string get(Types::TokenType value);
             Types::TokenType get(std::string value);
+            bool fastCompare(std::string value, Types::TokenType token);
+            bool fastCompare(char value, Types::TokenType token);
             bool compare(std::string value1, Types::TokenType value);
             bool compare(char value1, Types::TokenType value);
             bool exists(Types::TokenType value);

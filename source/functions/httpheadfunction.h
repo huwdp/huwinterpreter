@@ -13,7 +13,8 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
+#ifdef EMSCRIPTEN
+#else
 #ifndef HTTPHEADFUNCTION_H
 #define HTTPHEADFUNCTION_H
 
@@ -29,6 +30,7 @@ namespace HuwInterpreter {
         {
         public:
             HttpHeadFunction(std::shared_ptr<HuwInterpreter::Passable> passable);
+            virtual ~HttpHeadFunction() {}
             std::shared_ptr<Variable> execute(std::shared_ptr<Tokens::Token> token,
                                           std::shared_ptr<Variables::Scope> globalScope,
                                           std::shared_ptr<Variables::Scope> scope,
@@ -38,3 +40,4 @@ namespace HuwInterpreter {
 }
 
 #endif // HTTPHEADFUNCTION_H
+#endif

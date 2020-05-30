@@ -71,7 +71,9 @@ namespace HuwInterpreter {
 
         Types::TokenType TokenList::get(std::string value)
         {
-            for (std::unordered_map<ushort, std::string>::iterator it = types.begin(); it != types.end(); ++it)
+
+
+            for (std::unordered_map<short, std::string>::iterator it = types.begin(); it != types.end(); ++it)
             {
                 if (it->second == value)
                 {
@@ -81,9 +83,83 @@ namespace HuwInterpreter {
             return Types::WORD;
         }
 
+        bool TokenList::fastCompare(std::string value, Types::TokenType token)
+        {
+            // Optimisation so we skip hashtable lookup.
+            if (value == ")" && token == Types::TokenType::RIGHTPARENTHESIS) { return true; }
+            if (value == "(" && token == Types::TokenType::LEFTPARENTHESIS) { return true; }
+            if (value == "*" && token == Types::TokenType::MULTIPLICATION) { return true; }
+            if (value == "/" && token == Types::TokenType::DIVISION) { return true; }
+            if (value == "-" && token == Types::TokenType::SUBTRACTION) { return true; }
+            if (value == "%" && token == Types::TokenType::MOD) { return true; }
+            if (value == "=" && token == Types::TokenType::EQUALS) { return true; }
+            if (value == "==" && token == Types::TokenType::IFEQUALS) { return true; }
+            if (value == "!=" && token == Types::TokenType::IFNOTEQUALS) { return true; }
+            if (value == "<" && token == Types::TokenType::IFLESSTHAN) { return true; }
+            if (value == "<=" && token == Types::TokenType::IFLESSTHANOREQUAL) { return true; }
+            if (value == ">" && token == Types::TokenType::IFGREATER) { return true; }
+            if (value == ">=" && token == Types::TokenType::IFGREATERTHANOREQUAL) { return true; }
+            if (value == "{" && token == Types::TokenType::LEFTBRACKET) { return true; }
+            if (value == "}" && token == Types::TokenType::RIGHTBRACKET) { return true; }
+            if (value == ";" && token == Types::TokenType::SEMICOLON) { return true; }
+            if (value == "," && token == Types::TokenType::COMMA) { return true; }
+            if (value == "\"" && token == Types::TokenType::QUOTE) { return true; }
+            if (value == "." && token == Types::TokenType::DOT) { return true; }
+            if (value == "!" && token == Types::TokenType::NOT) { return true; }
+            if (value == "+" && token == Types::TokenType::ADDITION) { return true; }
+            if (value == "&" && token == Types::TokenType::BITWISEAND) { return true; }
+            if (value == "|" && token == Types::TokenType::BITWISEOR) { return true; }
+            if (value == "&&" && token == Types::TokenType::AND) { return true; }
+            if (value == "||" && token == Types::TokenType::OR) { return true; }
+            if (value == "*=" && token == Types::TokenType::MULTIPLICATIONEQUAL) { return true; }
+            if (value == "/=" && token == Types::TokenType::DIVISIONEQUAL) { return true; }
+            if (value == "+=" && token == Types::TokenType::ADDITIONEQUAL) { return true; }
+            if (value == "-=" && token == Types::TokenType::SUBTRACTIONEQUAL) { return true; }
+            if (value == "++" && token == Types::TokenType::INCREMENT) { return true; }
+            if (value == "--" && token == Types::TokenType::DECREMENT) { return true; }
+            if (value == "\t" && token == Types::TokenType::TABINDENTATION) { return true; }
+            if (value == " " && token == Types::TokenType::INDENTATION) { return true; }
+            if (value == "^" && token == Types::TokenType::BITWISEXOR) { return true; }
+            if (value == "~" && token == Types::TokenType::BITWISECOMPLEMENT) { return true; }
+            if (value == "[" && token == Types::TokenType::LEFTSQUAREBRACKET) { return true; }
+            if (value == "]" && token == Types::TokenType::RIGHTSQUAREBRACKET) { return true; }
+            return compare(value, token);
+        }
+
+        bool TokenList::fastCompare(char value, Types::TokenType token)
+        {
+            // Optimisation so we skip hashtable lookup.
+            if (value == ')' && token == Types::TokenType::RIGHTPARENTHESIS) { return true; }
+            if (value == '(' && token == Types::TokenType::LEFTPARENTHESIS) { return true; }
+            if (value == '*' && token == Types::TokenType::MULTIPLICATION) { return true; }
+            if (value == '/' && token == Types::TokenType::DIVISION) { return true; }
+            if (value == '-' && token == Types::TokenType::SUBTRACTION) { return true; }
+            if (value == '%' && token == Types::TokenType::MOD) { return true; }
+            if (value == '=' && token == Types::TokenType::EQUALS) { return true; }
+            if (value == '<' && token == Types::TokenType::IFLESSTHAN) { return true; }
+            if (value == '>' && token == Types::TokenType::IFGREATER) { return true; }
+            if (value == '{' && token == Types::TokenType::LEFTBRACKET) { return true; }
+            if (value == '}' && token == Types::TokenType::RIGHTBRACKET) { return true; }
+            if (value == ';' && token == Types::TokenType::SEMICOLON) { return true; }
+            if (value == ',' && token == Types::TokenType::COMMA) { return true; }
+            if (value == '\'' && token == Types::TokenType::QUOTE) { return true; }
+            if (value == '.' && token == Types::TokenType::DOT) { return true; }
+            if (value == '!' && token == Types::TokenType::NOT) { return true; }
+            if (value == '+' && token == Types::TokenType::ADDITION) { return true; }
+            if (value == '&' && token == Types::TokenType::BITWISEAND) { return true; }
+            if (value == '|' && token == Types::TokenType::BITWISEOR) { return true; }
+            if (value == '\t' && token == Types::TokenType::TABINDENTATION) { return true; }
+            if (value == ' ' && token == Types::TokenType::INDENTATION) { return true; }
+            if (value == '^' && token == Types::TokenType::BITWISEXOR) { return true; }
+            if (value == '~' && token == Types::TokenType::BITWISECOMPLEMENT) { return true; }
+            if (value == '[' && token == Types::TokenType::LEFTSQUAREBRACKET) { return true; }
+            if (value == ']' && token == Types::TokenType::RIGHTSQUAREBRACKET) { return true; }
+            return compare(value, token);
+        }
+
         bool TokenList::compare(std::string value1, Types::TokenType value)
         {
-            std::unordered_map<ushort, std::string>::const_iterator got = types.find(value);
+            std::unordered_map<short, std::string>::const_iterator got = types.find(value);
             if (got != types.end())
             {
                 if (got->second == value1)
@@ -111,7 +187,7 @@ namespace HuwInterpreter {
         bool TokenList::exists(std::string value)
         {
             return std::find_if(types.begin(), types.end(),
-                [value](const std::unordered_map<ushort, std::string>::value_type& item) { return item.second == value; }) != types.end();
+                [value](const std::unordered_map<short, std::string>::value_type& item) { return item.second == value; }) != types.end();
         }
 
         void TokenList::add(std::string text, Types::TokenType tokenType)

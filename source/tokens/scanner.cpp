@@ -49,7 +49,7 @@ namespace HuwInterpreter {
             items.emplace_back(std::make_shared<Token>(text , tokenType, lineInfo));
         }
 
-        std::vector<std::shared_ptr<Token>> Scanner::tokenize(std::shared_ptr<TokenManager2> fileReader)
+        std::vector<std::shared_ptr<Token>> Scanner::tokenize(std::shared_ptr<TokenManager> fileReader)
         {
             items.clear();
             std::string temp = "";
@@ -74,15 +74,15 @@ namespace HuwInterpreter {
                 {
                     // Do nothing here as recording indentation is kinda pointless.
                 }
-                else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::INDENTATION))
+                else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::INDENTATION))
                 {}
-                else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::TABINDENTATION))
+                else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::TABINDENTATION))
                 {}
                 else if (Helpers::TypeDetector::isNumeric(fileReader->getCurrent()->getContent()))
                 {
                     temp.push_back(fileReader->getCurrent()->getContent());
                 }
-                else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::DOT))
+                else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::DOT))
                 {
                     temp.push_back(fileReader->getCurrent()->getContent());
                 }
@@ -97,11 +97,11 @@ namespace HuwInterpreter {
                         items.emplace_back(std::make_shared<Token>(temp, lineInfo));
                         temp = "";
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::QUOTE))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::QUOTE))
                     {
                         fileReader->next();
 
-                        while (!fileReader->isEnd() && !tokenManager->compare(fileReader->getCurrent()->getContent(), Types::QUOTE))
+                        while (!fileReader->isEnd() && !tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::QUOTE))
                         {
                             if (fileReader->isEnd())
                             {
@@ -113,7 +113,7 @@ namespace HuwInterpreter {
                             {
                                 if (!fileReader->isEnd())
                                 {
-                                    if (tokenManager->compare(fileReader->getNext()->getContent(), Types::QUOTE))
+                                    if (tokenManager->fastCompare(fileReader->getNext()->getContent(), Types::QUOTE))
                                     {
                                         temp.push_back(fileReader->getCurrent()->getContent());
                                         fileReader->next();
@@ -152,21 +152,21 @@ namespace HuwInterpreter {
                         break;
                     }
 
-                    if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::LEFTPARENTHESIS))
+                    if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::LEFTPARENTHESIS))
                     {
                         AddToken(Types::LEFTPARENTHESIS, lineInfo);
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::RIGHTPARENTHESIS))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::RIGHTPARENTHESIS))
                     {
                         AddToken(Types::RIGHTPARENTHESIS, lineInfo);
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::SEMICOLON))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::SEMICOLON))
                     {
                         AddToken(Types::SEMICOLON, lineInfo);
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::MULTIPLICATION))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::MULTIPLICATION))
                     {
-                        if (tokenManager->compare(fileReader->peak()->getContent(), Types::EQUALS))
+                        if (tokenManager->fastCompare(fileReader->peak()->getContent(), Types::EQUALS))
                         {
                             fileReader->next();
                             AddToken(Types::MULTIPLICATIONEQUAL, lineInfo);
@@ -176,9 +176,9 @@ namespace HuwInterpreter {
                             AddToken(Types::MULTIPLICATION, lineInfo);
                         }
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::DIVISION))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::DIVISION))
                     {
-                        if (tokenManager->compare(fileReader->peak()->getContent(), Types::MULTIPLICATION))
+                        if (tokenManager->fastCompare(fileReader->peak()->getContent(), Types::MULTIPLICATION))
                         {
                             fileReader->next();
                             while (!fileReader->isEnd() && fileReader->getCurrent()->getContent() != '\n')
@@ -203,7 +203,7 @@ namespace HuwInterpreter {
                         }
                         else
                         {
-                            if (tokenManager->compare(fileReader->peak()->getContent(), Types::EQUALS))
+                            if (tokenManager->fastCompare(fileReader->peak()->getContent(), Types::EQUALS))
                             {
                                 fileReader->next();
                                 AddToken(Types::DIVISIONEQUAL, lineInfo);
@@ -214,18 +214,18 @@ namespace HuwInterpreter {
                             }
                         }
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::MOD))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::MOD))
                     {
                         AddToken(Types::MOD, lineInfo);
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::ADDITION))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::ADDITION))
                     {
-                        if (tokenManager->compare(fileReader->peak()->getContent(), Types::EQUALS))
+                        if (tokenManager->fastCompare(fileReader->peak()->getContent(), Types::EQUALS))
                         {
                             fileReader->next();
                             AddToken(Types::ADDITIONEQUAL, lineInfo);
                         }
-                        else if (tokenManager->compare(fileReader->peak()->getContent(), Types::ADDITION))
+                        else if (tokenManager->fastCompare(fileReader->peak()->getContent(), Types::ADDITION))
                         {
                             fileReader->next();
                             AddToken(Types::INCREMENT, lineInfo);
@@ -235,14 +235,14 @@ namespace HuwInterpreter {
                             AddToken(Types::ADDITION, lineInfo);
                         }
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::SUBTRACTION))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::SUBTRACTION))
                     {
-                        if (tokenManager->compare(fileReader->peak()->getContent(), Types::EQUALS))
+                        if (tokenManager->fastCompare(fileReader->peak()->getContent(), Types::EQUALS))
                         {
                             fileReader->next();
                             AddToken(Types::SUBTRACTIONEQUAL, lineInfo);
                         }
-                        else if (tokenManager->compare(fileReader->peak()->getContent(), Types::SUBTRACTION))
+                        else if (tokenManager->fastCompare(fileReader->peak()->getContent(), Types::SUBTRACTION))
                         {
                             fileReader->next();
                             AddToken(Types::DECREMENT, lineInfo);
@@ -252,11 +252,11 @@ namespace HuwInterpreter {
                             AddToken(Types::SUBTRACTION, lineInfo);
                         }
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::EQUALS))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::EQUALS))
                     {
                         if (!fileReader->isEnd())
                         {
-                            if (tokenManager->compare(fileReader->getNext()->getContent(), Types::EQUALS))
+                            if (tokenManager->fastCompare(fileReader->getNext()->getContent(), Types::EQUALS))
                             {
                                 AddToken(Types::IFEQUALS, lineInfo);
                             }
@@ -271,11 +271,11 @@ namespace HuwInterpreter {
                             AddToken(Types::EQUALS, lineInfo);
                         }
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::BITWISEAND))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::BITWISEAND))
                     {
                         if (!fileReader->isEnd())
                         {
-                            if (tokenManager->compare(fileReader->getNext()->getContent(), Types::BITWISEAND))
+                            if (tokenManager->fastCompare(fileReader->getNext()->getContent(), Types::BITWISEAND))
                             {
                                 AddToken(Types::AND, lineInfo);
                             }
@@ -286,11 +286,11 @@ namespace HuwInterpreter {
                             }
                         }
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::BITWISEOR))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::BITWISEOR))
                     {
                         if (!fileReader->isEnd())
                         {
-                            if (tokenManager->compare(fileReader->getNext()->getContent(), Types::BITWISEOR))
+                            if (tokenManager->fastCompare(fileReader->getNext()->getContent(), Types::BITWISEOR))
                             {
                                 AddToken(Types::OR, lineInfo);
                             }
@@ -301,15 +301,15 @@ namespace HuwInterpreter {
                             }
                         }
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::BITWISEXOR))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::BITWISEXOR))
                     {
                         AddToken(Types::BITWISEXOR, lineInfo);
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::NOT))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::NOT))
                     {
                         if (!fileReader->isEnd())
                         {
-                            if (tokenManager->compare(fileReader->peak()->getContent(), Types::EQUALS))
+                            if (tokenManager->fastCompare(fileReader->peak()->getContent(), Types::EQUALS))
                             {
                                 fileReader->next();
                                 AddToken(Types::IFNOTEQUALS, lineInfo);
@@ -324,16 +324,16 @@ namespace HuwInterpreter {
                             AddToken(Types::NOT, lineInfo);
                         }
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::IFLESSTHAN))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::IFLESSTHAN))
                     {
                         if (!fileReader->isEnd())
                         {
-                            if (tokenManager->compare(fileReader->peak()->getContent(), Types::EQUALS))
+                            if (tokenManager->fastCompare(fileReader->peak()->getContent(), Types::EQUALS))
                             {
                                 fileReader->next();
                                 AddToken(Types::IFLESSTHANOREQUAL, lineInfo);
                             }
-                            else if (tokenManager->compare(fileReader->peak()->getContent(), Types::IFLESSTHAN))
+                            else if (tokenManager->fastCompare(fileReader->peak()->getContent(), Types::IFLESSTHAN))
                             {
                                 fileReader->next();
                                 AddToken(Types::LEFTSHIFT, lineInfo);
@@ -349,16 +349,16 @@ namespace HuwInterpreter {
                             items.emplace_back(std::make_shared<Token>("<", Types::IFLESSTHAN, lineInfo));
                         }
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::IFGREATER))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::IFGREATER))
                     {
                         if (!fileReader->isEnd())
                         {
-                            if (tokenManager->compare(fileReader->peak()->getContent(), Types::EQUALS))
+                            if (tokenManager->fastCompare(fileReader->peak()->getContent(), Types::EQUALS))
                             {
                                 fileReader->next();
                                 AddToken(Types::IFGREATERTHANOREQUAL, lineInfo);
                             }
-                            else if (tokenManager->compare(fileReader->peak()->getContent(), Types::IFGREATER))
+                            else if (tokenManager->fastCompare(fileReader->peak()->getContent(), Types::IFGREATER))
                             {
                                 fileReader->next();
                                 AddToken(Types::RIGHTSHIFT, lineInfo);
@@ -373,31 +373,31 @@ namespace HuwInterpreter {
                             AddToken(Types::IFGREATER, lineInfo);
                         }
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::BITWISECOMPLEMENT))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::BITWISECOMPLEMENT))
                     {
                         AddToken(Types::BITWISECOMPLEMENT, lineInfo);
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::SEMICOLON))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::SEMICOLON))
                     {
                         AddToken(Types::SEMICOLON, lineInfo);
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::RIGHTBRACKET))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::RIGHTBRACKET))
                     {
                         AddToken(Types::RIGHTBRACKET, lineInfo);
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::LEFTBRACKET))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::LEFTBRACKET))
                     {
                         AddToken(Types::LEFTBRACKET, lineInfo);
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::COMMA))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::COMMA))
                     {
                         AddToken(Types::COMMA, lineInfo);
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::LEFTSQUAREBRACKET))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::LEFTSQUAREBRACKET))
                     {
                         AddToken(Types::LEFTSQUAREBRACKET, lineInfo);
                     }
-                    else if (tokenManager->compare(fileReader->getCurrent()->getContent(), Types::RIGHTSQUAREBRACKET))
+                    else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::RIGHTSQUAREBRACKET))
                     {
                         AddToken(Types::RIGHTSQUAREBRACKET, lineInfo);
                     }
