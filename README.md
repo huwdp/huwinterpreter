@@ -37,8 +37,8 @@ print(fac(14));
 #### Building
 ```
 sudo apt-get install git g++ qt5-qmake make libcurl4-openssl-dev curl
-git clone https://github.com/huwdp/huwinterpreter-mirror.git
-cd huw-interpreter/source
+git clone https://github.com/huwdp/huwinterpreter.git
+cd huwinterpreter/source
 qmake CONFIG+=release HuwInterpreter.pro
 make
 ```
@@ -52,7 +52,7 @@ sudo cp ./HuwInterpreter /usr/sbin/huw
 #### Build App-Image
 ```
 sudo apt-get install wget
-cd huwinterpreter-mirror/deploy-appimage/
+cd huwinterpreter/deploy-appimage/
 wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
 chmod a-x linuxdeployqt-continuous-x86_64.AppImage
 chmod 777 linuxdeployqt-continuous-x86_64.AppImage
