@@ -26,7 +26,7 @@ namespace HuwInterpreter {
                                std::shared_ptr<Tokens::Token> token, std::string name,
                                std::shared_ptr<Functions::FunctionManager> functionManager,
                                std::vector<std::shared_ptr<Nodes::Node>> arguments)
-            : Node("ImportNode", passable, token)
+            : Node("Import", passable, token)
         {
             ErrorReporting::Debug::print(getName());
             this->arguments = arguments;
@@ -60,28 +60,23 @@ namespace HuwInterpreter {
 
             std::ifstream file(fileLocation.c_str());
 
-            std::shared_ptr<FileTokenManager> fileTokenManager = std::make_shared<FileTokenManager>(fileLocation);
-
-            std::shared_ptr<NodeFactory> nodeFactory = std::make_shared<HuwCodeNodeFactory>();
-
-            bool exists = static_cast<bool>(file);
-            if (!exists)
+            if (!file.is_open())
             {
-                // Report error
-                return nullVariable;
+                passable->getErrorManager()->add(passable->getErrorFactory()->cannotReadFile(token, internalName, fileLocation.c_str()));
+            	return nullVariable;
             }
 
-            // Add file to list we so we do not re-parse.
-
+            std::shared_ptr<FileTokenManager> fileTokenManager = std::make_shared<FileTokenManager>(fileLocation);
+            std::shared_ptr<NodeFactory> nodeFactory = std::make_shared<HuwCodeNodeFactory>();
             std::shared_ptr<Scanner> scanner = std::make_shared<Scanner>();
             std::vector<std::shared_ptr<Token>> tokens = scanner->tokenize(fileTokenManager);
 
             std::shared_ptr<Parser> parser = std::make_shared<Parser>(tokens, nodeFactory, textMode, functionManager);
-            std::shared_ptr<Nodes::Node> node2 = parser->parse();
+            std::shared_ptr<Nodes::Node> importNode = parser->parse();
 
-            if (node2 != nullptr)
+            if (importNode != nullptr)
             {
-                return node2->execute(globalScope, scope);
+                return importNode->execute(globalScope, scope);
             }
             return nullVariable;
         }
