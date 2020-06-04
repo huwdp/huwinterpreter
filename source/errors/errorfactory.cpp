@@ -183,5 +183,10 @@ namespace HuwInterpreter {
             }
             return std::make_shared<Error>(RUNTIME_ERROR, "Argument " + variableName + "must be number type", token);
         }
+
+        std::shared_ptr<Error> ErrorFactory::cannotReadFile(std::shared_ptr<Token> token, std::string name, std::string fileName)
+        {
+            return std::make_shared<Error>(RUNTIME_ERROR, "Cannot read file '" + fileName + "' in function '" + name + "'", token);
+        }
     }
 }

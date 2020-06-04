@@ -60,6 +60,7 @@ namespace HuwInterpreter {
             std::shared_ptr<Error> cannotChangeConstant(std::shared_ptr<Token> token, std::string name);
             std::shared_ptr<Error> isNotAnArray(std::shared_ptr<Token> token, std::string name);
             std::shared_ptr<Error> argumentMustBeNumberType(std::shared_ptr<Token> token, std::string variableName);
+            std::shared_ptr<Error> cannotReadFile(std::shared_ptr<Token> token, std::string name, std::string fileName);
         };
     }
 }
