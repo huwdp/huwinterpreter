@@ -1,0 +1,32 @@
+function split(input, deliminator)
+{
+    let output = array();
+    output = array();
+    let i = 0;
+    i = 0;
+    let j = 0;
+    j = 0;
+    let temp = "";
+    while (i < count(input))
+    {
+        if (input[i] == deliminator)
+        {
+            output[j] = temp;
+            j++;
+            temp = "";
+        }
+        else
+        {
+            temp += input[i];
+        }
+        i++;
+    }
+    if (temp != "")
+    {
+        output[j] = temp;
+    }
+    return output;
+}
+
+print(split("Hello,world!", ","));
+print(split("1,2,3,4,5,6,7,8,9",","));
