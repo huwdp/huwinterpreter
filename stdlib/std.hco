@@ -195,3 +195,27 @@ function split(input, deliminator)
     }
     return output;
 }
+
+function shuffle(input)
+{
+    if (!isArrayType(input))
+    {
+        return input;
+    }
+    
+    let i = 0;
+    i = 0;
+    
+    while (i < count(input))
+    {   
+        let temp = input[i];
+        let randomNumber = 0;
+        randomNumber = random() % (i + 1);      
+        /* Swap values */
+        input[i] = input[randomNumber];
+        input[randomNumber] = temp;
+        i++;
+        sleep(1);
+    }
+    return input;
+}
