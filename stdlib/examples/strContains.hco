@@ -1,0 +1,13 @@
+function strContains(string1, string2)
+{
+    if (inStr(string1, string2) == -1)
+    {
+        return 0;
+    }
+    return 1;
+}
+
+print(strContains("Lorem ipsum dolor sit amet", "sit"));     /* True */
+print(strContains("Hello world!", "world"));                 /* True */
+print(strContains("Lorem ipsum dolor sit amet", "unknown")); /* False */
+print(strContains("Hello world!", "unknown"));               /* False */
