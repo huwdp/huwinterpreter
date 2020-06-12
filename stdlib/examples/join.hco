@@ -1,0 +1,25 @@
+function join(input, seperator)
+{
+    if (isArrayType(input) || isStringType(input))
+    {
+        let output = "";
+        let i = 0;
+        i=0; /* Bug */
+        while (i < count(input))
+        {
+            output += input[i];
+            output += seperator;
+            i++;
+        }
+        return output;
+    }
+    return str(input);
+}
+
+print(join(str("123456789"), ","));
+let list = array();
+list[0] = "a";
+list[1] = "b";
+list[2] = "c";
+list[3] = "d";
+print(join(list, ":"));

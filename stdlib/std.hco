@@ -147,3 +147,75 @@ function strContains(string1, string2)
     }
     return 1;
 }
+
+function join(input, seperator)
+{
+    if (isArrayType(input) || isStringType(input))
+    {
+        let output = "";
+        let i = 0;
+        i=0; /* Bug */
+        while (i < count(input))
+        {
+            output += input[i];
+            output += seperator;
+            i++;
+        }
+        return output;
+    }
+    return str(input);
+}
+
+function split(input, deliminator)
+{
+    let output = array();
+    output = array();
+    let i = 0;
+    i = 0;
+    let j = 0;
+    j = 0;
+    let temp = "";
+    while (i < count(input))
+    {
+        if (input[i] == deliminator)
+        {
+            output[j] = temp;
+            j++;
+            temp = "";
+        }
+        else
+        {
+            temp += input[i];
+        }
+        i++;
+    }
+    if (temp != "")
+    {
+        output[j] = temp;
+    }
+    return output;
+}
+
+function shuffle(input)
+{
+    if (!isArrayType(input))
+    {
+        return input;
+    }
+    
+    let i = 0;
+    i = 0;
+    
+    while (i < count(input))
+    {   
+        let temp = input[i];
+        let randomNumber = 0;
+        randomNumber = random() % (i + 1);      
+        /* Swap values */
+        input[i] = input[randomNumber];
+        input[randomNumber] = temp;
+        i++;
+        sleep(1);
+    }
+    return input;
+}
