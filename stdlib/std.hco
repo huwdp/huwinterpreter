@@ -147,3 +147,21 @@ function strContains(string1, string2)
     }
     return 1;
 }
+
+function join(input, seperator)
+{
+    if (isArrayType(input) || isStringType(input))
+    {
+        let output = "";
+        let i = 0;
+        i=0; /* Bug */
+        while (i < count(input))
+        {
+            output += input[i];
+            output += seperator;
+            i++;
+        }
+        return output;
+    }
+    return str(input);
+}
