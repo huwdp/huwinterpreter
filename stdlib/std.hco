@@ -138,3 +138,12 @@ function startsWith(source, text)
     }
     return 0;
 }
+
+function strContains(string1, string2)
+{
+    if (inStr(string1, string2) == -1)
+    {
+        return 0;
+    }
+    return 1;
+}
