@@ -54,6 +54,12 @@ namespace HuwInterpreter {
                 return nullVariable;
             }
 
+            if (index == nullptr)
+            {
+                passable->getErrorManager()->add(passable->getErrorFactory()->invalidIndex(token, internalName));
+                return nullVariable;
+            }
+
             if (array->getType() == ARRAY || array->getType() == STRING)
             {
                 return array->get(index->toString(), token);

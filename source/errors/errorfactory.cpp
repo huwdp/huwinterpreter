@@ -188,5 +188,10 @@ namespace HuwInterpreter {
         {
             return std::make_shared<Error>(RUNTIME_ERROR, "Cannot read file '" + fileName + "' in function '" + name + "'", token);
         }
+
+        std::shared_ptr<Error> ErrorFactory::invalidIndex(std::shared_ptr<Token> token, std::string name)
+        {
+            return std::make_shared<Error>(RUNTIME_ERROR, "Invalid index on '" + name + "'");
+        }
     }
 }

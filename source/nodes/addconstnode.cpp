@@ -59,7 +59,7 @@ namespace HuwInterpreter {
                         passable->getErrorManager()->add(passable->getErrorFactory()->constantDeclared(token, name));
                         return nullVariable;
                     }
-                    else if (!scope->getVariableManager()->addVariable(name, std::make_shared<Variables::ConstantVariable>(passable, var)))
+                    else if (!scope->getVariableManager()->addVariable(name, std::make_shared<Variables::ConstantVariable>(passable, var->clone(token))))
                     {
                         passable->getErrorManager()->add(passable->getErrorFactory()->constantDeclared(token, name));
                     }
