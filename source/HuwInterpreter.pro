@@ -8,6 +8,7 @@ TEMPLATE = app
 CONFIG += c++14
 CONFIG += -j6
 LIBS += -lcurl
+LIBS += -lreadline
 
 CONFIG += warn_off
 
