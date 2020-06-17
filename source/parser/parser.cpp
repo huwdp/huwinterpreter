@@ -188,7 +188,7 @@ namespace HuwInterpreter {
     std::string Parser::syntaxError(std::string content)
     {
         std::string errorMsg;
-        errorMsg.append("Parse error: syntax error, unexpected \"")
+        errorMsg.append("unexpected \"")
                 .append(content)
                 .append("\"");
         return errorMsg;
@@ -197,7 +197,7 @@ namespace HuwInterpreter {
     std::string Parser::syntaxError()
     {
         std::string errorMsg;
-        errorMsg.append("Parse error: syntax error, unexpected");
+        errorMsg.append("unexpected");
         return errorMsg;
     }
 
