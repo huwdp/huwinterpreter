@@ -31,12 +31,14 @@ print(fac(14));
 
  - libcurl4-openssl-dev 
  - libcurl4
+ - libreadline
+ - libreadline-dev
 
 ## Installation
 
 #### Building
 ```
-sudo apt-get install git g++ qt5-qmake make libcurl4-openssl-dev curl
+sudo apt-get install git g++ qt5-qmake make libcurl4-openssl-dev curl lib32readline7 lib32readline-dev libreadline-dev
 git clone https://github.com/huwdp/huwinterpreter.git
 cd huwinterpreter/source
 qmake CONFIG+=release HuwInterpreter.pro
