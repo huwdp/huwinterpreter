@@ -23,6 +23,8 @@
 #include "errors/errors.h"
 #include "tokens/filetokenmanager.h"
 #include "huwinterpreter.h"
+#include <readline/readline.h>
+#include <readline/history.h>
 
 void printHelp(int argc, char* argv[])
 {
