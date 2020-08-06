@@ -72,14 +72,22 @@ int main(int argc, char* argv[])
     }
     else if (argument == "-t")
     {
-        std::string text = "";
-        std::cout << ">>> ";
-        std::getline (std::cin,text);
-        while (text != "exit")
+        while (true)
         {
+            char* input = readline(">>>");
+            if (!input)
+            {
+                break;
+            }
+            std::string text(input);
+            if (text == "exit")
+            {
+                break;
+            }
+            add_history(input);
+            free(input);
+            std::cout << text << std::endl;
             interpreter->execute(interpreter->parseText(text));
-            std::cout << ">>>";
-            std::getline (std::cin,text);
         }
     }
     else if (argument == "--hc" && argc == 3)
