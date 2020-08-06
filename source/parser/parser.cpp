@@ -27,6 +27,7 @@ namespace HuwInterpreter {
         this->tokens = tokens;
         this->functions = std::make_shared<Functions::FunctionManager>(passable);
         functions->init();
+        this->tokenList = std::make_shared<TokenList>();
         customFunctions = std::make_shared<Functions::FunctionManager>(passable);
         if (!tokens.empty())
         {
@@ -165,7 +166,7 @@ namespace HuwInterpreter {
             return true;
         }
         compilation = false;
-        errorMessage(syntaxError(currentToken->getContent()), currentToken);
+        errorMessage(syntaxError(currentToken->getContent(), s), currentToken);
         return false;
     }
 
@@ -176,7 +177,7 @@ namespace HuwInterpreter {
             return true;
         }
         compilation = false;
-        errorMessage(syntaxError(currentToken->getContent()), currentToken);
+        errorMessage(syntaxError(currentToken->getContent(), tokenList->get(tokenType)), currentToken);
         return false;
     }
 
@@ -185,19 +186,36 @@ namespace HuwInterpreter {
         return tokens.empty() || !compilation || isEnd();
     }
 
-    std::string Parser::syntaxError(std::string content)
+    std::string Parser::syntaxError(std::string unexpected, std::string expected)
     {
         std::string errorMsg;
         errorMsg.append("unexpected \"")
-                .append(content)
+                .append(unexpected)
+                .append("\"")
+                .append(", expected \"")
+                .append(expected)
                 .append("\"");
         return errorMsg;
     }
 
-    std::string Parser::syntaxError()
+    std::string Parser::syntaxError(std::string unexpected)
     {
         std::string errorMsg;
-        errorMsg.append("unexpected");
+        errorMsg.append("unexpected \"")
+                .append(unexpected)
+                .append("\"");
+        return errorMsg;
+    }
+
+    std::string Parser::expectingOperatorSyntaxError()
+    {
+        return "expecting operator such as '=', '+', '-', '*' or '/'";
+    }
+
+    std::string Parser::syntaxError() // This needs to be removed.
+    {
+        std::string errorMsg;
+        errorMsg.append("unexpected token");
         return errorMsg;
     }
 
@@ -761,7 +779,7 @@ namespace HuwInterpreter {
                     tokenType != Types::MULTIPLICATIONEQUAL &&
                     tokenType != Types::DIVISIONEQUAL)
             {
-                errorMessage(syntaxError(), currentToken);
+                errorMessage(expectingOperatorSyntaxError(), currentToken);
                 compilation = false;
                 return nullNode;
             }
@@ -847,7 +865,7 @@ namespace HuwInterpreter {
                         tokenType != Types::MULTIPLICATIONEQUAL &&
                         tokenType != Types::DIVISIONEQUAL)
                 {
-                    errorMessage(syntaxError(), currentToken);
+                    errorMessage(expectingOperatorSyntaxError(), currentToken);
                     compilation = false;
                     return nullNode;
                 }
@@ -927,7 +945,7 @@ namespace HuwInterpreter {
                         tokenType != Types::MULTIPLICATIONEQUAL &&
                         tokenType != Types::DIVISIONEQUAL)
                 {
-                    errorMessage(syntaxError(), currentToken);
+                    errorMessage(expectingOperatorSyntaxError(), currentToken);
                     compilation = false;
                     return nullNode;
                 }

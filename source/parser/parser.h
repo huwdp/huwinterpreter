@@ -97,6 +97,7 @@ namespace HuwInterpreter {
         std::shared_ptr<Nodes::Node> nullNode;
         std::shared_ptr<NodeFactory> codeFactory;
         std::shared_ptr<HuwInterpreter::Passable> passable;
+        std::shared_ptr<TokenList> tokenList;
         bool textMode = false;
         void setCompilation(bool compilation);
         void nextToken();
@@ -111,7 +112,9 @@ namespace HuwInterpreter {
         bool expect(std::string s);
         bool expect(TokenType tokenType);
         bool isEmpty();
-        std::string syntaxError(std::string content);
+        std::string syntaxError(std::string unexpected, std::string expected);
+        std::string syntaxError(std::string unexpected);
+        std::string expectingOperatorSyntaxError();
         std::string syntaxError();
         bool expectSemicolon();
         void errorMessage(std::string errorMsg, std::shared_ptr<Tokens::Token> currentToken);
