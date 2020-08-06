@@ -39,6 +39,8 @@ namespace HuwInterpreter {
                 addVariable(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "φ", 0.618033988749894)));
                 addVariable(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "δs", 2.41421356237309)));
                 addVariable(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "ρ", 1.324717957244746)));
+                addVariable(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "true", 1)));
+                addVariable(std::make_shared<ConstantVariable>(passable, std::make_shared<DoubleVariable>(passable, "false", 0)));
             }
         }
 
