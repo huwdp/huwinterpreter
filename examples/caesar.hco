@@ -1,0 +1,29 @@
+function caesarCipher(rot, phrase)
+{
+    let rotPhrase = "";
+    let lowerLetters = "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz";
+    let upperLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    
+    let i = 0;
+    while (i < count(phrase))
+    {
+        let letter = phrase[i];
+        let it = asc(letter);
+        if (it >= 65 && it <= 90)
+        {
+            rotPhrase += upperLetters[((it + rot) - 65)];
+        }
+        else if (it >= 97 && it <= 122)
+        {
+            rotPhrase += lowerLetters[((it + rot) - 97)];
+        }
+        else
+        {
+            rotPhrase += letter;
+        }
+        i++;
+    }
+    return rotPhrase;
+}
+
+print(caesarCipher(2, "Hello world"));
