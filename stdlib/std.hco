@@ -1,3 +1,8 @@
+function int(value)
+{
+    return round(toDouble(value));
+}
+
 function and(left, right)
 {
     if (left && right)
