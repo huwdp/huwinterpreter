@@ -1,0 +1,10 @@
+function int(value)
+{
+    return round(toDouble(value));
+}
+print(int(0.4));
+print(int(0.6));
+print(int(1));
+print(int(1.2));
+print(int(-1));
+print(int(999999));
