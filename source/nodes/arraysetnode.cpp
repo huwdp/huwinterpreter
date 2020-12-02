@@ -111,7 +111,7 @@ namespace HuwInterpreter {
             {
                 return nullVariable;
             }
-            var->set(finalIndex->toString(), this->value->execute(globalScope, scope), this->token);
+            var->set(finalIndex->toString(), this->value->execute(globalScope, scope)->clone(token), this->token);
             return nullVariable;
         }
 
