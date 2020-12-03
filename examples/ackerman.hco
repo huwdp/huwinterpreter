@@ -1,0 +1,26 @@
+function ackermann(m, n)
+{
+        if (!m)
+        {
+            return n + 1;
+        }
+        if (!n)
+        {
+            return ackermann(m - 1, 1);
+        }
+        return ackermann(m - 1, ackermann(m, n - 1));
+}
+
+let m = 0;
+let n = 0;
+while (m <= 0)  /* We keep this to 0 as the application stack size is not big enough for recursion */
+{
+    n = 0;
+    while (n < 6 - m)
+    {
+        let text = "A(" + m + ", " + n + ") = " + ackermann(m, n);
+        print(text);
+        n++;
+    }
+    m++;
+}
