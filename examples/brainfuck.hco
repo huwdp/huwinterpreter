@@ -1,0 +1,94 @@
+function bf(bufferSize, is)
+{
+    print(is);
+    let ds = array();
+    let dp = 0;
+    let ip = 0;
+    
+    let i = 0;
+    while (i < bufferSize)
+    {
+        ds[i] = 0;
+        i++;
+    }
+    
+    while (ip  < count(is) && ip < bufferSize)
+    {
+        let curr = is[ip];
+        
+        if (curr == ">")
+        {
+            dp++;
+        }
+        else if (curr == "<")
+        {
+            dp--;
+        }
+        else if (curr == "+")
+        {
+            let v = ds[dp];
+            ds[dp] = v+1;
+        }
+        else if (curr == "-")
+        {
+            let v = ds[dp];
+            ds[dp] = v-1;
+        }
+        else if (curr == ".")
+        {
+            let v = ds[dp];
+            print(cha(v));
+        }
+        else if (curr == ",")
+        {
+            let input = "";
+            scan(input);
+            /* Only read first char */
+            if (count(input) > 0)
+            {
+                ds[dp] = input[0];
+            }
+        }
+        else if (curr == "[")
+        {
+            if (ds[dp] == 0)
+            {
+                let nc = 1;
+                while (nc > 0)
+                {
+                    ip++;
+                    if (is[ip] == '[')
+                    {
+                        nc++;
+                    }
+                    else if (is[ip] == ']')
+                    {
+                        nc--;
+                    }
+                }
+            }
+        }
+        else if (curr == "]")
+        {
+            if (ds[dp] != 0)
+            {
+                let nc = 1;
+                while (nc > 0)
+                {
+                    ip--;
+                    if (is[ip] == ']')
+                    {
+                        nc++;
+                    }
+                    else if (is[ip] == '[')
+                    {
+                        nc--;
+                    }
+                }
+            }
+        }
+        ip++;
+    }
+}
+
+bf(1000, "++++++++++[>+>+++>++++>+++++++>++++++++>+++++++++>++++++++++>+++++++++++>++++++++++++<<<<<<<<<-]>>>>+.>>>>+..<.<++++++++.>>>+.<<+.<<<<++++.<++.>>>+++++++.>>>.+++.<+++++++.--------.<<<<<+.<+++.---.");
