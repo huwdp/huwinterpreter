@@ -66,12 +66,7 @@ namespace HuwInterpreter {
 
             if (v != nullptr)
             {
-                if (globalScope->getVariableManager()->exists(name))
-                {
-                    passable->getErrorManager()->add(passable->getErrorFactory()->variableDeclared(token, name));
-                    return nullVariable;
-                }
-                else if (!scope->getVariableManager()->addVariable(name, v->clone(token)))
+                if (!scope->getVariableManager()->addVariable(name, v->clone(token)))
                 {
                     passable->getErrorManager()->add(passable->getErrorFactory()->variableNotDeclared(token, name));
                 }

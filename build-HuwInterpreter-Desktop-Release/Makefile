@@ -16,7 +16,7 @@ CC            = gcc
 CXX           = g++
 DEFINES       = 
 CFLAGS        = -pipe -O2 -w -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -O2 -fno-rtti -fmerge-all-constants -O2 -std=gnu++1y -w -Wunused-function -Wunused-variable -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -O2 -fno-rtti -fmerge-all-constants -flto -O2 -std=gnu++1y -w -Wunused-function -Wunused-variable -fPIC $(DEFINES)
 INCPATH       = -I../source -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f

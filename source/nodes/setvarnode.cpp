@@ -43,6 +43,34 @@ namespace HuwInterpreter {
             }
             std::shared_ptr<Variables::Variable> v = value->execute(globalScope, scope);
 
+            std::shared_ptr<Variables::Variable> localVar = scope->getVariableManager()->get(name);
+
+            if (localVar != nullptr)
+            {
+                if (localVar->isConst())
+                {
+                    passable->getErrorManager()->add(passable->getErrorFactory()->cannotChangeConstant(token, name));
+                    return nullVariable;
+                }
+
+                if (v != nullptr)
+                {
+                    if (localVar->isRef())
+                    {
+                        localVar->setValue(v->clone(token));
+                        return nullVariable;
+                    }
+                    else if (localVar->getType() == v->getType() && v->getType() == DOUBLE)
+                    {
+                        localVar->setValue(v->toDouble());
+                        return nullVariable;
+                    }
+                    scope->getVariableManager()->setVariable(name, v->clone(token));
+                    return nullVariable;
+                }
+                scope->getVariableManager()->setVariable(name, nullVariable);
+            }
+
             std::shared_ptr<Variables::Variable> globalVar = globalScope->getVariableManager()->get(name);
 
             if (globalVar != nullptr)
@@ -71,33 +99,6 @@ namespace HuwInterpreter {
                 return nullVariable;
             }
 
-            std::shared_ptr<Variables::Variable> localVar = scope->getVariableManager()->get(name);
-
-            if (localVar != nullptr)
-            {
-                if (localVar->isConst())
-                {
-                    passable->getErrorManager()->add(passable->getErrorFactory()->cannotChangeConstant(token, name));
-                    return nullVariable;
-                }
-
-                if (v != nullptr)
-                {
-                    if (localVar->isRef())
-                    {
-                        localVar->setValue(v->clone(token));
-                        return nullVariable;
-                    }
-                    else if (localVar->getType() == v->getType() && v->getType() == DOUBLE)
-                    {
-                        localVar->setValue(v->toDouble());
-                        return nullVariable;
-                    }
-                    scope->getVariableManager()->setVariable(name, v->clone(token));
-                    return nullVariable;
-                }
-                scope->getVariableManager()->setVariable(name, nullVariable);
-            }
             return nullVariable;
         }
 

@@ -41,17 +41,18 @@ namespace HuwInterpreter {
                 return scope->getReturnValue();
             }
 
+            std::shared_ptr<Variables::Variable> var2 = scope->getVariableManager()->get(name);
+            if (var2 != nullptr)
+            {
+                return var2;
+            }
+
             std::shared_ptr<Variables::Variable> var1 = globalScope->getVariableManager()->get(name);
             if (var1 != nullptr)
             {
                 return var1;
             }
 
-            std::shared_ptr<Variables::Variable> var2 = scope->getVariableManager()->get(name);
-            if (var2 != nullptr)
-            {
-                return var2;
-            }
             passable->getErrorManager()->add(passable->getErrorFactory()->variableNotDeclared(token, name));
             return nullVariable;
         }
