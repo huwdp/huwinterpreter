@@ -69,6 +69,7 @@ namespace HuwInterpreter {
                     return nullVariable;
                 }
                 scope->getVariableManager()->setVariable(name, nullVariable);
+                return nullVariable;
             }
 
             std::shared_ptr<Variables::Variable> globalVar = globalScope->getVariableManager()->get(name);
