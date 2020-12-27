@@ -29,7 +29,7 @@ namespace HuwInterpreter {
         {
             if (arguments.size() == 0)
             {
-                std::srand(std::time(nullptr));
+                std::srand(std::time(nullptr)+std::rand());
                 int number = std::rand();
                 double value = static_cast<double>(number);
                 return std::make_shared<DoubleVariable>(passable, value);
