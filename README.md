@@ -2,27 +2,29 @@
 # HuwInterpreter
 > HuwInterpreter is a hand written interpreter designed to parse and execute HuwCode script.
 
-HuwInterpreter is an interpreter built in C++ for a custom language I developed named HuwCode. HuwCode was named by two people I know of, I did not name the scripting language myself. The project was built out of self-interest and understanding on how interpreters work and written.
+HuwInterpreter is an interpreter built in C++ for a custom language I developed named HuwCode. The project was built out of self-interest and understanding on how interpreters work and written. The language supports 70 built in functions, custom user defined functions, scopes (each function has a scope), variables with types of double (number), string (text) and associated array.
 
-The language supports 70 built in functions, custom user defined functions, scopes (each function has a scope), variables with types of doubles (number), strings (text) and hash tables. Hash tables allow any of types of variables making itself an associated array.
+The language supports 70+ built in functions, custom user defined functions, scopes (each function has a scope), variables with types of doubles (number), strings (text) and hash tables. Hash tables allow any of types of variables making itself an associated array.
 
 User documentation can be found in the documentation folder [here](https://github.com/huwdp/huwinterpreter-mirror/tree/master/documentation).
+
+WASM version can be found here (https://huwdp.co.uk/huwcode-wasm/output.html). Press Cancel button to see result after executing code.
 
 ![](https://huwdp.co.uk/sites/default/files/inline-images/huwinterpreter-in-action_0.png)
 ## Code Example
 ```
 function fac(n)
 {
-    return factailrec(1, n);
+    return facRec(1, n);
 }
 
-function factailrec(acc, n)
+function facRec(acc, n)
 {
     if (n < 2)
     {
         return acc;
     }
-    return factailrec(n * acc, n - 1);
+    return facRec(n * acc, n - 1);
 }
 print(fac(14));
 ```
