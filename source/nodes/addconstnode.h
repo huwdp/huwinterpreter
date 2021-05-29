@@ -16,7 +16,7 @@
 #ifndef ADDCONSTNODE_H
 #define ADDCONSTNODE_H
 
-#include "nodes/node.h"
+#include "node.h"
 
 namespace HuwInterpreter {
     namespace Nodes {

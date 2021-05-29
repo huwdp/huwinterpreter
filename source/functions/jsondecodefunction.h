@@ -17,9 +17,9 @@
 #define JSONDECODEFUNCTION_H
 
 #include "function.h"
-#include "variables/hashtablevariable.h"
-#include "variables/doublevariable.h"
-#include "variables/variabletypefactory.h"
+#include "../variables/hashtablevariable.h"
+#include "../variables/doublevariable.h"
+#include "../variables/variabletypefactory.h"
 
 namespace HuwInterpreter {
     namespace Functions {

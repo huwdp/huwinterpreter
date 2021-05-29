@@ -17,7 +17,7 @@
 #define PRINT_H
 
 #include "function.h"
-#include "nodes/node.h"
+#include "../nodes/node.h"
 #include <vector>
 #include <string>
 #include <iostream>

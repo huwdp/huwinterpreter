@@ -17,7 +17,7 @@
 #define ERRORFACTORY_H
 
 #include "error.h"
-#include "variables/variablestringfactory.h"
+#include "../variables/variablestringfactory.h"
 
 namespace HuwInterpreter {
     namespace ErrorReporting {

@@ -24,7 +24,7 @@
 
 #include "stringvariable.h"
 #include "constantvariable.h"
-#include "types/typedetector.h"
+#include "../types/typedetector.h"
 
 namespace HuwInterpreter {
     namespace Variables {

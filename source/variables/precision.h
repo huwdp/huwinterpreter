@@ -17,8 +17,8 @@
 #define PRECISION_H
 
 #include <memory>
-#include "types/tokentypes.h"
-#include <variables/variable.h>
+#include "../types/tokentypes.h"
+#include "variable.h"
 
 namespace HuwInterpreter {
     namespace Helpers {

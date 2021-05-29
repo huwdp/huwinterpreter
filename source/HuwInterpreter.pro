@@ -410,5 +410,9 @@ HEADERS += \
     functions/unreffunction.h \
     functions/tonumber.h
 
+DISTFILES += \
+    CMakeLists.txt \
+    build.sh
+
 
 

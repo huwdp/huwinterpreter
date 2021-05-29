@@ -85,11 +85,11 @@
 #include "emptyfunction.h"
 
 //Array
-#include "functions/array.h"
-#include "functions/arrayunset.h"
+#include "../functions/array.h"
+#include "../functions/arrayunset.h"
 
 // String/array
-#include "functions/count.h"
+#include "../functions/count.h"
 
 #include "isinttype.h"
 #include "isdoubletype.h"

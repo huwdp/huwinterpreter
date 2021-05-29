@@ -16,9 +16,9 @@
 #ifndef PASSABLE_H
 #define PASSABLE_H
 
-#include "errors/errors.h"
-#include "errors/errorfactory.h"
-#include "errors/stacktracemanager.h"
+#include "../errors/errors.h"
+#include "../errors/errorfactory.h"
+#include "../errors/stacktracemanager.h"
 
 namespace HuwInterpreter {
 

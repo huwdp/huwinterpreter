@@ -16,8 +16,8 @@
 #ifndef ARRAY_H
 #define ARRAY_H
 
-#include "functions/function.h"
-#include "variables/hashtablevariable.h"
+#include "function.h"
+#include "../variables/hashtablevariable.h"
 
 namespace HuwInterpreter {
     namespace Functions {

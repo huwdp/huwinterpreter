@@ -17,8 +17,8 @@
 #define IMPORTNODE_H
 
 #include "node.h"
-#include "functions/function.h"
-#include "functions/functions.h"
+#include "../functions/function.h"
+#include "../functions/functions.h"
 
 namespace HuwInterpreter {
     namespace Nodes {

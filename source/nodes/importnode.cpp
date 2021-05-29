@@ -15,10 +15,10 @@
 
 #include "importnode.h"
 
-#include "parser/parser.h"
-#include "tokens/filetokenmanager.h"
-#include "tokens/scanner.h"
-#include "nodes/huwcodenodefactory.h"
+#include "../parser/parser.h"
+#include "../tokens/filetokenmanager.h"
+#include "../tokens/scanner.h"
+#include "../nodes/huwcodenodefactory.h"
 
 namespace HuwInterpreter {
     namespace Nodes {

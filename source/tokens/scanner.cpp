@@ -18,7 +18,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include "errors/debug.h"
+#include "../errors/debug.h"
 
 namespace HuwInterpreter {
     namespace Tokens {

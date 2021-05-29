@@ -16,7 +16,7 @@
 #ifndef ARRAYUNSET_H
 #define ARRAYUNSET_H
 
-#include "functions/function.h"
+#include "../functions/function.h"
 
 namespace HuwInterpreter {
     namespace Functions {

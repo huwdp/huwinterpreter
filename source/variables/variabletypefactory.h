@@ -20,8 +20,8 @@
 
 #include "doublevariable.h"
 #include "stringvariable.h"
-#include "types/tokentypes.h"
-#include "types/typedetector.h"
+#include "../types/tokentypes.h"
+#include "../types/typedetector.h"
 
 namespace HuwInterpreter {
     namespace Variables {

@@ -19,7 +19,7 @@
 #include "function.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "nodes/node.h"
+#include "../nodes/node.h"
 
 namespace HuwInterpreter {
     namespace Functions {

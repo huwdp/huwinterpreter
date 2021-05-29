@@ -17,7 +17,7 @@
 #define ARRAYSETNODE_H
 
 #include "node.h"
-#include "variables/hashtablevariable.h"
+#include "../variables/hashtablevariable.h"
 
 namespace HuwInterpreter {
     namespace Nodes {

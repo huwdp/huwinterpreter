@@ -16,7 +16,7 @@
 #ifndef REFVARIABLE_H
 #define REFVARIABLE_H
 
-#include "nodes/node.h"
+#include "../nodes/node.h"
 
 
 namespace HuwInterpreter {
