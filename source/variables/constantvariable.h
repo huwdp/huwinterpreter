@@ -16,8 +16,8 @@
 #ifndef CONSTANTVARIABLE_H
 #define CONSTANTVARIABLE_H
 
-#include "nodes/node.h"
-#include "variables/variable.h"
+#include "../nodes/node.h"
+#include "../variables/variable.h"
 
 namespace HuwInterpreter {
     namespace Variables {

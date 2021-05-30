@@ -16,7 +16,7 @@
 #ifndef ADDVARNODE_H
 #define ADDVARNODE_H
 
-#include "nodes/node.h"
+#include "node.h"
 
 namespace HuwInterpreter {
     namespace Nodes {

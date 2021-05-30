@@ -17,7 +17,7 @@
 #define TEXTNODE_H
 
 #include "node.h"
-#include "variables/variabletypefactory.h"
+#include "../variables/variabletypefactory.h"
 #include "../format/escapecharacteroutput.h"
 
 namespace HuwInterpreter {

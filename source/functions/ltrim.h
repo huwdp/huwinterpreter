@@ -16,8 +16,8 @@
 #ifndef LTRIM_H
 #define LTRIM_H
 
-#include "functions/function.h"
-#include "types/typedetector.h"
+#include "function.h"
+#include "../types/typedetector.h"
 
 namespace HuwInterpreter {
     namespace Functions {

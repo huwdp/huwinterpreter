@@ -22,11 +22,11 @@
 #include <vector>
 #include <cmath>
 #include <memory>
-#include "types/typedetector.h"
-#include "errors/debug.h"
-#include "errors/errors.h"
-#include "common/passable.h"
-#include "common/nameableobject.h"
+#include "../types/typedetector.h"
+#include "../errors/debug.h"
+#include "../errors/errors.h"
+#include "../common/passable.h"
+#include "../common/nameableobject.h"
 
 namespace HuwInterpreter {
     namespace Variables {

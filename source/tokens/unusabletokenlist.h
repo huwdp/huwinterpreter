@@ -16,7 +16,7 @@
 #ifndef UNUSABLETOKENS_H
 #define UNUSABLETOKENS_H
 
-#include "types/tokentypes.h"
+#include "../types/tokentypes.h"
 #include "tokenlist.h"
 #include <unordered_map>
 #include <sstream>

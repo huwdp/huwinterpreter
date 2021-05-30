@@ -17,7 +17,7 @@
 #define VARIABLESTRINGFACTORY_H
 
 #include <string>
-#include "types/tokentypes.h"
+#include "../types/tokentypes.h"
 
 namespace HuwInterpreter {
     namespace Variables {

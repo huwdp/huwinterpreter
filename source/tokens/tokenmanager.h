@@ -20,8 +20,8 @@
 #include <vector>
 #include <fstream>
 #include <memory>
-#include "io/fileline.h"
-#include "types/tokentypes.h"
+#include "../io/fileline.h"
+#include "../types/tokentypes.h"
 
 namespace HuwInterpreter {
     namespace Tokens {

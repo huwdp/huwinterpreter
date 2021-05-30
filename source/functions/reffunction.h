@@ -17,7 +17,7 @@
 #define REF_H
 
 #include "function.h"
-#include "variables/refvariable.h"
+#include "../variables/refvariable.h"
 
 namespace HuwInterpreter {
     namespace Functions {

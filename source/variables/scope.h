@@ -16,11 +16,11 @@
 #ifndef SCOPE_H
 #define SCOPE_H
 
-#include "variables/variables.h"
-#include "common/nameableobject.h"
-#include "tokens/token.h"
-#include "nodes/node.h"
-#include "functions/function.h"
+#include "variables.h"
+#include "../common/nameableobject.h"
+#include "../tokens/token.h"
+#include "../nodes/node.h"
+#include "../functions/function.h"
 
 namespace HuwInterpreter {
 

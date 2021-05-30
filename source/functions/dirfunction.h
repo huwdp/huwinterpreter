@@ -17,7 +17,7 @@
 #define DIRFUNCTION_H
 
 #include "function.h"
-#include "variables/hashtablevariable.h"
+#include "../variables/hashtablevariable.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>

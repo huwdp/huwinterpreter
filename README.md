@@ -1,4 +1,5 @@
 
+
 # HuwInterpreter
 > HuwInterpreter is a hand written interpreter designed to parse and execute HuwCode script.
 
@@ -38,15 +39,16 @@ print(fac(14));
 
 #### Building
 ```
-sudo apt-get install git g++ qt5-qmake make libcurl4-openssl-dev curl lib32readline7 lib32readline-dev libreadline-dev
+sudo apt-get install git g++ cmake make libcurl4-openssl-dev curl lib32readline7 lib32readline-dev libreadline-dev
 git clone https://github.com/huwdp/huwinterpreter.git
 cd huwinterpreter/source
-qmake CONFIG+=release HuwInterpreter.pro
-make
+./build.sh
 ```
+*Files will be put in source/build location.*
+
 
 #### Install
-Copy binary into sbin folder.
+Copy binary into sbin folder. *Binary is in build directory.*
 ```
 sudo cp ./HuwInterpreter /usr/sbin/huw
 ```
@@ -61,24 +63,6 @@ chmod 777 linuxdeployqt-continuous-x86_64.AppImage
 ./build-app-image.sh
 ```
 
-#### Problems
-#### Ubuntu 16.04 cannot find qmake
-
-##### Find qmake location
-```
-which qmake
-```
-##### Create folders
-```
-sudo mkdir /usr/lib/qt5/
-sudo mkdir /usr/lib/qt5/bin
-```
-##### Copy qmake or create sym-link
-```
-sudo cp /usr/bin/qmake /usr/lib/qt5/bin/qmake
-```
-You may need to replace qmake location
-
 ## Usage example
 ```
 1. Usage: [filename] to run file.
@@ -88,11 +72,6 @@ You may need to replace qmake location
 ```
 _For more examples and usage, please refer to the user documentation [here](https://github.com/huwdp/huwinterpreter-mirror/tree/master/documentation)._
 
-### Optional Software
-- Qt Creator
-- qmake
-## Development setup
-System is built under Qt Creator but can be compiled by just using make. Open HuwInterpreter.pro using Qt Creator and configure your own build settings via Qt Creator's GUI.
 ## Meta
 Huw Pritchard – [@huwdp](https://twitter.com/huwdp) – [huwdp.co.uk](https://huwdp.co.uk)
 GNU GENERAL PUBLIC LICENSE Version 3 (GPL 3).. See [license.txt](https://github.com/huwdp/huwinterpreter-mirror/blob/master/license.txt) for more information.

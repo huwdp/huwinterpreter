@@ -20,9 +20,9 @@
 
 #include "function.h"
 #include <curl/curl.h>
-#include "variables/doublevariable.h"
-#include "variables/stringvariable.h"
-#include "variables/hashtablevariable.h"
+#include "../variables/doublevariable.h"
+#include "../variables/stringvariable.h"
+#include "../variables/hashtablevariable.h"
 
 namespace HuwInterpreter {
     namespace Functions {

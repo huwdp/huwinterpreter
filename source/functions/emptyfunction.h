@@ -17,7 +17,7 @@
 #define EMPTYFUNCTION_H
 
 #include "function.h"
-#include "nodes/node.h"
+#include "../nodes/node.h"
 
 namespace HuwInterpreter {
     namespace Functions {

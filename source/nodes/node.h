@@ -18,17 +18,17 @@
 
 #include <string.h>
 #include <memory>
-#include "errors/debug.h"
-#include "errors/errors.h"
-#include "variables/variables.h"
-#include "variables/variable.h"
-#include "variables/doublevariable.h"
-#include "variables/stringvariable.h"
-#include "tokens/token.h"
-#include "variables/scope.h"
-#include "common/passable.h"
+#include "../errors/debug.h"
+#include "../errors/errors.h"
+#include "../variables/variables.h"
+#include "../variables/variable.h"
+#include "../variables/doublevariable.h"
+#include "../variables/stringvariable.h"
+#include "../tokens/token.h"
+#include "../variables/scope.h"
+#include "../common/passable.h"
 
-#include "common/nameableobject.h"
+#include "../common/nameableobject.h"
 
 namespace HuwInterpreter {
     namespace Variables {
