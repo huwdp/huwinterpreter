@@ -359,5 +359,14 @@ namespace HuwInterpreter {
             }
             return variable->sort();
         }
+
+        std::shared_ptr<Variable> ConstantVariable::size()
+        {
+            if (variable == nullptr)
+            {
+                return nullVariable;
+            }
+            return variable->size();
+        }
     }
 }

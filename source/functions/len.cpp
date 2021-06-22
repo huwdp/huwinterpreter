@@ -41,8 +41,7 @@ namespace HuwInterpreter {
                     passable->getErrorManager()->add(passable->getErrorFactory()->invalidArgument(token, RUNTIME_ERROR, name));
                     return nullVariable;
                 }
-                long long length = static_cast<long long>(var->toString().length());
-                return std::make_shared<DoubleVariable>(passable, length);
+                return var->size();
             }
             passable->getErrorManager()->add(passable->getErrorFactory()->requiresArguments(token, name, "", 1));
             return nullVariable;

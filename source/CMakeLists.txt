@@ -3,6 +3,7 @@ project(HuwInterpreter)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wlogical-op -Wuseless-cast -Wdouble-promotion -Wformat=2 -Wunused-function -Wunused-variable")
 

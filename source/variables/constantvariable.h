@@ -76,6 +76,7 @@ namespace HuwInterpreter {
             std::shared_ptr<Variable> leftShift(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token) final;
             std::shared_ptr<Variable> rightShift(std::shared_ptr<Variable> variable, std::shared_ptr<Tokens::Token> token) final;
             std::shared_ptr<Variable> sort() final;
+            std::shared_ptr<Variable> size() final;
 
             
         };
