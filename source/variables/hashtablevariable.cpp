@@ -480,5 +480,10 @@ namespace HuwInterpreter {
             }
             return newMap;
         }
+
+        std::shared_ptr<Variable> HashTableVariable::size()
+        {
+            return std::make_shared<DoubleVariable>(passable, map.size());
+        }
     }
 }

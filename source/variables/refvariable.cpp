@@ -301,7 +301,20 @@ namespace HuwInterpreter {
 
         std::shared_ptr<Variable> RefVariable::sort()
         {
+            if (variable == nullptr)
+            {
+                return nullVariable;
+            }
             return this->variable->sort();
+        }
+
+        std::shared_ptr<Variable> RefVariable::size()
+        {
+            if (variable == nullptr)
+            {
+                return nullVariable;
+            }
+            return this->variable->size();
         }
     }
 }

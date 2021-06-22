@@ -379,5 +379,11 @@ namespace HuwInterpreter {
             passable->getErrorManager()->add(passable->getErrorFactory()->isNotAnArray(token, name));
             return nullVariable;
         }
+
+        std::shared_ptr<Variable> DoubleVariable::size()
+        {
+            // Throw error
+            return nullVariable;
+        }
     }
 }
