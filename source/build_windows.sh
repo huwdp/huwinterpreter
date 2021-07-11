@@ -1,7 +1,5 @@
-#
-
 rm -rf build
 mkdir build
 cd build
-i686-w64-mingw32.static-cmake -lcurl -lreadline ..
-make
+cmake .. -DCMAKE_TOOLCHAIN_FILE=../cross-compilation.cmake
+cmake --build .

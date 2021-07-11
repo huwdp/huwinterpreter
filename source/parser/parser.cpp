@@ -351,7 +351,7 @@ namespace HuwInterpreter {
 
                     if (word == "import")
                     {
-                        return parseSquareBrackets(std::make_shared<ImportNode>(passable, currentToken, word, this->functions, arguments));
+                        //return parseSquareBrackets(std::make_shared<ImportNode>(passable, currentToken, word, this->functions, arguments));
                     }
                     return parseSquareBrackets(nodeFactory->CreateGetFuncNode(passable, currentToken, word, functions, arguments));
 
@@ -1107,7 +1107,7 @@ namespace HuwInterpreter {
 
                 if (word == "import")
                 {
-                    function = std::make_shared<ImportNode>(passable, currentToken, word, this->functions, arguments);
+                    //function = std::make_shared<ImportNode>(passable, currentToken, word, this->functions, arguments);
                 }
                 else
                 {

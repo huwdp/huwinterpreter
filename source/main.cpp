@@ -13,6 +13,7 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include <istream>
 #include <iostream>
 #include <string>
 #include <memory>
@@ -21,10 +22,8 @@
 #include "tokens/scanner.h"
 #include "io/io.h"
 #include "errors/errors.h"
-#include "tokens/filetokenmanager.h"
+//#include "tokens/filetokenmanager.h"
 #include "huwinterpreter.h"
-#include <readline/readline.h>
-#include <readline/history.h>
 
 void printHelp(int argc, char* argv[])
 {
@@ -74,18 +73,13 @@ int main(int argc, char* argv[])
     {
         while (true)
         {
-            char* input = readline(">>>");
-            if (!input)
-            {
-                break;
-            }
-            std::string text(input);
+
+            std::string text;
+            std::cin >> text;
             if (text == "exit")
             {
                 break;
             }
-            add_history(input);
-            free(input);
             std::cout << text << std::endl;
             interpreter->execute(interpreter->parseText(text));
         }

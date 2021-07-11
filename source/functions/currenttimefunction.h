@@ -17,9 +17,7 @@
 #define CURRENTTIME_H
 
 #include "function.h"
-#include <time.h>
 #include <ctime>
-#include <time.h>
 
 namespace HuwInterpreter {
     namespace Functions {

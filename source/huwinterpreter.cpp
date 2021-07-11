@@ -26,7 +26,7 @@ namespace  HuwInterpreter {
 
     void Interpreter::executeFile(std::string fileLocation)
     {
-        std::ifstream file (fileLocation.c_str());
+        /*std::ifstream file (fileLocation.c_str());
         bool exists = static_cast<bool>(file);
         if (!exists)
         {
@@ -35,7 +35,7 @@ namespace  HuwInterpreter {
             errorMessage.append("\"");
             return;
         }
-        execute(parseFile(fileLocation));
+        execute(parseFile(fileLocation));*/
     }
 
     void Interpreter::execute(std::vector<std::shared_ptr<Token>> tokens)
@@ -48,14 +48,14 @@ namespace  HuwInterpreter {
 
     void Interpreter::benchmark(std::vector<std::shared_ptr<Token>> tokens)
     {
-        auto start = std::chrono::high_resolution_clock::now();
+        /*auto start = std::chrono::high_resolution_clock::now();
         std::unique_ptr<Parser> parser = std::make_unique<Parser>(tokens, nodeFactory, false);
         parser->execute();
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> diff = end-start;
         printErrors(parser->getPassable());
         printStackTrace(parser->getPassable()->getStackTraceManager());
-        std::cout << "Benchmrk result: " << diff.count() << " seconds." << std::endl;
+        std::cout << "Benchmrk result: " << diff.count() << " seconds." << std::endl;*/
     }
 
     void Interpreter::printErrors(std::shared_ptr<HuwInterpreter::Passable> passable)
@@ -94,7 +94,7 @@ namespace  HuwInterpreter {
 
     std::vector<std::shared_ptr<Token>> Interpreter::parseFile(std::string fileLocation)
     {
-        std::vector<std::shared_ptr<Token>> tokens;
+        /*std::vector<std::shared_ptr<Token>> tokens;
         std::ifstream file (fileLocation.c_str());
         bool exists = static_cast<bool>(file);
         if (!exists)
@@ -105,7 +105,7 @@ namespace  HuwInterpreter {
             return tokens;
         }
         std::shared_ptr<FileTokenManager> fileTokenManager = std::make_shared<FileTokenManager>(fileLocation);
-        return scanner->tokenize(fileTokenManager);
+        return scanner->tokenize(fileTokenManager);*/
     }
 
     std::vector<std::shared_ptr<Token>> Interpreter::parseText(std::string text)
