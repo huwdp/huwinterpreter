@@ -22,8 +22,8 @@
 #include "tokens/scanner.h"
 #include "io/io.h"
 #include "errors/errors.h"
-//#include "tokens/filetokenmanager.h"
 #include "huwinterpreter.h"
+#include "tokens/filetokenmanager.h"
 
 void printHelp(int argc, char* argv[])
 {

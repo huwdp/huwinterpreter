@@ -5,7 +5,14 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wlogical-op -Wuseless-cast -Wdouble-promotion -Wformat=2")
+
+
+if (WIN32)
+    set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wlogical-op -Wuseless-cast -Wdouble-promotion -Wformat=2 -static-libgcc -static-libstdc++ -I$mxe/usr/i686-w64-mingw32.static/include -Wall -Wextra -Wlogical-op -Wuseless-cast -Wdouble-promotion -Wformat=2  -lkernel32 -luser32 -lgdi32 -lshell32 -DGLEW_STATIC=1 -DAL_LIBTYPE_STATIC=1")
+else()
+    set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wlogical-op -Wuseless-cast -Wdouble-promotion -Wformat=2")
+endIf()
+
 
 include(FindPkgConfig)
 find_package(READLINE)
@@ -112,7 +119,7 @@ set(SOURCE
     #functions/weekdayname.cpp
     #functions/year.cpp
     parser/parser.cpp
-    #tokens/filetokenmanager.cpp
+    tokens/filetokenmanager.cpp
     tokens/lineinfo.cpp
     tokens/scanner.cpp
     tokens/texttokenmanager.cpp
@@ -224,7 +231,7 @@ set(HEADER
         nodes/textnode.h
         nodes/whilenode.h
         parser/parser.h
-        #tokens/filetokenmanager.h
+        tokens/filetokenmanager.h
         tokens/lineinfo.h
         tokens/scanner.h
         tokens/texttokenmanager.h

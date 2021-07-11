@@ -26,7 +26,7 @@ namespace  HuwInterpreter {
 
     void Interpreter::executeFile(std::string fileLocation)
     {
-        /*std::ifstream file (fileLocation.c_str());
+        std::ifstream file (fileLocation.c_str());
         bool exists = static_cast<bool>(file);
         if (!exists)
         {
@@ -35,7 +35,7 @@ namespace  HuwInterpreter {
             errorMessage.append("\"");
             return;
         }
-        execute(parseFile(fileLocation));*/
+        execute(parseFile(fileLocation));
     }
 
     void Interpreter::execute(std::vector<std::shared_ptr<Token>> tokens)
@@ -94,7 +94,7 @@ namespace  HuwInterpreter {
 
     std::vector<std::shared_ptr<Token>> Interpreter::parseFile(std::string fileLocation)
     {
-        /*std::vector<std::shared_ptr<Token>> tokens;
+        std::vector<std::shared_ptr<Token>> tokens;
         std::ifstream file (fileLocation.c_str());
         bool exists = static_cast<bool>(file);
         if (!exists)
@@ -105,7 +105,7 @@ namespace  HuwInterpreter {
             return tokens;
         }
         std::shared_ptr<FileTokenManager> fileTokenManager = std::make_shared<FileTokenManager>(fileLocation);
-        return scanner->tokenize(fileTokenManager);*/
+        return scanner->tokenize(fileTokenManager);
     }
 
     std::vector<std::shared_ptr<Token>> Interpreter::parseText(std::string text)
