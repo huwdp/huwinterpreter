@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 
-
 if (WIN32)
     set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wlogical-op -Wuseless-cast -Wdouble-promotion -Wformat=2 -static-libgcc -static-libstdc++ -I$mxe/usr/i686-w64-mingw32.static/include -Wall -Wextra -Wlogical-op -Wuseless-cast -Wdouble-promotion -Wformat=2  -lkernel32 -luser32 -lgdi32 -lshell32 -DGLEW_STATIC=1 -DAL_LIBTYPE_STATIC=1")
 else()
@@ -14,8 +13,8 @@ else()
 endIf()
 
 
+
 include(FindPkgConfig)
-find_package(READLINE)
 
 include(GNUInstallDirs)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
@@ -27,19 +26,20 @@ set(SOURCE
     errors/error.cpp
     errors/errors.cpp
     errors/errortypestringfactory.cpp
-    #functions/httpdeletefunction.cpp
-    #functions/httpgetfunction.cpp
-    #functions/httpheadfunction.cpp
-    #functions/httppostfunction.cpp
-    #functions/httpputfunction.cpp
+    functions/httpdeletefunction.cpp
+    functions/httpgetfunction.cpp
+    functions/httpheadfunction.cpp
+    functions/httppostfunction.cpp
+    functions/httpputfunction.cpp
+    functions/httpdeletefunction.cpp
     functions/jsondecodefunction.cpp
     functions/jsonencodefunction.cpp
     functions/lround.cpp
-    #functions/sleepfunction.cpp
+    functions/sleepfunction.cpp
     functions/sort.cpp
     io/fileline.cpp
     io/io.cpp
-    #nodes/importnode.cpp
+    nodes/importnode.cpp
     tokens/tokenlist.cpp
     tokens/unusabletokenlist.cpp
     types/typedetector.cpp
@@ -92,13 +92,13 @@ set(SOURCE
     functions/max.cpp
     functions/mid.cpp
     functions/min.cpp
-    #functions/month.cpp
-    #functions/monthname.cpp
+    functions/month.cpp
+    functions/monthname.cpp
     functions/not.cpp
-    #functions/now.cpp
+    functions/now.cpp
     functions/pow.cpp
     functions/print.cpp
-    #functions/random.cpp
+    functions/random.cpp
     functions/replace.cpp
     functions/right.cpp
     functions/round.cpp
@@ -115,9 +115,9 @@ set(SOURCE
     functions/tostring.cpp
     functions/toupper.cpp
     functions/trim.cpp
-    #functions/weekday.cpp
-    #functions/weekdayname.cpp
-    #functions/year.cpp
+    functions/weekday.cpp
+    functions/weekdayname.cpp
+    functions/year.cpp
     parser/parser.cpp
     tokens/filetokenmanager.cpp
     tokens/lineinfo.cpp
@@ -164,9 +164,9 @@ set(SOURCE
     common/passable.cpp
     errors/errorfactory.cpp
     functions/fileexists.cpp
-    #functions/regexsearch.cpp
-    #functions/regexmatch.cpp
-    #functions/regexreplace.cpp
+    functions/regexsearch.cpp
+    functions/regexmatch.cpp
+    functions/regexreplace.cpp
     nodes/bitwisexornode.cpp
     nodes/bitwisecomplementnode.cpp
     nodes/leftshiftnode.cpp
@@ -179,10 +179,10 @@ set(SOURCE
     nodes/arraysetnode.cpp
     variables/refvariable.cpp
     functions/reffunction.cpp
-    #functions/currenttimefunction.cpp
-    #functions/clockfunction.cpp
-    #functions/dirfunction.cpp
-    #functions/timeformatfunction.cpp
+    functions/currenttimefunction.cpp
+    functions/clockfunction.cpp
+    functions/dirfunction.cpp
+    functions/timeformatfunction.cpp
     functions/unreffunction.cpp
     functions/tonumber.cpp)
 
@@ -194,14 +194,15 @@ set(HEADER
         errors/errortypestringfactory.h
         errors/ierrors.h
         functions/asort.h
-        #functions/httpgetfunction.h
-        #functions/httpheadfunction.h
-        #functions/httppostfunction.h
-        #functions/httpputfunction.h
+        functions/httpgetfunction.h
+        functions/httpheadfunction.h
+        functions/httppostfunction.h
+        functions/httpputfunction.h
+        functions/httpdeletefunction.h
         functions/jsondecodefunction.h
         functions/jsonencodefunction.h
         functions/lround.h
-        #functions/sleepfunction.h
+        functions/sleepfunction.h
         functions/sort.h
         io/fileline.h
         io/io.h
@@ -220,7 +221,7 @@ set(HEADER
         nodes/ifoverorequalnode.h
         nodes/ifundernode.h
         nodes/ifunderorequalnode.h
-        #nodes/importnode.h
+        nodes/importnode.h
         nodes/modnode.h
         nodes/mulnode.h
         nodes/node.h
@@ -303,13 +304,13 @@ set(HEADER
         functions/max.h
         functions/mid.h
         functions/min.h
-        #functions/month.h
-        #functions/monthname.h
+        functions/month.h
+        functions/monthname.h
         functions/not.h
-        #functions/now.h
+        functions/now.h
         functions/pow.h
         functions/print.h
-        #functions/random.h
+        functions/random.h
         functions/replace.h
         functions/right.h
         functions/round.h
@@ -327,9 +328,9 @@ set(HEADER
         functions/tostring.h
         functions/toupper.h
         functions/trim.h
-        #functions/weekday.h
-        #functions/weekdayname.h
-        #functions/year.h
+        functions/weekday.h
+        functions/weekdayname.h
+        functions/year.h
         nodes/addconstnode.h
         nodes/addnode.h
         nodes/addvarnode.h
@@ -374,9 +375,9 @@ set(HEADER
         common/passable.h
         errors/errorfactory.h
         functions/fileexists.h
-        #functions/regexsearch.h
-        #functions/regexmatch.h
-        #functions/regexreplace.h
+        functions/regexsearch.h
+        functions/regexmatch.h
+        functions/regexreplace.h
         nodes/bitwisexornode.h
         nodes/bitwisecomplementnode.h
         nodes/leftshiftnode.h
@@ -390,14 +391,26 @@ set(HEADER
         nodes/refnode.h
         variables/refvariable.h
         functions/reffunction.h
-        #functions/currenttimefunction.h
-        #functions/clockfunction.h
-        #functions/dirfunction.h
-        #functions/timeformatfunction.h
+        functions/currenttimefunction.h
+        functions/clockfunction.h
+        functions/dirfunction.h
+        functions/timeformatfunction.h
         functions/unreffunction.h
         functions/tonumber.h)
 
 add_executable(${PROJECT_NAME} ${SOURCE} ${HEADER})
+
+IF(MINGW)
+ELSE()
+pkg_check_modules(CURL libcurl REQUIRED)
+include_directories(
+  SYSTEM ${CURL_INCLUDE_DIRS}
+)
+target_link_libraries(${PROJECT_NAME}
+  ${CURL_LIBRARIES}
+)
+pkg_check_modules(READLINE readline REQUIRED)
+ENDIF(MINGW)
 
 include_directories(
   SYSTEM ${READLINE_INCLUDE_DIRS}

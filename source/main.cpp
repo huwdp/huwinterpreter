@@ -25,6 +25,13 @@
 #include "huwinterpreter.h"
 #include "tokens/filetokenmanager.h"
 
+#ifdef _WIN32
+#elif EMSCRIPTEN
+#else
+#include <readline/readline.h>
+#include <readline/history.h>
+#endif
+
 void printHelp(int argc, char* argv[])
 {
     if (argc > 0)
@@ -41,6 +48,26 @@ void printHelp(int argc, char* argv[])
         std::cerr << "3. Usage: --hc for HuwCode formatter" << std::endl;
         std::cerr << "4. Usage: -h or --help for help." << std::endl;
     }
+}
+
+
+std::string readUserInput()
+{
+#ifdef _WIN32
+    std::string input;
+    std::cin >> input;
+    return input;
+#elif EMSCRIPTEN
+    std::string input;
+    std::cin >> input;
+    return input;
+#else
+    char* input = readline(">>>");
+    std::string text(input);
+    add_history(input);
+    free(input);
+    return text;
+#endif
 }
 
 int main(int argc, char* argv[])
@@ -73,15 +100,13 @@ int main(int argc, char* argv[])
     {
         while (true)
         {
-
-            std::string text;
-            std::cin >> text;
-            if (text == "exit")
+            std::string input = readUserInput();
+            std::cout << input << std::endl;
+            if (input == "exit")
             {
                 break;
             }
-            std::cout << text << std::endl;
-            interpreter->execute(interpreter->parseText(text));
+            interpreter->execute(interpreter->parseText(input));
         }
     }
     else if (argument == "--hc" && argc == 3)

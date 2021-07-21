@@ -13,6 +13,10 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifdef EMSCRIPTEN
+#elif _WIN32
+#else
+
 #include "now.h"
 
 namespace HuwInterpreter {
@@ -38,3 +42,4 @@ namespace HuwInterpreter {
         }
     }
 }
+#endif

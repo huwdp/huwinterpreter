@@ -13,6 +13,10 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifdef EMSCRIPTEN
+#elif _WIN32
+#else
+
 #ifndef TIMEFORMATFUNCTION_H
 #define TIMEFORMATFUNCTION_H
 
@@ -35,3 +39,4 @@ namespace HuwInterpreter {
 }
 
 #endif // TIMEFORMATFUNCTION_H
+#endif

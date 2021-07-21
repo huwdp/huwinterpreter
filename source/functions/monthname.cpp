@@ -13,7 +13,11 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifdef _WIN32
+#else
+
 #include "monthname.h"
+#include <iomanip>
 
 namespace HuwInterpreter {
     namespace Functions {
@@ -63,10 +67,11 @@ namespace HuwInterpreter {
                 {
                     passable->getErrorManager()->add(passable->getErrorFactory()->otherFunctionError(token, name, ex.what()));
                 }
-		return nullVariable;
+                return nullVariable;
             }
             passable->getErrorManager()->add(passable->getErrorFactory()->requiresArguments(token, name, "", 1));
             return nullVariable;
         }
     }
 }
+#endif
