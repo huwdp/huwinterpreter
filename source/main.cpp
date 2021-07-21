@@ -28,8 +28,8 @@
 #ifdef _WIN32
 #elif EMSCRIPTEN
 #else
-#include <readline/readline.h>
-#include <readline/history.h>
+//#include <readline/readline.h>
+//#include <readline/history.h>
 #endif
 
 void printHelp(int argc, char* argv[])
@@ -62,11 +62,14 @@ std::string readUserInput()
     std::cin >> input;
     return input;
 #else
-    char* input = readline(">>>");
+    /*char* input = readline(">>>");
     std::string text(input);
     add_history(input);
     free(input);
-    return text;
+    return text;*/
+    std::string input;
+    std::cin >> input;
+    return input;
 #endif
 }
 
