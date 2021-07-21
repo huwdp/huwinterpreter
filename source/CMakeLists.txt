@@ -409,7 +409,7 @@ include_directories(
 target_link_libraries(${PROJECT_NAME}
   ${CURL_LIBRARIES}
 )
-pkg_check_modules(READLINE readline REQUIRED)
+#pkg_check_modules(READLINE readline REQUIRED)
 ENDIF(MINGW)
 
 include_directories(
