@@ -13,7 +13,12 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifdef EMSCRIPTEN
+#elif _WIN32
+#else
 #include "sleepfunction.h"
+
+#include <thread>
 
 namespace HuwInterpreter {
     namespace Functions {
@@ -43,7 +48,11 @@ namespace HuwInterpreter {
                 }
                 if (var->isNumber())
                 {
+#ifdef _WIN32
+#else
                     std::this_thread::sleep_for(std::chrono::milliseconds(var->toInt()));
+#endif
+
                 }
                 else
                 {
@@ -56,3 +65,4 @@ namespace HuwInterpreter {
         }
     }
 }
+#endif

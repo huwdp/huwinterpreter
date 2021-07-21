@@ -48,14 +48,14 @@ namespace  HuwInterpreter {
 
     void Interpreter::benchmark(std::vector<std::shared_ptr<Token>> tokens)
     {
-        auto start = std::chrono::high_resolution_clock::now();
+        /*auto start = std::chrono::high_resolution_clock::now();
         std::unique_ptr<Parser> parser = std::make_unique<Parser>(tokens, nodeFactory, false);
         parser->execute();
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> diff = end-start;
         printErrors(parser->getPassable());
         printStackTrace(parser->getPassable()->getStackTraceManager());
-        std::cout << "Benchmrk result: " << diff.count() << " seconds." << std::endl;
+        std::cout << "Benchmrk result: " << diff.count() << " seconds." << std::endl;*/
     }
 
     void Interpreter::printErrors(std::shared_ptr<HuwInterpreter::Passable> passable)

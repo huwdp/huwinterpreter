@@ -14,6 +14,7 @@
 */
 
 #ifdef EMSCRIPTEN
+#elif _WIN32
 #else
 #ifndef HTTPDELETEFUNCTION_H
 #define HTTPDELETEFUNCTION_H

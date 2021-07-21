@@ -13,6 +13,7 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 #ifdef EMSCRIPTEN
+#elif _WIN32
 #else
 #ifndef HTTPPUTFUNCTION_H
 #define HTTPPUTFUNCTION_H

@@ -1,13 +1,25 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.10)
 project(HuwInterpreter)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wlogical-op -Wuseless-cast -Wdouble-promotion -Wformat=2 -Wunused-function -Wunused-variable")
+
+if (WIN32)
+    set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wlogical-op -Wuseless-cast -Wdouble-promotion -Wformat=2 -static-libgcc -static-libstdc++ -I$mxe/usr/i686-w64-mingw32.static/include -Wall -Wextra -Wlogical-op -Wuseless-cast -Wdouble-promotion -Wformat=2  -lkernel32 -luser32 -lgdi32 -lshell32 -DGLEW_STATIC=1 -DAL_LIBTYPE_STATIC=1")
+else()
+    set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wlogical-op -Wuseless-cast -Wdouble-promotion -Wformat=2")
+endIf()
+
+
 
 include(FindPkgConfig)
+
+include(GNUInstallDirs)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
 
 set(SOURCE
     errors/debug.cpp
@@ -19,6 +31,7 @@ set(SOURCE
     functions/httpheadfunction.cpp
     functions/httppostfunction.cpp
     functions/httpputfunction.cpp
+    functions/httpdeletefunction.cpp
     functions/jsondecodefunction.cpp
     functions/jsonencodefunction.cpp
     functions/lround.cpp
@@ -185,6 +198,7 @@ set(HEADER
         functions/httpheadfunction.h
         functions/httppostfunction.h
         functions/httpputfunction.h
+        functions/httpdeletefunction.h
         functions/jsondecodefunction.h
         functions/jsonencodefunction.h
         functions/lround.h
@@ -386,6 +400,8 @@ set(HEADER
 
 add_executable(${PROJECT_NAME} ${SOURCE} ${HEADER})
 
+IF(MINGW)
+ELSE()
 pkg_check_modules(CURL libcurl REQUIRED)
 include_directories(
   SYSTEM ${CURL_INCLUDE_DIRS}
@@ -393,8 +409,9 @@ include_directories(
 target_link_libraries(${PROJECT_NAME}
   ${CURL_LIBRARIES}
 )
+#pkg_check_modules(READLINE readline REQUIRED)
+ENDIF(MINGW)
 
-pkg_check_modules(READLINE readline REQUIRED)
 include_directories(
   SYSTEM ${READLINE_INCLUDE_DIRS}
 )

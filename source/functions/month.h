@@ -13,6 +13,9 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifdef _WIN32
+#else
+
 #ifndef MONTH_H
 #define MONTH_H
 
@@ -21,7 +24,6 @@
 #include <string>
 #include <iostream>
 #include <ctime>
-#include <iomanip>
 
 namespace HuwInterpreter {
     namespace Functions {
@@ -39,3 +41,4 @@ namespace HuwInterpreter {
 }
 
 #endif // MONTH_H
+#endif

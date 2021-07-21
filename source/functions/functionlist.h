@@ -50,12 +50,12 @@
 #include "now.h"
 #include "month.h"
 #include "monthname.h"
+#include "currenttimefunction.h"
 
 // File and directories
 #include "fileread.h"
 #include "filewrite.h"
 #include "fileexists.h"
-#include "currenttimefunction.h"
 #include "dirfunction.h"
 
 // Math
@@ -78,7 +78,6 @@
 #include "lround.h"
 #include "sqrt.h"
 #include "tan.h"
-#include "random.h"
 
 // Other
 #include "print.h"
@@ -108,13 +107,14 @@
 
 #include "regexsearch.h"
 #include "regexreplace.h"
-#include"regexmatch.h"
+#include "regexmatch.h"
 
 #include "reffunction.h"
 #include "unreffunction.h"
 
 #include "clockfunction.h"
 #include "timeformatfunction.h"
+
 
 #include "httpgetfunction.h"
 #include "httppostfunction.h"
