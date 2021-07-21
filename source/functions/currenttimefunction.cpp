@@ -15,6 +15,9 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifdef _WIN32
+#else
+
 #include "currenttimefunction.h"
 
 namespace HuwInterpreter {
@@ -56,3 +59,4 @@ namespace HuwInterpreter {
         }
     }
 }
+#endif

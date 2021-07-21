@@ -13,12 +13,13 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifdef _WIN32
+#else
 
 #ifndef SLEEPFUNCTION_H
 #define SLEEPFUNCTION_H
 
 #include "function.h"
-#include <thread>
 
 namespace HuwInterpreter {
     namespace Functions {
@@ -36,3 +37,4 @@ namespace HuwInterpreter {
 }
 
 #endif // SLEEPFUNCTION_H
+#endif

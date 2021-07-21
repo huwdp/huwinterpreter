@@ -13,13 +13,14 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifdef _WIN32
+#else
+
 #ifndef CURRENTTIME_H
 #define CURRENTTIME_H
 
 #include "function.h"
-#include <time.h>
 #include <ctime>
-#include <time.h>
 
 namespace HuwInterpreter {
     namespace Functions {
@@ -37,3 +38,4 @@ namespace HuwInterpreter {
 }
 
 #endif // CURRENTTIME_H
+#endif

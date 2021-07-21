@@ -13,6 +13,8 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifdef _WIN32
+#else
 #ifndef REGEXSEARCH_H
 #define REGEXSEARCH_H
 
@@ -35,3 +37,4 @@ namespace HuwInterpreter {
 }
 
 #endif // REGEXSEARCH_H
+#endif

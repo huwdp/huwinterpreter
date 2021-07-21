@@ -1,5 +1,6 @@
 
 
+
 # HuwInterpreter
 > HuwInterpreter is a hand written interpreter designed to parse and execute HuwCode script.
 
@@ -39,7 +40,8 @@ print(fac(14));
 
 #### Building
 ```
-sudo apt-get install git g++ cmake make libcurl4-openssl-dev curl lib32readline7 lib32readline-dev libreadline-dev
+sudo apt-get install git g++ cmake make libcurl4-openssl-dev curl pkg-config
+sudo apt-get install lib32readline7 lib32readline-dev libreadline-dev
 git clone https://github.com/huwdp/huwinterpreter.git
 cd huwinterpreter/source
 ./build.sh
@@ -71,6 +73,32 @@ chmod 777 linuxdeployqt-continuous-x86_64.AppImage
 4. Usage: -h for help.
 ```
 _For more examples and usage, please refer to the user documentation [here](https://github.com/huwdp/huwinterpreter-mirror/tree/master/documentation)._
+
+### Releases
+Binaries can be downloaded here (https://github.com/huwdp/huwinterpreter/releases).
+
+Windows build available although some functionality is disabled. 
+List of things disabled in Windows build:
+
+- Readline user input
+ - sleep
+ - weekday
+ - weekdayName
+ - year
+ - monthName
+ - random
+ - month
+ - currentTime
+ - clock
+ - regexSearch
+ - regexReplace
+ - regexMatch
+ - timeFormat
+ - httpGet
+ - httpPost
+ - httpPut
+ - httpDelete
+ - now
 
 ## Meta
 Huw Pritchard – [@huwdp](https://twitter.com/huwdp) – [huwdp.co.uk](https://huwdp.co.uk)

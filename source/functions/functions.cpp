@@ -30,16 +30,12 @@ namespace Functions {
         functions["fileWrite"] = std::make_shared<FileWrite>(passable);
         functions["fileExists"] = std::make_shared<FileExists>(passable);
         functions["dir"] = std::make_shared<DirFunction>(passable);
-        functions["month"] = std::make_shared<Month>(passable);
-        functions["monthName"] = std::make_shared<MonthName>(passable);
+
+
         functions["not"] = std::make_shared<Not>(passable);
-        functions["now"] = std::make_shared<Now>(passable);
         functions["print"] = std::make_shared<Print>(passable);
         functions["scan"] = std::make_shared<Scan>(passable);
-        functions["weekday"] = std::make_shared<Weekday>(passable);
-        functions["weekdayName"] = std::make_shared<WeekdayName>(passable);
-        functions["year"] = std::make_shared<Year>(passable);
-        functions["currentTime"] = std::make_shared<CurrentTimeFunction>(passable);
+
         functions["abs"] = std::make_shared<Abs>(passable);
         functions["acos"] = std::make_shared<Acos>(passable);
         functions["asin"] = std::make_shared<Asin>(passable);
@@ -72,7 +68,7 @@ namespace Functions {
         functions["strRev"] = std::make_shared<StrReverse>(passable);
         functions["trim"] = std::make_shared<Trim>(passable);
         functions["toUpper"] = std::make_shared<ToUpper>(passable);
-        functions["random"] = std::make_shared<Random>(passable);
+
         functions["asc"] = std::make_shared<Asc>(passable);
         functions["cha"] = std::make_shared<Cha>(passable);
         functions["str"] = std::make_shared<Str>(passable);
@@ -89,25 +85,45 @@ namespace Functions {
         functions["toInt"] = std::make_shared<ToNumber>(passable);
         functions["toDouble"] = std::make_shared<ToDouble>(passable);
         functions["toString"] = std::make_shared<ToString>(passable);
-        functions["regexSearch"] = std::make_shared<RegexSearch>(passable);
-        functions["regexReplace"] = std::make_shared<RegexReplace>(passable);
-        functions["regexMatch"] = std::make_shared<RegexMatch>(passable);
+
         functions["ref"] = std::make_shared<RefFunction>(passable);
         functions["unref"] = std::make_shared<UnrefFunction>(passable);
-        functions["clock"] = std::make_shared<ClockFunction>(passable);
-        functions["timeFormat"] = std::make_shared<TimeFormatFunction>(passable);
+
+
+        functions["jsonEncode"] = std::make_shared<JSONEncodeFunction>(passable);
+        functions["jsonDecode"] = std::make_shared<JSONDecodeFunction>(passable);
+        functions["sort"] = std::make_shared<Sort>(passable);
+
 #ifdef EMSCRIPTEN
+#elif WIN32
 #else
         functions["httpGet"] = std::make_shared<HttpGetFunction>(passable);
         functions["httpPost"] = std::make_shared<HttpPostFunction>(passable);
         functions["httpPut"] = std::make_shared<HttpPutFunction>(passable);
         functions["httpDelete"] = std::make_shared<HttpDeleteFunction>(passable);
         functions["httpHead"] = std::make_shared<HttpHeadFunction>(passable);
+
 #endif
+
+#ifdef WIN32
+#else
+        functions["now"] = std::make_shared<Now>(passable);
         functions["sleep"] = std::make_shared<SleepFunction>(passable);
-        functions["jsonEncode"] = std::make_shared<JSONEncodeFunction>(passable);
-        functions["jsonDecode"] = std::make_shared<JSONDecodeFunction>(passable);
-        functions["sort"] = std::make_shared<Sort>(passable);
+        functions["weekday"] = std::make_shared<Weekday>(passable);
+        functions["weekdayName"] = std::make_shared<WeekdayName>(passable);
+        functions["year"] = std::make_shared<Year>(passable);
+        functions["monthName"] = std::make_shared<MonthName>(passable);
+        functions["random"] = std::make_shared<Random>(passable);
+        functions["month"] = std::make_shared<Month>(passable);
+        functions["currentTime"] = std::make_shared<CurrentTimeFunction>(passable);
+        functions["clock"] = std::make_shared<ClockFunction>(passable);
+        functions["regexSearch"] = std::make_shared<RegexSearch>(passable);
+        functions["regexReplace"] = std::make_shared<RegexReplace>(passable);
+        functions["regexMatch"] = std::make_shared<RegexMatch>(passable);
+        functions["timeFormat"] = std::make_shared<TimeFormatFunction>(passable);
+#endif
+
+
     }
 
     std::shared_ptr<Functions::Function> FunctionManager::get(std::string name)

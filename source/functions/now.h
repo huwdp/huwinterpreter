@@ -13,6 +13,8 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifdef _WIN32
+#else
 #ifndef NOW_H
 #define NOW_H
 
@@ -38,3 +40,4 @@ namespace HuwInterpreter {
 }
 
 #endif // NOW_H
+#endif

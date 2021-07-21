@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=HuwCode
+Comment=HuwCode interpreter
+Exec=huwcode
+Icon=huwcode
+Categories=Utility
+Terminal=true;

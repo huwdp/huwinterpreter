@@ -14,6 +14,7 @@
 */
 
 #ifdef EMSCRIPTEN
+#elif _WIN32
 #else
 #ifndef HTTPHEADFUNCTION_H
 #define HTTPHEADFUNCTION_H

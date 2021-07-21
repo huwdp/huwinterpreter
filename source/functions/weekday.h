@@ -13,6 +13,9 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifdef _WIN32
+#else
+
 #ifndef WEEKDAY_H
 #define WEEKDAY_H
 
@@ -22,7 +25,6 @@
 #include <iostream>
 #include <sstream>
 #include <ctime>
-#include <iomanip>
 
 namespace HuwInterpreter {
     namespace Functions {
@@ -40,3 +42,4 @@ namespace HuwInterpreter {
 }
 
 #endif // WEEKDAY_H
+#endif
