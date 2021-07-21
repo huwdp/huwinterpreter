@@ -13,6 +13,9 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifdef _WIN32
+#else
+
 #ifndef RANDOM_H
 #define RANDOM_H
 
@@ -36,4 +39,4 @@ namespace HuwInterpreter {
 }
 
 #endif // RANDOM
-
+#endif

@@ -13,6 +13,9 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifdef _WIN32
+#else
+
 #ifndef YEAR_H
 #define YEAR_H
 
@@ -21,7 +24,6 @@
 #include <string>
 #include <iostream>
 #include <ctime>
->
 #include <sstream>
 
 namespace HuwInterpreter {
@@ -40,3 +42,4 @@ namespace HuwInterpreter {
 }
 
 #endif // YEAR_H
+#endif

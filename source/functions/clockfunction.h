@@ -13,6 +13,9 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifdef _WIN32
+#else
+
 #ifndef CLOCKFUNCTION_H
 #define CLOCKFUNCTION_H
 
@@ -36,3 +39,4 @@ namespace HuwInterpreter {
 }
 
 #endif // CLOCKFUNCTION_H
+#endif
