@@ -58,7 +58,7 @@ sudo cp ./HuwInterpreter /usr/sbin/huw
 #### Build App-Image
 ```
 sudo apt-get install wget
-cd huwinterpreter/deploy-appimage/
+cd huwinterpreter/build-appimage/
 wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
 chmod a-x linuxdeployqt-continuous-x86_64.AppImage
 chmod 777 linuxdeployqt-continuous-x86_64.AppImage
