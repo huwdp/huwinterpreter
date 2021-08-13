@@ -113,9 +113,21 @@ namespace HuwInterpreter {
                             {
                                 if (!fileReader->isEnd())
                                 {
-                                    if (tokenManager->fastCompare(fileReader->getNext()->getContent(), Types::QUOTE))
+                                    char currentChar = fileReader->getNext()->getContent();
+
+                                    if (tokenManager->fastCompare(currentChar, Types::QUOTE))
                                     {
                                         temp.push_back(fileReader->getCurrent()->getContent());
+                                        fileReader->next();
+                                    }
+                                    else if (currentChar == 'n')    // Parse newline
+                                    {
+                                        temp.push_back('\n');
+                                        fileReader->next();
+                                    }
+                                    else if (currentChar == 'r')    // Parse other newline
+                                    {
+                                        temp.push_back('\r');
                                         fileReader->next();
                                     }
                                     else

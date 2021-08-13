@@ -229,12 +229,12 @@ namespace HuwInterpreter {
                 passable->getErrorManager()->add(passable->getErrorFactory()->failedToCompare(token, "ifUnder", name, getType()));
                 return nullVariable;
             }
-            if (Helpers::TypeDetector::isNumeric(toString()))
+            /*if (Helpers::TypeDetector::isNumeric(toString()))
             {
                 std::shared_ptr<Variable> var = variableTypeFactory->newVariable(Helpers::TypeDetector::getType(value));
                 var->setValue(toString());
                 return var->ifUnder(variable, token);
-            }
+            }*/
             std::shared_ptr<DoubleVariable> temp = std::make_shared<DoubleVariable>(passable);
             if (this->toString().compare(variable->toString()) < 0)
             {
@@ -254,12 +254,12 @@ namespace HuwInterpreter {
                 passable->getErrorManager()->add(passable->getErrorFactory()->failedToCompare(token, "ifUnderOrEqual", name, getType()));
                 return nullVariable;
             }
-            if (Helpers::TypeDetector::isNumeric(toString()))
+            /*if (Helpers::TypeDetector::isNumeric(toString()))
             {
                 std::shared_ptr<Variable> var = variableTypeFactory->newVariable(Helpers::TypeDetector::getType(value));
                 var->setValue(toString());
                 return var->ifUnderOrEqual(variable, token);
-            }
+            }*/
             std::shared_ptr<DoubleVariable> temp = std::make_shared<DoubleVariable>(passable);
             if (this->toString().compare(variable->toString()) <= 0)
             {
@@ -279,12 +279,12 @@ namespace HuwInterpreter {
                 passable->getErrorManager()->add(passable->getErrorFactory()->failedToCompare(token, "ifOver", name, getType()));
                 return nullVariable;
             }
-            if (Helpers::TypeDetector::isNumeric(toString()))
+            /*if (Helpers::TypeDetector::isNumeric(toString()))
             {
                 std::shared_ptr<Variable> var = variableTypeFactory->newVariable(Helpers::TypeDetector::getType(value));
                 var->setValue(toString());
                 return var->ifOver(variable, token);
-            }
+            }*/
             std::shared_ptr<DoubleVariable> temp = std::make_shared<DoubleVariable>(passable);
             if (this->toString().compare(variable->toString()) > 0)
             {
@@ -304,12 +304,12 @@ namespace HuwInterpreter {
                 passable->getErrorManager()->add(passable->getErrorFactory()->failedToCompare(token, "ifOverOrEqual", name, getType()));
                 return nullVariable;
             }
-            if (Helpers::TypeDetector::isNumeric(toString()))
+            /*if (Helpers::TypeDetector::isNumeric(toString()))
             {
                 std::shared_ptr<Variable> var = variableTypeFactory->newVariable(Helpers::TypeDetector::getType(value));
                 var->setValue(toString());
                 return var->ifOverOrEqual(variable, token);
-            }
+            }*/
             std::shared_ptr<DoubleVariable> temp = std::make_shared<DoubleVariable>(passable);
             if (this->toString().compare(variable->toString()) >= 0)
             {
@@ -329,12 +329,12 @@ namespace HuwInterpreter {
                 passable->getErrorManager()->add(passable->getErrorFactory()->failedToCompare(token, "ifEqual", name, getType()));
                 return nullVariable;
             }
-            if (Helpers::TypeDetector::isNumeric(toString()))
+            /*if (Helpers::TypeDetector::isNumeric(toString()))
             {
                 std::shared_ptr<Variable> var = variableTypeFactory->newVariable(Helpers::TypeDetector::getType(value));
                 var->setValue(toString());
                 return var->ifEqual(variable, token);
-            }
+            }*/
             std::shared_ptr<DoubleVariable> temp = std::make_shared<DoubleVariable>(passable);
             if (this->toString().compare(variable->toString()) == 0)
             {
@@ -354,12 +354,12 @@ namespace HuwInterpreter {
                 passable->getErrorManager()->add(passable->getErrorFactory()->failedToCompare(token, "ifNotEqual", name, getType()));
                 return nullVariable;
             }
-            if (Helpers::TypeDetector::isNumeric(toString()))
+            /*if (Helpers::TypeDetector::isNumeric(toString()))
             {
                 std::shared_ptr<Variable> var = variableTypeFactory->newVariable(Helpers::TypeDetector::getType(value));
                 var->setValue(toString());
                 return var->ifNotEqual(variable, token);
-            }
+            }*/
             std::shared_ptr<DoubleVariable> temp = std::make_shared<DoubleVariable>(passable);
             if (this->toString().compare(variable->toString()) != 0)
             {
