@@ -1,0 +1,31 @@
+function concatArray(value1, value2)
+{
+    let output = array();
+    let i = 0;
+    if (isArrayType(value1))
+    {
+        while (i < count(value1))
+        {
+            output[count(output)] = value1[i];
+            i++;
+        }
+    }
+    else
+    {
+        output[count(output)] = value1;
+    }
+    i = 0;
+    if (isArrayType(value2))
+    {
+        while (i < count(value2))
+        {
+            output[count(output)] = value2[i];
+            i++;
+        }
+    }
+    else
+    {
+        output[count(output)] = value2;
+    }
+    return output;
+}

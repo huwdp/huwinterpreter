@@ -1,4 +1,0 @@
-let a = array();
-let b = "";
-
-print(a == b);

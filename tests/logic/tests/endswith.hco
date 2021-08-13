@@ -1,0 +1,11 @@
+function endsWith(source, text)
+{
+    if (right(source, count(text)) == text)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+print(endsWith("Hello World!", "World!")); /* Expected true */
+print(endsWith("Lorem ipsum", "World!")); /* Expected false */
