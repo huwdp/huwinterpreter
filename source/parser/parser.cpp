@@ -15,6 +15,11 @@
 
 #include "parser.h"
 
+#ifdef WIN32
+#else
+#include "../nodes/importnode.h"
+#endif
+
 namespace HuwInterpreter {
     Parser::Parser(std::vector<std::shared_ptr<Tokens::Token>> tokens,
                    std::shared_ptr<Nodes::NodeFactory> nodeFactory,
@@ -351,10 +356,13 @@ namespace HuwInterpreter {
 
                     if (word == "import")
                     {
-                        //return parseSquareBrackets(std::make_shared<ImportNode>(passable, currentToken, word, this->functions, arguments));
+#ifdef WIN32
+                        errorMessage("Windows cannot use the import function", currentToken);
+#else
+                        return parseSquareBrackets(std::make_shared<ImportNode>(passable, currentToken, word, this->functions, arguments));
+#endif
                     }
                     return parseSquareBrackets(nodeFactory->CreateGetFuncNode(passable, currentToken, word, functions, arguments));
-
                 }
                 else if (peak != nullptr && peakToken()->getType() == Types::LEFTSQUAREBRACKET)
                 {
