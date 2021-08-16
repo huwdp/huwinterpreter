@@ -1,0 +1,63 @@
+let file = fileRead("countrycodes.csv");
+
+function split(input, deliminator)
+{
+    let output = array();
+    output = array();
+    let i = 0;
+    i = 0;
+    let j = 0;
+    j = 0;
+    let temp = "";
+    while (i < count(input))
+    {
+        if (input[i] == deliminator)
+        {
+            output[j] = temp;
+            j++;
+            temp = "";
+        }
+        else
+        {
+            temp += input[i];
+        }
+        i++;
+    }
+    if (temp != "")
+    {
+        output[j] = temp;
+    }
+    return output;
+}
+
+function csvToArray(input)
+{
+    let output = array();
+
+    let lines = split(input, "\n");
+    
+    let i = 0;
+
+    while (i < len(lines))
+    {
+        let line = lines[i];
+        output[i] = split(line, ",");
+        i++;
+    }
+    return output;
+}
+
+let countyCodes = csvToArray(file);
+
+let i = 0;
+while (i < len(countyCodes))
+{
+    let country = countyCodes[i];
+    print("Item: " + i);
+    print("Country: " + country[0]);
+    print("Alpha-2 code : " + country[1]);
+    print("Alpha-3 code : " + country[2]);
+    print("Numeric: " + country[3]);
+    print("");
+    i++;
+}
