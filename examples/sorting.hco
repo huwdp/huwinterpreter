@@ -1,0 +1,134 @@
+let list = array();
+
+list[0] = 701;
+list[1] = 301;
+list[2] = 132;
+list[3] = 57;
+list[4] = 23;
+list[5] = 10;
+list[6] = 4;
+list[7] = 1;
+
+
+function insertationSort(list)
+{
+    let i = 1;
+    while (i < count(list))
+    {
+        let j = i;
+        while (j > 0 && list[j-1] > list[j])
+        {
+            let temp = list[j];
+            list[j] = list[j-1];
+            list[j-1] = temp;
+            j--;
+        }
+        i++;
+    }
+    return list;
+}
+
+function bubbleSort(list)
+{
+    let n = count(list);
+    let swapped = 1;
+    while (swapped)
+    {
+        swapped = 0;
+        let i = 1;
+        while (i < n)
+        {
+            if (list[i - 1] > list[i])
+            {
+                let temp = list[i];
+                list[i] = list[i-1];
+                list[i-1] = temp;
+                swapped = 1;
+            }
+            i++;
+        }
+        n--;
+    }
+    return list;
+}
+
+function shellSort(list)
+{
+    let n = count(list);
+    let gap = round(n/2);
+    while (gap > 0)
+    {
+        let i = gap;
+        while (i < n)
+        {
+            let temp = list[i];
+            let j = i;
+            while (j >= gap && list[j - gap] > temp)
+            {
+                list[j] = list[j - gap];
+                j -= gap;
+            }
+            list[j] = temp;
+            i++;
+        }
+        gap = gap / 2;
+        if (gap <= 0.5)
+        {
+            gap = 0;
+        }
+    }
+    return list;
+}
+
+function checkSort(list)
+{
+    let i = 0;
+    while (i < count(list)-2)
+    {
+        if (list[i+1] < list[i])
+        {
+            return false;
+        }
+        i++;
+    }
+    return true;
+}
+
+list[0] = 701;
+list[1] = 301;
+list[2] = 132;
+list[3] = 57;
+list[4] = 23;
+list[5] = 10;
+list[6] = 4;
+list[7] = 1;
+let a = insertationSort(list);
+print(a);
+print(checkSort(a));
+
+list[0] = 701;
+list[1] = 301;
+list[2] = 132;
+list[3] = 57;
+list[4] = 23;
+list[5] = 10;
+list[6] = 4;
+list[7] = 1;
+
+let a = bubbleSort(list);
+print(a);
+
+print(checkSort(a));
+
+list[0] = 701;
+list[1] = 301;
+list[2] = 132;
+list[3] = 57;
+list[4] = 23;
+list[5] = 10;
+list[6] = 4;
+list[7] = 1;
+
+let a = shellSort(list);
+print(a);
+print(checkSort(a));

@@ -1,0 +1,258 @@
+function int(value)
+{
+    return round(toDouble(value));
+}
+
+function and(left, right)
+{
+    if (left && right)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+
+function coalesce(value, replacementValue)
+{
+  if (isArrayType(value) && count(value) == 0)
+  {
+    return replacementValue;
+  }
+  if (isStringType(value) && value == "")
+  {
+      return replacementValue;
+  }
+  return value;
+}
+
+function degress(value)
+{
+  return cos(value * PI / 180.0);
+}
+
+function endsWith(source, text)
+{
+    if (right(source, count(text)) == text)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+
+function fill(value, n)
+{
+  let output = "";
+  let i = 0;
+  while (i < n)
+  {
+      output += value;
+      i = i + 1;
+  }
+  return output;
+}
+
+function first(value)
+{
+  if (count(value) > 0)
+  {
+      return value[0];
+  }
+  return "";
+}
+
+
+function isBlank(value)
+{
+  if (isArrayType(value) && count(value) == 0)
+  {
+    return 1;
+  }
+  if (isStringType(value) && value == "")
+  {
+      return 1;
+  }
+  return 0;
+}
+
+function last(value)
+{
+    let size = count(value);
+    if (size > 0)
+    {
+        return value[size-1];
+    }
+    return "";
+}
+
+function or(left, right)
+{
+    if (left || right)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+function proper(value)
+{
+    if (!isStringType(value))
+    {
+        return value;
+    }
+    let i = 1;
+    let size = count(value);
+    let output = "";
+    output += toUpper(value[0]);
+    while (i < size)
+    {
+        output += value[i];
+        i++;
+    }
+    return output;
+}
+
+function radians(value)
+{
+  return tan(value * PI / 180.0);
+}
+
+function reverse(value)
+{
+    if (isArrayType(value))
+    {
+      return value;
+    }
+
+    let output = "";
+    let i = count(value)-1;
+    while (i >= 0)
+    {
+        output += value[i];
+        i--;
+    }
+    return output;
+}
+
+function startsWith(source, text)
+{
+    if (left(source, count(text)) == text)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+function strContains(string1, string2)
+{
+    if (inStr(string1, string2) == -1)
+    {
+        return 0;
+    }
+    return 1;
+}
+
+function join(input, seperator)
+{
+    if (isArrayType(input) || isStringType(input))
+    {
+        let output = "";
+        let i = 0;
+        i=0; /* Bug */
+        while (i < count(input))
+        {
+            output += input[i];
+            output += seperator;
+            i++;
+        }
+        return output;
+    }
+    return str(input);
+}
+
+function split(input, deliminator)
+{
+    let output = array();
+    output = array();
+    let i = 0;
+    i = 0;
+    let j = 0;
+    j = 0;
+    let temp = "";
+    while (i < count(input))
+    {
+        if (input[i] == deliminator)
+        {
+            output[j] = temp;
+            j++;
+            temp = "";
+        }
+        else
+        {
+            temp += input[i];
+        }
+        i++;
+    }
+    if (temp != "")
+    {
+        output[j] = temp;
+    }
+    return output;
+}
+
+function shuffle(input)
+{
+    if (!isArrayType(input))
+    {
+        return input;
+    }
+    
+    let i = 0;
+    i = 0;
+    
+    while (i < count(input))
+    {   
+        let temp = input[i];
+        let randomNumber = 0;
+        randomNumber = random() % (i + 1);      
+        /* Swap values */
+        input[i] = input[randomNumber];
+        input[randomNumber] = temp;
+        i++;
+        sleep(1);
+    }
+    return input;
+}
+
+function concatArray(value1, value2)
+{
+    let output = array();
+    let i = 0;
+    if (isArrayType(value1))
+    {
+        while (i < count(value1))
+        {
+            output[count(output)] = value1[i];
+            i++;
+        }
+    }
+    else
+    {
+        output[count(output)] = value1;
+    }
+    i = 0;
+    if (isArrayType(value2))
+    {
+        while (i < count(value2))
+        {
+            output[count(output)] = value2[i];
+            i++;
+        }
+    }
+    else
+    {
+        output[count(output)] = value2;
+    }
+    return output;
+}

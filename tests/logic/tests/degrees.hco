@@ -1,0 +1,6 @@
+function degress(value)
+{
+  return cos(value * PI / 180.0);
+}
+
+print(degress(1)); /* Expected 57.2958 */

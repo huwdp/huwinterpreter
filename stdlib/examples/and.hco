@@ -1,0 +1,13 @@
+function and(left, right)
+{
+    if (left && right)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+print(and(1,1)); /* Expected true */
+print(and(1,0)); /* Expected false */
+print(and(0,1)); /* Expected false */
+print(and(0,0)); /* Expected false */

@@ -1,0 +1,18 @@
+function reverse(value)
+{
+    if (isArrayType(value))
+    {
+      return value;
+    }
+
+    let output = "";
+    let i = count(value)-1;
+    while (i >= 0)
+    {
+        output += value[i];
+        i--;
+    }
+    return output;
+}
+
+print(reverse("olleh"));

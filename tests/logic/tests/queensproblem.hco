@@ -1,0 +1,100 @@
+/* WIP */
+
+function concatArray(value1, value2)
+{
+    let output = array();
+    let i = 0;
+    if (isArrayType(value1))
+    {
+        while (i < count(value1))
+        {
+            output[count(output)] = value1[i];
+            i++;
+        }
+    }
+    else
+    {
+        output[count(output)] = value1;
+    }
+    i = 0;
+    if (isArrayType(value2))
+    {
+        while (i < count(value2))
+        {
+            output[count(output)] = value2[i];
+            i++;
+        }
+    }
+    else
+    {
+        output[count(output)] = value2;
+    }
+    return output;
+}
+
+function queenPuzzle(rows, columns) {
+    if (rows <= 0) {
+        let newArray = array();
+        let i = 0;
+        while (i < columns)
+        {
+            let newArray2 = array();
+            let j = 0;
+            while (j < columns)
+            {
+                /*newArray2[j] = 0;*/
+                j++;
+            }
+            newArray[i] = newArray2;
+            i++;
+        }
+        return newArray;
+    }
+    else
+    {
+        return addQueen(rows - 1, columns);
+    }
+}
+ 
+function addQueen(newRow, columns)
+{
+    let newSolutions = array();
+    let prev = queenPuzzle(newRow, columns);
+    
+    let i = 0;
+    while (i < count(prev))
+    {
+        let solution = prev[i];
+        let newColumn = 0;
+        while (newColumn < columns)
+        {
+            if (!hasConflict(newRow, newColumn, solution))
+            {
+                let temp = concatArray(solution, newColumn);
+                newSolutions[count(newSolutions)] = temp;
+            }
+            newColumn++;
+        }
+        i++;
+    }
+    return newSolutions;
+}
+ 
+function hasConflict(newRow, newColumn, solution)
+{
+    let i = 0;
+    while (i < newRow)
+    {
+        let sol = solution[i];
+        if (sol     == newColumn          ||
+            sol + i == newColumn + newRow || 
+            sol - i == newColumn - newRow)
+        {
+                return true;
+        }
+        i++;
+    }
+    return false;
+}
+ 
+print(queenPuzzle(4,4));

@@ -1,0 +1,15 @@
+let list = array();
+
+list[1] = 1;
+list[2] = 2;
+list[3] = 12;
+list[4] = 22;
+list[5] = 23;
+list[6] = 32;
+list[7] = 12;
+list[8] = 27;
+list[9] = 26;
+
+print(list);
+print(sort(list));
+print(list);

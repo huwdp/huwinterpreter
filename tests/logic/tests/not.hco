@@ -1,0 +1,4 @@
+
+
+print(not(1)); /* Expected 0 */
+print(not(0)); /* Expected 1 */

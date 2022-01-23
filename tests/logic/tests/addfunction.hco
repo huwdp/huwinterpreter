@@ -1,0 +1,7 @@
+function add(x,y,z)
+{
+    print(x);
+    print(y);
+    print(z);
+}
+add(1,2,3);

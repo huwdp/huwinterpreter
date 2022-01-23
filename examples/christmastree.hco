@@ -1,0 +1,56 @@
+let n = 30;
+let i = n;
+
+function padTreeLine(n, text, randomText)
+{
+    let i = 0;
+    let output = "";
+    while (i < n)
+    {               
+        if (1 == random() % 5)
+        {
+            output += randomText;
+        }
+        else
+        {
+            output += text;
+        }
+        i++;
+    }
+    return output;
+}
+
+function padLine(n, text)
+{
+    let i = 0;
+    let output = "";
+    while (i < n)
+    {
+        output += text;
+        i++;
+    }
+    return output;
+}
+
+while (i > 1)
+{
+    let pad = i/2;
+    
+    let line = padLine(pad, " ");
+    
+    line = line + "#";
+    
+    if (i != n)
+    {
+        line = line + padTreeLine(n-i-1, " ", "@") + "#";
+    }
+    
+    print(line);
+    
+    i=i-2;
+}
+
+print(padLine(n+1, "#"));
+print(padLine(n/2, " ") + "##");
+print(padLine(n/2, " ") + "##");
+print(padLine(n/2, " ") + "##");
