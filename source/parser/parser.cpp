@@ -1115,7 +1115,11 @@ namespace HuwInterpreter {
 
                 if (word == "import")
                 {
-                    //function = std::make_shared<ImportNode>(passable, currentToken, word, this->functions, arguments);
+#ifdef WIN32
+                        errorMessage("Windows cannot use the import function", currentToken);
+#else
+                        function = std::make_shared<ImportNode>(passable, currentToken, word, this->functions, arguments);
+#endif
                 }
                 else
                 {
