@@ -190,39 +190,42 @@ namespace HuwInterpreter {
                     }
                     else if (tokenManager->fastCompare(fileReader->getCurrent()->getContent(), Types::DIVISION))
                     {
-                        if (tokenManager->fastCompare(fileReader->peak()->getContent(), Types::MULTIPLICATION))
+                        if (!fileReader->isEnd())
                         {
-                            fileReader->next();
-                            while (!fileReader->isEnd() && fileReader->getCurrent()->getContent() != '\n')
+                            if (tokenManager->fastCompare(fileReader->peak()->getContent(), Types::MULTIPLICATION))
                             {
-                                if (fileReader->isEnd())
+                                fileReader->next();
+                                while (!fileReader->isEnd() && fileReader->getCurrent()->getContent() != '\n')
                                 {
-                                    return items;
-                                }
-                                fileReader->getNext();
-                                if (fileReader->isEnd())
-                                {
-                                    return items;
-                                }
-                                if (fileReader->getCurrent()->getContent() == '*')
-                                {
-                                    if (!fileReader->isEnd() && fileReader->getNext()->getContent() == '/')
+                                    if (fileReader->isEnd())
                                     {
-                                        break;
+                                        return items;
+                                    }
+                                    fileReader->getNext();
+                                    if (fileReader->isEnd())
+                                    {
+                                        return items;
+                                    }
+                                    if (fileReader->getCurrent()->getContent() == '*')
+                                    {
+                                        if (!fileReader->isEnd() && fileReader->getNext()->getContent() == '/')
+                                        {
+                                            break;
+                                        }
                                     }
                                 }
                             }
-                        }
-                        else
-                        {
-                            if (tokenManager->fastCompare(fileReader->peak()->getContent(), Types::EQUALS))
-                            {
-                                fileReader->next();
-                                AddToken(Types::DIVISIONEQUAL, lineInfo);
-                            }
                             else
                             {
-                                AddToken(Types::DIVISION, lineInfo);
+                                if (tokenManager->fastCompare(fileReader->peak()->getContent(), Types::EQUALS))
+                                {
+                                    fileReader->next();
+                                    AddToken(Types::DIVISIONEQUAL, lineInfo);
+                                }
+                                else
+                                {
+                                    AddToken(Types::DIVISION, lineInfo);
+                                }
                             }
                         }
                     }
