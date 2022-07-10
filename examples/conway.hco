@@ -1,0 +1,143 @@
+/* Code written from example here https://www.geeksforgeeks.org/program-for-conways-game-of-life/ */
+
+let grid = array();
+let M = 10;
+let N = 10;
+
+function nextGeneration()
+{
+    let futureGrid = array();
+    let i = 0;
+    while (i < M)
+    {
+        let j= 0;
+        futureGrid[i] = array();
+        while (j < N)
+        {
+            futureGrid[i][j] = 0;
+            j++;
+        }
+        i++;
+    }
+ 
+    /* Loop through every cell */
+    
+    let l = 0;
+    while (l < M)
+    {
+        let m = 0;
+        while (m < N)
+        {
+            /* finding no Of Neighbours that are alive */
+            let aliveNeighbours = 0;
+            
+            let i = -1;
+            while (i < 2)
+            {
+                let j = -1;
+                while (j < 2)
+                {
+                    if ((l + i >= 0 && l + i < M) && (m + j >= 0 && m + j < N))
+                    {
+                        let value = grid[l + i][m + j];
+                        aliveNeighbours = aliveNeighbours + value;
+                    }
+                    j++;
+                }
+                i++;
+            }
+
+            let gridSelection = grid[l][m];
+ 
+            /* The cell needs to be subtracted from */
+            /* its neighbours as it was counted before */
+            let aliveNeighbours -= gridSelection;
+ 
+            /* Implementing the Rules of Life */
+            if ((gridSelection == 1) && (aliveNeighbours < 2)) /* Cell is lonely and dies */
+            {
+                futureGrid[l][m] = 0;
+            }
+            else if ((gridSelection == 1) && (aliveNeighbours > 3)) /* Cell dies due to over population */
+            {
+                futureGrid[l][m] = 0;
+            }
+            else if ((gridSelection == 0) && (aliveNeighbours == 3)) /* A new cell is born */
+            {
+                futureGrid[l][m] = 1;
+            }
+            else
+            {
+                futureGrid[l][m] = gridSelection;  /* Remains the same */
+            }
+            m++;
+        }
+        l++;
+    }
+    draw();
+    grid = futureGrid;
+}
+
+function init()
+{
+    return 1;
+}
+
+function setupGrid()
+{
+  let i = 0;
+  while (i < M)
+  {
+    let j= 0;
+    grid[i] = array();
+    while (j < N)
+    {
+      grid[i][j] = 0;
+      j++;
+    }
+    i++;
+  }
+}
+
+function draw()
+{
+    let output = "";
+    let i = 0;
+    while (i < M)
+    {
+        let j = 0;
+        while (j < N)
+        {
+            if (grid[i][j] == 0)
+            {
+                output += ".";
+            }
+            else
+            {
+                output += "*";
+            }
+            j++;
+        }
+        output += "\n";
+        i++;
+    }
+    print(output);
+}
+
+setupGrid();
+grid[5][7] = 1;
+grid[5][8] = 1;
+grid[5][9] = 1;
+
+grid[1][2] = 1;
+grid[2][3] = 1;
+grid[3][1] = 1;
+grid[3][2] = 1;
+grid[3][3] = 1;
+
+let loop = "";
+while (loop != "exit")
+{
+    nextGeneration();
+    scan(loop);
+}
