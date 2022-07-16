@@ -1,8 +1,0 @@
-let text = "Hello World!";
-print(text);
-function changeText(text)
-{
-    text = "Hello Galaxy!";
-}
-changeText(ref(text));
-print(text);

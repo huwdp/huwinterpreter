@@ -177,13 +177,10 @@ set(SOURCE
     errors/stacktrace.cpp
     common/nameableobject.cpp
     nodes/arraysetnode.cpp
-    variables/refvariable.cpp
-    functions/reffunction.cpp
     functions/currenttimefunction.cpp
     functions/clockfunction.cpp
     functions/dirfunction.cpp
     functions/timeformatfunction.cpp
-    functions/unreffunction.cpp
     functions/tonumber.cpp)
 
 set(HEADER
@@ -388,13 +385,10 @@ set(HEADER
         errors/stacktrace.h
         common/nameableobject.h
         nodes/arraysetnode.h
-        variables/refvariable.h
-        functions/reffunction.h
         functions/currenttimefunction.h
         functions/clockfunction.h
         functions/dirfunction.h
         functions/timeformatfunction.h
-        functions/unreffunction.h
         functions/tonumber.h)
 
 add_executable(${PROJECT_NAME} ${SOURCE} ${HEADER})

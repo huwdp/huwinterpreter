@@ -86,9 +86,6 @@ namespace Functions {
         functions["toDouble"] = std::make_shared<ToDouble>(passable);
         functions["toString"] = std::make_shared<ToString>(passable);
 
-        functions["ref"] = std::make_shared<RefFunction>(passable);
-        functions["unref"] = std::make_shared<UnrefFunction>(passable);
-
 
         functions["jsonEncode"] = std::make_shared<JSONEncodeFunction>(passable);
         functions["jsonDecode"] = std::make_shared<JSONDecodeFunction>(passable);
