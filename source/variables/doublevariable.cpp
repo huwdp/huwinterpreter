@@ -311,6 +311,12 @@ namespace HuwInterpreter {
             return nullVariable;
         }
 
+        bool DoubleVariable::boundExists(std::string index, std::shared_ptr<Tokens::Token> token)
+        {
+            passable->getErrorManager()->add(passable->getErrorFactory()->cannotCallFunction(token, name, getType(), "unset", "Double is not an array"));
+            return false;
+        }
+
         void DoubleVariable::unset(std::string index, std::shared_ptr<Tokens::Token> token)
         {
             passable->getErrorManager()->add(passable->getErrorFactory()->cannotCallFunction(token, name, getType(), "unset", "Double is not an array"));

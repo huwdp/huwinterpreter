@@ -62,7 +62,13 @@ namespace HuwInterpreter {
 
             if (array->getType() == ARRAY || array->getType() == STRING)
             {
-                return array->get(index->toString(), token);
+                std::string indexStr = index->toString();
+                if (array->boundExists(indexStr, token))
+                {
+                    return array->get(indexStr, token);
+                }
+                passable->getErrorManager()->add(passable->getErrorFactory()->outOfBounds(token, array->getName()));
+                return nullVariable;
             }
 
             passable->getErrorManager()->add(passable->getErrorFactory()->isNotAnArray(token, array->getName()));

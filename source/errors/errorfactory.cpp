@@ -172,7 +172,7 @@ namespace HuwInterpreter {
             {
                 return std::make_shared<Error>(RUNTIME_ERROR, "Variable is not an array", token);
             }
-            return std::make_shared<Error>(RUNTIME_ERROR, "Variable " + name + "is not an array", token);
+            return std::make_shared<Error>(RUNTIME_ERROR, "Variable " + name + " is not an array", token);
         }
 
         std::shared_ptr<Error> ErrorFactory::argumentMustBeNumberType(std::shared_ptr<Token> token, std::string variableName)

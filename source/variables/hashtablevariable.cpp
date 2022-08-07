@@ -356,6 +356,15 @@ namespace HuwInterpreter {
             return map[index];
         }
 
+        bool HashTableVariable::boundExists(std::string index, std::shared_ptr<Tokens::Token> token)
+        {
+            if (map.find(index) == map.end())
+            {
+                return false;
+            }
+            return true;
+        }
+
         void HashTableVariable::unset(std::string index, std::shared_ptr<Tokens::Token> token)
         {
             map.erase(index);

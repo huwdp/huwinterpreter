@@ -72,6 +72,7 @@ namespace HuwInterpreter {
             std::shared_ptr<Variable> decrement(std::shared_ptr<Tokens::Token> token) final;
             std::shared_ptr<Variable> count(std::shared_ptr<Tokens::Token> token) final;
             std::shared_ptr<Variable> get(std::string index, std::shared_ptr<Tokens::Token> token) final;
+            virtual bool boundExists(std::string index, std::shared_ptr<Tokens::Token> token) final;
             void set(std::string index, std::shared_ptr<Variable> value, std::shared_ptr<Tokens::Token> token) final;
             void unset(std::string index, std::shared_ptr<Tokens::Token> token) final;
             std::shared_ptr<Variable> clone(std::shared_ptr<Tokens::Token> token) final;
