@@ -15,6 +15,6 @@ while (c < n)
 		first = second;
 		second = next;
 	}
-	print(next);
+	printLn(next);
 	c = c + 1;
 }

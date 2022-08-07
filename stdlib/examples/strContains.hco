@@ -7,7 +7,7 @@ function strContains(string1, string2)
     return 1;
 }
 
-print(strContains("Lorem ipsum dolor sit amet", "sit"));     /* True */
-print(strContains("Hello world!", "world"));                 /* True */
-print(strContains("Lorem ipsum dolor sit amet", "unknown")); /* False */
-print(strContains("Hello world!", "unknown"));               /* False */
+printLn(strContains("Lorem ipsum dolor sit amet", "sit"));     /* True */
+printLn(strContains("Hello world!", "world"));                 /* True */
+printLn(strContains("Lorem ipsum dolor sit amet", "unknown")); /* False */
+printLn(strContains("Hello world!", "unknown"));               /* False */

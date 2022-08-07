@@ -7,7 +7,7 @@ function or(left, right)
     return 0;
 }
 
-print(or(1,1)); /* Expected true */
-print(or(1,0)); /* Expected true */
-print(or(0,1)); /* Expected true */
-print(or(0,0)); /* Expected false */
+printLn(or(1,1)); /* Expected true */
+printLn(or(1,0)); /* Expected true */
+printLn(or(0,1)); /* Expected true */
+printLn(or(0,0)); /* Expected false */

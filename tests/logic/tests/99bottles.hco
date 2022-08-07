@@ -2,9 +2,9 @@ let plural = "s";
 let i = 99;
 while (i >= 0)
 {
-    print(toString(i) + " bottle" + plural + " of beer on the wall");
-    print(toString(i) + " bottle" + plural + " of beer!");
-    print("Take one down, pass it around!");
+    printLn(toString(i) + " bottle" + plural + " of beer on the wall");
+    printLn(toString(i) + " bottle" + plural + " of beer!");
+    printLn("Take one down, pass it around!");
     if (i - 1 == 1)
     {
         plural = "";
@@ -12,11 +12,11 @@ while (i >= 0)
  
     if (i > 1)
     {
-        print(toString(i - 1) + " bottle" + plural + " of beer on the wall!");
+        printLn(toString(i - 1) + " bottle" + plural + " of beer on the wall!");
     }
     else
     {
-        print("No more bottles of beer on the wall!");
+        printLn("No more bottles of beer on the wall!");
     }
     i--;
 }

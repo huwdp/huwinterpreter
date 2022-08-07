@@ -2,9 +2,9 @@ function int(value)
 {
     return round(toDouble(value));
 }
-print(int(0.4));
-print(int(0.6));
-print(int(1));
-print(int(1.2));
-print(int(-1));
-print(int(999999));
+printLn(int(0.4));
+printLn(int(0.6));
+printLn(int(1));
+printLn(int(1.2));
+printLn(int(-1));
+printLn(int(999999));

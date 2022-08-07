@@ -15,4 +15,4 @@ function reverse(value)
     return output;
 }
 
-print(reverse("olleh"));
+printLn(reverse("olleh"));

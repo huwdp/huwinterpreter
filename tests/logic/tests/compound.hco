@@ -1,15 +1,15 @@
 let a = 10;
 a += 2;
-print(a);
+printLn(a);
 
 a = 10;
 a -= 2;
-print(a);
+printLn(a);
 
 a = 10;
 a *= 2;
-print(a);
+printLn(a);
 
 a = 10;
 a /= 2;
-print(a);
+printLn(a);

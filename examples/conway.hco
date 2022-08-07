@@ -121,7 +121,7 @@ function draw()
         output += "\n";
         i++;
     }
-    print(output);
+    printLn(output);
 }
 
 setupGrid();

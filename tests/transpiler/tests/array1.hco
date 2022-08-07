@@ -12,8 +12,8 @@ while (i < 10)
 let i = 0;
 while (i < 10)
 {
-    print(list[i]);
+    printLn(list[i]);
     i++;
 }
 
-print("Array count: " + count(list));
+printLn("Array count: " + count(list));

@@ -98,6 +98,7 @@ set(SOURCE
     functions/now.cpp
     functions/pow.cpp
     functions/print.cpp
+    functions/println.cpp
     functions/random.cpp
     functions/replace.cpp
     functions/right.cpp
@@ -307,6 +308,7 @@ set(HEADER
         functions/now.h
         functions/pow.h
         functions/print.h
+        functions/println.h
         functions/random.h
         functions/replace.h
         functions/right.h

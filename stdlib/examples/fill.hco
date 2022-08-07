@@ -10,4 +10,4 @@ function fill(value, n)
   return output;
 }
 
-print(fill("=",10)); /* Expected: ========== */
+printLn(fill("=",10)); /* Expected: ========== */

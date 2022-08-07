@@ -1,1 +1,1 @@
-let a=10;let a=a+2;print(a);let a=10;let a=a-2;print(a);let a=10;let a=a*2;print(a);let a=10;let a=a/2;print(a);
+let a=10;a=a+2;printLn(a);a=10;a=a-2;printLn(a);a=10;a=a*2;printLn(a);a=10;a=a/2;printLn(a);

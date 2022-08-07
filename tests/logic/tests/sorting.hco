@@ -103,8 +103,8 @@ list[5] = 10;
 list[6] = 4;
 list[7] = 1;
 let a = insertationSort(list);
-print(a);
-print(checkSort(a));
+printLn(a);
+printLn(checkSort(a));
 
 list[0] = 701;
 list[1] = 301;
@@ -116,9 +116,9 @@ list[6] = 4;
 list[7] = 1;
 
 let a = bubbleSort(list);
-print(a);
+printLn(a);
 
-print(checkSort(a));
+printLn(checkSort(a));
 
 list[0] = 701;
 list[1] = 301;
@@ -130,5 +130,5 @@ list[6] = 4;
 list[7] = 1;
 
 let a = shellSort(list);
-print(a);
-print(checkSort(a));
+printLn(a);
+printLn(checkSort(a));

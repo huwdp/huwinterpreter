@@ -1,26 +1,26 @@
-print(1&&1);
-print(1||0);
-print(1&&(1||0));
+printLn(1&&1);
+printLn(1||0);
+printLn(1&&(1||0));
 
-print("OR");
-print(0||0);
-print(0||1);
-print(1||0);
-print(1||1);
+printLn("OR");
+printLn(0||0);
+printLn(0||1);
+printLn(1||0);
+printLn(1||1);
 
-print("AND");
-print(0&&0);
-print(0&&1);
-print(1&&0);
-print(1&&1);
+printLn("AND");
+printLn(0&&0);
+printLn(0&&1);
+printLn(1&&0);
+printLn(1&&1);
 
-print("AND/OR");
-print(0||(1&&1));
-print(1||(0&&0));
-print(0&&(0||1));
-print(1&&(1||0));
+printLn("AND/OR");
+printLn(0||(1&&1));
+printLn(1||(0&&0));
+printLn(0&&(0||1));
+printLn(1&&(1||0));
 
-print("LOGIC/MATH");
-print(0+1||0);
-print(0);
-print(1);
+printLn("LOGIC/MATH");
+printLn(0+1||0);
+printLn(0);
+printLn(1);

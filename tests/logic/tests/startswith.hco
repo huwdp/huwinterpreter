@@ -7,5 +7,5 @@ function startsWith(source, text)
     return 0;
 }
 
-print(startsWith("Hello World!", "Hello")); /* Expected true */
-print(startsWith("Lorem ipsum", "Hello")); /* Expected false */
+printLn(startsWith("Hello World!", "Hello")); /* Expected true */
+printLn(startsWith("Lorem ipsum", "Hello")); /* Expected false */

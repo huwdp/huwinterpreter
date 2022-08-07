@@ -4,4 +4,4 @@ let list2 = array();
 list2["2"] = "3";
 list["1"] = list2;
 
-print(list["1"]["2"]);
+printLn(list["1"]["2"]);

@@ -2,36 +2,36 @@ let a = 1;
 
 if (isDoubleType(a))
 {
-    print("TRUE");
+    printLn("TRUE");
 }
 else
 {
-    print("FALSE");
+    printLn("FALSE");
 }
 
 if (isIntType(a))
 {
-    print("TRUE");
+    printLn("TRUE");
 }
 else
 {
-    print("FALSE");
+    printLn("FALSE");
 }
 
 if (isStringType(a))
 {
-    print("TRUE");
+    printLn("TRUE");
 }
 else
 {
-    print("FALSE");
+    printLn("FALSE");
 }
 
 if (isArrayType(a))
 {
-    print("TRUE");
+    printLn("TRUE");
 }
 else
 {
-    print("FALSE");
+    printLn("FALSE");
 }

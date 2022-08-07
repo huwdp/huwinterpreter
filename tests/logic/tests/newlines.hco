@@ -1,2 +1,2 @@
 let text = "\n\n\n\n";
-print(text);
+printLn(text);

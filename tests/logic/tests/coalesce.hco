@@ -11,11 +11,11 @@ function coalesce(value, replacementValue)
   return value;
 }
 
-print(coalesce("", "Replacement text"));     /* Expected "Replacement text" */
-print(coalesce("Text", "Replacement text")); /* Expected "Text" */
+printLn(coalesce("", "Replacement text"));     /* Expected "Replacement text" */
+printLn(coalesce("Text", "Replacement text")); /* Expected "Text" */
 let items = array();
-print(coalesce(items, "Replacement text"));  /* Expected "Replacement text" */
+printLn(coalesce(items, "Replacement text"));  /* Expected "Replacement text" */
 items[0] = "Item 1";
-print(coalesce(items, "Replacement text"));  /* Expected "Text" */
-print(coalesce(0, "Replacement text"));      /* Expected "Text" */
-print(coalesce(1, "Replacement text"));      /* Expected "Text" */
+printLn(coalesce(items, "Replacement text"));  /* Expected "Text" */
+printLn(coalesce(0, "Replacement text"));      /* Expected "Text" */
+printLn(coalesce(1, "Replacement text"));      /* Expected "Text" */

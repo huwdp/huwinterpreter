@@ -28,5 +28,5 @@ function split(input, deliminator)
     return output;
 }
 
-print(split("Hello,world!", ","));
-print(split("1,2,3,4,5,6,7,8,9",","));
+printLn(split("Hello,world!", ","));
+printLn(split("1,2,3,4,5,6,7,8,9",","));

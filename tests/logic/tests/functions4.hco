@@ -1,5 +1,5 @@
 let txt = "This is a beautiful day!";
-print(inStrRev(txt,"i"));
-print(inStrRev(txt,"t"));
-print(inStrRev(txt,"T"));
-print(timeFormat(1505150753, "%c"));
+printLn(inStrRev(txt,"i"));
+printLn(inStrRev(txt,"t"));
+printLn(inStrRev(txt,"T"));
+printLn(timeFormat(1505150753, "%c"));
