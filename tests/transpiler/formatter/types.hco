@@ -1,1 +1,1 @@
-let number=0;let number="";let example1=0;let number=number+"bob";print(number);
+let number=0;number="";let example1=0;number=number+"bob";printLn(number);

@@ -1,5 +1,5 @@
 let a = 10;
 a++;
-print(a);
+printLn(a);
 a--;
-print(a);
+printLn(a);

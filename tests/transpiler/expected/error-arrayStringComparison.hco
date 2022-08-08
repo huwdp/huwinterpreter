@@ -1,4 +1,4 @@
 let a = array();
 let b = "";
 
-print(a == b);
+printLn(a == b);

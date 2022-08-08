@@ -1,1 +1,1 @@
-function test2(){return 1;print("Hello World");return 2;}function test(){return "Hello World";print("Hello World");return "Hello World";}print(test());print(test2());
+function test2(){return 1;printLn("Hello World");return 2;}function test(){return "Hello World";printLn("Hello World");return "Hello World";}printLn(test());printLn(test2());

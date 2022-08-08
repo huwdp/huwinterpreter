@@ -21,11 +21,11 @@ while (i < 2100)
     let isLeap = isLeapYear(i);
     if (isLeap == true)
     {
-        print(str(i) + " is a leap year");
+        printLn(str(i) + " is a leap year");
     }
     else
     {
-       print(str(i) + " is not a leap year");
+       printLn(str(i) + " is not a leap year");
     }
     i++;
 }

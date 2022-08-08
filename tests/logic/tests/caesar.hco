@@ -26,4 +26,4 @@ function caesarCipher(rot, phrase)
     return rotPhrase;
 }
 
-print(caesarCipher(2, "Hello world"));
+printLn(caesarCipher(2, "Hello world"));

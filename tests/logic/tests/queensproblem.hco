@@ -97,4 +97,4 @@ function hasConflict(newRow, newColumn, solution)
     return false;
 }
  
-print(queenPuzzle(4,4));
+printLn(queenPuzzle(4,4));

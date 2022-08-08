@@ -3,4 +3,4 @@ function radians(value)
   return tan(value * PI / 180.0);
 }
 
-print(radians(1)); /* Expected 0.017455 */
+printLn(radians(1)); /* Expected 0.017455 */

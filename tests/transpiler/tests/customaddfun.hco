@@ -5,6 +5,6 @@ function add(a)
     {
         add(a);
     }
-    print(a);
+    printLn(a);
 }
 add (1);

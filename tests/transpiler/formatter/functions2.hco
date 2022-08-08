@@ -1,1 +1,1 @@
-print(month(1485199747));print(monthName(month(1485199747)));print(weekday(1485199747));print(weekdayName(1485199747));print(year(1440544844));
+printLn(month(1485199747));printLn(monthName(month(1485199747)));printLn(weekday(1485199747));printLn(weekdayName(1485199747));printLn(year(1440544844));

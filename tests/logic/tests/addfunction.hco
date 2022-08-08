@@ -1,7 +1,7 @@
 function add(x,y,z)
 {
-    print(x);
-    print(y);
-    print(z);
+    printLn(x);
+    printLn(y);
+    printLn(z);
 }
 add(1,2,3);

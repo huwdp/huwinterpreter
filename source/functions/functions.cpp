@@ -34,6 +34,7 @@ namespace Functions {
 
         functions["not"] = std::make_shared<Not>(passable);
         functions["print"] = std::make_shared<Print>(passable);
+        functions["printLn"] = std::make_shared<PrintLn>(passable);
         functions["scan"] = std::make_shared<Scan>(passable);
 
         functions["abs"] = std::make_shared<Abs>(passable);

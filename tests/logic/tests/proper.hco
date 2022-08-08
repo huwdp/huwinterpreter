@@ -16,5 +16,5 @@ function proper(value)
     return output;
 }
 
-print(proper("hello")); /* Expected Hello */
-print(proper("l")); /* Expected L */
+printLn(proper("hello")); /* Expected Hello */
+printLn(proper("l")); /* Expected L */

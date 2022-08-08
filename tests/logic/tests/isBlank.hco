@@ -11,11 +11,11 @@ function isBlank(value)
   return 0;
 }
 
-print(isBlank(""));     /* Expected true */
-print(isBlank("Text")); /* Expected false */
+printLn(isBlank(""));     /* Expected true */
+printLn(isBlank("Text")); /* Expected false */
 let items = array();
-print(isBlank(items));  /* Expected true */
+printLn(isBlank(items));  /* Expected true */
 items[0] = "Item 1";
-print(isBlank(items));  /* Expected false */
-print(isBlank(0));      /* Expected false */
-print(isBlank(1));      /* Expected false */
+printLn(isBlank(items));  /* Expected false */
+printLn(isBlank(0));      /* Expected false */
+printLn(isBlank(1));      /* Expected false */

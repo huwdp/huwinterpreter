@@ -7,8 +7,8 @@ function first(value)
   return "";
 }
 
-print(first("hello")); /* Expected h */
+printLn(first("hello")); /* Expected h */
 let items = array();
 items[0] = "First item";
 items[1] = "Second item";
-print(first(items)); /* First item */
+printLn(first(items)); /* First item */

@@ -53,11 +53,11 @@ let i = 0;
 while (i < len(countyCodes))
 {
     let country = countyCodes[i];
-    print("Item: " + i);
-    print("Country: " + country[0]);
-    print("Alpha-2 code : " + country[1]);
-    print("Alpha-3 code : " + country[2]);
-    print("Numeric: " + country[3]);
-    print("");
+    printLn("Item: " + i);
+    printLn("Country: " + country[0]);
+    printLn("Alpha-2 code : " + country[1]);
+    printLn("Alpha-3 code : " + country[2]);
+    printLn("Numeric: " + country[3]);
+    printLn("");
     i++;
 }

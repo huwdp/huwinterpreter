@@ -1,8 +1,8 @@
-print(PI);
-print(e);
-print(γ);
-print(Φ);
-print(φ);
-print(ρ);
-print(true);
-print(false);
+printLn(PI);
+printLn(e);
+printLn(γ);
+printLn(Φ);
+printLn(φ);
+printLn(ρ);
+printLn(true);
+printLn(false);

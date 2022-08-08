@@ -1,19 +1,19 @@
 let a = 1;
 a = 1;
-print(a);
+printLn(a);
 
 let b = 2;
 b += 1;
-print(b);
+printLn(b);
 
 let c = 3;
 c -= 1;
-print(c);
+printLn(c);
 
 let d = 4;
 d *= 5;
-print(d);
+printLn(d);
 
 let f = 6;
 f /= 2;
-print(f);
+printLn(f);

@@ -12,15 +12,15 @@ while (i < 10)
 let i = 0;
 while (i < 10)
 {
-    print(list[i]);
+    printLn(list[i]);
     i++;
 }
 
-print("Array count: " + count(list));
+printLn("Array count: " + count(list));
 
 
 let universe = array();
 universe["Galaxy"]["Earth"] = "Hello Earth!";
 universe["Galaxy"]["Mars"] = "Hello Mars!";
-print(universe["Galaxy"]["Earth"]);
-print(universe["Galaxy"]["Mars"]);
+printLn(universe["Galaxy"]["Earth"]);
+printLn(universe["Galaxy"]["Mars"]);
