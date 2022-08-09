@@ -470,6 +470,25 @@ namespace HuwInterpreter {
             return nullVariable;
         }
 
+        bool StringVariable::boundExists(std::string index, std::shared_ptr<Tokens::Token> token)
+        {
+            long i = 0;
+            try
+            {
+                i = stol(index);
+            }
+            catch (const std::exception& e)
+            {
+                passable->getErrorManager()->add(passable->getErrorFactory()->couldNotConvertStringToNumber(token, name, "get", e.what()));
+                return false;
+            }
+            if (i < 0 || i > (long)value.length())
+            {
+                return false;
+            }
+            return true;
+        }
+
         void StringVariable::unset(std::string index, std::shared_ptr<Tokens::Token> token)
         {
             passable->getErrorManager()->add(passable->getErrorFactory()->cannotCallFunction(token, name, getType(), "unset", "String is not an array"));

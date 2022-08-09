@@ -278,6 +278,11 @@ namespace HuwInterpreter {
             return this->variable->get(value, token);
         }
 
+        bool ConstantVariable::boundExists(std::string index, std::shared_ptr<Tokens::Token> token)
+        {
+            return variable->boundExists(index, token);
+        }
+
         void ConstantVariable::unset(std::string index, std::shared_ptr<Tokens::Token> token)
         {
             if (!isSet && variable == nullptr)

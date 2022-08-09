@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.14.1, 2022-08-07T14:41:54. -->
+<!-- Written by QtCreator 4.14.1, 2022-08-07T16:26:15. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -213,7 +213,6 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">HuwInterpreter</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeRunConfiguration.HuwInterpreter</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">HuwInterpreter</value>
-    <value type="QString" key="RunConfiguration.Arguments">/home/huw/examples/out_of_bounds.hco</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
