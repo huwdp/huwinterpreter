@@ -19,7 +19,7 @@ while (m <= 0)  /* We keep this to 0 as the application stack size is not big en
     while (n < 6 - m)
     {
         let text = "A(" + m + ", " + n + ") = " + ackermann(m, n);
-        print(text);
+        printLn(text);
         n++;
     }
     m++;

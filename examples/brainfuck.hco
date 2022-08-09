@@ -1,6 +1,6 @@
 function bf(bufferSize, is)
 {
-    print(is);
+    printLn(is);
     let ds = array();
     let dp = 0;
     let ip = 0;
@@ -37,7 +37,7 @@ function bf(bufferSize, is)
         else if (curr == ".")
         {
             let v = ds[dp];
-            print(cha(v));
+            printLn(cha(v));
         }
         else if (curr == ",")
         {

@@ -8,8 +8,8 @@ function last(value)
     return "";
 }
 
-print(last("hello")); /* Expected o */
+printLn(last("hello")); /* Expected o */
 let items = array();
 items[0] = "First item";
 items[1] = "Second item";
-print(last(items)); /* Expected Second item */
+printLn(last(items)); /* Expected Second item */

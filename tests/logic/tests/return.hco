@@ -1,15 +1,15 @@
 function test()
 {
     return "Hello World";
-    print("Hello World");
+    printLn("Hello World");
     return "Hello World";
 }
-print(test());
+printLn(test());
 
 function test2()
 {
     return 1;
-    print("Hello World");
+    printLn("Hello World");
     return 2;
 }
-print(test2());
+printLn(test2());

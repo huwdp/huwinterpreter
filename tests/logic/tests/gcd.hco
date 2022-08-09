@@ -17,4 +17,4 @@ function gcd(a, b)
     return a;
 }
 
-print(gcd(20, 4));
+printLn(gcd(20, 4));

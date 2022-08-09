@@ -1,1 +1,1 @@
-let a=1;let a=1;print(a);let b=2;let b=b+1;print(b);let c=3;let c=c-1;print(c);let d=4;let d=d*5;print(d);let f=6;let f=f/2;print(f);
+let a=1;a=1;printLn(a);let b=2;b=b+1;printLn(b);let c=3;c=c-1;printLn(c);let d=4;d=d*5;printLn(d);let f=6;f=f/2;printLn(f);

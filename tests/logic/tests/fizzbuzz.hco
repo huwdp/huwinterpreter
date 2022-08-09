@@ -4,23 +4,23 @@ while (i < maxNumber)
 {
 	if (i % 5 == 0 && i % 3 == 0)
 	{
-		print("FizzBuzz");
+		printLn("FizzBuzz");
     }
 	else
 	{
 		if (i % 3 == 0)
 		{
-			print("Fizz");
+			printLn("Fizz");
 		}
 		else
 		{
 			if (i % 5 == 0)
 			{
-				print("Buzz");
+				printLn("Buzz");
 			}
 			else
 			{
-				print(i);
+				printLn(i);
 			}
 		}
 	}

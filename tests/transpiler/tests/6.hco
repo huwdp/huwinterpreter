@@ -1,6 +1,6 @@
 let a = 1;
 if (a>0)
 {
-	print(a);
+	printLn(a);
 }
-print(1+1);
+printLn(1+1);

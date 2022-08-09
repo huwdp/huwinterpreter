@@ -1,1 +1,1 @@
-let a=array();if (isDoubleType(a)){print("TRUE");}else{print("FALSE");}if (isIntType(a)){print("TRUE");}else{print("FALSE");}if (isStringType(a)){print("TRUE");}else{print("FALSE");}if (isArrayType(a)){print("TRUE");}else{print("FALSE");}
+let a=array();if (isDoubleType(a)){printLn("TRUE");}else{printLn("FALSE");}if (isIntType(a)){printLn("TRUE");}else{printLn("FALSE");}if (isStringType(a)){printLn("TRUE");}else{printLn("FALSE");}if (isArrayType(a)){printLn("TRUE");}else{printLn("FALSE");}

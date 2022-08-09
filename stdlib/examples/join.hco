@@ -16,10 +16,10 @@ function join(input, seperator)
     return str(input);
 }
 
-print(join(str("123456789"), ","));
+printLn(join(str("123456789"), ","));
 let list = array();
 list[0] = "a";
 list[1] = "b";
 list[2] = "c";
 list[3] = "d";
-print(join(list, ":"));
+printLn(join(list, ":"));

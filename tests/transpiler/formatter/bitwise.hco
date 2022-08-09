@@ -1,1 +1,1 @@
-print(12&25);print(12|25);print(12^25);print(~35);print(~-12);
+printLn(12&25);printLn(12|25);printLn(12^25);printLn(~35);printLn(~-12);

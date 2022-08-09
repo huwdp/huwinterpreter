@@ -7,5 +7,5 @@ function endsWith(source, text)
     return 0;
 }
 
-print(endsWith("Hello World!", "World!")); /* Expected true */
-print(endsWith("Lorem ipsum", "World!")); /* Expected false */
+printLn(endsWith("Hello World!", "World!")); /* Expected true */
+printLn(endsWith("Lorem ipsum", "World!")); /* Expected false */

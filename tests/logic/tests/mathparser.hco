@@ -66,16 +66,16 @@ function valueOfExpr()
 
 i = 0;
 list = "1+2*5";
-print(valueOfExpr());
+printLn(valueOfExpr());
 
 i = 0;
 list = "1+2*5+2/2";
-print(valueOfExpr());
+printLn(valueOfExpr());
 
 i = 0;
 list = "5*(4+4+1)";
-print(valueOfExpr());
+printLn(valueOfExpr());
 
 i = 0;
 list = "1+(2*2)";
-print(valueOfExpr());
+printLn(valueOfExpr());

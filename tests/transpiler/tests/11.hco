@@ -1,6 +1,6 @@
 let a = "1";
 while (a < 10+1)
 {
-	print(a);
+	printLn(a);
 	a = a + 1;
 }

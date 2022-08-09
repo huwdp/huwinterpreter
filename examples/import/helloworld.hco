@@ -1,6 +1,6 @@
-print("Hello World!");
+printLn("Hello World!");
 function hello()
 {
     return "Hello!";
 }
-print(number);
+printLn(number);

@@ -1,6 +1,6 @@
  let a = 1 + ( 9 * 8) ; 
  if  ( a )
  {   
-	print( a ) ; 
+	printLn( a ) ; 
  } 
-print ( 1 + 1 ) ;
+printLn ( 1 + 1 ) ;
