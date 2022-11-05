@@ -1,5 +1,5 @@
 rm -rf build
 mkdir build
 cd build
-cmake -lcurl -lreadline ..
+cmake ..
 make
