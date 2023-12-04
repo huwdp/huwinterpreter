@@ -13,7 +13,7 @@
     along with HuwInterpreter.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifdef EMSCRIPTEN
+#ifdef __EMSCRIPTEN__
 #elif _WIN32
 #else
 #include "httpputfunction.h"

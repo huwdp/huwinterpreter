@@ -26,7 +26,7 @@
 #include "tokens/filetokenmanager.h"
 
 #ifdef _WIN32
-#elif EMSCRIPTEN
+#elif __EMSCRIPTEN__
 #else
 //#include <readline/readline.h>
 //#include <readline/history.h>
@@ -57,7 +57,7 @@ std::string readUserInput()
     std::string input;
     std::cin >> input;
     return input;
-#elif EMSCRIPTEN
+#elif __EMSCRIPTEN__
     std::string input;
     std::cin >> input;
     return input;
@@ -75,6 +75,22 @@ std::string readUserInput()
 
 int main(int argc, char* argv[])
 {
+#if __EMSCRIPTEN__
+    std::shared_ptr<HuwInterpreter::Interpreter> interpreter = std::make_shared<HuwInterpreter::Interpreter>();
+    while (true)
+    {
+        std::cout << ">>> ";
+        std::string text;
+        std::cin >> text;
+        if (text == "exit")
+        {
+            std::exit(0);
+        }
+        std::cout << std::endl;
+        interpreter->execute(interpreter->parseText(text));
+    }
+    std::exit(0);
+#else
     std::shared_ptr<HuwInterpreter::Interpreter> interpreter = std::make_shared<HuwInterpreter::Interpreter>();
     if (argc < 2)
     {
@@ -126,4 +142,5 @@ int main(int argc, char* argv[])
         interpreter->executeFile(argument);
     }
     std::exit(0);
+#endif
 }

@@ -92,7 +92,7 @@ namespace Functions {
         functions["jsonDecode"] = std::make_shared<JSONDecodeFunction>(passable);
         functions["sort"] = std::make_shared<Sort>(passable);
 
-#ifdef EMSCRIPTEN
+#ifdef __EMSCRIPTEN__
 #elif WIN32
 #else
         functions["httpGet"] = std::make_shared<HttpGetFunction>(passable);
@@ -103,7 +103,8 @@ namespace Functions {
 
 #endif
 
-#ifdef WIN32
+#ifdef __EMSCRIPTEN__
+#elif WIN32
 #else
         functions["now"] = std::make_shared<Now>(passable);
         functions["sleep"] = std::make_shared<SleepFunction>(passable);

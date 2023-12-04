@@ -1,0 +1,3 @@
+/home/huw/Desktop/huwinterpreter/source/wasm-build/CMakeFiles/HuwInterpreter.dir
+/home/huw/Desktop/huwinterpreter/source/wasm-build/CMakeFiles/edit_cache.dir
+/home/huw/Desktop/huwinterpreter/source/wasm-build/CMakeFiles/rebuild_cache.dir

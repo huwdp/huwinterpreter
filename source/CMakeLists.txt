@@ -8,11 +8,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 if (WIN32)
     set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wlogical-op -Wuseless-cast -Wdouble-promotion -Wformat=2 -static-libgcc -static-libstdc++ -I$mxe/usr/i686-w64-mingw32.static/include -Wall -Wextra -Wlogical-op -Wuseless-cast -Wdouble-promotion -Wformat=2  -lkernel32 -luser32 -lgdi32 -lshell32 -DGLEW_STATIC=1 -DAL_LIBTYPE_STATIC=1")
+elseif(EMSCRIPTEN)
+    set(CMAKE_CXX_FLAGS "-o out.html")
 else()
     set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wlogical-op -Wuseless-cast -Wdouble-promotion -Wformat=2")
 endIf()
 
-
+if (EMSCRIPTEN)
+    set(CMAKE_EXECUTABLE_SUFFIX .html)
+endif()
 
 include(FindPkgConfig)
 
@@ -395,17 +399,7 @@ set(HEADER
 
 add_executable(${PROJECT_NAME} ${SOURCE} ${HEADER})
 
-IF(MINGW)
-ELSE()
-pkg_check_modules(CURL libcurl REQUIRED)
-include_directories(
-  SYSTEM ${CURL_INCLUDE_DIRS}
-)
-target_link_libraries(${PROJECT_NAME}
-  ${CURL_LIBRARIES}
-)
-#pkg_check_modules(READLINE readline REQUIRED)
-ENDIF(MINGW)
+
 
 include_directories(
   SYSTEM ${READLINE_INCLUDE_DIRS}
