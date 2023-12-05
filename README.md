@@ -40,8 +40,8 @@ print(fac(14));
 
 #### Building
 ```
-sudo apt-get install git g++ cmake make libcurl4-openssl-dev curl pkg-config
-sudo apt-get install lib32readline7 lib32readline-dev libreadline-dev
+sudo apt-get install git g++ cmake make libcurl5-openssl-dev curl pkg-config
+sudo apt-get install lib32readline8 lib32readline-dev libreadline-dev
 git clone https://github.com/huwdp/huwinterpreter.git
 cd huwinterpreter/source
 ./build.sh

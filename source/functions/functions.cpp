@@ -95,11 +95,11 @@ namespace Functions {
 #ifdef __EMSCRIPTEN__
 #elif WIN32
 #else
-        functions["httpGet"] = std::make_shared<HttpGetFunction>(passable);
+        /*functions["httpGet"] = std::make_shared<HttpGetFunction>(passable);
         functions["httpPost"] = std::make_shared<HttpPostFunction>(passable);
         functions["httpPut"] = std::make_shared<HttpPutFunction>(passable);
         functions["httpDelete"] = std::make_shared<HttpDeleteFunction>(passable);
-        functions["httpHead"] = std::make_shared<HttpHeadFunction>(passable);
+        functions["httpHead"] = std::make_shared<HttpHeadFunction>(passable);*/
 
 #endif
 

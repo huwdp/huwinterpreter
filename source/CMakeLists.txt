@@ -10,13 +10,10 @@ if (WIN32)
     set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wlogical-op -Wuseless-cast -Wdouble-promotion -Wformat=2 -static-libgcc -static-libstdc++ -I$mxe/usr/i686-w64-mingw32.static/include -Wall -Wextra -Wlogical-op -Wuseless-cast -Wdouble-promotion -Wformat=2  -lkernel32 -luser32 -lgdi32 -lshell32 -DGLEW_STATIC=1 -DAL_LIBTYPE_STATIC=1")
 elseif(EMSCRIPTEN)
     set(CMAKE_CXX_FLAGS "-o out.html")
+        set(CMAKE_EXECUTABLE_SUFFIX .html)
 else()
     set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wlogical-op -Wuseless-cast -Wdouble-promotion -Wformat=2")
 endIf()
-
-if (EMSCRIPTEN)
-    set(CMAKE_EXECUTABLE_SUFFIX .html)
-endif()
 
 include(FindPkgConfig)
 
@@ -30,12 +27,6 @@ set(SOURCE
     errors/error.cpp
     errors/errors.cpp
     errors/errortypestringfactory.cpp
-    functions/httpdeletefunction.cpp
-    functions/httpgetfunction.cpp
-    functions/httpheadfunction.cpp
-    functions/httppostfunction.cpp
-    functions/httpputfunction.cpp
-    functions/httpdeletefunction.cpp
     functions/jsondecodefunction.cpp
     functions/jsonencodefunction.cpp
     functions/lround.cpp
@@ -196,11 +187,6 @@ set(HEADER
         errors/errortypestringfactory.h
         errors/ierrors.h
         functions/asort.h
-        functions/httpgetfunction.h
-        functions/httpheadfunction.h
-        functions/httppostfunction.h
-        functions/httpputfunction.h
-        functions/httpdeletefunction.h
         functions/jsondecodefunction.h
         functions/jsonencodefunction.h
         functions/lround.h

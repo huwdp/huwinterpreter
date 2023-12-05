@@ -113,12 +113,13 @@
 #include "clockfunction.h"
 #include "timeformatfunction.h"
 
-
+/*
 #include "httpgetfunction.h"
 #include "httppostfunction.h"
 #include "httpputfunction.h"
 #include "httpdeletefunction.h"
 #include "httpheadfunction.h"
+*/
 
 #include "sleepfunction.h"
 
